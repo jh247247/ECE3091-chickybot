@@ -172,6 +172,10 @@ C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creat
 
 C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/Camera_VSYNC.c : 
 
+C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/CortexM3/ARM_GCC_484/Debug/Camera_settings.o : C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/Camera_settings.c 
+
+C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/Camera_settings.c : 
+
 C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/CortexM3/ARM_GCC_484/Debug/ClockCamera.o : C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/ClockCamera.c C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/ClockCamera.h C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/cytypes.h 
 
 C:/Users/Nick/Dropbox/Uni\ Docs/y4s2/ECE3091\ -\ Engineering\ Design/PSoc\ Creator/eng_design_2015/ECE3091-chickybot/chickybot.cydsn/Generated_Source/PSoC5/ClockCamera.c : 
