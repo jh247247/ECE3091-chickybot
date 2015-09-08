@@ -17,7 +17,6 @@
 <ExpandedNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
-<v>chickybot-000\chickybot\TopDesign</v>
 <v>chickybot-000\chickybot\chickybot.cydwr</v>
 <v>chickybot-000\chickybot\Header Files</v>
 <v>chickybot-000\chickybot\Source Files</v>
@@ -184,7 +183,6 @@
 <VisibleNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
-<v>chickybot-000\chickybot\TopDesign</v>
 <v>chickybot-000\chickybot\chickybot.cydwr</v>
 <v>chickybot-000\chickybot\Header Files</v>
 <v>chickybot-000\chickybot\Source Files</v>
@@ -194,6 +192,7 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.h</v>
+<<<<<<< HEAD
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera\Camera.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera\Camera.h</v>
@@ -223,6 +222,38 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC_aliases.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCamera</v>
+=======
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCsBtns</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCsBtns\ClockCsBtns.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCsBtns\ClockCsBtns.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockLcdBacklight</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockLcdBacklight\ClockLcdBacklight.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockLcdBacklight\ClockLcdBacklight.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns\CsBtns.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM\CsBtns_PWM.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM\CsBtns_PWM.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM\CsBtns_PWM_PM.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+>>>>>>> master
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="chickybot-000\chickybot">
