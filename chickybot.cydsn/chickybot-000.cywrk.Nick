@@ -17,7 +17,6 @@
 <ExpandedNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
-<v>chickybot-000\chickybot\TopDesign</v>
 <v>chickybot-000\chickybot\chickybot.cydwr</v>
 <v>chickybot-000\chickybot\Header Files</v>
 <v>chickybot-000\chickybot\Source Files</v>
@@ -145,7 +144,6 @@
 <VisibleNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
-<v>chickybot-000\chickybot\TopDesign</v>
 <v>chickybot-000\chickybot\chickybot.cydwr</v>
 <v>chickybot-000\chickybot\Header Files</v>
 <v>chickybot-000\chickybot\Source Files</v>
@@ -184,6 +182,7 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="chickybot-000\chickybot">
