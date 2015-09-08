@@ -22,6 +22,7 @@ void displayPlanOnLcd() {
 void getPlan() {
     plan = (int *) malloc(sizeof(int) * ROWS);
     plan = readPlanWithCamera();
+    Lcd_PosPrintString(0, 0, "returned");
 }
 
 
@@ -40,7 +41,7 @@ int main()
     CyDelay(500); // TODO: Necessary to wait for Camera to start up?
     
     getPlan();
-    displayPlanOnLcd();
+//    displayPlanOnLcd();
 
     for(;;)
     {

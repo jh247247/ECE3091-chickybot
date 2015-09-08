@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 1
 
 
    1              		.syntax unified
@@ -18,20 +18,25 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 1
   15              		.text
   16              	.Ltext0:
   17              		.cfi_sections	.debug_frame
-  18              		.section	.text.readPlanWithCamera,"ax",%progbits
+  18              		.section	.text.takePhoto,"ax",%progbits
   19              		.align	2
-  20              		.global	readPlanWithCamera
+  20              		.global	takePhoto
   21              		.thumb
   22              		.thumb_func
-  23              		.type	readPlanWithCamera, %function
-  24              	readPlanWithCamera:
+  23              		.type	takePhoto, %function
+  24              	takePhoto:
   25              	.LFB63:
   26              		.file 1 ".\\cv.c"
    1:.\cv.c        **** #include <project.h>
    2:.\cv.c        **** #include "cv.h"
    3:.\cv.c        **** 
-   4:.\cv.c        **** int * readPlanWithCamera() {
-  27              		.loc 1 4 0
+   4:.\cv.c        **** //Framebuffer: holds a single image in UYVY format
+   5:.\cv.c        **** //organised as 144 rows of 88 pixel pairs
+   6:.\cv.c        **** //each pixel pair has 4 components: U, Y0, V, Y1
+   7:.\cv.c        **** //uint8 Camera_framebuffer[144][88][4];
+   8:.\cv.c        **** 
+   9:.\cv.c        **** int takePhoto() {
+  27              		.loc 1 9 0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -39,620 +44,1464 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 1
   32              		.cfi_def_cfa_offset 8
   33              		.cfi_offset 3, -8
   34              		.cfi_offset 14, -4
-   5:.\cv.c        ****     int * plan = (int *) malloc(sizeof(int) * ROWS);
-  35              		.loc 1 5 0
-  36 0002 0C20     		movs	r0, #12
-  37 0004 FFF7FEFF 		bl	malloc
-  38              	.LVL0:
-   6:.\cv.c        ****     
-   7:.\cv.c        ****     plan[0] = 1;
-  39              		.loc 1 7 0
-  40 0008 0122     		movs	r2, #1
-  41 000a 0260     		str	r2, [r0]
-   8:.\cv.c        ****     plan[1] = 2;
-  42              		.loc 1 8 0
-  43 000c 0222     		movs	r2, #2
-  44 000e 4260     		str	r2, [r0, #4]
-   9:.\cv.c        ****     plan[2] = 3;
-  45              		.loc 1 9 0
-  46 0010 0322     		movs	r2, #3
-  47 0012 8260     		str	r2, [r0, #8]
-  10:.\cv.c        ****     
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 2
+  10:.\cv.c        ****     Camera_SyncFrame();
+  35              		.loc 1 10 0
+  36 0002 FFF7FEFF 		bl	Camera_SyncFrame
+  37              	.LVL0:
+  11:.\cv.c        **** 	Camera_GetFrame(); // Start frame capture
+  38              		.loc 1 11 0
+  39 0006 FFF7FEFF 		bl	Camera_GetFrame
+  40              	.LVL1:
+  12:.\cv.c        ****     Camera_SyncFrame(); // Wait until frame is fully captued
+  41              		.loc 1 12 0
+  42 000a FFF7FEFF 		bl	Camera_SyncFrame
+  43              	.LVL2:
+  13:.\cv.c        ****     
+  14:.\cv.c        ****     return 0;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 2
 
 
-  11:.\cv.c        ****     return plan;
-  12:.\cv.c        **** }...
-  48              		.loc 1 12 0
-  49 0014 08BD     		pop	{r3, pc}
-  50              		.cfi_endproc
-  51              	.LFE63:
-  52              		.size	readPlanWithCamera, .-readPlanWithCamera
-  53              		.comm	Camera_framebuffer,50688,4
-  54 0016 00BF     		.text
-  55              	.Letext0:
-  56              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
-  57              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
-  58              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
-  59              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
-  60              		.file 6 "Generated_Source\\PSoC5/Camera.h"
-  61              		.file 7 "<built-in>"
-  62              		.section	.debug_info,"",%progbits
-  63              	.Ldebug_info0:
-  64 0000 47010000 		.4byte	0x147
-  65 0004 0400     		.2byte	0x4
-  66 0006 00000000 		.4byte	.Ldebug_abbrev0
-  67 000a 04       		.byte	0x4
-  68 000b 01       		.uleb128 0x1
-  69 000c 9D000000 		.4byte	.LASF18
-  70 0010 01       		.byte	0x1
-  71 0011 41000000 		.4byte	.LASF19
-  72 0015 1E010000 		.4byte	.LASF20
-  73 0019 00000000 		.4byte	.Ldebug_ranges0+0
-  74 001d 00000000 		.4byte	0
-  75 0021 00000000 		.4byte	.Ldebug_line0
-  76 0025 02       		.uleb128 0x2
-  77 0026 01       		.byte	0x1
-  78 0027 06       		.byte	0x6
-  79 0028 C4010000 		.4byte	.LASF0
-  80 002c 02       		.uleb128 0x2
-  81 002d 01       		.byte	0x1
-  82 002e 08       		.byte	0x8
-  83 002f 8F000000 		.4byte	.LASF1
-  84 0033 02       		.uleb128 0x2
-  85 0034 02       		.byte	0x2
-  86 0035 05       		.byte	0x5
-  87 0036 E0010000 		.4byte	.LASF2
-  88 003a 02       		.uleb128 0x2
-  89 003b 02       		.byte	0x2
-  90 003c 07       		.byte	0x7
-  91 003d 0E000000 		.4byte	.LASF3
-  92 0041 03       		.uleb128 0x3
-  93 0042 D0010000 		.4byte	.LASF9
-  94 0046 02       		.byte	0x2
-  95 0047 37       		.byte	0x37
-  96 0048 4C000000 		.4byte	0x4c
-  97 004c 02       		.uleb128 0x2
-  98 004d 04       		.byte	0x4
-  99 004e 05       		.byte	0x5
- 100 004f A5010000 		.4byte	.LASF4
- 101 0053 02       		.uleb128 0x2
- 102 0054 04       		.byte	0x4
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 3
+  15:.\cv.c        **** }
+  44              		.loc 1 15 0
+  45 000e 0020     		movs	r0, #0
+  46 0010 08BD     		pop	{r3, pc}
+  47              		.cfi_endproc
+  48              	.LFE63:
+  49              		.size	takePhoto, .-takePhoto
+  50 0012 00BF     		.section	.text.parsePhoto,"ax",%progbits
+  51              		.align	2
+  52              		.global	parsePhoto
+  53              		.thumb
+  54              		.thumb_func
+  55              		.type	parsePhoto, %function
+  56              	parsePhoto:
+  57              	.LFB64:
+  16:.\cv.c        **** 
+  17:.\cv.c        **** int * parsePhoto() {
+  58              		.loc 1 17 0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 16
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		@ link register save eliminated.
+  63 0000 84B0     		sub	sp, sp, #16
+  64              		.cfi_def_cfa_offset 16
+  65              	.LVL3:
+  18:.\cv.c        **** //    Lcd_PosPrintString(0, 0, "here");
+  19:.\cv.c        ****     int plan[ROWS];
+  20:.\cv.c        ****     
+  21:.\cv.c        ****     // Vars
+  22:.\cv.c        ****     int imgR[IMG_H][IMG_W];
+  23:.\cv.c        ****     int imgG[IMG_H][IMG_W];
+  24:.\cv.c        ****     int imgB[IMG_H][IMG_W];
+  25:.\cv.c        ****     int imgR_Diff[IMG_H][IMG_W];
+  26:.\cv.c        ****     int imgG_Diff[IMG_H][IMG_W];
+  27:.\cv.c        ****     int imgB_Diff[IMG_H][IMG_W];
+  28:.\cv.c        ****     int imgR_Bin[IMG_H][IMG_W];
+  29:.\cv.c        ****     int imgG_Bin[IMG_H][IMG_W];
+  30:.\cv.c        ****     int imgB_Bin[IMG_H][IMG_W];
+  31:.\cv.c        ****     int imgGrey[IMG_H][IMG_W];
+  32:.\cv.c        ****     
+  33:.\cv.c        ****     // YUV -> RGB
+  34:.\cv.c        **** //    R = Y+V
+  35:.\cv.c        **** //    G = Y-U-V
+  36:.\cv.c        **** //    B = Y+U
+  37:.\cv.c        ****     int h, w;
+  38:.\cv.c        ****     int U = 0, Y0 = 1, V = 2, Y1 = 3;
+  39:.\cv.c        ****     
+  40:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  66              		.loc 1 40 0
+  67 0002 0022     		movs	r2, #0
+  68 0004 1146     		mov	r1, r2
+  69 0006 05E0     		b	.L3
+  70              	.LVL4:
+  71              	.L4:
+  41:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+  72              		.loc 1 41 0
+  73 0008 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 3
 
 
- 103 0055 07       		.byte	0x7
- 104 0056 4E000000 		.4byte	.LASF5
- 105 005a 02       		.uleb128 0x2
- 106 005b 08       		.byte	0x8
- 107 005c 05       		.byte	0x5
- 108 005d 00000000 		.4byte	.LASF6
- 109 0061 02       		.uleb128 0x2
- 110 0062 08       		.byte	0x8
- 111 0063 07       		.byte	0x7
- 112 0064 73000000 		.4byte	.LASF7
- 113 0068 04       		.uleb128 0x4
- 114 0069 04       		.byte	0x4
- 115 006a 05       		.byte	0x5
- 116 006b 696E7400 		.ascii	"int\000"
- 117 006f 02       		.uleb128 0x2
- 118 0070 04       		.byte	0x4
- 119 0071 07       		.byte	0x7
- 120 0072 21000000 		.4byte	.LASF8
- 121 0076 03       		.uleb128 0x3
- 122 0077 EA010000 		.4byte	.LASF10
- 123 007b 03       		.byte	0x3
- 124 007c 41       		.byte	0x41
- 125 007d 41000000 		.4byte	0x41
- 126 0081 03       		.uleb128 0x3
- 127 0082 48000000 		.4byte	.LASF11
- 128 0086 04       		.byte	0x4
- 129 0087 B4       		.byte	0xb4
- 130 0088 2C000000 		.4byte	0x2c
- 131 008c 02       		.uleb128 0x2
- 132 008d 04       		.byte	0x4
- 133 008e 04       		.byte	0x4
- 134 008f DA010000 		.4byte	.LASF12
- 135 0093 02       		.uleb128 0x2
- 136 0094 08       		.byte	0x8
- 137 0095 04       		.byte	0x4
- 138 0096 9E010000 		.4byte	.LASF13
- 139 009a 02       		.uleb128 0x2
- 140 009b 01       		.byte	0x1
- 141 009c 08       		.byte	0x8
- 142 009d 19010000 		.4byte	.LASF14
- 143 00a1 02       		.uleb128 0x2
- 144 00a2 04       		.byte	0x4
- 145 00a3 07       		.byte	0x7
- 146 00a4 AE010000 		.4byte	.LASF15
- 147 00a8 05       		.uleb128 0x5
- 148 00a9 04       		.byte	0x4
- 149 00aa 06       		.uleb128 0x6
- 150 00ab 2E000000 		.4byte	.LASF21
- 151 00af 01       		.byte	0x1
- 152 00b0 04       		.byte	0x4
- 153 00b1 F5000000 		.4byte	0xf5
- 154 00b5 00000000 		.4byte	.LFB63
- 155 00b9 16000000 		.4byte	.LFE63-.LFB63
- 156 00bd 01       		.uleb128 0x1
- 157 00be 9C       		.byte	0x9c
- 158 00bf F5000000 		.4byte	0xf5
- 159 00c3 07       		.uleb128 0x7
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 4
+  74              	.LVL5:
+  75 000a 00E0     		b	.L5
+  76              	.LVL6:
+  77              	.L15:
+  78 000c 0B46     		mov	r3, r1
+  79              	.L5:
+  80              	.LVL7:
+  81              		.loc 1 41 0 is_stmt 0 discriminator 1
+  82 000e AF2B     		cmp	r3, #175
+  83 0010 FADD     		ble	.L4
+  40:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  84              		.loc 1 40 0 is_stmt 1
+  85 0012 0132     		adds	r2, r2, #1
+  86              	.LVL8:
+  87              	.L3:
+  40:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  88              		.loc 1 40 0 is_stmt 0 discriminator 1
+  89 0014 8F2A     		cmp	r2, #143
+  90 0016 F9DD     		ble	.L15
+  91 0018 0022     		movs	r2, #0
+  92              	.LVL9:
+  93 001a 1146     		mov	r1, r2
+  94 001c 05E0     		b	.L6
+  95              	.LVL10:
+  96              	.L7:
+  42:.\cv.c        ****             if (w % 2 == 0) {
+  43:.\cv.c        ****                 imgR[h][w] = Camera_framebuffer[h][w/2][Y0] + Camera_framebuffer[h][w/2][V];
+  44:.\cv.c        ****                 imgG[h][w] = Camera_framebuffer[h][w/2][Y0] - Camera_framebuffer[h][w/2][U] - Camer
+  45:.\cv.c        ****                 imgB[h][w] = Camera_framebuffer[h][w/2][Y0] + Camera_framebuffer[h][w/2][U];
+  46:.\cv.c        ****             }
+  47:.\cv.c        ****             else {
+  48:.\cv.c        ****                 imgR[h][w] = Camera_framebuffer[h][w/2][Y1] + Camera_framebuffer[h][w/2][V];
+  49:.\cv.c        ****                 imgG[h][w] = Camera_framebuffer[h][w/2][Y1] - Camera_framebuffer[h][w/2][U] - Camer
+  50:.\cv.c        ****                 imgB[h][w] = Camera_framebuffer[h][w/2][Y1] + Camera_framebuffer[h][w/2][U];
+  51:.\cv.c        ****             }
+  52:.\cv.c        ****         }
+  53:.\cv.c        ****     }
+  54:.\cv.c        ****     
+  55:.\cv.c        ****     // Create Grey array
+  56:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  57:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+  97              		.loc 1 57 0 is_stmt 1 discriminator 2
+  98 001e 0133     		adds	r3, r3, #1
+  99              	.LVL11:
+ 100 0020 00E0     		b	.L8
+ 101              	.LVL12:
+ 102              	.L16:
+ 103 0022 0B46     		mov	r3, r1
+ 104              	.L8:
+ 105              	.LVL13:
+ 106              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 107 0024 AF2B     		cmp	r3, #175
+ 108 0026 FADD     		ble	.L7
+  56:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 109              		.loc 1 56 0 is_stmt 1
+ 110 0028 0132     		adds	r2, r2, #1
+ 111              	.LVL14:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 4
 
 
- 160 00c4 8A000000 		.4byte	.LASF22
- 161 00c8 01       		.byte	0x1
- 162 00c9 05       		.byte	0x5
- 163 00ca F5000000 		.4byte	0xf5
- 164 00ce 01       		.uleb128 0x1
- 165 00cf 50       		.byte	0x50
- 166 00d0 08       		.uleb128 0x8
- 167 00d1 F2010000 		.4byte	.LASF23
- 168 00d5 07       		.byte	0x7
- 169 00d6 00       		.byte	0
- 170 00d7 A8000000 		.4byte	0xa8
- 171 00db E5000000 		.4byte	0xe5
- 172 00df 09       		.uleb128 0x9
- 173 00e0 6F000000 		.4byte	0x6f
- 174 00e4 00       		.byte	0
- 175 00e5 0A       		.uleb128 0xa
- 176 00e6 08000000 		.4byte	.LVL0
- 177 00ea 39010000 		.4byte	0x139
- 178 00ee 0B       		.uleb128 0xb
- 179 00ef 01       		.uleb128 0x1
- 180 00f0 50       		.byte	0x50
- 181 00f1 01       		.uleb128 0x1
- 182 00f2 3C       		.byte	0x3c
- 183 00f3 00       		.byte	0
- 184 00f4 00       		.byte	0
- 185 00f5 0C       		.uleb128 0xc
- 186 00f6 04       		.byte	0x4
- 187 00f7 68000000 		.4byte	0x68
- 188 00fb 0D       		.uleb128 0xd
- 189 00fc B7010000 		.4byte	.LASF16
- 190 0100 05       		.byte	0x5
- 191 0101 2A06     		.2byte	0x62a
- 192 0103 07010000 		.4byte	0x107
- 193 0107 0E       		.uleb128 0xe
- 194 0108 76000000 		.4byte	0x76
- 195 010c 0F       		.uleb128 0xf
- 196 010d 81000000 		.4byte	0x81
- 197 0111 28010000 		.4byte	0x128
- 198 0115 10       		.uleb128 0x10
- 199 0116 A1000000 		.4byte	0xa1
- 200 011a 8F       		.byte	0x8f
- 201 011b 10       		.uleb128 0x10
- 202 011c A1000000 		.4byte	0xa1
- 203 0120 57       		.byte	0x57
- 204 0121 10       		.uleb128 0x10
- 205 0122 A1000000 		.4byte	0xa1
- 206 0126 03       		.byte	0x3
- 207 0127 00       		.byte	0
- 208 0128 11       		.uleb128 0x11
- 209 0129 60000000 		.4byte	.LASF17
- 210 012d 06       		.byte	0x6
- 211 012e 08       		.byte	0x8
- 212 012f 0C010000 		.4byte	0x10c
- 213 0133 05       		.uleb128 0x5
- 214 0134 03       		.byte	0x3
- 215 0135 00000000 		.4byte	Camera_framebuffer
- 216 0139 12       		.uleb128 0x12
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 5
+ 112              	.L6:
+  56:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 113              		.loc 1 56 0 is_stmt 0 discriminator 1
+ 114 002a 8F2A     		cmp	r2, #143
+ 115 002c F9DD     		ble	.L16
+ 116 002e 0022     		movs	r2, #0
+ 117              	.LVL15:
+ 118 0030 1146     		mov	r1, r2
+ 119 0032 05E0     		b	.L9
+ 120              	.LVL16:
+ 121              	.L10:
+  58:.\cv.c        ****             imgGrey[h][w] = (imgR[h][w] + imgG[h][w] + imgB[h][w]) / 3;
+  59:.\cv.c        ****         }
+  60:.\cv.c        ****     }
+  61:.\cv.c        ****     
+  62:.\cv.c        ****     // Create Img Diff arrays
+  63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  64:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 122              		.loc 1 64 0 is_stmt 1 discriminator 2
+ 123 0034 0133     		adds	r3, r3, #1
+ 124              	.LVL17:
+ 125 0036 00E0     		b	.L11
+ 126              	.LVL18:
+ 127              	.L17:
+ 128 0038 0B46     		mov	r3, r1
+ 129              	.L11:
+ 130              	.LVL19:
+ 131              		.loc 1 64 0 is_stmt 0 discriminator 1
+ 132 003a AF2B     		cmp	r3, #175
+ 133 003c FADD     		ble	.L10
+  63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 134              		.loc 1 63 0 is_stmt 1
+ 135 003e 0132     		adds	r2, r2, #1
+ 136              	.LVL20:
+ 137              	.L9:
+  63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 138              		.loc 1 63 0 is_stmt 0 discriminator 1
+ 139 0040 8F2A     		cmp	r2, #143
+ 140 0042 F9DD     		ble	.L17
+ 141 0044 0022     		movs	r2, #0
+ 142              	.LVL21:
+ 143 0046 1146     		mov	r1, r2
+ 144 0048 05E0     		b	.L12
+ 145              	.LVL22:
+ 146              	.L13:
+  65:.\cv.c        ****             imgR_Diff[h][w] = imgR[h][w] - imgGrey[h][w];
+  66:.\cv.c        ****             imgG_Diff[h][w] = 2*imgG[h][w] - imgGrey[h][w];
+  67:.\cv.c        ****             imgB_Diff[h][w] = imgB[h][w] - imgGrey[h][w];
+  68:.\cv.c        ****         }
+  69:.\cv.c        ****     }
+  70:.\cv.c        ****     
+  71:.\cv.c        ****     // Thresholding
+  72:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  73:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 147              		.loc 1 73 0 is_stmt 1
+ 148 004a 0133     		adds	r3, r3, #1
+ 149              	.LVL23:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 5
 
 
- 217 013a F2010000 		.4byte	.LASF23
- 218 013e 07       		.byte	0x7
- 219 013f 00       		.byte	0
- 220 0140 A8000000 		.4byte	0xa8
- 221 0144 09       		.uleb128 0x9
- 222 0145 6F000000 		.4byte	0x6f
- 223 0149 00       		.byte	0
- 224 014a 00       		.byte	0
- 225              		.section	.debug_abbrev,"",%progbits
- 226              	.Ldebug_abbrev0:
- 227 0000 01       		.uleb128 0x1
- 228 0001 11       		.uleb128 0x11
- 229 0002 01       		.byte	0x1
- 230 0003 25       		.uleb128 0x25
- 231 0004 0E       		.uleb128 0xe
- 232 0005 13       		.uleb128 0x13
- 233 0006 0B       		.uleb128 0xb
- 234 0007 03       		.uleb128 0x3
- 235 0008 0E       		.uleb128 0xe
- 236 0009 1B       		.uleb128 0x1b
- 237 000a 0E       		.uleb128 0xe
- 238 000b 55       		.uleb128 0x55
- 239 000c 17       		.uleb128 0x17
- 240 000d 11       		.uleb128 0x11
- 241 000e 01       		.uleb128 0x1
- 242 000f 10       		.uleb128 0x10
- 243 0010 17       		.uleb128 0x17
- 244 0011 00       		.byte	0
- 245 0012 00       		.byte	0
- 246 0013 02       		.uleb128 0x2
- 247 0014 24       		.uleb128 0x24
- 248 0015 00       		.byte	0
- 249 0016 0B       		.uleb128 0xb
- 250 0017 0B       		.uleb128 0xb
- 251 0018 3E       		.uleb128 0x3e
- 252 0019 0B       		.uleb128 0xb
- 253 001a 03       		.uleb128 0x3
- 254 001b 0E       		.uleb128 0xe
- 255 001c 00       		.byte	0
- 256 001d 00       		.byte	0
- 257 001e 03       		.uleb128 0x3
- 258 001f 16       		.uleb128 0x16
- 259 0020 00       		.byte	0
- 260 0021 03       		.uleb128 0x3
- 261 0022 0E       		.uleb128 0xe
- 262 0023 3A       		.uleb128 0x3a
- 263 0024 0B       		.uleb128 0xb
- 264 0025 3B       		.uleb128 0x3b
- 265 0026 0B       		.uleb128 0xb
- 266 0027 49       		.uleb128 0x49
- 267 0028 13       		.uleb128 0x13
- 268 0029 00       		.byte	0
- 269 002a 00       		.byte	0
- 270 002b 04       		.uleb128 0x4
- 271 002c 24       		.uleb128 0x24
- 272 002d 00       		.byte	0
- 273 002e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 6
+ 150 004c 00E0     		b	.L14
+ 151              	.LVL24:
+ 152              	.L18:
+ 153 004e 0B46     		mov	r3, r1
+ 154              	.L14:
+ 155              	.LVL25:
+ 156              		.loc 1 73 0 is_stmt 0 discriminator 1
+ 157 0050 AF2B     		cmp	r3, #175
+ 158 0052 FADD     		ble	.L13
+  72:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 159              		.loc 1 72 0 is_stmt 1
+ 160 0054 0132     		adds	r2, r2, #1
+ 161              	.LVL26:
+ 162              	.L12:
+  72:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 163              		.loc 1 72 0 is_stmt 0 discriminator 1
+ 164 0056 8F2A     		cmp	r2, #143
+ 165 0058 F9DD     		ble	.L18
+  74:.\cv.c        ****             // Red
+  75:.\cv.c        ****             if (imgR_Diff[h][w] > THRESHOLD_R)
+  76:.\cv.c        ****                 imgR_Bin[h][w] = 1;
+  77:.\cv.c        ****             else
+  78:.\cv.c        ****                 imgR_Bin[h][w] = 0;
+  79:.\cv.c        ****             
+  80:.\cv.c        ****             // Green
+  81:.\cv.c        ****             if (imgG_Diff[h][w] > THRESHOLD_G)
+  82:.\cv.c        ****                 imgG_Bin[h][w] = 1;
+  83:.\cv.c        ****             else
+  84:.\cv.c        ****                 imgG_Bin[h][w] = 0;
+  85:.\cv.c        ****             
+  86:.\cv.c        ****             // Blue
+  87:.\cv.c        ****             if (imgB_Diff[h][w] > THRESHOLD_B)
+  88:.\cv.c        ****                 imgB_Bin[h][w] = 1;
+  89:.\cv.c        ****             else
+  90:.\cv.c        ****                 imgB_Bin[h][w] = 0;
+  91:.\cv.c        ****         }
+  92:.\cv.c        ****     }
+  93:.\cv.c        ****     
+  94:.\cv.c        **** //    // Find box dims
+  95:.\cv.c        **** //    
+  96:.\cv.c        **** //    // Note: Use imgG_Bin to find bounds
+  97:.\cv.c        **** //    // Go down centre until find 0    v
+  98:.\cv.c        **** //    int maxHeight = 0;
+  99:.\cv.c        **** //    int currentHeight = 0;
+ 100:.\cv.c        **** //    int maxWidth = 0;
+ 101:.\cv.c        **** //    int currentWidth = 0;
+ 102:.\cv.c        **** //    int halfHeight = IMG_H / 2;
+ 103:.\cv.c        **** //    int halfWidth = IMG_W / 2;
+ 104:.\cv.c        **** //    int i = 0;
+ 105:.\cv.c        **** //
+ 106:.\cv.c        **** //    while (1) {
+ 107:.\cv.c        **** //        if (i > IMG_H)
+ 108:.\cv.c        **** //            break;
+ 109:.\cv.c        **** //        
+ 110:.\cv.c        **** //        if (imgG_Bin[i][halfWidth] == 0) {
+ 111:.\cv.c        **** //            currentHeight += 1;
+ 112:.\cv.c        **** //            i++;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 6
 
 
- 274 002f 0B       		.uleb128 0xb
- 275 0030 3E       		.uleb128 0x3e
- 276 0031 0B       		.uleb128 0xb
- 277 0032 03       		.uleb128 0x3
- 278 0033 08       		.uleb128 0x8
- 279 0034 00       		.byte	0
- 280 0035 00       		.byte	0
- 281 0036 05       		.uleb128 0x5
- 282 0037 0F       		.uleb128 0xf
- 283 0038 00       		.byte	0
- 284 0039 0B       		.uleb128 0xb
- 285 003a 0B       		.uleb128 0xb
- 286 003b 00       		.byte	0
- 287 003c 00       		.byte	0
- 288 003d 06       		.uleb128 0x6
- 289 003e 2E       		.uleb128 0x2e
- 290 003f 01       		.byte	0x1
- 291 0040 3F       		.uleb128 0x3f
- 292 0041 19       		.uleb128 0x19
- 293 0042 03       		.uleb128 0x3
- 294 0043 0E       		.uleb128 0xe
- 295 0044 3A       		.uleb128 0x3a
- 296 0045 0B       		.uleb128 0xb
- 297 0046 3B       		.uleb128 0x3b
- 298 0047 0B       		.uleb128 0xb
- 299 0048 49       		.uleb128 0x49
- 300 0049 13       		.uleb128 0x13
- 301 004a 11       		.uleb128 0x11
- 302 004b 01       		.uleb128 0x1
- 303 004c 12       		.uleb128 0x12
- 304 004d 06       		.uleb128 0x6
- 305 004e 40       		.uleb128 0x40
- 306 004f 18       		.uleb128 0x18
- 307 0050 9742     		.uleb128 0x2117
- 308 0052 19       		.uleb128 0x19
- 309 0053 01       		.uleb128 0x1
- 310 0054 13       		.uleb128 0x13
- 311 0055 00       		.byte	0
- 312 0056 00       		.byte	0
- 313 0057 07       		.uleb128 0x7
- 314 0058 34       		.uleb128 0x34
- 315 0059 00       		.byte	0
- 316 005a 03       		.uleb128 0x3
- 317 005b 0E       		.uleb128 0xe
- 318 005c 3A       		.uleb128 0x3a
- 319 005d 0B       		.uleb128 0xb
- 320 005e 3B       		.uleb128 0x3b
- 321 005f 0B       		.uleb128 0xb
- 322 0060 49       		.uleb128 0x49
- 323 0061 13       		.uleb128 0x13
- 324 0062 02       		.uleb128 0x2
- 325 0063 18       		.uleb128 0x18
- 326 0064 00       		.byte	0
- 327 0065 00       		.byte	0
- 328 0066 08       		.uleb128 0x8
- 329 0067 2E       		.uleb128 0x2e
- 330 0068 01       		.byte	0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 7
+ 113:.\cv.c        **** //        }
+ 114:.\cv.c        **** //        else if (imgG_Bin[i+1][halfWidth] == 0) {
+ 115:.\cv.c        **** //            currentHeight += 2;
+ 116:.\cv.c        **** //            i += 1;
+ 117:.\cv.c        **** //        }
+ 118:.\cv.c        **** //        else if (imgG_Bin[i+2][halfWidth] == 0) {
+ 119:.\cv.c        **** //            currentHeight += 3;
+ 120:.\cv.c        **** //            i += 2;
+ 121:.\cv.c        **** //        }
+ 122:.\cv.c        **** //        else {
+ 123:.\cv.c        **** //            if (currentHeight > maxHeight)
+ 124:.\cv.c        **** //                maxHeight = currentHeight;
+ 125:.\cv.c        **** //            
+ 126:.\cv.c        **** //            currentHeight = 0;
+ 127:.\cv.c        **** //            i++;
+ 128:.\cv.c        **** //        }
+ 129:.\cv.c        **** //    }
+ 130:.\cv.c        **** //    int boxHeight = maxHeight / ROWS;
+ 131:.\cv.c        **** //    
+ 132:.\cv.c        **** //    i = 0;
+ 133:.\cv.c        **** //    while (1) {
+ 134:.\cv.c        **** //        if (i > IMG_H)
+ 135:.\cv.c        **** //            break;
+ 136:.\cv.c        **** //        
+ 137:.\cv.c        **** //        if (imgG_Bin[halfHeight][i] == 0) {
+ 138:.\cv.c        **** //            currentWidth += 1;
+ 139:.\cv.c        **** //            i++;
+ 140:.\cv.c        **** //        }
+ 141:.\cv.c        **** //        else if (imgG_Bin[halfHeight][i+1] == 0) {
+ 142:.\cv.c        **** //            currentWidth += 2;
+ 143:.\cv.c        **** //            i += 1;
+ 144:.\cv.c        **** //        }
+ 145:.\cv.c        **** //        else if (imgG_Bin[halfHeight][i+2] == 0) {
+ 146:.\cv.c        **** //            currentWidth += 3;
+ 147:.\cv.c        **** //            i += 2;
+ 148:.\cv.c        **** //        }
+ 149:.\cv.c        **** //        else {
+ 150:.\cv.c        **** //            if (currentWidth > maxWidth)
+ 151:.\cv.c        **** //                maxHeight = currentWidth;
+ 152:.\cv.c        **** //            
+ 153:.\cv.c        **** //            currentWidth = 0;
+ 154:.\cv.c        **** //            i++;
+ 155:.\cv.c        **** //        }
+ 156:.\cv.c        **** //    }
+ 157:.\cv.c        **** //    int boxWidth = maxWidth;
+ 158:.\cv.c        **** //    
+ 159:.\cv.c        **** //    
+ 160:.\cv.c        **** //    // Start at centre, head toward top-left
+ 161:.\cv.c        **** //    int hPos = halfHeight;
+ 162:.\cv.c        **** //    int wPos = halfWidth;
+ 163:.\cv.c        **** //    while (1) {
+ 164:.\cv.c        **** //        if (imgG_Bin[hPos-1][wPos-1] == 0) {
+ 165:.\cv.c        **** //            hPos = hPos-1;
+ 166:.\cv.c        **** //            wPos = wPos-1;
+ 167:.\cv.c        **** //        }
+ 168:.\cv.c        **** //        else if (imgG_Bin[hPos-1][wPos] == 0) {
+ 169:.\cv.c        **** //            hPos = hPos-1;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 7
 
 
- 331 0069 3F       		.uleb128 0x3f
- 332 006a 19       		.uleb128 0x19
- 333 006b 03       		.uleb128 0x3
- 334 006c 0E       		.uleb128 0xe
- 335 006d 3A       		.uleb128 0x3a
- 336 006e 0B       		.uleb128 0xb
- 337 006f 3B       		.uleb128 0x3b
- 338 0070 0B       		.uleb128 0xb
- 339 0071 27       		.uleb128 0x27
- 340 0072 19       		.uleb128 0x19
- 341 0073 49       		.uleb128 0x49
- 342 0074 13       		.uleb128 0x13
- 343 0075 3C       		.uleb128 0x3c
- 344 0076 19       		.uleb128 0x19
- 345 0077 01       		.uleb128 0x1
- 346 0078 13       		.uleb128 0x13
- 347 0079 00       		.byte	0
- 348 007a 00       		.byte	0
- 349 007b 09       		.uleb128 0x9
- 350 007c 05       		.uleb128 0x5
- 351 007d 00       		.byte	0
- 352 007e 49       		.uleb128 0x49
- 353 007f 13       		.uleb128 0x13
- 354 0080 00       		.byte	0
- 355 0081 00       		.byte	0
- 356 0082 0A       		.uleb128 0xa
- 357 0083 898201   		.uleb128 0x4109
- 358 0086 01       		.byte	0x1
- 359 0087 11       		.uleb128 0x11
- 360 0088 01       		.uleb128 0x1
- 361 0089 31       		.uleb128 0x31
- 362 008a 13       		.uleb128 0x13
- 363 008b 00       		.byte	0
- 364 008c 00       		.byte	0
- 365 008d 0B       		.uleb128 0xb
- 366 008e 8A8201   		.uleb128 0x410a
- 367 0091 00       		.byte	0
- 368 0092 02       		.uleb128 0x2
- 369 0093 18       		.uleb128 0x18
- 370 0094 9142     		.uleb128 0x2111
- 371 0096 18       		.uleb128 0x18
- 372 0097 00       		.byte	0
- 373 0098 00       		.byte	0
- 374 0099 0C       		.uleb128 0xc
- 375 009a 0F       		.uleb128 0xf
- 376 009b 00       		.byte	0
- 377 009c 0B       		.uleb128 0xb
- 378 009d 0B       		.uleb128 0xb
- 379 009e 49       		.uleb128 0x49
- 380 009f 13       		.uleb128 0x13
- 381 00a0 00       		.byte	0
- 382 00a1 00       		.byte	0
- 383 00a2 0D       		.uleb128 0xd
- 384 00a3 34       		.uleb128 0x34
- 385 00a4 00       		.byte	0
- 386 00a5 03       		.uleb128 0x3
- 387 00a6 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 8
+ 170:.\cv.c        **** //        }
+ 171:.\cv.c        **** //        else if (imgG_Bin[hPos][wPos-1] == 0) {
+ 172:.\cv.c        **** //            wPos = wPos-1;
+ 173:.\cv.c        **** //        }
+ 174:.\cv.c        **** //        else if (imgG_Bin[hPos-1][wPos+1] == 0) {
+ 175:.\cv.c        **** //            hPos = hPos-1;
+ 176:.\cv.c        **** //            wPos = wPos+1;
+ 177:.\cv.c        **** //        }
+ 178:.\cv.c        **** //        else
+ 179:.\cv.c        **** //            break;
+ 180:.\cv.c        **** //    }
+ 181:.\cv.c        **** //    
+ 182:.\cv.c        **** //    // Create single array
+ 183:.\cv.c        **** //    
+ 184:.\cv.c        **** //    // Create inverse array
+ 185:.\cv.c        **** //    int imgG_Bin_Inverse[IMG_H][IMG_W];
+ 186:.\cv.c        **** //    for (h = 0; h < IMG_H; h++) {
+ 187:.\cv.c        **** //        for (w = 0; w < IMG_W; w++) {
+ 188:.\cv.c        **** //            imgG_Bin_Inverse[h][w] = !imgG_Bin_Inverse[h][w];
+ 189:.\cv.c        **** //        }
+ 190:.\cv.c        **** //    }
+ 191:.\cv.c        **** //    
+ 192:.\cv.c        **** //    int imgAll[IMG_H][IMG_W];
+ 193:.\cv.c        **** //    for (h = 0; h < IMG_H; h++) {
+ 194:.\cv.c        **** //        for (w = 0; w < IMG_W; w++) {
+ 195:.\cv.c        **** //            imgAll[h][w] = (((2*imgG_Bin_Inverse[h][w]) + 3*(imgG_Bin_Inverse[h][w] & imgB_Bin[h]
+ 196:.\cv.c        **** //        }
+ 197:.\cv.c        **** //    }
+ 198:.\cv.c        **** //    // NOTE: In imgAll, R=3, G=2, B=5, 0=ignore
+ 199:.\cv.c        **** //    const int cRED = 3, cGREEN = 2, cBLUE = 5;
+ 200:.\cv.c        **** //    
+ 201:.\cv.c        **** //    
+ 202:.\cv.c        **** //    // Vars for main parse
+ 203:.\cv.c        **** //    int j = hPos;
+ 204:.\cv.c        **** //    int maxLength = 0;
+ 205:.\cv.c        **** //    int rowUpTo = 1;
+ 206:.\cv.c        **** //    int mode = 0;
+ 207:.\cv.c        **** //    int numBoxes = 0;
+ 208:.\cv.c        **** //    
+ 209:.\cv.c        **** //    // Main parse
+ 210:.\cv.c        **** //    while (1) {
+ 211:.\cv.c        **** //        // Loop condition
+ 212:.\cv.c        **** //        j++;
+ 213:.\cv.c        **** //        if (j > hPos + maxHeight)
+ 214:.\cv.c        **** //            break;
+ 215:.\cv.c        **** //        
+ 216:.\cv.c        **** //        // Switch on colour mode
+ 217:.\cv.c        **** //        switch (mode) {
+ 218:.\cv.c        **** //            case RED:
+ 219:.\cv.c        **** //                if (imgAll[j][halfWidth] == cRED) {
+ 220:.\cv.c        **** //                    maxLength++;
+ 221:.\cv.c        **** //                }
+ 222:.\cv.c        **** //                else if (imgAll[j+1][halfWidth] == cRED) {
+ 223:.\cv.c        **** //                    maxLength += 2;
+ 224:.\cv.c        **** //                    i++;
+ 225:.\cv.c        **** //                }
+ 226:.\cv.c        **** //                else if (imgAll[j+2][halfWidth] == cRED) {
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 8
 
 
- 388 00a7 3A       		.uleb128 0x3a
- 389 00a8 0B       		.uleb128 0xb
- 390 00a9 3B       		.uleb128 0x3b
- 391 00aa 05       		.uleb128 0x5
- 392 00ab 49       		.uleb128 0x49
- 393 00ac 13       		.uleb128 0x13
- 394 00ad 3F       		.uleb128 0x3f
- 395 00ae 19       		.uleb128 0x19
- 396 00af 3C       		.uleb128 0x3c
- 397 00b0 19       		.uleb128 0x19
- 398 00b1 00       		.byte	0
- 399 00b2 00       		.byte	0
- 400 00b3 0E       		.uleb128 0xe
- 401 00b4 35       		.uleb128 0x35
- 402 00b5 00       		.byte	0
- 403 00b6 49       		.uleb128 0x49
- 404 00b7 13       		.uleb128 0x13
- 405 00b8 00       		.byte	0
- 406 00b9 00       		.byte	0
- 407 00ba 0F       		.uleb128 0xf
- 408 00bb 01       		.uleb128 0x1
- 409 00bc 01       		.byte	0x1
- 410 00bd 49       		.uleb128 0x49
- 411 00be 13       		.uleb128 0x13
- 412 00bf 01       		.uleb128 0x1
- 413 00c0 13       		.uleb128 0x13
- 414 00c1 00       		.byte	0
- 415 00c2 00       		.byte	0
- 416 00c3 10       		.uleb128 0x10
- 417 00c4 21       		.uleb128 0x21
- 418 00c5 00       		.byte	0
- 419 00c6 49       		.uleb128 0x49
- 420 00c7 13       		.uleb128 0x13
- 421 00c8 2F       		.uleb128 0x2f
- 422 00c9 0B       		.uleb128 0xb
- 423 00ca 00       		.byte	0
- 424 00cb 00       		.byte	0
- 425 00cc 11       		.uleb128 0x11
- 426 00cd 34       		.uleb128 0x34
- 427 00ce 00       		.byte	0
- 428 00cf 03       		.uleb128 0x3
- 429 00d0 0E       		.uleb128 0xe
- 430 00d1 3A       		.uleb128 0x3a
- 431 00d2 0B       		.uleb128 0xb
- 432 00d3 3B       		.uleb128 0x3b
- 433 00d4 0B       		.uleb128 0xb
- 434 00d5 49       		.uleb128 0x49
- 435 00d6 13       		.uleb128 0x13
- 436 00d7 3F       		.uleb128 0x3f
- 437 00d8 19       		.uleb128 0x19
- 438 00d9 02       		.uleb128 0x2
- 439 00da 18       		.uleb128 0x18
- 440 00db 00       		.byte	0
- 441 00dc 00       		.byte	0
- 442 00dd 12       		.uleb128 0x12
- 443 00de 2E       		.uleb128 0x2e
- 444 00df 01       		.byte	0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 9
+ 227:.\cv.c        **** //                    maxLength += 3;
+ 228:.\cv.c        **** //                    i += 2;
+ 229:.\cv.c        **** //                }
+ 230:.\cv.c        **** //                else {
+ 231:.\cv.c        **** //                    if (maxLength > MIN_BOX_HEIGHT) {
+ 232:.\cv.c        **** //                        numBoxes = maxLength / boxHeight;
+ 233:.\cv.c        **** //                        
+ 234:.\cv.c        **** //                        if (numBoxes == 2) {
+ 235:.\cv.c        **** //                            plan[rowUpTo] = RED;
+ 236:.\cv.c        **** //                            plan[rowUpTo+1] = RED;
+ 237:.\cv.c        **** //                            rowUpTo += 2;
+ 238:.\cv.c        **** //                        }
+ 239:.\cv.c        **** //                        else if (numBoxes == 3) {
+ 240:.\cv.c        **** //                            plan[rowUpTo] = RED;
+ 241:.\cv.c        **** //                            plan[rowUpTo+1] = RED;
+ 242:.\cv.c        **** //                            plan[rowUpTo+2] = RED;
+ 243:.\cv.c        **** //                            rowUpTo += 3;
+ 244:.\cv.c        **** //                        }
+ 245:.\cv.c        **** //                        else {
+ 246:.\cv.c        **** //                            plan[rowUpTo] = RED;
+ 247:.\cv.c        **** //                            rowUpTo++;
+ 248:.\cv.c        **** //                        }
+ 249:.\cv.c        **** //                    }
+ 250:.\cv.c        **** //                    
+ 251:.\cv.c        **** //                    maxLength = 0;
+ 252:.\cv.c        **** //                    if (imgAll[i][halfWidth] == cGREEN)
+ 253:.\cv.c        **** //                        mode = GREEN;
+ 254:.\cv.c        **** //                    else
+ 255:.\cv.c        **** //                        mode = BLUE;
+ 256:.\cv.c        **** //                    maxLength++;
+ 257:.\cv.c        **** //                }
+ 258:.\cv.c        **** //                break;
+ 259:.\cv.c        **** //            
+ 260:.\cv.c        **** //            case GREEN:
+ 261:.\cv.c        **** //                if (imgAll[j][halfWidth] == cGREEN) {
+ 262:.\cv.c        **** //                    maxLength++;
+ 263:.\cv.c        **** //                }
+ 264:.\cv.c        **** //                else if (imgAll[j+1][halfWidth] == cGREEN) {
+ 265:.\cv.c        **** //                    maxLength += 2;
+ 266:.\cv.c        **** //                    i++;
+ 267:.\cv.c        **** //                }
+ 268:.\cv.c        **** //                else if (imgAll[j+2][halfWidth] == cGREEN) {
+ 269:.\cv.c        **** //                    maxLength += 3;
+ 270:.\cv.c        **** //                    i += 2;
+ 271:.\cv.c        **** //                }
+ 272:.\cv.c        **** //                else {
+ 273:.\cv.c        **** //                    if (maxLength > MIN_BOX_HEIGHT) {
+ 274:.\cv.c        **** //                        numBoxes = maxLength / boxHeight;
+ 275:.\cv.c        **** //                        
+ 276:.\cv.c        **** //                        if (numBoxes == 2) {
+ 277:.\cv.c        **** //                            plan[rowUpTo] = GREEN;
+ 278:.\cv.c        **** //                            plan[rowUpTo+1] = GREEN;
+ 279:.\cv.c        **** //                            rowUpTo += 2;
+ 280:.\cv.c        **** //                        }
+ 281:.\cv.c        **** //                        else if (numBoxes == 3) {
+ 282:.\cv.c        **** //                            plan[rowUpTo] = GREEN;
+ 283:.\cv.c        **** //                            plan[rowUpTo+1] = GREEN;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 9
 
 
- 445 00e0 3F       		.uleb128 0x3f
- 446 00e1 19       		.uleb128 0x19
- 447 00e2 03       		.uleb128 0x3
- 448 00e3 0E       		.uleb128 0xe
- 449 00e4 3A       		.uleb128 0x3a
- 450 00e5 0B       		.uleb128 0xb
- 451 00e6 3B       		.uleb128 0x3b
- 452 00e7 0B       		.uleb128 0xb
- 453 00e8 27       		.uleb128 0x27
- 454 00e9 19       		.uleb128 0x19
- 455 00ea 49       		.uleb128 0x49
- 456 00eb 13       		.uleb128 0x13
- 457 00ec 3C       		.uleb128 0x3c
- 458 00ed 19       		.uleb128 0x19
- 459 00ee 00       		.byte	0
- 460 00ef 00       		.byte	0
- 461 00f0 00       		.byte	0
- 462              		.section	.debug_aranges,"",%progbits
- 463 0000 1C000000 		.4byte	0x1c
- 464 0004 0200     		.2byte	0x2
- 465 0006 00000000 		.4byte	.Ldebug_info0
- 466 000a 04       		.byte	0x4
- 467 000b 00       		.byte	0
- 468 000c 0000     		.2byte	0
- 469 000e 0000     		.2byte	0
- 470 0010 00000000 		.4byte	.LFB63
- 471 0014 16000000 		.4byte	.LFE63-.LFB63
- 472 0018 00000000 		.4byte	0
- 473 001c 00000000 		.4byte	0
- 474              		.section	.debug_ranges,"",%progbits
- 475              	.Ldebug_ranges0:
- 476 0000 00000000 		.4byte	.LFB63
- 477 0004 16000000 		.4byte	.LFE63
- 478 0008 00000000 		.4byte	0
- 479 000c 00000000 		.4byte	0
- 480              		.section	.debug_line,"",%progbits
- 481              	.Ldebug_line0:
- 482 0000 79010000 		.section	.debug_str,"MS",%progbits,1
- 482      02006101 
- 482      00000201 
- 482      FB0E0D00 
- 482      01010101 
- 483              	.LASF6:
- 484 0000 6C6F6E67 		.ascii	"long long int\000"
- 484      206C6F6E 
- 484      6720696E 
- 484      7400
- 485              	.LASF3:
- 486 000e 73686F72 		.ascii	"short unsigned int\000"
- 486      7420756E 
- 486      7369676E 
- 486      65642069 
- 486      6E7400
- 487              	.LASF8:
- 488 0021 756E7369 		.ascii	"unsigned int\000"
- 488      676E6564 
- 488      20696E74 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 10
+ 284:.\cv.c        **** //                            plan[rowUpTo+2] = GREEN;
+ 285:.\cv.c        **** //                            rowUpTo += 3;
+ 286:.\cv.c        **** //                        }
+ 287:.\cv.c        **** //                        else {
+ 288:.\cv.c        **** //                            plan[rowUpTo] = GREEN;
+ 289:.\cv.c        **** //                            rowUpTo++;
+ 290:.\cv.c        **** //                        }
+ 291:.\cv.c        **** //                    }
+ 292:.\cv.c        **** //                    
+ 293:.\cv.c        **** //                    maxLength = 0;
+ 294:.\cv.c        **** //                    if (imgAll[i][halfWidth] == cRED)
+ 295:.\cv.c        **** //                        mode = RED;
+ 296:.\cv.c        **** //                    else
+ 297:.\cv.c        **** //                        mode = BLUE;
+ 298:.\cv.c        **** //                    maxLength++;
+ 299:.\cv.c        **** //                }
+ 300:.\cv.c        **** //                break;
+ 301:.\cv.c        **** //            
+ 302:.\cv.c        **** //            case BLUE:
+ 303:.\cv.c        **** //                if (imgAll[j][halfWidth] == cBLUE) {
+ 304:.\cv.c        **** //                    maxLength++;
+ 305:.\cv.c        **** //                }
+ 306:.\cv.c        **** //                else if (imgAll[j+1][halfWidth] == cBLUE) {
+ 307:.\cv.c        **** //                    maxLength += 2;
+ 308:.\cv.c        **** //                    i++;
+ 309:.\cv.c        **** //                }
+ 310:.\cv.c        **** //                else if (imgAll[j+2][halfWidth] == cBLUE) {
+ 311:.\cv.c        **** //                    maxLength += 3;
+ 312:.\cv.c        **** //                    i += 2;
+ 313:.\cv.c        **** //                }
+ 314:.\cv.c        **** //                else {
+ 315:.\cv.c        **** //                    if (maxLength > MIN_BOX_HEIGHT) {
+ 316:.\cv.c        **** //                        numBoxes = maxLength / boxHeight;
+ 317:.\cv.c        **** //                        
+ 318:.\cv.c        **** //                        if (numBoxes == 2) {
+ 319:.\cv.c        **** //                            plan[rowUpTo] = BLUE;
+ 320:.\cv.c        **** //                            plan[rowUpTo+1] = BLUE;
+ 321:.\cv.c        **** //                            rowUpTo += 2;
+ 322:.\cv.c        **** //                        }
+ 323:.\cv.c        **** //                        else if (numBoxes == 3) {
+ 324:.\cv.c        **** //                            plan[rowUpTo] = BLUE;
+ 325:.\cv.c        **** //                            plan[rowUpTo+1] = BLUE;
+ 326:.\cv.c        **** //                            plan[rowUpTo+2] = BLUE;
+ 327:.\cv.c        **** //                            rowUpTo += 3;
+ 328:.\cv.c        **** //                        }
+ 329:.\cv.c        **** //                        else {
+ 330:.\cv.c        **** //                            plan[rowUpTo] = BLUE;
+ 331:.\cv.c        **** //                            rowUpTo++;
+ 332:.\cv.c        **** //                        }
+ 333:.\cv.c        **** //                    }
+ 334:.\cv.c        **** //                    
+ 335:.\cv.c        **** //                    maxLength = 0;
+ 336:.\cv.c        **** //                    if (imgAll[i][halfWidth] == cRED)
+ 337:.\cv.c        **** //                        mode = RED;
+ 338:.\cv.c        **** //                    else
+ 339:.\cv.c        **** //                        mode = GREEN;
+ 340:.\cv.c        **** //                    maxLength++;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 10
 
 
- 488      00
- 489              	.LASF21:
- 490 002e 72656164 		.ascii	"readPlanWithCamera\000"
- 490      506C616E 
- 490      57697468 
- 490      43616D65 
- 490      726100
- 491              	.LASF19:
- 492 0041 2E5C6376 		.ascii	".\\cv.c\000"
- 492      2E6300
- 493              	.LASF11:
- 494 0048 75696E74 		.ascii	"uint8\000"
- 494      3800
- 495              	.LASF5:
- 496 004e 6C6F6E67 		.ascii	"long unsigned int\000"
- 496      20756E73 
- 496      69676E65 
- 496      6420696E 
- 496      7400
- 497              	.LASF17:
- 498 0060 43616D65 		.ascii	"Camera_framebuffer\000"
- 498      72615F66 
- 498      72616D65 
- 498      62756666 
- 498      657200
- 499              	.LASF7:
- 500 0073 6C6F6E67 		.ascii	"long long unsigned int\000"
- 500      206C6F6E 
- 500      6720756E 
- 500      7369676E 
- 500      65642069 
- 501              	.LASF22:
- 502 008a 706C616E 		.ascii	"plan\000"
- 502      00
- 503              	.LASF1:
- 504 008f 756E7369 		.ascii	"unsigned char\000"
- 504      676E6564 
- 504      20636861 
- 504      7200
- 505              	.LASF18:
- 506 009d 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 506      4320342E 
- 506      382E3420 
- 506      32303134 
- 506      30353236 
- 507 00d0 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 507      20726576 
- 507      6973696F 
- 507      6E203231 
- 507      31333538 
- 508 0103 67202D66 		.ascii	"g -ffunction-sections\000"
- 508      66756E63 
- 508      74696F6E 
- 508      2D736563 
- 508      74696F6E 
- 509              	.LASF14:
- 510 0119 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cchE1BHK.s 			page 11
+ 341:.\cv.c        **** //                }
+ 342:.\cv.c        **** //                break;
+ 343:.\cv.c        **** //                
+ 344:.\cv.c        **** //            default: // Initial
+ 345:.\cv.c        **** //                if (imgAll[i][halfWidth] == cRED)
+ 346:.\cv.c        **** //                    mode = RED;
+ 347:.\cv.c        **** //                else if (imgAll[i][halfWidth] == cGREEN)
+ 348:.\cv.c        **** //                    mode = GREEN;
+ 349:.\cv.c        **** //                else
+ 350:.\cv.c        **** //                    mode = BLUE;
+ 351:.\cv.c        **** //                
+ 352:.\cv.c        **** //                maxLength++;
+ 353:.\cv.c        **** //                break;
+ 354:.\cv.c        **** //        }
+ 355:.\cv.c        **** //    }
+ 356:.\cv.c        ****     
+ 357:.\cv.c        ****     
+ 358:.\cv.c        ****     return *(plan); // TODO: Check if returning the right thing
+ 359:.\cv.c        **** }
+ 166              		.loc 1 359 0 is_stmt 1
+ 167 005a 0198     		ldr	r0, [sp, #4]
+ 168 005c 04B0     		add	sp, sp, #16
+ 169              		@ sp needed
+ 170 005e 7047     		bx	lr
+ 171              		.cfi_endproc
+ 172              	.LFE64:
+ 173              		.size	parsePhoto, .-parsePhoto
+ 174              		.section	.text.readPlanWithCamera,"ax",%progbits
+ 175              		.align	2
+ 176              		.global	readPlanWithCamera
+ 177              		.thumb
+ 178              		.thumb_func
+ 179              		.type	readPlanWithCamera, %function
+ 180              	readPlanWithCamera:
+ 181              	.LFB65:
+ 360:.\cv.c        **** 
+ 361:.\cv.c        **** int * readPlanWithCamera() {
+ 182              		.loc 1 361 0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186 0000 08B5     		push	{r3, lr}
+ 187              		.cfi_def_cfa_offset 8
+ 188              		.cfi_offset 3, -8
+ 189              		.cfi_offset 14, -4
+ 362:.\cv.c        **** //    int * plan = (int *) malloc(sizeof(int) * ROWS);
+ 363:.\cv.c        ****     
+ 364:.\cv.c        ****     takePhoto();
+ 190              		.loc 1 364 0
+ 191 0002 FFF7FEFF 		bl	takePhoto
+ 192              	.LVL27:
+ 365:.\cv.c        ****     return parsePhoto();
+ 193              		.loc 1 365 0
+ 194 0006 FFF7FEFF 		bl	parsePhoto
+ 195              	.LVL28:
+ 366:.\cv.c        ****     
+ 367:.\cv.c        **** //    plan[0] = 1;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 11
 
 
- 510      00
- 511              	.LASF20:
- 512 011e 433A5C55 		.ascii	"C:\\Users\\Nick\\Dropbox\\Uni Docs\\y4s2\\ECE3091 -"
- 512      73657273 
- 512      5C4E6963 
- 512      6B5C4472 
- 512      6F70626F 
- 513 014b 20456E67 		.ascii	" Engineering Design\\PSoc Creator\\eng_design_2015\\"
- 513      696E6565 
- 513      72696E67 
- 513      20446573 
- 513      69676E5C 
- 514 017c 45434533 		.ascii	"ECE3091-chickybot\\chickybot.cydsn\000"
- 514      3039312D 
- 514      63686963 
- 514      6B79626F 
- 514      745C6368 
- 515              	.LASF13:
- 516 019e 646F7562 		.ascii	"double\000"
- 516      6C6500
- 517              	.LASF4:
- 518 01a5 6C6F6E67 		.ascii	"long int\000"
- 518      20696E74 
- 518      00
- 519              	.LASF15:
- 520 01ae 73697A65 		.ascii	"sizetype\000"
- 520      74797065 
- 520      00
- 521              	.LASF16:
- 522 01b7 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 522      52784275 
- 522      66666572 
- 522      00
- 523              	.LASF0:
- 524 01c4 7369676E 		.ascii	"signed char\000"
- 524      65642063 
- 524      68617200 
- 525              	.LASF9:
- 526 01d0 5F5F696E 		.ascii	"__int32_t\000"
- 526      7433325F 
- 526      7400
- 527              	.LASF12:
- 528 01da 666C6F61 		.ascii	"float\000"
- 528      7400
- 529              	.LASF2:
- 530 01e0 73686F72 		.ascii	"short int\000"
- 530      7420696E 
- 530      7400
- 531              	.LASF10:
- 532 01ea 696E7433 		.ascii	"int32_t\000"
- 532      325F7400 
- 533              	.LASF23:
- 534 01f2 6D616C6C 		.ascii	"malloc\000"
- 534      6F6300
- 535              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 368:.\cv.c        **** //    plan[1] = 2;
+ 369:.\cv.c        **** //    plan[2] = 3;
+ 370:.\cv.c        **** //    
+ 371:.\cv.c        **** //    return plan;
+ 372:.\cv.c        **** }...
+ 196              		.loc 1 372 0
+ 197 000a 08BD     		pop	{r3, pc}
+ 198              		.cfi_endproc
+ 199              	.LFE65:
+ 200              		.size	readPlanWithCamera, .-readPlanWithCamera
+ 201              		.comm	Camera_framebuffer,50688,4
+ 202              		.text
+ 203              	.Letext0:
+ 204              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 205              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 206              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 207              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 208              		.file 6 "Generated_Source\\PSoC5/Camera.h"
+ 209              		.section	.debug_info,"",%progbits
+ 210              	.Ldebug_info0:
+ 211 0000 61020000 		.4byte	0x261
+ 212 0004 0400     		.2byte	0x4
+ 213 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 214 000a 04       		.byte	0x4
+ 215 000b 01       		.uleb128 0x1
+ 216 000c 25010000 		.4byte	.LASF32
+ 217 0010 01       		.byte	0x1
+ 218 0011 2C000000 		.4byte	.LASF33
+ 219 0015 E8010000 		.4byte	.LASF34
+ 220 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 221 001d 00000000 		.4byte	0
+ 222 0021 00000000 		.4byte	.Ldebug_line0
+ 223 0025 02       		.uleb128 0x2
+ 224 0026 01       		.byte	0x1
+ 225 0027 06       		.byte	0x6
+ 226 0028 54000000 		.4byte	.LASF0
+ 227 002c 02       		.uleb128 0x2
+ 228 002d 01       		.byte	0x1
+ 229 002e 08       		.byte	0x8
+ 230 002f 6A000000 		.4byte	.LASF1
+ 231 0033 02       		.uleb128 0x2
+ 232 0034 02       		.byte	0x2
+ 233 0035 05       		.byte	0x5
+ 234 0036 BC010000 		.4byte	.LASF2
+ 235 003a 02       		.uleb128 0x2
+ 236 003b 02       		.byte	0x2
+ 237 003c 07       		.byte	0x7
+ 238 003d 8A000000 		.4byte	.LASF3
+ 239 0041 03       		.uleb128 0x3
+ 240 0042 0E000000 		.4byte	.LASF9
+ 241 0046 02       		.byte	0x2
+ 242 0047 37       		.byte	0x37
+ 243 0048 4C000000 		.4byte	0x4c
+ 244 004c 02       		.uleb128 0x2
+ 245 004d 04       		.byte	0x4
+ 246 004e 05       		.byte	0x5
+ 247 004f D5010000 		.4byte	.LASF4
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 12
+
+
+ 248 0053 02       		.uleb128 0x2
+ 249 0054 04       		.byte	0x4
+ 250 0055 07       		.byte	0x7
+ 251 0056 78000000 		.4byte	.LASF5
+ 252 005a 02       		.uleb128 0x2
+ 253 005b 08       		.byte	0x8
+ 254 005c 05       		.byte	0x5
+ 255 005d 00000000 		.4byte	.LASF6
+ 256 0061 02       		.uleb128 0x2
+ 257 0062 08       		.byte	0x8
+ 258 0063 07       		.byte	0x7
+ 259 0064 FD000000 		.4byte	.LASF7
+ 260 0068 04       		.uleb128 0x4
+ 261 0069 04       		.byte	0x4
+ 262 006a 05       		.byte	0x5
+ 263 006b 696E7400 		.ascii	"int\000"
+ 264 006f 02       		.uleb128 0x2
+ 265 0070 04       		.byte	0x4
+ 266 0071 07       		.byte	0x7
+ 267 0072 F0000000 		.4byte	.LASF8
+ 268 0076 03       		.uleb128 0x3
+ 269 0077 46000000 		.4byte	.LASF10
+ 270 007b 03       		.byte	0x3
+ 271 007c 41       		.byte	0x41
+ 272 007d 41000000 		.4byte	0x41
+ 273 0081 03       		.uleb128 0x3
+ 274 0082 CF010000 		.4byte	.LASF11
+ 275 0086 04       		.byte	0x4
+ 276 0087 B4       		.byte	0xb4
+ 277 0088 2C000000 		.4byte	0x2c
+ 278 008c 02       		.uleb128 0x2
+ 279 008d 04       		.byte	0x4
+ 280 008e 04       		.byte	0x4
+ 281 008f 4E000000 		.4byte	.LASF12
+ 282 0093 02       		.uleb128 0x2
+ 283 0094 08       		.byte	0x8
+ 284 0095 04       		.byte	0x4
+ 285 0096 C8000000 		.4byte	.LASF13
+ 286 009a 02       		.uleb128 0x2
+ 287 009b 01       		.byte	0x1
+ 288 009c 08       		.byte	0x8
+ 289 009d AF010000 		.4byte	.LASF14
+ 290 00a1 02       		.uleb128 0x2
+ 291 00a2 04       		.byte	0x4
+ 292 00a3 07       		.byte	0x7
+ 293 00a4 A1010000 		.4byte	.LASF15
+ 294 00a8 05       		.uleb128 0x5
+ 295 00a9 DE010000 		.4byte	.LASF16
+ 296 00ad 01       		.byte	0x1
+ 297 00ae 09       		.byte	0x9
+ 298 00af 68000000 		.4byte	0x68
+ 299 00b3 00000000 		.4byte	.LFB63
+ 300 00b7 12000000 		.4byte	.LFE63-.LFB63
+ 301 00bb 01       		.uleb128 0x1
+ 302 00bc 9C       		.byte	0x9c
+ 303 00bd DD000000 		.4byte	0xdd
+ 304 00c1 06       		.uleb128 0x6
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 13
+
+
+ 305 00c2 06000000 		.4byte	.LVL0
+ 306 00c6 4E020000 		.4byte	0x24e
+ 307 00ca 06       		.uleb128 0x6
+ 308 00cb 0A000000 		.4byte	.LVL1
+ 309 00cf 5B020000 		.4byte	0x25b
+ 310 00d3 06       		.uleb128 0x6
+ 311 00d4 0E000000 		.4byte	.LVL2
+ 312 00d8 4E020000 		.4byte	0x24e
+ 313 00dc 00       		.byte	0
+ 314 00dd 05       		.uleb128 0x5
+ 315 00de 18000000 		.4byte	.LASF17
+ 316 00e2 01       		.byte	0x1
+ 317 00e3 11       		.byte	0x11
+ 318 00e4 B7010000 		.4byte	0x1b7
+ 319 00e8 00000000 		.4byte	.LFB64
+ 320 00ec 60000000 		.4byte	.LFE64-.LFB64
+ 321 00f0 01       		.uleb128 0x1
+ 322 00f1 9C       		.byte	0x9c
+ 323 00f2 B7010000 		.4byte	0x1b7
+ 324 00f6 07       		.uleb128 0x7
+ 325 00f7 AA010000 		.4byte	.LASF28
+ 326 00fb 01       		.byte	0x1
+ 327 00fc 13       		.byte	0x13
+ 328 00fd BD010000 		.4byte	0x1bd
+ 329 0101 02       		.uleb128 0x2
+ 330 0102 91       		.byte	0x91
+ 331 0103 74       		.sleb128 -12
+ 332 0104 08       		.uleb128 0x8
+ 333 0105 D8000000 		.4byte	.LASF18
+ 334 0109 01       		.byte	0x1
+ 335 010a 16       		.byte	0x16
+ 336 010b CD010000 		.4byte	0x1cd
+ 337 010f 08       		.uleb128 0x8
+ 338 0110 B9000000 		.4byte	.LASF19
+ 339 0114 01       		.byte	0x1
+ 340 0115 17       		.byte	0x17
+ 341 0116 CD010000 		.4byte	0x1cd
+ 342 011a 08       		.uleb128 0x8
+ 343 011b 9D000000 		.4byte	.LASF20
+ 344 011f 01       		.byte	0x1
+ 345 0120 18       		.byte	0x18
+ 346 0121 CD010000 		.4byte	0x1cd
+ 347 0125 08       		.uleb128 0x8
+ 348 0126 BE000000 		.4byte	.LASF21
+ 349 012a 01       		.byte	0x1
+ 350 012b 19       		.byte	0x19
+ 351 012c CD010000 		.4byte	0x1cd
+ 352 0130 08       		.uleb128 0x8
+ 353 0131 60000000 		.4byte	.LASF22
+ 354 0135 01       		.byte	0x1
+ 355 0136 1A       		.byte	0x1a
+ 356 0137 CD010000 		.4byte	0x1cd
+ 357 013b 08       		.uleb128 0x8
+ 358 013c A2000000 		.4byte	.LASF23
+ 359 0140 01       		.byte	0x1
+ 360 0141 1B       		.byte	0x1b
+ 361 0142 CD010000 		.4byte	0x1cd
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 14
+
+
+ 362 0146 08       		.uleb128 0x8
+ 363 0147 23000000 		.4byte	.LASF24
+ 364 014b 01       		.byte	0x1
+ 365 014c 1C       		.byte	0x1c
+ 366 014d CD010000 		.4byte	0x1cd
+ 367 0151 08       		.uleb128 0x8
+ 368 0152 CF000000 		.4byte	.LASF25
+ 369 0156 01       		.byte	0x1
+ 370 0157 1D       		.byte	0x1d
+ 371 0158 CD010000 		.4byte	0x1cd
+ 372 015c 08       		.uleb128 0x8
+ 373 015d C6010000 		.4byte	.LASF26
+ 374 0161 01       		.byte	0x1
+ 375 0162 1E       		.byte	0x1e
+ 376 0163 CD010000 		.4byte	0x1cd
+ 377 0167 08       		.uleb128 0x8
+ 378 0168 B4010000 		.4byte	.LASF27
+ 379 016c 01       		.byte	0x1
+ 380 016d 1F       		.byte	0x1f
+ 381 016e CD010000 		.4byte	0x1cd
+ 382 0172 09       		.uleb128 0x9
+ 383 0173 6800     		.ascii	"h\000"
+ 384 0175 01       		.byte	0x1
+ 385 0176 25       		.byte	0x25
+ 386 0177 68000000 		.4byte	0x68
+ 387 017b 00000000 		.4byte	.LLST0
+ 388 017f 09       		.uleb128 0x9
+ 389 0180 7700     		.ascii	"w\000"
+ 390 0182 01       		.byte	0x1
+ 391 0183 25       		.byte	0x25
+ 392 0184 68000000 		.4byte	0x68
+ 393 0188 40000000 		.4byte	.LLST1
+ 394 018c 0A       		.uleb128 0xa
+ 395 018d 5500     		.ascii	"U\000"
+ 396 018f 01       		.byte	0x1
+ 397 0190 26       		.byte	0x26
+ 398 0191 68000000 		.4byte	0x68
+ 399 0195 00       		.byte	0
+ 400 0196 0A       		.uleb128 0xa
+ 401 0197 593000   		.ascii	"Y0\000"
+ 402 019a 01       		.byte	0x1
+ 403 019b 26       		.byte	0x26
+ 404 019c 68000000 		.4byte	0x68
+ 405 01a0 01       		.byte	0x1
+ 406 01a1 0A       		.uleb128 0xa
+ 407 01a2 5600     		.ascii	"V\000"
+ 408 01a4 01       		.byte	0x1
+ 409 01a5 26       		.byte	0x26
+ 410 01a6 68000000 		.4byte	0x68
+ 411 01aa 02       		.byte	0x2
+ 412 01ab 0A       		.uleb128 0xa
+ 413 01ac 593100   		.ascii	"Y1\000"
+ 414 01af 01       		.byte	0x1
+ 415 01b0 26       		.byte	0x26
+ 416 01b1 68000000 		.4byte	0x68
+ 417 01b5 03       		.byte	0x3
+ 418 01b6 00       		.byte	0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 15
+
+
+ 419 01b7 0B       		.uleb128 0xb
+ 420 01b8 04       		.byte	0x4
+ 421 01b9 68000000 		.4byte	0x68
+ 422 01bd 0C       		.uleb128 0xc
+ 423 01be 68000000 		.4byte	0x68
+ 424 01c2 CD010000 		.4byte	0x1cd
+ 425 01c6 0D       		.uleb128 0xd
+ 426 01c7 A1000000 		.4byte	0xa1
+ 427 01cb 02       		.byte	0x2
+ 428 01cc 00       		.byte	0
+ 429 01cd 0C       		.uleb128 0xc
+ 430 01ce 68000000 		.4byte	0x68
+ 431 01d2 E3010000 		.4byte	0x1e3
+ 432 01d6 0D       		.uleb128 0xd
+ 433 01d7 A1000000 		.4byte	0xa1
+ 434 01db 8F       		.byte	0x8f
+ 435 01dc 0D       		.uleb128 0xd
+ 436 01dd A1000000 		.4byte	0xa1
+ 437 01e1 AF       		.byte	0xaf
+ 438 01e2 00       		.byte	0
+ 439 01e3 0E       		.uleb128 0xe
+ 440 01e4 DD000000 		.4byte	.LASF29
+ 441 01e8 01       		.byte	0x1
+ 442 01e9 6901     		.2byte	0x169
+ 443 01eb B7010000 		.4byte	0x1b7
+ 444 01ef 00000000 		.4byte	.LFB65
+ 445 01f3 0C000000 		.4byte	.LFE65-.LFB65
+ 446 01f7 01       		.uleb128 0x1
+ 447 01f8 9C       		.byte	0x9c
+ 448 01f9 10020000 		.4byte	0x210
+ 449 01fd 06       		.uleb128 0x6
+ 450 01fe 06000000 		.4byte	.LVL27
+ 451 0202 A8000000 		.4byte	0xa8
+ 452 0206 06       		.uleb128 0x6
+ 453 0207 0A000000 		.4byte	.LVL28
+ 454 020b DD000000 		.4byte	0xdd
+ 455 020f 00       		.byte	0
+ 456 0210 0F       		.uleb128 0xf
+ 457 0211 AC000000 		.4byte	.LASF30
+ 458 0215 05       		.byte	0x5
+ 459 0216 2A06     		.2byte	0x62a
+ 460 0218 1C020000 		.4byte	0x21c
+ 461 021c 10       		.uleb128 0x10
+ 462 021d 76000000 		.4byte	0x76
+ 463 0221 0C       		.uleb128 0xc
+ 464 0222 81000000 		.4byte	0x81
+ 465 0226 3D020000 		.4byte	0x23d
+ 466 022a 0D       		.uleb128 0xd
+ 467 022b A1000000 		.4byte	0xa1
+ 468 022f 8F       		.byte	0x8f
+ 469 0230 0D       		.uleb128 0xd
+ 470 0231 A1000000 		.4byte	0xa1
+ 471 0235 57       		.byte	0x57
+ 472 0236 0D       		.uleb128 0xd
+ 473 0237 A1000000 		.4byte	0xa1
+ 474 023b 03       		.byte	0x3
+ 475 023c 00       		.byte	0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 16
+
+
+ 476 023d 11       		.uleb128 0x11
+ 477 023e 33000000 		.4byte	.LASF31
+ 478 0242 06       		.byte	0x6
+ 479 0243 08       		.byte	0x8
+ 480 0244 21020000 		.4byte	0x221
+ 481 0248 05       		.uleb128 0x5
+ 482 0249 03       		.byte	0x3
+ 483 024a 00000000 		.4byte	Camera_framebuffer
+ 484 024e 12       		.uleb128 0x12
+ 485 024f 14010000 		.4byte	.LASF35
+ 486 0253 06       		.byte	0x6
+ 487 0254 0D       		.byte	0xd
+ 488 0255 5B020000 		.4byte	0x25b
+ 489 0259 13       		.uleb128 0x13
+ 490 025a 00       		.byte	0
+ 491 025b 14       		.uleb128 0x14
+ 492 025c 68020000 		.4byte	.LASF36
+ 493 0260 06       		.byte	0x6
+ 494 0261 1B       		.byte	0x1b
+ 495 0262 13       		.uleb128 0x13
+ 496 0263 00       		.byte	0
+ 497 0264 00       		.byte	0
+ 498              		.section	.debug_abbrev,"",%progbits
+ 499              	.Ldebug_abbrev0:
+ 500 0000 01       		.uleb128 0x1
+ 501 0001 11       		.uleb128 0x11
+ 502 0002 01       		.byte	0x1
+ 503 0003 25       		.uleb128 0x25
+ 504 0004 0E       		.uleb128 0xe
+ 505 0005 13       		.uleb128 0x13
+ 506 0006 0B       		.uleb128 0xb
+ 507 0007 03       		.uleb128 0x3
+ 508 0008 0E       		.uleb128 0xe
+ 509 0009 1B       		.uleb128 0x1b
+ 510 000a 0E       		.uleb128 0xe
+ 511 000b 55       		.uleb128 0x55
+ 512 000c 17       		.uleb128 0x17
+ 513 000d 11       		.uleb128 0x11
+ 514 000e 01       		.uleb128 0x1
+ 515 000f 10       		.uleb128 0x10
+ 516 0010 17       		.uleb128 0x17
+ 517 0011 00       		.byte	0
+ 518 0012 00       		.byte	0
+ 519 0013 02       		.uleb128 0x2
+ 520 0014 24       		.uleb128 0x24
+ 521 0015 00       		.byte	0
+ 522 0016 0B       		.uleb128 0xb
+ 523 0017 0B       		.uleb128 0xb
+ 524 0018 3E       		.uleb128 0x3e
+ 525 0019 0B       		.uleb128 0xb
+ 526 001a 03       		.uleb128 0x3
+ 527 001b 0E       		.uleb128 0xe
+ 528 001c 00       		.byte	0
+ 529 001d 00       		.byte	0
+ 530 001e 03       		.uleb128 0x3
+ 531 001f 16       		.uleb128 0x16
+ 532 0020 00       		.byte	0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 17
+
+
+ 533 0021 03       		.uleb128 0x3
+ 534 0022 0E       		.uleb128 0xe
+ 535 0023 3A       		.uleb128 0x3a
+ 536 0024 0B       		.uleb128 0xb
+ 537 0025 3B       		.uleb128 0x3b
+ 538 0026 0B       		.uleb128 0xb
+ 539 0027 49       		.uleb128 0x49
+ 540 0028 13       		.uleb128 0x13
+ 541 0029 00       		.byte	0
+ 542 002a 00       		.byte	0
+ 543 002b 04       		.uleb128 0x4
+ 544 002c 24       		.uleb128 0x24
+ 545 002d 00       		.byte	0
+ 546 002e 0B       		.uleb128 0xb
+ 547 002f 0B       		.uleb128 0xb
+ 548 0030 3E       		.uleb128 0x3e
+ 549 0031 0B       		.uleb128 0xb
+ 550 0032 03       		.uleb128 0x3
+ 551 0033 08       		.uleb128 0x8
+ 552 0034 00       		.byte	0
+ 553 0035 00       		.byte	0
+ 554 0036 05       		.uleb128 0x5
+ 555 0037 2E       		.uleb128 0x2e
+ 556 0038 01       		.byte	0x1
+ 557 0039 3F       		.uleb128 0x3f
+ 558 003a 19       		.uleb128 0x19
+ 559 003b 03       		.uleb128 0x3
+ 560 003c 0E       		.uleb128 0xe
+ 561 003d 3A       		.uleb128 0x3a
+ 562 003e 0B       		.uleb128 0xb
+ 563 003f 3B       		.uleb128 0x3b
+ 564 0040 0B       		.uleb128 0xb
+ 565 0041 49       		.uleb128 0x49
+ 566 0042 13       		.uleb128 0x13
+ 567 0043 11       		.uleb128 0x11
+ 568 0044 01       		.uleb128 0x1
+ 569 0045 12       		.uleb128 0x12
+ 570 0046 06       		.uleb128 0x6
+ 571 0047 40       		.uleb128 0x40
+ 572 0048 18       		.uleb128 0x18
+ 573 0049 9742     		.uleb128 0x2117
+ 574 004b 19       		.uleb128 0x19
+ 575 004c 01       		.uleb128 0x1
+ 576 004d 13       		.uleb128 0x13
+ 577 004e 00       		.byte	0
+ 578 004f 00       		.byte	0
+ 579 0050 06       		.uleb128 0x6
+ 580 0051 898201   		.uleb128 0x4109
+ 581 0054 00       		.byte	0
+ 582 0055 11       		.uleb128 0x11
+ 583 0056 01       		.uleb128 0x1
+ 584 0057 31       		.uleb128 0x31
+ 585 0058 13       		.uleb128 0x13
+ 586 0059 00       		.byte	0
+ 587 005a 00       		.byte	0
+ 588 005b 07       		.uleb128 0x7
+ 589 005c 34       		.uleb128 0x34
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 18
+
+
+ 590 005d 00       		.byte	0
+ 591 005e 03       		.uleb128 0x3
+ 592 005f 0E       		.uleb128 0xe
+ 593 0060 3A       		.uleb128 0x3a
+ 594 0061 0B       		.uleb128 0xb
+ 595 0062 3B       		.uleb128 0x3b
+ 596 0063 0B       		.uleb128 0xb
+ 597 0064 49       		.uleb128 0x49
+ 598 0065 13       		.uleb128 0x13
+ 599 0066 02       		.uleb128 0x2
+ 600 0067 18       		.uleb128 0x18
+ 601 0068 00       		.byte	0
+ 602 0069 00       		.byte	0
+ 603 006a 08       		.uleb128 0x8
+ 604 006b 34       		.uleb128 0x34
+ 605 006c 00       		.byte	0
+ 606 006d 03       		.uleb128 0x3
+ 607 006e 0E       		.uleb128 0xe
+ 608 006f 3A       		.uleb128 0x3a
+ 609 0070 0B       		.uleb128 0xb
+ 610 0071 3B       		.uleb128 0x3b
+ 611 0072 0B       		.uleb128 0xb
+ 612 0073 49       		.uleb128 0x49
+ 613 0074 13       		.uleb128 0x13
+ 614 0075 00       		.byte	0
+ 615 0076 00       		.byte	0
+ 616 0077 09       		.uleb128 0x9
+ 617 0078 34       		.uleb128 0x34
+ 618 0079 00       		.byte	0
+ 619 007a 03       		.uleb128 0x3
+ 620 007b 08       		.uleb128 0x8
+ 621 007c 3A       		.uleb128 0x3a
+ 622 007d 0B       		.uleb128 0xb
+ 623 007e 3B       		.uleb128 0x3b
+ 624 007f 0B       		.uleb128 0xb
+ 625 0080 49       		.uleb128 0x49
+ 626 0081 13       		.uleb128 0x13
+ 627 0082 02       		.uleb128 0x2
+ 628 0083 17       		.uleb128 0x17
+ 629 0084 00       		.byte	0
+ 630 0085 00       		.byte	0
+ 631 0086 0A       		.uleb128 0xa
+ 632 0087 34       		.uleb128 0x34
+ 633 0088 00       		.byte	0
+ 634 0089 03       		.uleb128 0x3
+ 635 008a 08       		.uleb128 0x8
+ 636 008b 3A       		.uleb128 0x3a
+ 637 008c 0B       		.uleb128 0xb
+ 638 008d 3B       		.uleb128 0x3b
+ 639 008e 0B       		.uleb128 0xb
+ 640 008f 49       		.uleb128 0x49
+ 641 0090 13       		.uleb128 0x13
+ 642 0091 1C       		.uleb128 0x1c
+ 643 0092 0B       		.uleb128 0xb
+ 644 0093 00       		.byte	0
+ 645 0094 00       		.byte	0
+ 646 0095 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 19
+
+
+ 647 0096 0F       		.uleb128 0xf
+ 648 0097 00       		.byte	0
+ 649 0098 0B       		.uleb128 0xb
+ 650 0099 0B       		.uleb128 0xb
+ 651 009a 49       		.uleb128 0x49
+ 652 009b 13       		.uleb128 0x13
+ 653 009c 00       		.byte	0
+ 654 009d 00       		.byte	0
+ 655 009e 0C       		.uleb128 0xc
+ 656 009f 01       		.uleb128 0x1
+ 657 00a0 01       		.byte	0x1
+ 658 00a1 49       		.uleb128 0x49
+ 659 00a2 13       		.uleb128 0x13
+ 660 00a3 01       		.uleb128 0x1
+ 661 00a4 13       		.uleb128 0x13
+ 662 00a5 00       		.byte	0
+ 663 00a6 00       		.byte	0
+ 664 00a7 0D       		.uleb128 0xd
+ 665 00a8 21       		.uleb128 0x21
+ 666 00a9 00       		.byte	0
+ 667 00aa 49       		.uleb128 0x49
+ 668 00ab 13       		.uleb128 0x13
+ 669 00ac 2F       		.uleb128 0x2f
+ 670 00ad 0B       		.uleb128 0xb
+ 671 00ae 00       		.byte	0
+ 672 00af 00       		.byte	0
+ 673 00b0 0E       		.uleb128 0xe
+ 674 00b1 2E       		.uleb128 0x2e
+ 675 00b2 01       		.byte	0x1
+ 676 00b3 3F       		.uleb128 0x3f
+ 677 00b4 19       		.uleb128 0x19
+ 678 00b5 03       		.uleb128 0x3
+ 679 00b6 0E       		.uleb128 0xe
+ 680 00b7 3A       		.uleb128 0x3a
+ 681 00b8 0B       		.uleb128 0xb
+ 682 00b9 3B       		.uleb128 0x3b
+ 683 00ba 05       		.uleb128 0x5
+ 684 00bb 49       		.uleb128 0x49
+ 685 00bc 13       		.uleb128 0x13
+ 686 00bd 11       		.uleb128 0x11
+ 687 00be 01       		.uleb128 0x1
+ 688 00bf 12       		.uleb128 0x12
+ 689 00c0 06       		.uleb128 0x6
+ 690 00c1 40       		.uleb128 0x40
+ 691 00c2 18       		.uleb128 0x18
+ 692 00c3 9742     		.uleb128 0x2117
+ 693 00c5 19       		.uleb128 0x19
+ 694 00c6 01       		.uleb128 0x1
+ 695 00c7 13       		.uleb128 0x13
+ 696 00c8 00       		.byte	0
+ 697 00c9 00       		.byte	0
+ 698 00ca 0F       		.uleb128 0xf
+ 699 00cb 34       		.uleb128 0x34
+ 700 00cc 00       		.byte	0
+ 701 00cd 03       		.uleb128 0x3
+ 702 00ce 0E       		.uleb128 0xe
+ 703 00cf 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 20
+
+
+ 704 00d0 0B       		.uleb128 0xb
+ 705 00d1 3B       		.uleb128 0x3b
+ 706 00d2 05       		.uleb128 0x5
+ 707 00d3 49       		.uleb128 0x49
+ 708 00d4 13       		.uleb128 0x13
+ 709 00d5 3F       		.uleb128 0x3f
+ 710 00d6 19       		.uleb128 0x19
+ 711 00d7 3C       		.uleb128 0x3c
+ 712 00d8 19       		.uleb128 0x19
+ 713 00d9 00       		.byte	0
+ 714 00da 00       		.byte	0
+ 715 00db 10       		.uleb128 0x10
+ 716 00dc 35       		.uleb128 0x35
+ 717 00dd 00       		.byte	0
+ 718 00de 49       		.uleb128 0x49
+ 719 00df 13       		.uleb128 0x13
+ 720 00e0 00       		.byte	0
+ 721 00e1 00       		.byte	0
+ 722 00e2 11       		.uleb128 0x11
+ 723 00e3 34       		.uleb128 0x34
+ 724 00e4 00       		.byte	0
+ 725 00e5 03       		.uleb128 0x3
+ 726 00e6 0E       		.uleb128 0xe
+ 727 00e7 3A       		.uleb128 0x3a
+ 728 00e8 0B       		.uleb128 0xb
+ 729 00e9 3B       		.uleb128 0x3b
+ 730 00ea 0B       		.uleb128 0xb
+ 731 00eb 49       		.uleb128 0x49
+ 732 00ec 13       		.uleb128 0x13
+ 733 00ed 3F       		.uleb128 0x3f
+ 734 00ee 19       		.uleb128 0x19
+ 735 00ef 02       		.uleb128 0x2
+ 736 00f0 18       		.uleb128 0x18
+ 737 00f1 00       		.byte	0
+ 738 00f2 00       		.byte	0
+ 739 00f3 12       		.uleb128 0x12
+ 740 00f4 2E       		.uleb128 0x2e
+ 741 00f5 01       		.byte	0x1
+ 742 00f6 3F       		.uleb128 0x3f
+ 743 00f7 19       		.uleb128 0x19
+ 744 00f8 03       		.uleb128 0x3
+ 745 00f9 0E       		.uleb128 0xe
+ 746 00fa 3A       		.uleb128 0x3a
+ 747 00fb 0B       		.uleb128 0xb
+ 748 00fc 3B       		.uleb128 0x3b
+ 749 00fd 0B       		.uleb128 0xb
+ 750 00fe 3C       		.uleb128 0x3c
+ 751 00ff 19       		.uleb128 0x19
+ 752 0100 01       		.uleb128 0x1
+ 753 0101 13       		.uleb128 0x13
+ 754 0102 00       		.byte	0
+ 755 0103 00       		.byte	0
+ 756 0104 13       		.uleb128 0x13
+ 757 0105 18       		.uleb128 0x18
+ 758 0106 00       		.byte	0
+ 759 0107 00       		.byte	0
+ 760 0108 00       		.byte	0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 21
+
+
+ 761 0109 14       		.uleb128 0x14
+ 762 010a 2E       		.uleb128 0x2e
+ 763 010b 01       		.byte	0x1
+ 764 010c 3F       		.uleb128 0x3f
+ 765 010d 19       		.uleb128 0x19
+ 766 010e 03       		.uleb128 0x3
+ 767 010f 0E       		.uleb128 0xe
+ 768 0110 3A       		.uleb128 0x3a
+ 769 0111 0B       		.uleb128 0xb
+ 770 0112 3B       		.uleb128 0x3b
+ 771 0113 0B       		.uleb128 0xb
+ 772 0114 3C       		.uleb128 0x3c
+ 773 0115 19       		.uleb128 0x19
+ 774 0116 00       		.byte	0
+ 775 0117 00       		.byte	0
+ 776 0118 00       		.byte	0
+ 777              		.section	.debug_loc,"",%progbits
+ 778              	.Ldebug_loc0:
+ 779              	.LLST0:
+ 780 0000 02000000 		.4byte	.LVL3
+ 781 0004 08000000 		.4byte	.LVL4
+ 782 0008 0200     		.2byte	0x2
+ 783 000a 30       		.byte	0x30
+ 784 000b 9F       		.byte	0x9f
+ 785 000c 08000000 		.4byte	.LVL4
+ 786 0010 1A000000 		.4byte	.LVL9
+ 787 0014 0100     		.2byte	0x1
+ 788 0016 52       		.byte	0x52
+ 789 0017 1E000000 		.4byte	.LVL10
+ 790 001b 30000000 		.4byte	.LVL15
+ 791 001f 0100     		.2byte	0x1
+ 792 0021 52       		.byte	0x52
+ 793 0022 34000000 		.4byte	.LVL16
+ 794 0026 46000000 		.4byte	.LVL21
+ 795 002a 0100     		.2byte	0x1
+ 796 002c 52       		.byte	0x52
+ 797 002d 4A000000 		.4byte	.LVL22
+ 798 0031 60000000 		.4byte	.LFE64
+ 799 0035 0100     		.2byte	0x1
+ 800 0037 52       		.byte	0x52
+ 801 0038 00000000 		.4byte	0
+ 802 003c 00000000 		.4byte	0
+ 803              	.LLST1:
+ 804 0040 08000000 		.4byte	.LVL4
+ 805 0044 0C000000 		.4byte	.LVL6
+ 806 0048 0100     		.2byte	0x1
+ 807 004a 53       		.byte	0x53
+ 808 004b 0E000000 		.4byte	.LVL7
+ 809 004f 14000000 		.4byte	.LVL8
+ 810 0053 0100     		.2byte	0x1
+ 811 0055 53       		.byte	0x53
+ 812 0056 1E000000 		.4byte	.LVL10
+ 813 005a 22000000 		.4byte	.LVL12
+ 814 005e 0100     		.2byte	0x1
+ 815 0060 53       		.byte	0x53
+ 816 0061 24000000 		.4byte	.LVL13
+ 817 0065 2A000000 		.4byte	.LVL14
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 22
+
+
+ 818 0069 0100     		.2byte	0x1
+ 819 006b 53       		.byte	0x53
+ 820 006c 34000000 		.4byte	.LVL16
+ 821 0070 38000000 		.4byte	.LVL18
+ 822 0074 0100     		.2byte	0x1
+ 823 0076 53       		.byte	0x53
+ 824 0077 3A000000 		.4byte	.LVL19
+ 825 007b 40000000 		.4byte	.LVL20
+ 826 007f 0100     		.2byte	0x1
+ 827 0081 53       		.byte	0x53
+ 828 0082 4A000000 		.4byte	.LVL22
+ 829 0086 4E000000 		.4byte	.LVL24
+ 830 008a 0100     		.2byte	0x1
+ 831 008c 53       		.byte	0x53
+ 832 008d 50000000 		.4byte	.LVL25
+ 833 0091 56000000 		.4byte	.LVL26
+ 834 0095 0100     		.2byte	0x1
+ 835 0097 53       		.byte	0x53
+ 836 0098 00000000 		.4byte	0
+ 837 009c 00000000 		.4byte	0
+ 838              		.section	.debug_aranges,"",%progbits
+ 839 0000 2C000000 		.4byte	0x2c
+ 840 0004 0200     		.2byte	0x2
+ 841 0006 00000000 		.4byte	.Ldebug_info0
+ 842 000a 04       		.byte	0x4
+ 843 000b 00       		.byte	0
+ 844 000c 0000     		.2byte	0
+ 845 000e 0000     		.2byte	0
+ 846 0010 00000000 		.4byte	.LFB63
+ 847 0014 12000000 		.4byte	.LFE63-.LFB63
+ 848 0018 00000000 		.4byte	.LFB64
+ 849 001c 60000000 		.4byte	.LFE64-.LFB64
+ 850 0020 00000000 		.4byte	.LFB65
+ 851 0024 0C000000 		.4byte	.LFE65-.LFB65
+ 852 0028 00000000 		.4byte	0
+ 853 002c 00000000 		.4byte	0
+ 854              		.section	.debug_ranges,"",%progbits
+ 855              	.Ldebug_ranges0:
+ 856 0000 00000000 		.4byte	.LFB63
+ 857 0004 12000000 		.4byte	.LFE63
+ 858 0008 00000000 		.4byte	.LFB64
+ 859 000c 60000000 		.4byte	.LFE64
+ 860 0010 00000000 		.4byte	.LFB65
+ 861 0014 0C000000 		.4byte	.LFE65
+ 862 0018 00000000 		.4byte	0
+ 863 001c 00000000 		.4byte	0
+ 864              		.section	.debug_line,"",%progbits
+ 865              	.Ldebug_line0:
+ 866 0000 DF010000 		.section	.debug_str,"MS",%progbits,1
+ 866      02005301 
+ 866      00000201 
+ 866      FB0E0D00 
+ 866      01010101 
+ 867              	.LASF6:
+ 868 0000 6C6F6E67 		.ascii	"long long int\000"
+ 868      206C6F6E 
+ 868      6720696E 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 23
+
+
+ 868      7400
+ 869              	.LASF9:
+ 870 000e 5F5F696E 		.ascii	"__int32_t\000"
+ 870      7433325F 
+ 870      7400
+ 871              	.LASF17:
+ 872 0018 70617273 		.ascii	"parsePhoto\000"
+ 872      6550686F 
+ 872      746F00
+ 873              	.LASF24:
+ 874 0023 696D6752 		.ascii	"imgR_Bin\000"
+ 874      5F42696E 
+ 874      00
+ 875              	.LASF33:
+ 876 002c 2E5C6376 		.ascii	".\\cv.c\000"
+ 876      2E6300
+ 877              	.LASF31:
+ 878 0033 43616D65 		.ascii	"Camera_framebuffer\000"
+ 878      72615F66 
+ 878      72616D65 
+ 878      62756666 
+ 878      657200
+ 879              	.LASF10:
+ 880 0046 696E7433 		.ascii	"int32_t\000"
+ 880      325F7400 
+ 881              	.LASF12:
+ 882 004e 666C6F61 		.ascii	"float\000"
+ 882      7400
+ 883              	.LASF0:
+ 884 0054 7369676E 		.ascii	"signed char\000"
+ 884      65642063 
+ 884      68617200 
+ 885              	.LASF22:
+ 886 0060 696D6747 		.ascii	"imgG_Diff\000"
+ 886      5F446966 
+ 886      6600
+ 887              	.LASF1:
+ 888 006a 756E7369 		.ascii	"unsigned char\000"
+ 888      676E6564 
+ 888      20636861 
+ 888      7200
+ 889              	.LASF5:
+ 890 0078 6C6F6E67 		.ascii	"long unsigned int\000"
+ 890      20756E73 
+ 890      69676E65 
+ 890      6420696E 
+ 890      7400
+ 891              	.LASF3:
+ 892 008a 73686F72 		.ascii	"short unsigned int\000"
+ 892      7420756E 
+ 892      7369676E 
+ 892      65642069 
+ 892      6E7400
+ 893              	.LASF20:
+ 894 009d 696D6742 		.ascii	"imgB\000"
+ 894      00
+ 895              	.LASF23:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 24
+
+
+ 896 00a2 696D6742 		.ascii	"imgB_Diff\000"
+ 896      5F446966 
+ 896      6600
+ 897              	.LASF30:
+ 898 00ac 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 898      52784275 
+ 898      66666572 
+ 898      00
+ 899              	.LASF19:
+ 900 00b9 696D6747 		.ascii	"imgG\000"
+ 900      00
+ 901              	.LASF21:
+ 902 00be 696D6752 		.ascii	"imgR_Diff\000"
+ 902      5F446966 
+ 902      6600
+ 903              	.LASF13:
+ 904 00c8 646F7562 		.ascii	"double\000"
+ 904      6C6500
+ 905              	.LASF25:
+ 906 00cf 696D6747 		.ascii	"imgG_Bin\000"
+ 906      5F42696E 
+ 906      00
+ 907              	.LASF18:
+ 908 00d8 696D6752 		.ascii	"imgR\000"
+ 908      00
+ 909              	.LASF29:
+ 910 00dd 72656164 		.ascii	"readPlanWithCamera\000"
+ 910      506C616E 
+ 910      57697468 
+ 910      43616D65 
+ 910      726100
+ 911              	.LASF8:
+ 912 00f0 756E7369 		.ascii	"unsigned int\000"
+ 912      676E6564 
+ 912      20696E74 
+ 912      00
+ 913              	.LASF7:
+ 914 00fd 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 914      206C6F6E 
+ 914      6720756E 
+ 914      7369676E 
+ 914      65642069 
+ 915              	.LASF35:
+ 916 0114 43616D65 		.ascii	"Camera_SyncFrame\000"
+ 916      72615F53 
+ 916      796E6346 
+ 916      72616D65 
+ 916      00
+ 917              	.LASF32:
+ 918 0125 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 918      4320342E 
+ 918      382E3420 
+ 918      32303134 
+ 918      30353236 
+ 919 0158 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 919      20726576 
+ 919      6973696F 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 25
+
+
+ 919      6E203231 
+ 919      31333538 
+ 920 018b 67202D66 		.ascii	"g -ffunction-sections\000"
+ 920      66756E63 
+ 920      74696F6E 
+ 920      2D736563 
+ 920      74696F6E 
+ 921              	.LASF15:
+ 922 01a1 73697A65 		.ascii	"sizetype\000"
+ 922      74797065 
+ 922      00
+ 923              	.LASF28:
+ 924 01aa 706C616E 		.ascii	"plan\000"
+ 924      00
+ 925              	.LASF14:
+ 926 01af 63686172 		.ascii	"char\000"
+ 926      00
+ 927              	.LASF27:
+ 928 01b4 696D6747 		.ascii	"imgGrey\000"
+ 928      72657900 
+ 929              	.LASF2:
+ 930 01bc 73686F72 		.ascii	"short int\000"
+ 930      7420696E 
+ 930      7400
+ 931              	.LASF26:
+ 932 01c6 696D6742 		.ascii	"imgB_Bin\000"
+ 932      5F42696E 
+ 932      00
+ 933              	.LASF11:
+ 934 01cf 75696E74 		.ascii	"uint8\000"
+ 934      3800
+ 935              	.LASF4:
+ 936 01d5 6C6F6E67 		.ascii	"long int\000"
+ 936      20696E74 
+ 936      00
+ 937              	.LASF16:
+ 938 01de 74616B65 		.ascii	"takePhoto\000"
+ 938      50686F74 
+ 938      6F00
+ 939              	.LASF34:
+ 940 01e8 433A5C55 		.ascii	"C:\\Users\\Nick\\Dropbox\\Uni Docs\\y4s2\\ECE3091 -"
+ 940      73657273 
+ 940      5C4E6963 
+ 940      6B5C4472 
+ 940      6F70626F 
+ 941 0215 20456E67 		.ascii	" Engineering Design\\PSoc Creator\\eng_design_2015\\"
+ 941      696E6565 
+ 941      72696E67 
+ 941      20446573 
+ 941      69676E5C 
+ 942 0246 45434533 		.ascii	"ECE3091-chickybot\\chickybot.cydsn\000"
+ 942      3039312D 
+ 942      63686963 
+ 942      6B79626F 
+ 942      745C6368 
+ 943              	.LASF36:
+ 944 0268 43616D65 		.ascii	"Camera_GetFrame\000"
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 26
+
+
+ 944      72615F47 
+ 944      65744672 
+ 944      616D6500 
+ 945              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
