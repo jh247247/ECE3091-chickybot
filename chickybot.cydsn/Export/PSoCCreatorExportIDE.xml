@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="chickybot" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn" Version="5.10" Type="Normal">
+  <Project Name="chickybot" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn" Version="5.10" Type="Bootloadable">
     <CMSIS_SVD_File>chickybot.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -79,6 +79,81 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\core_cmInstr.h</File>
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\CyBootAsmIar.s</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\project.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cybootloader.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Bootloadable_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Bootloadable_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedRed_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedRed.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedRed.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedGreen_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedGreen.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedGreen.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedBlue_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedBlue.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedBlue.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedYellow_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedYellow.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LedYellow.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CsBtns.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdE_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdE.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdE.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Lcd.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Lcd.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Lcd_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB5_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB5.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB5.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB4.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB4.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrBtn0Pressed.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrBtn0Pressed.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrBtn1Pressed.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrBtn1Pressed.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdRS_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdRS.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdRS.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockCsBtns.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockCsBtns.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB6_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB6.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB6.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB7_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB7.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdDB7.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdV0_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdV0.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LcdV0.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockLcdBacklight.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockLcdBacklight.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CsBtns_PWM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CsBtns_PWM.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CsBtns_PWM_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Lcd_Cntl_Port.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Lcd_Cntl_Port.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Lcd_Cntl_Port_PM.c</File>
+        </Files>
+      </Folder>
+      <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">
+        <Files Root="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn">
+          <File BuildType="BUILD" Toolchain="">.\CapSense_Simple\API\CapSense.h</File>
+        </Files>
+      </Folder>
+      <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CharLCDmp_v1_2\API">
+        <Files Root="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn">
+          <File BuildType="BUILD" Toolchain="">.\CharLCDmp_v1_2\API\BarGraph.c</File>
+          <File BuildType="BUILD" Toolchain="">.\CharLCDmp_v1_2\API\CharLCD.c</File>
+          <File BuildType="BUILD" Toolchain="">.\CharLCDmp_v1_2\API\CharLCD.h</File>
+          <File BuildType="BUILD" Toolchain="">.\CharLCDmp_v1_2\API\CharLCD_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\CharLCDmp_v1_2\API\CustChars.c</File>
+        </Files>
+      </Folder>
+      <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\OV9650\API">
+        <Files Root="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn">
+          <File BuildType="BUILD" Toolchain="">.\OV9650\API\OV9650.h</File>
+          <File BuildType="BUILD" Toolchain="">.\OV9650\API\OV9650_settings.c</File>
+          <File BuildType="BUILD" Toolchain="">.\OV9650\API\OV9650.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\Export\ARM_GCC_Generic">
