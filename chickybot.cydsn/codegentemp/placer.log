@@ -6,7 +6,7 @@
 
 #Build Date:         May  8 2015 09:27:37
 
-#File Generated:     Sep 8 2015 16:23:29
+#File Generated:     Sep 8 2015 17:02:23
 
 #Purpose:            
 
@@ -46,7 +46,7 @@ Phase 3
 Design Statistics after Packing
     Number of Combinational MCs 	:	1
     Number of Sequential MCs    	:	2
-    Number of DPs               	:	0
+    Number of DPs               	:	1
     Number of Controls          	:	1
     Number of Status            	:	0
     Number of SyncCells         	:	0
@@ -54,8 +54,8 @@ Design Statistics after Packing
 
 Device Utilization Summary after Packing
     Macrocells                  :	3/192
-    UDBS                        :	1/24
-    IOs                         :	13/72
+    UDBS                        :	2/24
+    IOs                         :	29/72
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -79,16 +79,20 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 10
+Number of clocks: 14
+Clock: ClockCamera          | Frequency: N/A       | Target:  24.0 MHz
+Clock: ClockCamera(routed)  | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCsBtns          | Frequency: N/A       | Target:  12.0 MHz
 Clock: ClockCsBtns(fixed-function) | Frequency:  29.1 MHz | Target:  12.0 MHz
 Clock: ClockLcdBacklight    | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockLcdBacklight(routed) | Frequency: N/A       | Target:   0.0 MHz
-Clock: CyBUS_CLK            | Frequency: N/A       | Target:  24.0 MHz
+Clock: CyBUS_CLK            | Frequency:  97.9 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
+Clock: \Camera:PCLK(0)_PAD\ | Frequency: N/A       | Target:   0.1 MHz
 Clock: \CsBtns:PWM:PWMHW\/tc | Frequency:  29.1 MHz | Target:   6.0 MHz
 
 ======================================================================
@@ -101,36 +105,40 @@ Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 10
+Number of clocks: 14
+Clock: ClockCamera          | Frequency: N/A       | Target:  24.0 MHz
+Clock: ClockCamera(routed)  | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCsBtns          | Frequency: N/A       | Target:  12.0 MHz
-Clock: ClockCsBtns(fixed-function) | Frequency:  29.2 MHz | Target:  12.0 MHz
+Clock: ClockCsBtns(fixed-function) | Frequency:  29.1 MHz | Target:  12.0 MHz
 Clock: ClockLcdBacklight    | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockLcdBacklight(routed) | Frequency: N/A       | Target:   0.0 MHz
-Clock: CyBUS_CLK            | Frequency: N/A       | Target:  24.0 MHz
+Clock: CyBUS_CLK            | Frequency:  97.9 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: \CsBtns:PWM:PWMHW\/tc | Frequency:  29.2 MHz | Target:   6.0 MHz
+Clock: \Camera:PCLK(0)_PAD\ | Frequency: N/A       | Target:   0.1 MHz
+Clock: \CsBtns:PWM:PWMHW\/tc | Frequency:  29.1 MHz | Target:   6.0 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.0 (sec)
+D2088: Phase 7, elapsed time : 0.1 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	1
     Number of Sequential MCs    	:	2
-    Number of DPs               	:	0
+    Number of DPs               	:	1
     Number of Controls          	:	1
     Number of Status            	:	0
     Number of SyncCells         	:	0
     Number of count7cells       	:	0
-    Number of IOs       	:	13
+    Number of IOs       	:	29
 
 Device Utilization Summary
     Macrocells                  :	3/192
-    IOs                         :	13/72
+    IOs                         :	29/72
 
 
 
@@ -146,16 +154,20 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 10
+Number of clocks: 14
+Clock: ClockCamera          | Frequency: N/A       | Target:  24.0 MHz
+Clock: ClockCamera(routed)  | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCsBtns          | Frequency: N/A       | Target:  12.0 MHz
 Clock: ClockCsBtns(fixed-function) | Frequency:   0.4 MHz | Target:  13.2 MHz
 Clock: ClockLcdBacklight    | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockLcdBacklight(routed) | Frequency: N/A       | Target:   0.0 MHz
-Clock: CyBUS_CLK            | Frequency: N/A       | Target:  24.0 MHz
+Clock: CyBUS_CLK            | Frequency:  97.9 MHz | Target:  26.3 MHz
+Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
+Clock: \Camera:PCLK(0)_PAD\ | Frequency: N/A       | Target:   0.1 MHz
 Clock: \CsBtns:PWM:PWMHW\/tc | Frequency:   0.4 MHz | Target:   6.6 MHz
 
 ======================================================================
@@ -167,5 +179,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 0.7 sec.
+I2076: Total run-time: 0.9 sec.
 
