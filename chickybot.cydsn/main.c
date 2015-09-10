@@ -1,7 +1,8 @@
 #include <project.h>
+#include <stdlib.h>
 #include "cv.h"
 
-int * plan;
+uint8 * plan;
 
 void Btn0Pressed() {
     LedGreen_Write(!LedGreen_Read());
@@ -20,10 +21,22 @@ void displayPlanOnLcd() {
 }
 
 void getPlan() {
-    plan = (int *) malloc(sizeof(int) * ROWS);
+    //plan = (uint8 *) malloc(sizeof(int) * ROWS);
     plan = readPlanWithCamera();
     Lcd_PosPrintString(0, 0, "returned");
 }
+
+//void UsSensor() {
+//    LedRed_Write(!LedRed_Read());
+//    
+//    
+//}
+//
+//void UsSensorTrigger() {
+//    LedYellow_Write(!LedYellow_Read());
+//    
+//    
+//}
 
 
 int main()
@@ -32,22 +45,35 @@ int main()
     CyGlobalIntEnable; /* Enable global interrupts. */
     IsrBtn0Pressed_StartEx(Btn0Pressed);
     IsrBtn1Pressed_StartEx(Btn1Pressed);
+//    IsrUsTimer_StartEx(UsSensorTrigger);
 
     // Starts
     CsBtns_Start();
     Lcd_Start();
     Camera_Start();
+    UsPWM_Start();
+    UsTimer_Start();
     
     CyDelay(500); // TODO: Necessary to wait for Camera to start up?
     
     getPlan();
-//    displayPlanOnLcd();
+    
+    
 
     for(;;)
     {
+        displayPlanOnLcd();
+        
+        
 //        Lcd_Position(0,0);
 //        Lcd_PrintString("Hello world!");
         
-        CyDelay(1000);
+        // UltraSonic Test
+//        UsSensor();
+//        
+//        Lcd_Position(0,0);
+//        Lcd_PrintDecUint16(UsTimer_ReadCapture());
+        
+        CyDelay(500);
     }
 }

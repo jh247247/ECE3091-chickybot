@@ -79,6 +79,28 @@
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\PWDN_aliases.h" value="NONE;PWDN" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\PWDN.c" value="ARM_C_FILE;PWDN" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\PWDN.h" value="NONE;PWDN" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsEcho_aliases.h" value="NONE;UsEcho" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsEcho.c" value="ARM_C_FILE;UsEcho" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsEcho.h" value="NONE;UsEcho" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\IsrUsTimer.c" value="ARM_C_FILE;IsrUsTimer" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\IsrUsTimer.h" value="NONE;IsrUsTimer" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTrig_aliases.h" value="NONE;UsTrig" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTrig.c" value="ARM_C_FILE;UsTrig" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTrig.h" value="NONE;UsTrig" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTimer.c" value="ARM_C_FILE;UsTimer" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTimer.h" value="NONE;UsTimer" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTimer_PM.c" value="ARM_C_FILE;UsTimer" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsPWM.c" value="ARM_C_FILE;UsPWM" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsPWM.h" value="NONE;UsPWM" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsPWM_PM.c" value="ARM_C_FILE;UsPWM" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTC_aliases.h" value="NONE;UsTC" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTC.c" value="ARM_C_FILE;UsTC" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsTC.h" value="NONE;UsTC" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsOutput_aliases.h" value="NONE;UsOutput" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsOutput.c" value="ARM_C_FILE;UsOutput" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\UsOutput.h" value="NONE;UsOutput" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\ClockUsPWM.c" value="ARM_C_FILE;ClockUsPWM" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\ClockUsPWM.h" value="NONE;ClockUsPWM" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\CsBtns_PWM.c" value="ARM_C_FILE;CsBtns_PWM" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\CsBtns_PWM.h" value="NONE;CsBtns_PWM" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\CsBtns_PWM_PM.c" value="ARM_C_FILE;CsBtns_PWM" />

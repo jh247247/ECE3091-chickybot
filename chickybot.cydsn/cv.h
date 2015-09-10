@@ -1,11 +1,13 @@
+#include <project.h>
+
 #define ROWS 3
 #define COLS 1
 #define IMG_H 144
-#define IMG_W 176
+#define IMG_W 88
 
-#define THRESHOLD_R 0.04
-#define THRESHOLD_G 0.60
-#define THRESHOLD_B 0.06
+#define THRESHOLD_R 133
+#define THRESHOLD_G 204
+#define THRESHOLD_B 135
 
 #define MIN_BOX_HEIGHT 5
 
@@ -20,4 +22,4 @@ enum Colour {
     BLUE=3
 };
 
-int * readPlanWithCamera();
+uint8 * readPlanWithCamera();

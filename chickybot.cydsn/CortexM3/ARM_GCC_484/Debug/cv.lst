@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 1
 
 
    1              		.syntax unified
@@ -28,15 +28,16 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 1
   25              	.LFB63:
   26              		.file 1 ".\\cv.c"
    1:.\cv.c        **** #include <project.h>
-   2:.\cv.c        **** #include "cv.h"
-   3:.\cv.c        **** 
-   4:.\cv.c        **** //Framebuffer: holds a single image in UYVY format
-   5:.\cv.c        **** //organised as 144 rows of 88 pixel pairs
-   6:.\cv.c        **** //each pixel pair has 4 components: U, Y0, V, Y1
-   7:.\cv.c        **** //uint8 Camera_framebuffer[144][88][4];
-   8:.\cv.c        **** 
-   9:.\cv.c        **** int takePhoto() {
-  27              		.loc 1 9 0
+   2:.\cv.c        **** #include <stdlib.h>
+   3:.\cv.c        **** #include "cv.h"
+   4:.\cv.c        **** 
+   5:.\cv.c        **** //Framebuffer: holds a single image in UYVY format
+   6:.\cv.c        **** //organised as 144 rows of 88 pixel pairs
+   7:.\cv.c        **** //each pixel pair has 4 components: U, Y0, V, Y1
+   8:.\cv.c        **** //uint8 Camera_framebuffer[144][88][4];
+   9:.\cv.c        **** 
+  10:.\cv.c        **** int takePhoto() {
+  27              		.loc 1 10 0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -44,25 +45,25 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 1
   32              		.cfi_def_cfa_offset 8
   33              		.cfi_offset 3, -8
   34              		.cfi_offset 14, -4
-  10:.\cv.c        ****     Camera_SyncFrame();
-  35              		.loc 1 10 0
+  11:.\cv.c        ****     Camera_SyncFrame();
+  35              		.loc 1 11 0
   36 0002 FFF7FEFF 		bl	Camera_SyncFrame
   37              	.LVL0:
-  11:.\cv.c        **** 	Camera_GetFrame(); // Start frame capture
-  38              		.loc 1 11 0
+  12:.\cv.c        **** 	Camera_GetFrame(); // Start frame capture
+  38              		.loc 1 12 0
   39 0006 FFF7FEFF 		bl	Camera_GetFrame
   40              	.LVL1:
-  12:.\cv.c        ****     Camera_SyncFrame(); // Wait until frame is fully captued
-  41              		.loc 1 12 0
+  13:.\cv.c        ****     Camera_SyncFrame(); // Wait until frame is fully captued
+  41              		.loc 1 13 0
   42 000a FFF7FEFF 		bl	Camera_SyncFrame
   43              	.LVL2:
-  13:.\cv.c        ****     
-  14:.\cv.c        ****     return 0;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 2
+  14:.\cv.c        ****     
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 2
 
 
-  15:.\cv.c        **** }
-  44              		.loc 1 15 0
+  15:.\cv.c        ****     return 0;
+  16:.\cv.c        **** }
+  44              		.loc 1 16 0
   45 000e 0020     		movs	r0, #0
   46 0010 08BD     		pop	{r3, pc}
   47              		.cfi_endproc
@@ -76,1432 +77,3549 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 1
   55              		.type	parsePhoto, %function
   56              	parsePhoto:
   57              	.LFB64:
-  16:.\cv.c        **** 
-  17:.\cv.c        **** int * parsePhoto() {
-  58              		.loc 1 17 0
+  17:.\cv.c        **** 
+  18:.\cv.c        **** uint8 * parsePhoto() {
+  58              		.loc 1 18 0
   59              		.cfi_startproc
-  60              		@ args = 0, pretend = 0, frame = 16
+  60              		@ args = 0, pretend = 0, frame = 24
   61              		@ frame_needed = 0, uses_anonymous_args = 0
-  62              		@ link register save eliminated.
-  63 0000 84B0     		sub	sp, sp, #16
-  64              		.cfi_def_cfa_offset 16
-  65              	.LVL3:
-  18:.\cv.c        **** //    Lcd_PosPrintString(0, 0, "here");
-  19:.\cv.c        ****     int plan[ROWS];
-  20:.\cv.c        ****     
-  21:.\cv.c        ****     // Vars
-  22:.\cv.c        ****     int imgR[IMG_H][IMG_W];
-  23:.\cv.c        ****     int imgG[IMG_H][IMG_W];
-  24:.\cv.c        ****     int imgB[IMG_H][IMG_W];
-  25:.\cv.c        ****     int imgR_Diff[IMG_H][IMG_W];
-  26:.\cv.c        ****     int imgG_Diff[IMG_H][IMG_W];
-  27:.\cv.c        ****     int imgB_Diff[IMG_H][IMG_W];
-  28:.\cv.c        ****     int imgR_Bin[IMG_H][IMG_W];
-  29:.\cv.c        ****     int imgG_Bin[IMG_H][IMG_W];
-  30:.\cv.c        ****     int imgB_Bin[IMG_H][IMG_W];
-  31:.\cv.c        ****     int imgGrey[IMG_H][IMG_W];
-  32:.\cv.c        ****     
-  33:.\cv.c        ****     // YUV -> RGB
-  34:.\cv.c        **** //    R = Y+V
-  35:.\cv.c        **** //    G = Y-U-V
-  36:.\cv.c        **** //    B = Y+U
-  37:.\cv.c        ****     int h, w;
-  38:.\cv.c        ****     int U = 0, Y0 = 1, V = 2, Y1 = 3;
-  39:.\cv.c        ****     
-  40:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
-  66              		.loc 1 40 0
-  67 0002 0022     		movs	r2, #0
-  68 0004 1146     		mov	r1, r2
-  69 0006 05E0     		b	.L3
-  70              	.LVL4:
-  71              	.L4:
-  41:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
-  72              		.loc 1 41 0
-  73 0008 0133     		adds	r3, r3, #1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 3
+  62 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  63              		.cfi_def_cfa_offset 36
+  64              		.cfi_offset 4, -36
+  65              		.cfi_offset 5, -32
+  66              		.cfi_offset 6, -28
+  67              		.cfi_offset 7, -24
+  68              		.cfi_offset 8, -20
+  69              		.cfi_offset 9, -16
+  70              		.cfi_offset 10, -12
+  71              		.cfi_offset 11, -8
+  72              		.cfi_offset 14, -4
+  73 0004 87B0     		sub	sp, sp, #28
+  74              		.cfi_def_cfa_offset 64
+  19:.\cv.c        **** //    Lcd_PosPrintString(0, 0, "here");
+  20:.\cv.c        ****     uint8 * plan = (uint8 *) malloc(sizeof(uint8) * ROWS);    
+  75              		.loc 1 20 0
+  76 0006 0320     		movs	r0, #3
+  77 0008 FFF7FEFF 		bl	malloc
+  78              	.LVL3:
+  79 000c 0490     		str	r0, [sp, #16]
+  80              	.LVL4:
+  21:.\cv.c        ****     
+  22:.\cv.c        ****     // YUV -> RGB
+  23:.\cv.c        **** //    R = Y+V
+  24:.\cv.c        **** //    G = Y-U-V
+  25:.\cv.c        **** //    B = Y+U
+  26:.\cv.c        ****     uint8 h, w;
+  27:.\cv.c        ****     //  0, 1, 2;
+  28:.\cv.c        ****     uint8 u, v, y;
+  29:.\cv.c        ****     
+  30:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  81              		.loc 1 30 0
+  82 000e 4FF00009 		mov	r9, #0
+  83 0012 CB46     		mov	fp, r9
+  31:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 3
 
 
-  74              	.LVL5:
-  75 000a 00E0     		b	.L5
-  76              	.LVL6:
-  77              	.L15:
-  78 000c 0B46     		mov	r3, r1
-  79              	.L5:
-  80              	.LVL7:
-  81              		.loc 1 41 0 is_stmt 0 discriminator 1
-  82 000e AF2B     		cmp	r3, #175
-  83 0010 FADD     		ble	.L4
-  40:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
-  84              		.loc 1 40 0 is_stmt 1
-  85 0012 0132     		adds	r2, r2, #1
-  86              	.LVL8:
-  87              	.L3:
-  40:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
-  88              		.loc 1 40 0 is_stmt 0 discriminator 1
-  89 0014 8F2A     		cmp	r2, #143
-  90 0016 F9DD     		ble	.L15
-  91 0018 0022     		movs	r2, #0
-  92              	.LVL9:
-  93 001a 1146     		mov	r1, r2
-  94 001c 05E0     		b	.L6
-  95              	.LVL10:
-  96              	.L7:
-  42:.\cv.c        ****             if (w % 2 == 0) {
-  43:.\cv.c        ****                 imgR[h][w] = Camera_framebuffer[h][w/2][Y0] + Camera_framebuffer[h][w/2][V];
-  44:.\cv.c        ****                 imgG[h][w] = Camera_framebuffer[h][w/2][Y0] - Camera_framebuffer[h][w/2][U] - Camer
-  45:.\cv.c        ****                 imgB[h][w] = Camera_framebuffer[h][w/2][Y0] + Camera_framebuffer[h][w/2][U];
-  46:.\cv.c        ****             }
-  47:.\cv.c        ****             else {
-  48:.\cv.c        ****                 imgR[h][w] = Camera_framebuffer[h][w/2][Y1] + Camera_framebuffer[h][w/2][V];
-  49:.\cv.c        ****                 imgG[h][w] = Camera_framebuffer[h][w/2][Y1] - Camera_framebuffer[h][w/2][U] - Camer
-  50:.\cv.c        ****                 imgB[h][w] = Camera_framebuffer[h][w/2][Y1] + Camera_framebuffer[h][w/2][U];
-  51:.\cv.c        ****             }
+  32:.\cv.c        ****             u = Camera_framebuffer[h][w][0];
+  84              		.loc 1 32 0
+  85 0014 AE48     		ldr	r0, .L83
+  86              	.LVL5:
+  87 0016 4FF0580A 		mov	r10, #88
+  33:.\cv.c        ****             v = Camera_framebuffer[h][w][1];
+  34:.\cv.c        ****             y = Camera_framebuffer[h][w][2];
+  35:.\cv.c        ****             // R
+  36:.\cv.c        ****             Camera_framebuffer[h][w][0] = y + v;
+  37:.\cv.c        ****             // G
+  38:.\cv.c        ****             Camera_framebuffer[h][w][1] = y - u - v;
+  39:.\cv.c        ****             // B
+  40:.\cv.c        ****             Camera_framebuffer[h][w][2] = y + u;
+  41:.\cv.c        ****             // Grey
+  42:.\cv.c        ****             Camera_framebuffer[h][w][3] = (Camera_framebuffer[h][w][0] + Camera_framebuffer[h][w][1
+  88              		.loc 1 42 0
+  89 001a DFF8BC82 		ldr	r8, .L83+8
+  30:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  90              		.loc 1 30 0
+  91 001e 26E0     		b	.L3
+  92              	.LVL6:
+  93              	.L4:
+  32:.\cv.c        ****             u = Camera_framebuffer[h][w][0];
+  94              		.loc 1 32 0 discriminator 2
+  95 0020 7A18     		adds	r2, r7, r1
+  96 0022 10F82250 		ldrb	r5, [r0, r2, lsl #2]	@ zero_extendqisi2
+  97              	.LVL7:
+  33:.\cv.c        ****             v = Camera_framebuffer[h][w][1];
+  98              		.loc 1 33 0 discriminator 2
+  99 0026 00EB8203 		add	r3, r0, r2, lsl #2
+ 100              	.LVL8:
+ 101 002a 5E78     		ldrb	r6, [r3, #1]	@ zero_extendqisi2
+ 102              	.LVL9:
+  34:.\cv.c        ****             y = Camera_framebuffer[h][w][2];
+ 103              		.loc 1 34 0 discriminator 2
+ 104 002c 9C78     		ldrb	r4, [r3, #2]	@ zero_extendqisi2
+ 105              	.LVL10:
+  36:.\cv.c        ****             Camera_framebuffer[h][w][0] = y + v;
+ 106              		.loc 1 36 0 discriminator 2
+ 107 002e 04EB060C 		add	ip, r4, r6
+ 108 0032 00F822C0 		strb	ip, [r0, r2, lsl #2]
+ 109              	.LVL11:
+  38:.\cv.c        ****             Camera_framebuffer[h][w][1] = y - u - v;
+ 110              		.loc 1 38 0 discriminator 2
+ 111 0036 C5EB040C 		rsb	ip, r5, r4
+ 112 003a C6EB0C06 		rsb	r6, r6, ip
+ 113 003e 5E70     		strb	r6, [r3, #1]
+ 114              	.LVL12:
+  40:.\cv.c        ****             Camera_framebuffer[h][w][2] = y + u;
+ 115              		.loc 1 40 0 discriminator 2
+ 116 0040 2C44     		add	r4, r4, r5
+ 117 0042 E4B2     		uxtb	r4, r4
+ 118 0044 9C70     		strb	r4, [r3, #2]
+ 119              	.LVL13:
+ 120              		.loc 1 42 0 discriminator 2
+ 121 0046 10F82250 		ldrb	r5, [r0, r2, lsl #2]	@ zero_extendqisi2
+ 122              	.LVL14:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 4
+
+
+ 123 004a F2B2     		uxtb	r2, r6
+ 124 004c 2A44     		add	r2, r2, r5
+ 125 004e 1444     		add	r4, r4, r2
+ 126 0050 88FB0424 		smull	r2, r4, r8, r4
+ 127 0054 DC70     		strb	r4, [r3, #3]
+  31:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 128              		.loc 1 31 0 discriminator 2
+ 129 0056 0131     		adds	r1, r1, #1
+ 130              	.LVL15:
+ 131 0058 C9B2     		uxtb	r1, r1
+ 132              	.LVL16:
+ 133 005a 02E0     		b	.L5
+ 134              	.LVL17:
+ 135              	.L67:
+ 136 005c 5946     		mov	r1, fp
+  32:.\cv.c        ****             u = Camera_framebuffer[h][w][0];
+ 137              		.loc 1 32 0
+ 138 005e 0AFB09F7 		mul	r7, r10, r9
+ 139              	.L5:
+ 140              	.LVL18:
+  31:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 141              		.loc 1 31 0 discriminator 1
+ 142 0062 5729     		cmp	r1, #87
+ 143 0064 DCD9     		bls	.L4
+  30:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 144              		.loc 1 30 0
+ 145 0066 09F10109 		add	r9, r9, #1
+ 146              	.LVL19:
+ 147 006a 5FFA89F9 		uxtb	r9, r9
+ 148              	.LVL20:
+ 149              	.L3:
+  30:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 150              		.loc 1 30 0 is_stmt 0 discriminator 1
+ 151 006e B9F18F0F 		cmp	r9, #143
+ 152 0072 F3D9     		bls	.L67
+ 153 0074 0026     		movs	r6, #0
+ 154 0076 B446     		mov	ip, r6
+  43:.\cv.c        ****         }
+  44:.\cv.c        ****     }
+  45:.\cv.c        ****     
+  46:.\cv.c        ****     // Create Img Diff arrays
+  47:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+  48:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+  49:.\cv.c        ****             Camera_framebuffer[h][w][0] = Camera_framebuffer[h][w][0] - Camera_framebuffer[h][w][3]
+ 155              		.loc 1 49 0 is_stmt 1
+ 156 0078 9548     		ldr	r0, .L83
+ 157 007a 5827     		movs	r7, #88
+ 158 007c 1BE0     		b	.L6
+ 159              	.LVL21:
+ 160              	.L7:
+ 161              		.loc 1 49 0 is_stmt 0 discriminator 2
+ 162 007e A918     		adds	r1, r5, r2
+ 163 0080 10F82180 		ldrb	r8, [r0, r1, lsl #2]	@ zero_extendqisi2
+ 164 0084 00EB8103 		add	r3, r0, r1, lsl #2
+ 165 0088 DC78     		ldrb	r4, [r3, #3]	@ zero_extendqisi2
+ 166 008a C4EB0804 		rsb	r4, r4, r8
+ 167 008e 00F82140 		strb	r4, [r0, r1, lsl #2]
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 5
+
+
+  50:.\cv.c        ****             Camera_framebuffer[h][w][1] = 2*Camera_framebuffer[h][w][1] - Camera_framebuffer[h][w][
+ 168              		.loc 1 50 0 is_stmt 1 discriminator 2
+ 169 0092 5C78     		ldrb	r4, [r3, #1]	@ zero_extendqisi2
+ 170 0094 D978     		ldrb	r1, [r3, #3]	@ zero_extendqisi2
+ 171 0096 C1EB4404 		rsb	r4, r1, r4, lsl #1
+ 172 009a 5C70     		strb	r4, [r3, #1]
+  51:.\cv.c        ****             Camera_framebuffer[h][w][2] = Camera_framebuffer[h][w][2] - Camera_framebuffer[h][w][3]
+ 173              		.loc 1 51 0 discriminator 2
+ 174 009c 9C78     		ldrb	r4, [r3, #2]	@ zero_extendqisi2
+ 175 009e 611A     		subs	r1, r4, r1
+ 176 00a0 9970     		strb	r1, [r3, #2]
+  48:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 177              		.loc 1 48 0 discriminator 2
+ 178 00a2 0132     		adds	r2, r2, #1
+ 179              	.LVL22:
+ 180 00a4 D2B2     		uxtb	r2, r2
+ 181              	.LVL23:
+ 182 00a6 02E0     		b	.L8
+ 183              	.LVL24:
+ 184              	.L68:
+ 185 00a8 6246     		mov	r2, ip
+  49:.\cv.c        ****             Camera_framebuffer[h][w][0] = Camera_framebuffer[h][w][0] - Camera_framebuffer[h][w][3]
+ 186              		.loc 1 49 0
+ 187 00aa 07FB06F5 		mul	r5, r7, r6
+ 188              	.L8:
+ 189              	.LVL25:
+  48:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 190              		.loc 1 48 0 discriminator 1
+ 191 00ae 572A     		cmp	r2, #87
+ 192 00b0 E5D9     		bls	.L7
+  47:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 193              		.loc 1 47 0
+ 194 00b2 0136     		adds	r6, r6, #1
+ 195              	.LVL26:
+ 196 00b4 F6B2     		uxtb	r6, r6
+ 197              	.LVL27:
+ 198              	.L6:
+  47:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 199              		.loc 1 47 0 is_stmt 0 discriminator 1
+ 200 00b6 8F2E     		cmp	r6, #143
+ 201 00b8 F6D9     		bls	.L68
+ 202 00ba 4FF0000C 		mov	ip, #0
+ 203 00be 6646     		mov	r6, ip
+ 204              	.LVL28:
   52:.\cv.c        ****         }
   53:.\cv.c        ****     }
   54:.\cv.c        ****     
-  55:.\cv.c        ****     // Create Grey array
+  55:.\cv.c        ****     // Thresholding
   56:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
   57:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
-  97              		.loc 1 57 0 is_stmt 1 discriminator 2
-  98 001e 0133     		adds	r3, r3, #1
-  99              	.LVL11:
- 100 0020 00E0     		b	.L8
- 101              	.LVL12:
- 102              	.L16:
- 103 0022 0B46     		mov	r3, r1
- 104              	.L8:
- 105              	.LVL13:
- 106              		.loc 1 57 0 is_stmt 0 discriminator 1
- 107 0024 AF2B     		cmp	r3, #175
- 108 0026 FADD     		ble	.L7
+  58:.\cv.c        ****             // Red
+  59:.\cv.c        ****             if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
+ 205              		.loc 1 59 0 is_stmt 1
+ 206 00c0 834A     		ldr	r2, .L83
+ 207 00c2 4FF05808 		mov	r8, #88
+  60:.\cv.c        ****                 Camera_framebuffer[h][w][0] = 1;
+ 208              		.loc 1 60 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 6
+
+
+ 209 00c6 0127     		movs	r7, #1
+ 210 00c8 37E0     		b	.L9
+ 211              	.LVL29:
+ 212              	.L16:
+  59:.\cv.c        ****             if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
+ 213              		.loc 1 59 0
+ 214 00ca 1946     		mov	r1, r3
+ 215 00cc E518     		adds	r5, r4, r3
+ 216 00ce 12F82550 		ldrb	r5, [r2, r5, lsl #2]	@ zero_extendqisi2
+ 217 00d2 852D     		cmp	r5, #133
+ 218 00d4 03D9     		bls	.L10
+ 219              	.LVL30:
+ 220              		.loc 1 60 0
+ 221 00d6 E518     		adds	r5, r4, r3
+ 222 00d8 02F82570 		strb	r7, [r2, r5, lsl #2]
+ 223 00dc 02E0     		b	.L11
+ 224              	.L10:
+  61:.\cv.c        ****             else
+  62:.\cv.c        ****                 Camera_framebuffer[h][w][0] = 0;
+ 225              		.loc 1 62 0
+ 226 00de E518     		adds	r5, r4, r3
+ 227 00e0 02F82560 		strb	r6, [r2, r5, lsl #2]
+ 228              	.L11:
+  63:.\cv.c        ****             
+  64:.\cv.c        ****             // Green
+  65:.\cv.c        ****             if (Camera_framebuffer[h][w][1] > THRESHOLD_G)
+ 229              		.loc 1 65 0
+ 230 00e4 4518     		adds	r5, r0, r1
+ 231 00e6 02EB8505 		add	r5, r2, r5, lsl #2
+ 232 00ea 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
+ 233 00ec CC2D     		cmp	r5, #204
+ 234 00ee 04D9     		bls	.L12
+  66:.\cv.c        ****                 Camera_framebuffer[h][w][1] = 1;
+ 235              		.loc 1 66 0
+ 236 00f0 4518     		adds	r5, r0, r1
+ 237 00f2 02EB8505 		add	r5, r2, r5, lsl #2
+ 238 00f6 6F70     		strb	r7, [r5, #1]
+ 239 00f8 03E0     		b	.L13
+ 240              	.L12:
+  67:.\cv.c        ****             else
+  68:.\cv.c        ****                 Camera_framebuffer[h][w][1] = 0;
+ 241              		.loc 1 68 0
+ 242 00fa 4518     		adds	r5, r0, r1
+ 243 00fc 02EB8505 		add	r5, r2, r5, lsl #2
+ 244 0100 6E70     		strb	r6, [r5, #1]
+ 245              	.L13:
+  69:.\cv.c        ****             
+  70:.\cv.c        ****             // Blue
+  71:.\cv.c        ****             if (Camera_framebuffer[h][w][2] > THRESHOLD_B)
+ 246              		.loc 1 71 0
+ 247 0102 4518     		adds	r5, r0, r1
+ 248 0104 02EB8505 		add	r5, r2, r5, lsl #2
+ 249 0108 AD78     		ldrb	r5, [r5, #2]	@ zero_extendqisi2
+ 250 010a 872D     		cmp	r5, #135
+ 251 010c 04D9     		bls	.L14
+  72:.\cv.c        ****                 Camera_framebuffer[h][w][2] = 1;
+ 252              		.loc 1 72 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 7
+
+
+ 253 010e 0144     		add	r1, r1, r0
+ 254              	.LVL31:
+ 255 0110 02EB8101 		add	r1, r2, r1, lsl #2
+ 256 0114 8F70     		strb	r7, [r1, #2]
+ 257 0116 03E0     		b	.L15
+ 258              	.LVL32:
+ 259              	.L14:
+  73:.\cv.c        ****             else
+  74:.\cv.c        ****                 Camera_framebuffer[h][w][2] = 0;
+ 260              		.loc 1 74 0
+ 261 0118 0144     		add	r1, r1, r0
+ 262              	.LVL33:
+ 263 011a 02EB8101 		add	r1, r2, r1, lsl #2
+ 264 011e 8E70     		strb	r6, [r1, #2]
+ 265              	.L15:
+  57:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 266              		.loc 1 57 0
+ 267 0120 0133     		adds	r3, r3, #1
+ 268              	.LVL34:
+ 269 0122 DBB2     		uxtb	r3, r3
+ 270              	.LVL35:
+ 271 0124 03E0     		b	.L17
+ 272              	.LVL36:
+ 273              	.L69:
+ 274 0126 3346     		mov	r3, r6
+  59:.\cv.c        ****             if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
+ 275              		.loc 1 59 0
+ 276 0128 08FB0CF4 		mul	r4, r8, ip
+  65:.\cv.c        ****             if (Camera_framebuffer[h][w][1] > THRESHOLD_G)
+ 277              		.loc 1 65 0
+ 278 012c 2046     		mov	r0, r4
+ 279              	.L17:
+ 280              	.LVL37:
+  57:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 281              		.loc 1 57 0 discriminator 1
+ 282 012e 572B     		cmp	r3, #87
+ 283 0130 CBD9     		bls	.L16
   56:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
- 109              		.loc 1 56 0 is_stmt 1
- 110 0028 0132     		adds	r2, r2, #1
- 111              	.LVL14:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 4
-
-
- 112              	.L6:
+ 284              		.loc 1 56 0
+ 285 0132 0CF1010C 		add	ip, ip, #1
+ 286              	.LVL38:
+ 287 0136 5FFA8CFC 		uxtb	ip, ip
+ 288              	.LVL39:
+ 289              	.L9:
   56:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
- 113              		.loc 1 56 0 is_stmt 0 discriminator 1
- 114 002a 8F2A     		cmp	r2, #143
- 115 002c F9DD     		ble	.L16
- 116 002e 0022     		movs	r2, #0
- 117              	.LVL15:
- 118 0030 1146     		mov	r1, r2
- 119 0032 05E0     		b	.L9
- 120              	.LVL16:
- 121              	.L10:
-  58:.\cv.c        ****             imgGrey[h][w] = (imgR[h][w] + imgG[h][w] + imgB[h][w]) / 3;
-  59:.\cv.c        ****         }
-  60:.\cv.c        ****     }
-  61:.\cv.c        ****     
-  62:.\cv.c        ****     // Create Img Diff arrays
-  63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
-  64:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
- 122              		.loc 1 64 0 is_stmt 1 discriminator 2
- 123 0034 0133     		adds	r3, r3, #1
- 124              	.LVL17:
- 125 0036 00E0     		b	.L11
- 126              	.LVL18:
- 127              	.L17:
- 128 0038 0B46     		mov	r3, r1
- 129              	.L11:
- 130              	.LVL19:
- 131              		.loc 1 64 0 is_stmt 0 discriminator 1
- 132 003a AF2B     		cmp	r3, #175
- 133 003c FADD     		ble	.L10
-  63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
- 134              		.loc 1 63 0 is_stmt 1
- 135 003e 0132     		adds	r2, r2, #1
- 136              	.LVL20:
- 137              	.L9:
-  63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
- 138              		.loc 1 63 0 is_stmt 0 discriminator 1
- 139 0040 8F2A     		cmp	r2, #143
- 140 0042 F9DD     		ble	.L17
- 141 0044 0022     		movs	r2, #0
- 142              	.LVL21:
- 143 0046 1146     		mov	r1, r2
- 144 0048 05E0     		b	.L12
- 145              	.LVL22:
- 146              	.L13:
-  65:.\cv.c        ****             imgR_Diff[h][w] = imgR[h][w] - imgGrey[h][w];
-  66:.\cv.c        ****             imgG_Diff[h][w] = 2*imgG[h][w] - imgGrey[h][w];
-  67:.\cv.c        ****             imgB_Diff[h][w] = imgB[h][w] - imgGrey[h][w];
-  68:.\cv.c        ****         }
-  69:.\cv.c        ****     }
-  70:.\cv.c        ****     
-  71:.\cv.c        ****     // Thresholding
-  72:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
-  73:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
- 147              		.loc 1 73 0 is_stmt 1
- 148 004a 0133     		adds	r3, r3, #1
- 149              	.LVL23:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 5
+ 290              		.loc 1 56 0 is_stmt 0 discriminator 1
+ 291 013a BCF18F0F 		cmp	ip, #143
+ 292 013e F2D9     		bls	.L69
+ 293 0140 0023     		movs	r3, #0
+ 294 0142 1A46     		mov	r2, r3
+ 295 0144 0193     		str	r3, [sp, #4]
+  75:.\cv.c        ****         }
+  76:.\cv.c        ****     }
+  77:.\cv.c        ****     
+  78:.\cv.c        ****     // Find box dims
+  79:.\cv.c        ****     
+  80:.\cv.c        ****     // Note: Use imgG_Bin to find bounds
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 8
 
 
- 150 004c 00E0     		b	.L14
- 151              	.LVL24:
- 152              	.L18:
- 153 004e 0B46     		mov	r3, r1
- 154              	.L14:
- 155              	.LVL25:
- 156              		.loc 1 73 0 is_stmt 0 discriminator 1
- 157 0050 AF2B     		cmp	r3, #175
- 158 0052 FADD     		ble	.L13
-  72:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
- 159              		.loc 1 72 0 is_stmt 1
- 160 0054 0132     		adds	r2, r2, #1
- 161              	.LVL26:
- 162              	.L12:
-  72:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
- 163              		.loc 1 72 0 is_stmt 0 discriminator 1
- 164 0056 8F2A     		cmp	r2, #143
- 165 0058 F9DD     		ble	.L18
-  74:.\cv.c        ****             // Red
-  75:.\cv.c        ****             if (imgR_Diff[h][w] > THRESHOLD_R)
-  76:.\cv.c        ****                 imgR_Bin[h][w] = 1;
-  77:.\cv.c        ****             else
-  78:.\cv.c        ****                 imgR_Bin[h][w] = 0;
-  79:.\cv.c        ****             
-  80:.\cv.c        ****             // Green
-  81:.\cv.c        ****             if (imgG_Diff[h][w] > THRESHOLD_G)
-  82:.\cv.c        ****                 imgG_Bin[h][w] = 1;
-  83:.\cv.c        ****             else
-  84:.\cv.c        ****                 imgG_Bin[h][w] = 0;
-  85:.\cv.c        ****             
-  86:.\cv.c        ****             // Blue
-  87:.\cv.c        ****             if (imgB_Diff[h][w] > THRESHOLD_B)
-  88:.\cv.c        ****                 imgB_Bin[h][w] = 1;
-  89:.\cv.c        ****             else
-  90:.\cv.c        ****                 imgB_Bin[h][w] = 0;
-  91:.\cv.c        ****         }
-  92:.\cv.c        ****     }
-  93:.\cv.c        ****     
-  94:.\cv.c        **** //    // Find box dims
-  95:.\cv.c        **** //    
-  96:.\cv.c        **** //    // Note: Use imgG_Bin to find bounds
-  97:.\cv.c        **** //    // Go down centre until find 0    v
-  98:.\cv.c        **** //    int maxHeight = 0;
-  99:.\cv.c        **** //    int currentHeight = 0;
- 100:.\cv.c        **** //    int maxWidth = 0;
- 101:.\cv.c        **** //    int currentWidth = 0;
- 102:.\cv.c        **** //    int halfHeight = IMG_H / 2;
- 103:.\cv.c        **** //    int halfWidth = IMG_W / 2;
- 104:.\cv.c        **** //    int i = 0;
- 105:.\cv.c        **** //
- 106:.\cv.c        **** //    while (1) {
- 107:.\cv.c        **** //        if (i > IMG_H)
- 108:.\cv.c        **** //            break;
- 109:.\cv.c        **** //        
- 110:.\cv.c        **** //        if (imgG_Bin[i][halfWidth] == 0) {
- 111:.\cv.c        **** //            currentHeight += 1;
- 112:.\cv.c        **** //            i++;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 6
+  81:.\cv.c        ****     // Go down centre until find 0    v
+  82:.\cv.c        ****     uint8 maxHeight = 0;
+  83:.\cv.c        ****     uint8 currentHeight = 0;
+  84:.\cv.c        ****     uint8 maxWidth = 0;
+  85:.\cv.c        ****     uint8 currentWidth = 0;
+  86:.\cv.c        ****     uint8 halfHeight = IMG_H / 2;
+  87:.\cv.c        ****     uint8 halfWidth = IMG_W / 2;
+  88:.\cv.c        ****     uint8 i = 0;
+  89:.\cv.c        ****     
+  90:.\cv.c        ****     
+  91:.\cv.c        ****     while (1) {
+  92:.\cv.c        ****         if (i > IMG_H)
+  93:.\cv.c        ****             break;
+  94:.\cv.c        ****         
+  95:.\cv.c        ****         if (Camera_framebuffer[i][halfWidth][1] == 0) {
+ 296              		.loc 1 95 0 is_stmt 1
+ 297 0146 6248     		ldr	r0, .L83
+ 298 0148 4FF4B071 		mov	r1, #352
+  96:.\cv.c        ****             currentHeight += 1;
+  97:.\cv.c        ****             i++;
+  98:.\cv.c        ****         }
+  99:.\cv.c        ****         else if (Camera_framebuffer[i+1][halfWidth][1] == 0) {
+ 100:.\cv.c        ****             currentHeight += 2;
+ 101:.\cv.c        ****             i += 1;
+ 102:.\cv.c        ****         }
+ 103:.\cv.c        ****         else if (Camera_framebuffer[i+2][halfWidth][1] == 0) {
+ 104:.\cv.c        ****             currentHeight += 3;
+ 105:.\cv.c        ****             i += 2;
+ 106:.\cv.c        ****         }
+ 107:.\cv.c        ****         else {
+ 108:.\cv.c        ****             if (currentHeight > maxHeight)
+ 109:.\cv.c        ****                 maxHeight = currentHeight;
+ 110:.\cv.c        ****             
+ 111:.\cv.c        ****             currentHeight = 0;
+ 299              		.loc 1 111 0
+ 300 014c 1C46     		mov	r4, r3
+ 301 014e 1D46     		mov	r5, r3
+ 302              	.L78:
+ 303              	.LVL40:
+  92:.\cv.c        ****         if (i > IMG_H)
+ 304              		.loc 1 92 0
+ 305 0150 902B     		cmp	r3, #144
+ 306 0152 27D8     		bhi	.L19
+  95:.\cv.c        ****         if (Camera_framebuffer[i][halfWidth][1] == 0) {
+ 307              		.loc 1 95 0
+ 308 0154 01FB0307 		mla	r7, r1, r3, r0
+ 309 0158 97F8B170 		ldrb	r7, [r7, #177]	@ zero_extendqisi2
+ 310 015c 27B9     		cbnz	r7, .L20
+  96:.\cv.c        ****             currentHeight += 1;
+ 311              		.loc 1 96 0
+ 312 015e 0132     		adds	r2, r2, #1
+ 313              	.LVL41:
+ 314 0160 D2B2     		uxtb	r2, r2
+ 315              	.LVL42:
+  97:.\cv.c        ****             i++;
+ 316              		.loc 1 97 0
+ 317 0162 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 9
 
 
- 113:.\cv.c        **** //        }
- 114:.\cv.c        **** //        else if (imgG_Bin[i+1][halfWidth] == 0) {
- 115:.\cv.c        **** //            currentHeight += 2;
- 116:.\cv.c        **** //            i += 1;
- 117:.\cv.c        **** //        }
- 118:.\cv.c        **** //        else if (imgG_Bin[i+2][halfWidth] == 0) {
- 119:.\cv.c        **** //            currentHeight += 3;
- 120:.\cv.c        **** //            i += 2;
- 121:.\cv.c        **** //        }
- 122:.\cv.c        **** //        else {
- 123:.\cv.c        **** //            if (currentHeight > maxHeight)
- 124:.\cv.c        **** //                maxHeight = currentHeight;
- 125:.\cv.c        **** //            
- 126:.\cv.c        **** //            currentHeight = 0;
- 127:.\cv.c        **** //            i++;
- 128:.\cv.c        **** //        }
- 129:.\cv.c        **** //    }
- 130:.\cv.c        **** //    int boxHeight = maxHeight / ROWS;
- 131:.\cv.c        **** //    
- 132:.\cv.c        **** //    i = 0;
- 133:.\cv.c        **** //    while (1) {
- 134:.\cv.c        **** //        if (i > IMG_H)
- 135:.\cv.c        **** //            break;
- 136:.\cv.c        **** //        
- 137:.\cv.c        **** //        if (imgG_Bin[halfHeight][i] == 0) {
- 138:.\cv.c        **** //            currentWidth += 1;
- 139:.\cv.c        **** //            i++;
- 140:.\cv.c        **** //        }
- 141:.\cv.c        **** //        else if (imgG_Bin[halfHeight][i+1] == 0) {
- 142:.\cv.c        **** //            currentWidth += 2;
- 143:.\cv.c        **** //            i += 1;
- 144:.\cv.c        **** //        }
- 145:.\cv.c        **** //        else if (imgG_Bin[halfHeight][i+2] == 0) {
- 146:.\cv.c        **** //            currentWidth += 3;
- 147:.\cv.c        **** //            i += 2;
- 148:.\cv.c        **** //        }
- 149:.\cv.c        **** //        else {
- 150:.\cv.c        **** //            if (currentWidth > maxWidth)
- 151:.\cv.c        **** //                maxHeight = currentWidth;
- 152:.\cv.c        **** //            
- 153:.\cv.c        **** //            currentWidth = 0;
- 154:.\cv.c        **** //            i++;
- 155:.\cv.c        **** //        }
- 156:.\cv.c        **** //    }
- 157:.\cv.c        **** //    int boxWidth = maxWidth;
- 158:.\cv.c        **** //    
- 159:.\cv.c        **** //    
- 160:.\cv.c        **** //    // Start at centre, head toward top-left
- 161:.\cv.c        **** //    int hPos = halfHeight;
- 162:.\cv.c        **** //    int wPos = halfWidth;
- 163:.\cv.c        **** //    while (1) {
- 164:.\cv.c        **** //        if (imgG_Bin[hPos-1][wPos-1] == 0) {
- 165:.\cv.c        **** //            hPos = hPos-1;
- 166:.\cv.c        **** //            wPos = wPos-1;
- 167:.\cv.c        **** //        }
- 168:.\cv.c        **** //        else if (imgG_Bin[hPos-1][wPos] == 0) {
- 169:.\cv.c        **** //            hPos = hPos-1;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 7
+ 318              	.LVL43:
+ 319 0164 DBB2     		uxtb	r3, r3
+ 320              	.LVL44:
+ 321 0166 F3E7     		b	.L78
+ 322              	.L20:
+  99:.\cv.c        ****         else if (Camera_framebuffer[i+1][halfWidth][1] == 0) {
+ 323              		.loc 1 99 0
+ 324 0168 03FB0117 		mla	r7, r3, r1, r1
+ 325 016c 0744     		add	r7, r7, r0
+ 326 016e 97F8B170 		ldrb	r7, [r7, #177]	@ zero_extendqisi2
+ 327 0172 27B9     		cbnz	r7, .L22
+ 100:.\cv.c        ****             currentHeight += 2;
+ 328              		.loc 1 100 0
+ 329 0174 0232     		adds	r2, r2, #2
+ 330              	.LVL45:
+ 331 0176 D2B2     		uxtb	r2, r2
+ 332              	.LVL46:
+ 101:.\cv.c        ****             i += 1;
+ 333              		.loc 1 101 0
+ 334 0178 0133     		adds	r3, r3, #1
+ 335              	.LVL47:
+ 336 017a DBB2     		uxtb	r3, r3
+ 337              	.LVL48:
+ 338 017c E8E7     		b	.L78
+ 339              	.L22:
+ 103:.\cv.c        ****         else if (Camera_framebuffer[i+2][halfWidth][1] == 0) {
+ 340              		.loc 1 103 0
+ 341 017e 9E1C     		adds	r6, r3, #2
+ 342 0180 01FB0606 		mla	r6, r1, r6, r0
+ 343 0184 96F8B160 		ldrb	r6, [r6, #177]	@ zero_extendqisi2
+ 344 0188 26B9     		cbnz	r6, .L23
+ 104:.\cv.c        ****             currentHeight += 3;
+ 345              		.loc 1 104 0
+ 346 018a 0332     		adds	r2, r2, #3
+ 347              	.LVL49:
+ 348 018c D2B2     		uxtb	r2, r2
+ 349              	.LVL50:
+ 105:.\cv.c        ****             i += 2;
+ 350              		.loc 1 105 0
+ 351 018e 0233     		adds	r3, r3, #2
+ 352              	.LVL51:
+ 353 0190 DBB2     		uxtb	r3, r3
+ 354              	.LVL52:
+ 355 0192 DDE7     		b	.L78
+ 356              	.L23:
+ 108:.\cv.c        ****             if (currentHeight > maxHeight)
+ 357              		.loc 1 108 0
+ 358 0194 AA42     		cmp	r2, r5
+ 359 0196 00D8     		bhi	.L24
+ 360 0198 2A46     		mov	r2, r5
+ 361              	.LVL53:
+ 362              	.L24:
+ 112:.\cv.c        ****             i++;
+ 363              		.loc 1 112 0
+ 364 019a 0133     		adds	r3, r3, #1
+ 365              	.LVL54:
+ 366 019c DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 10
 
 
- 170:.\cv.c        **** //        }
- 171:.\cv.c        **** //        else if (imgG_Bin[hPos][wPos-1] == 0) {
- 172:.\cv.c        **** //            wPos = wPos-1;
- 173:.\cv.c        **** //        }
- 174:.\cv.c        **** //        else if (imgG_Bin[hPos-1][wPos+1] == 0) {
- 175:.\cv.c        **** //            hPos = hPos-1;
- 176:.\cv.c        **** //            wPos = wPos+1;
- 177:.\cv.c        **** //        }
- 178:.\cv.c        **** //        else
- 179:.\cv.c        **** //            break;
- 180:.\cv.c        **** //    }
- 181:.\cv.c        **** //    
- 182:.\cv.c        **** //    // Create single array
- 183:.\cv.c        **** //    
- 184:.\cv.c        **** //    // Create inverse array
- 185:.\cv.c        **** //    int imgG_Bin_Inverse[IMG_H][IMG_W];
- 186:.\cv.c        **** //    for (h = 0; h < IMG_H; h++) {
- 187:.\cv.c        **** //        for (w = 0; w < IMG_W; w++) {
- 188:.\cv.c        **** //            imgG_Bin_Inverse[h][w] = !imgG_Bin_Inverse[h][w];
- 189:.\cv.c        **** //        }
- 190:.\cv.c        **** //    }
- 191:.\cv.c        **** //    
- 192:.\cv.c        **** //    int imgAll[IMG_H][IMG_W];
- 193:.\cv.c        **** //    for (h = 0; h < IMG_H; h++) {
- 194:.\cv.c        **** //        for (w = 0; w < IMG_W; w++) {
- 195:.\cv.c        **** //            imgAll[h][w] = (((2*imgG_Bin_Inverse[h][w]) + 3*(imgG_Bin_Inverse[h][w] & imgB_Bin[h]
- 196:.\cv.c        **** //        }
- 197:.\cv.c        **** //    }
- 198:.\cv.c        **** //    // NOTE: In imgAll, R=3, G=2, B=5, 0=ignore
- 199:.\cv.c        **** //    const int cRED = 3, cGREEN = 2, cBLUE = 5;
- 200:.\cv.c        **** //    
- 201:.\cv.c        **** //    
- 202:.\cv.c        **** //    // Vars for main parse
- 203:.\cv.c        **** //    int j = hPos;
- 204:.\cv.c        **** //    int maxLength = 0;
- 205:.\cv.c        **** //    int rowUpTo = 1;
- 206:.\cv.c        **** //    int mode = 0;
- 207:.\cv.c        **** //    int numBoxes = 0;
- 208:.\cv.c        **** //    
- 209:.\cv.c        **** //    // Main parse
- 210:.\cv.c        **** //    while (1) {
- 211:.\cv.c        **** //        // Loop condition
- 212:.\cv.c        **** //        j++;
- 213:.\cv.c        **** //        if (j > hPos + maxHeight)
- 214:.\cv.c        **** //            break;
- 215:.\cv.c        **** //        
- 216:.\cv.c        **** //        // Switch on colour mode
- 217:.\cv.c        **** //        switch (mode) {
- 218:.\cv.c        **** //            case RED:
- 219:.\cv.c        **** //                if (imgAll[j][halfWidth] == cRED) {
- 220:.\cv.c        **** //                    maxLength++;
- 221:.\cv.c        **** //                }
- 222:.\cv.c        **** //                else if (imgAll[j+1][halfWidth] == cRED) {
- 223:.\cv.c        **** //                    maxLength += 2;
- 224:.\cv.c        **** //                    i++;
- 225:.\cv.c        **** //                }
- 226:.\cv.c        **** //                else if (imgAll[j+2][halfWidth] == cRED) {
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 8
+ 367              	.LVL55:
+ 368 019e 1546     		mov	r5, r2
+ 111:.\cv.c        ****             currentHeight = 0;
+ 369              		.loc 1 111 0
+ 370 01a0 2246     		mov	r2, r4
+ 371              	.LVL56:
+ 372 01a2 D5E7     		b	.L78
+ 373              	.LVL57:
+ 374              	.L19:
+ 375 01a4 0195     		str	r5, [sp, #4]
+ 113:.\cv.c        ****         }
+ 114:.\cv.c        ****     }
+ 115:.\cv.c        ****     uint8 boxHeight = maxHeight / ROWS;
+ 376              		.loc 1 115 0
+ 377 01a6 4B4B     		ldr	r3, .L83+4
+ 378              	.LVL58:
+ 379 01a8 A3FB0553 		umull	r5, r3, r3, r5
+ 380              	.LVL59:
+ 381 01ac C3F34703 		ubfx	r3, r3, #1, #8
+ 382 01b0 0393     		str	r3, [sp, #12]
+ 383              	.LVL60:
+ 116:.\cv.c        ****     
+ 117:.\cv.c        ****     i = 0;
+ 384              		.loc 1 117 0
+ 385 01b2 0023     		movs	r3, #0
+ 386 01b4 0293     		str	r3, [sp, #8]
+ 118:.\cv.c        ****     while (1) {
+ 119:.\cv.c        ****         if (i > IMG_H)
+ 120:.\cv.c        ****             break;
+ 121:.\cv.c        ****         
+ 122:.\cv.c        ****         if (Camera_framebuffer[halfHeight][i][1] == 0) {
+ 387              		.loc 1 122 0
+ 388 01b6 4649     		ldr	r1, .L83
+ 389 01b8 46F20132 		movw	r2, #25345
+ 390              	.LVL61:
+ 123:.\cv.c        ****             currentWidth += 1;
+ 124:.\cv.c        ****             i++;
+ 125:.\cv.c        ****         }
+ 126:.\cv.c        ****         else if (Camera_framebuffer[halfHeight][i+1][1] == 0) {
+ 127:.\cv.c        ****             currentWidth += 2;
+ 128:.\cv.c        ****             i += 1;
+ 129:.\cv.c        ****         }
+ 130:.\cv.c        ****         else if (Camera_framebuffer[halfHeight][i+2][1] == 0) {
+ 131:.\cv.c        ****             currentWidth += 3;
+ 132:.\cv.c        ****             i += 2;
+ 133:.\cv.c        ****         }
+ 134:.\cv.c        ****         else {
+ 135:.\cv.c        ****             if (currentWidth > maxWidth)
+ 136:.\cv.c        ****                 maxHeight = currentWidth;
+ 137:.\cv.c        ****             
+ 138:.\cv.c        ****             currentWidth = 0;
+ 391              		.loc 1 138 0
+ 392 01bc 1846     		mov	r0, r3
+ 393 01be 019D     		ldr	r5, [sp, #4]
+ 394 01c0 1C46     		mov	r4, r3
+ 395              	.LVL62:
+ 396              	.L79:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 11
 
 
- 227:.\cv.c        **** //                    maxLength += 3;
- 228:.\cv.c        **** //                    i += 2;
- 229:.\cv.c        **** //                }
- 230:.\cv.c        **** //                else {
- 231:.\cv.c        **** //                    if (maxLength > MIN_BOX_HEIGHT) {
- 232:.\cv.c        **** //                        numBoxes = maxLength / boxHeight;
- 233:.\cv.c        **** //                        
- 234:.\cv.c        **** //                        if (numBoxes == 2) {
- 235:.\cv.c        **** //                            plan[rowUpTo] = RED;
- 236:.\cv.c        **** //                            plan[rowUpTo+1] = RED;
- 237:.\cv.c        **** //                            rowUpTo += 2;
- 238:.\cv.c        **** //                        }
- 239:.\cv.c        **** //                        else if (numBoxes == 3) {
- 240:.\cv.c        **** //                            plan[rowUpTo] = RED;
- 241:.\cv.c        **** //                            plan[rowUpTo+1] = RED;
- 242:.\cv.c        **** //                            plan[rowUpTo+2] = RED;
- 243:.\cv.c        **** //                            rowUpTo += 3;
- 244:.\cv.c        **** //                        }
- 245:.\cv.c        **** //                        else {
- 246:.\cv.c        **** //                            plan[rowUpTo] = RED;
- 247:.\cv.c        **** //                            rowUpTo++;
- 248:.\cv.c        **** //                        }
- 249:.\cv.c        **** //                    }
- 250:.\cv.c        **** //                    
- 251:.\cv.c        **** //                    maxLength = 0;
- 252:.\cv.c        **** //                    if (imgAll[i][halfWidth] == cGREEN)
- 253:.\cv.c        **** //                        mode = GREEN;
- 254:.\cv.c        **** //                    else
- 255:.\cv.c        **** //                        mode = BLUE;
- 256:.\cv.c        **** //                    maxLength++;
- 257:.\cv.c        **** //                }
- 258:.\cv.c        **** //                break;
- 259:.\cv.c        **** //            
- 260:.\cv.c        **** //            case GREEN:
- 261:.\cv.c        **** //                if (imgAll[j][halfWidth] == cGREEN) {
- 262:.\cv.c        **** //                    maxLength++;
- 263:.\cv.c        **** //                }
- 264:.\cv.c        **** //                else if (imgAll[j+1][halfWidth] == cGREEN) {
- 265:.\cv.c        **** //                    maxLength += 2;
- 266:.\cv.c        **** //                    i++;
- 267:.\cv.c        **** //                }
- 268:.\cv.c        **** //                else if (imgAll[j+2][halfWidth] == cGREEN) {
- 269:.\cv.c        **** //                    maxLength += 3;
- 270:.\cv.c        **** //                    i += 2;
- 271:.\cv.c        **** //                }
- 272:.\cv.c        **** //                else {
- 273:.\cv.c        **** //                    if (maxLength > MIN_BOX_HEIGHT) {
- 274:.\cv.c        **** //                        numBoxes = maxLength / boxHeight;
- 275:.\cv.c        **** //                        
- 276:.\cv.c        **** //                        if (numBoxes == 2) {
- 277:.\cv.c        **** //                            plan[rowUpTo] = GREEN;
- 278:.\cv.c        **** //                            plan[rowUpTo+1] = GREEN;
- 279:.\cv.c        **** //                            rowUpTo += 2;
- 280:.\cv.c        **** //                        }
- 281:.\cv.c        **** //                        else if (numBoxes == 3) {
- 282:.\cv.c        **** //                            plan[rowUpTo] = GREEN;
- 283:.\cv.c        **** //                            plan[rowUpTo+1] = GREEN;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 9
+ 119:.\cv.c        ****         if (i > IMG_H)
+ 397              		.loc 1 119 0
+ 398 01c2 902C     		cmp	r4, #144
+ 399 01c4 23D8     		bhi	.L70
+ 122:.\cv.c        ****         if (Camera_framebuffer[halfHeight][i][1] == 0) {
+ 400              		.loc 1 122 0
+ 401 01c6 01EB8407 		add	r7, r1, r4, lsl #2
+ 402 01ca BF5C     		ldrb	r7, [r7, r2]	@ zero_extendqisi2
+ 403 01cc 27B9     		cbnz	r7, .L27
+ 123:.\cv.c        ****             currentWidth += 1;
+ 404              		.loc 1 123 0
+ 405 01ce 0133     		adds	r3, r3, #1
+ 406              	.LVL63:
+ 407 01d0 DBB2     		uxtb	r3, r3
+ 408              	.LVL64:
+ 124:.\cv.c        ****             i++;
+ 409              		.loc 1 124 0
+ 410 01d2 0134     		adds	r4, r4, #1
+ 411              	.LVL65:
+ 412 01d4 E4B2     		uxtb	r4, r4
+ 413              	.LVL66:
+ 414 01d6 F4E7     		b	.L79
+ 415              	.L27:
+ 126:.\cv.c        ****         else if (Camera_framebuffer[halfHeight][i+1][1] == 0) {
+ 416              		.loc 1 126 0
+ 417 01d8 671C     		adds	r7, r4, #1
+ 418 01da 01EB8707 		add	r7, r1, r7, lsl #2
+ 419 01de BF5C     		ldrb	r7, [r7, r2]	@ zero_extendqisi2
+ 420 01e0 27B9     		cbnz	r7, .L29
+ 127:.\cv.c        ****             currentWidth += 2;
+ 421              		.loc 1 127 0
+ 422 01e2 0233     		adds	r3, r3, #2
+ 423              	.LVL67:
+ 424 01e4 DBB2     		uxtb	r3, r3
+ 425              	.LVL68:
+ 128:.\cv.c        ****             i += 1;
+ 426              		.loc 1 128 0
+ 427 01e6 0134     		adds	r4, r4, #1
+ 428              	.LVL69:
+ 429 01e8 E4B2     		uxtb	r4, r4
+ 430              	.LVL70:
+ 431 01ea EAE7     		b	.L79
+ 432              	.L29:
+ 130:.\cv.c        ****         else if (Camera_framebuffer[halfHeight][i+2][1] == 0) {
+ 433              		.loc 1 130 0
+ 434 01ec A61C     		adds	r6, r4, #2
+ 435 01ee 01EB8606 		add	r6, r1, r6, lsl #2
+ 436 01f2 B65C     		ldrb	r6, [r6, r2]	@ zero_extendqisi2
+ 437 01f4 26B9     		cbnz	r6, .L30
+ 131:.\cv.c        ****             currentWidth += 3;
+ 438              		.loc 1 131 0
+ 439 01f6 0333     		adds	r3, r3, #3
+ 440              	.LVL71:
+ 441 01f8 DBB2     		uxtb	r3, r3
+ 442              	.LVL72:
+ 132:.\cv.c        ****             i += 2;
+ 443              		.loc 1 132 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 12
 
 
- 284:.\cv.c        **** //                            plan[rowUpTo+2] = GREEN;
- 285:.\cv.c        **** //                            rowUpTo += 3;
- 286:.\cv.c        **** //                        }
- 287:.\cv.c        **** //                        else {
- 288:.\cv.c        **** //                            plan[rowUpTo] = GREEN;
- 289:.\cv.c        **** //                            rowUpTo++;
- 290:.\cv.c        **** //                        }
- 291:.\cv.c        **** //                    }
- 292:.\cv.c        **** //                    
- 293:.\cv.c        **** //                    maxLength = 0;
- 294:.\cv.c        **** //                    if (imgAll[i][halfWidth] == cRED)
- 295:.\cv.c        **** //                        mode = RED;
- 296:.\cv.c        **** //                    else
- 297:.\cv.c        **** //                        mode = BLUE;
- 298:.\cv.c        **** //                    maxLength++;
- 299:.\cv.c        **** //                }
- 300:.\cv.c        **** //                break;
- 301:.\cv.c        **** //            
- 302:.\cv.c        **** //            case BLUE:
- 303:.\cv.c        **** //                if (imgAll[j][halfWidth] == cBLUE) {
- 304:.\cv.c        **** //                    maxLength++;
- 305:.\cv.c        **** //                }
- 306:.\cv.c        **** //                else if (imgAll[j+1][halfWidth] == cBLUE) {
- 307:.\cv.c        **** //                    maxLength += 2;
- 308:.\cv.c        **** //                    i++;
- 309:.\cv.c        **** //                }
- 310:.\cv.c        **** //                else if (imgAll[j+2][halfWidth] == cBLUE) {
- 311:.\cv.c        **** //                    maxLength += 3;
- 312:.\cv.c        **** //                    i += 2;
- 313:.\cv.c        **** //                }
- 314:.\cv.c        **** //                else {
- 315:.\cv.c        **** //                    if (maxLength > MIN_BOX_HEIGHT) {
- 316:.\cv.c        **** //                        numBoxes = maxLength / boxHeight;
- 317:.\cv.c        **** //                        
- 318:.\cv.c        **** //                        if (numBoxes == 2) {
- 319:.\cv.c        **** //                            plan[rowUpTo] = BLUE;
- 320:.\cv.c        **** //                            plan[rowUpTo+1] = BLUE;
- 321:.\cv.c        **** //                            rowUpTo += 2;
- 322:.\cv.c        **** //                        }
- 323:.\cv.c        **** //                        else if (numBoxes == 3) {
- 324:.\cv.c        **** //                            plan[rowUpTo] = BLUE;
- 325:.\cv.c        **** //                            plan[rowUpTo+1] = BLUE;
- 326:.\cv.c        **** //                            plan[rowUpTo+2] = BLUE;
- 327:.\cv.c        **** //                            rowUpTo += 3;
- 328:.\cv.c        **** //                        }
- 329:.\cv.c        **** //                        else {
- 330:.\cv.c        **** //                            plan[rowUpTo] = BLUE;
- 331:.\cv.c        **** //                            rowUpTo++;
- 332:.\cv.c        **** //                        }
- 333:.\cv.c        **** //                    }
- 334:.\cv.c        **** //                    
- 335:.\cv.c        **** //                    maxLength = 0;
- 336:.\cv.c        **** //                    if (imgAll[i][halfWidth] == cRED)
- 337:.\cv.c        **** //                        mode = RED;
- 338:.\cv.c        **** //                    else
- 339:.\cv.c        **** //                        mode = GREEN;
- 340:.\cv.c        **** //                    maxLength++;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 10
+ 444 01fa 0234     		adds	r4, r4, #2
+ 445              	.LVL73:
+ 446 01fc E4B2     		uxtb	r4, r4
+ 447              	.LVL74:
+ 448 01fe E0E7     		b	.L79
+ 449              	.L30:
+ 135:.\cv.c        ****             if (currentWidth > maxWidth)
+ 450              		.loc 1 135 0
+ 451 0200 03B9     		cbnz	r3, .L31
+ 452 0202 2B46     		mov	r3, r5
+ 453              	.LVL75:
+ 454              	.L31:
+ 139:.\cv.c        ****             i++;
+ 455              		.loc 1 139 0
+ 456 0204 0134     		adds	r4, r4, #1
+ 457              	.LVL76:
+ 458 0206 E4B2     		uxtb	r4, r4
+ 459              	.LVL77:
+ 460 0208 1D46     		mov	r5, r3
+ 138:.\cv.c        ****             currentWidth = 0;
+ 461              		.loc 1 138 0
+ 462 020a 0346     		mov	r3, r0
+ 463              	.LVL78:
+ 464 020c D9E7     		b	.L79
+ 465              	.LVL79:
+ 466              	.L70:
+ 467 020e 0195     		str	r5, [sp, #4]
+ 468 0210 0294     		str	r4, [sp, #8]
+ 469 0212 2C23     		movs	r3, #44
+ 470              	.LVL80:
+ 471 0214 4FF0480B 		mov	fp, #72
+ 140:.\cv.c        ****         }
+ 141:.\cv.c        ****     }
+ 142:.\cv.c        **** //    uint8 boxWidth = maxWidth;
+ 143:.\cv.c        ****     
+ 144:.\cv.c        ****     
+ 145:.\cv.c        ****     // Start at centre, head toward top-left
+ 146:.\cv.c        ****     uint8 hPos = halfHeight;
+ 147:.\cv.c        ****     uint8 wPos = halfWidth;
+ 148:.\cv.c        ****     while (1) {
+ 149:.\cv.c        ****         if (Camera_framebuffer[hPos-1][wPos-1][1] == 0) {
+ 472              		.loc 1 149 0
+ 473 0218 2D4D     		ldr	r5, .L83
+ 474              	.LVL81:
+ 475 021a 5824     		movs	r4, #88
+ 476              	.LVL82:
+ 477              	.L80:
+ 478 021c 0BF1FF32 		add	r2, fp, #-1
+ 479 0220 591E     		subs	r1, r3, #1
+ 480 0222 04FB0210 		mla	r0, r4, r2, r1
+ 481 0226 05EB8000 		add	r0, r5, r0, lsl #2
+ 482 022a 4078     		ldrb	r0, [r0, #1]	@ zero_extendqisi2
+ 483 022c 18B9     		cbnz	r0, .L32
+ 150:.\cv.c        ****             hPos = hPos-1;
+ 484              		.loc 1 150 0
+ 485 022e 5FFA82FB 		uxtb	fp, r2
+ 486              	.LVL83:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 13
 
 
- 341:.\cv.c        **** //                }
- 342:.\cv.c        **** //                break;
- 343:.\cv.c        **** //                
- 344:.\cv.c        **** //            default: // Initial
- 345:.\cv.c        **** //                if (imgAll[i][halfWidth] == cRED)
- 346:.\cv.c        **** //                    mode = RED;
- 347:.\cv.c        **** //                else if (imgAll[i][halfWidth] == cGREEN)
- 348:.\cv.c        **** //                    mode = GREEN;
- 349:.\cv.c        **** //                else
- 350:.\cv.c        **** //                    mode = BLUE;
- 351:.\cv.c        **** //                
- 352:.\cv.c        **** //                maxLength++;
- 353:.\cv.c        **** //                break;
- 354:.\cv.c        **** //        }
- 355:.\cv.c        **** //    }
- 356:.\cv.c        ****     
- 357:.\cv.c        ****     
- 358:.\cv.c        ****     return *(plan); // TODO: Check if returning the right thing
- 359:.\cv.c        **** }
- 166              		.loc 1 359 0 is_stmt 1
- 167 005a 0198     		ldr	r0, [sp, #4]
- 168 005c 04B0     		add	sp, sp, #16
- 169              		@ sp needed
- 170 005e 7047     		bx	lr
- 171              		.cfi_endproc
- 172              	.LFE64:
- 173              		.size	parsePhoto, .-parsePhoto
- 174              		.section	.text.readPlanWithCamera,"ax",%progbits
- 175              		.align	2
- 176              		.global	readPlanWithCamera
- 177              		.thumb
- 178              		.thumb_func
- 179              		.type	readPlanWithCamera, %function
- 180              	readPlanWithCamera:
- 181              	.LFB65:
- 360:.\cv.c        **** 
- 361:.\cv.c        **** int * readPlanWithCamera() {
- 182              		.loc 1 361 0
- 183              		.cfi_startproc
- 184              		@ args = 0, pretend = 0, frame = 0
- 185              		@ frame_needed = 0, uses_anonymous_args = 0
- 186 0000 08B5     		push	{r3, lr}
- 187              		.cfi_def_cfa_offset 8
- 188              		.cfi_offset 3, -8
- 189              		.cfi_offset 14, -4
- 362:.\cv.c        **** //    int * plan = (int *) malloc(sizeof(int) * ROWS);
- 363:.\cv.c        ****     
- 364:.\cv.c        ****     takePhoto();
- 190              		.loc 1 364 0
- 191 0002 FFF7FEFF 		bl	takePhoto
- 192              	.LVL27:
- 365:.\cv.c        ****     return parsePhoto();
- 193              		.loc 1 365 0
- 194 0006 FFF7FEFF 		bl	parsePhoto
- 195              	.LVL28:
- 366:.\cv.c        ****     
- 367:.\cv.c        **** //    plan[0] = 1;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 11
+ 151:.\cv.c        ****             wPos = wPos-1;
+ 487              		.loc 1 151 0
+ 488 0232 CBB2     		uxtb	r3, r1
+ 489              	.LVL84:
+ 490 0234 F2E7     		b	.L80
+ 491              	.LVL85:
+ 492              	.L32:
+ 152:.\cv.c        ****         }
+ 153:.\cv.c        ****         else if (Camera_framebuffer[hPos-1][wPos][1] == 0) {
+ 493              		.loc 1 153 0
+ 494 0236 04FB0230 		mla	r0, r4, r2, r3
+ 495 023a 05EB8000 		add	r0, r5, r0, lsl #2
+ 496 023e 4078     		ldrb	r0, [r0, #1]	@ zero_extendqisi2
+ 497 0240 20B9     		cbnz	r0, .L34
+ 154:.\cv.c        ****             hPos = hPos-1;
+ 498              		.loc 1 154 0
+ 499 0242 0BF1FF3B 		add	fp, fp, #-1
+ 500              	.LVL86:
+ 501 0246 5FFA8BFB 		uxtb	fp, fp
+ 502              	.LVL87:
+ 503 024a E7E7     		b	.L80
+ 504              	.L34:
+ 155:.\cv.c        ****         }
+ 156:.\cv.c        ****         else if (Camera_framebuffer[hPos][wPos-1][1] == 0) {
+ 505              		.loc 1 156 0
+ 506 024c 04FB0B11 		mla	r1, r4, fp, r1
+ 507 0250 05EB8101 		add	r1, r5, r1, lsl #2
+ 508 0254 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 509 0256 11B9     		cbnz	r1, .L35
+ 157:.\cv.c        ****             wPos = wPos-1;
+ 510              		.loc 1 157 0
+ 511 0258 013B     		subs	r3, r3, #1
+ 512              	.LVL88:
+ 513 025a DBB2     		uxtb	r3, r3
+ 514              	.LVL89:
+ 515 025c DEE7     		b	.L80
+ 516              	.L35:
+ 158:.\cv.c        ****         }
+ 159:.\cv.c        ****         else if (Camera_framebuffer[hPos-1][wPos+1][1] == 0) {
+ 517              		.loc 1 159 0
+ 518 025e 5F1C     		adds	r7, r3, #1
+ 519 0260 04FB0272 		mla	r2, r4, r2, r7
+ 520 0264 05EB8202 		add	r2, r5, r2, lsl #2
+ 521 0268 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 522 026a 002A     		cmp	r2, #0
+ 523 026c 36D1     		bne	.L71
+ 160:.\cv.c        ****             hPos = hPos-1;
+ 524              		.loc 1 160 0
+ 525 026e 0BF1FF3B 		add	fp, fp, #-1
+ 526              	.LVL90:
+ 527 0272 5FFA8BFB 		uxtb	fp, fp
+ 528              	.LVL91:
+ 161:.\cv.c        ****             wPos = wPos+1;
+ 529              		.loc 1 161 0
+ 530 0276 0133     		adds	r3, r3, #1
+ 531              	.LVL92:
+ 532 0278 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 14
 
 
- 368:.\cv.c        **** //    plan[1] = 2;
- 369:.\cv.c        **** //    plan[2] = 3;
- 370:.\cv.c        **** //    
- 371:.\cv.c        **** //    return plan;
- 372:.\cv.c        **** }...
- 196              		.loc 1 372 0
- 197 000a 08BD     		pop	{r3, pc}
- 198              		.cfi_endproc
- 199              	.LFE65:
- 200              		.size	readPlanWithCamera, .-readPlanWithCamera
- 201              		.comm	Camera_framebuffer,50688,4
- 202              		.text
- 203              	.Letext0:
- 204              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
- 205              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
- 206              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 207              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
- 208              		.file 6 "Generated_Source\\PSoC5/Camera.h"
- 209              		.section	.debug_info,"",%progbits
- 210              	.Ldebug_info0:
- 211 0000 61020000 		.4byte	0x261
- 212 0004 0400     		.2byte	0x4
- 213 0006 00000000 		.4byte	.Ldebug_abbrev0
- 214 000a 04       		.byte	0x4
- 215 000b 01       		.uleb128 0x1
- 216 000c 25010000 		.4byte	.LASF32
- 217 0010 01       		.byte	0x1
- 218 0011 2C000000 		.4byte	.LASF33
- 219 0015 E8010000 		.4byte	.LASF34
- 220 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 221 001d 00000000 		.4byte	0
- 222 0021 00000000 		.4byte	.Ldebug_line0
- 223 0025 02       		.uleb128 0x2
- 224 0026 01       		.byte	0x1
- 225 0027 06       		.byte	0x6
- 226 0028 54000000 		.4byte	.LASF0
- 227 002c 02       		.uleb128 0x2
- 228 002d 01       		.byte	0x1
- 229 002e 08       		.byte	0x8
- 230 002f 6A000000 		.4byte	.LASF1
- 231 0033 02       		.uleb128 0x2
- 232 0034 02       		.byte	0x2
- 233 0035 05       		.byte	0x5
- 234 0036 BC010000 		.4byte	.LASF2
- 235 003a 02       		.uleb128 0x2
- 236 003b 02       		.byte	0x2
- 237 003c 07       		.byte	0x7
- 238 003d 8A000000 		.4byte	.LASF3
- 239 0041 03       		.uleb128 0x3
- 240 0042 0E000000 		.4byte	.LASF9
- 241 0046 02       		.byte	0x2
- 242 0047 37       		.byte	0x37
- 243 0048 4C000000 		.4byte	0x4c
- 244 004c 02       		.uleb128 0x2
- 245 004d 04       		.byte	0x4
- 246 004e 05       		.byte	0x5
- 247 004f D5010000 		.4byte	.LASF4
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 12
+ 533              	.LVL93:
+ 534 027a CFE7     		b	.L80
+ 535              	.LVL94:
+ 536              	.L38:
+ 162:.\cv.c        ****         }
+ 163:.\cv.c        ****         else
+ 164:.\cv.c        ****             break;
+ 165:.\cv.c        ****     }
+ 166:.\cv.c        ****     
+ 167:.\cv.c        ****     // Create single array
+ 168:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 169:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 170:.\cv.c        ****             Camera_framebuffer[h][w][3] = (((2*(!Camera_framebuffer[h][w][1])) + 3*((!Camera_frameb
+ 537              		.loc 1 170 0
+ 538 027c 1D46     		mov	r5, r3
+ 539 027e 0CEB0301 		add	r1, ip, r3
+ 540 0282 02EB8101 		add	r1, r2, r1, lsl #2
+ 541 0286 4878     		ldrb	r0, [r1, #1]	@ zero_extendqisi2
+ 542 0288 08B9     		cbnz	r0, .L72
+ 543 028a 4646     		mov	r6, r8
+ 544 028c 00E0     		b	.L37
+ 545              	.L72:
+ 546 028e 4E46     		mov	r6, r9
+ 547              	.L37:
+ 548              		.loc 1 170 0 is_stmt 0 discriminator 3
+ 549 0290 D0F10100 		rsbs	r0, r0, #1
+ 550 0294 38BF     		it	cc
+ 551 0296 0020     		movcc	r0, #0
+ 552 0298 3D44     		add	r5, r5, r7
+ 553 029a 02EB8501 		add	r1, r2, r5, lsl #2
+ 554 029e 8C78     		ldrb	r4, [r1, #2]	@ zero_extendqisi2
+ 555 02a0 0440     		ands	r4, r4, r0
+ 556 02a2 12F82550 		ldrb	r5, [r2, r5, lsl #2]	@ zero_extendqisi2
+ 557 02a6 06EB4406 		add	r6, r6, r4, lsl #1
+ 558 02aa 3444     		add	r4, r4, r6
+ 559 02ac 2840     		ands	r0, r0, r5
+ 560 02ae 2044     		add	r0, r0, r4
+ 561 02b0 C870     		strb	r0, [r1, #3]
+ 169:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 562              		.loc 1 169 0 is_stmt 1 discriminator 3
+ 563 02b2 0133     		adds	r3, r3, #1
+ 564              	.LVL95:
+ 565 02b4 DBB2     		uxtb	r3, r3
+ 566              	.LVL96:
+ 567 02b6 04E0     		b	.L39
+ 568              	.LVL97:
+ 569              	.L73:
+ 570 02b8 0023     		movs	r3, #0
+ 571              		.loc 1 170 0
+ 572 02ba 5825     		movs	r5, #88
+ 573 02bc 05FB0AFC 		mul	ip, r5, r10
+ 574 02c0 6746     		mov	r7, ip
+ 575              	.L39:
+ 576              	.LVL98:
+ 169:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
+ 577              		.loc 1 169 0 discriminator 1
+ 578 02c2 572B     		cmp	r3, #87
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 15
 
 
- 248 0053 02       		.uleb128 0x2
- 249 0054 04       		.byte	0x4
- 250 0055 07       		.byte	0x7
- 251 0056 78000000 		.4byte	.LASF5
- 252 005a 02       		.uleb128 0x2
- 253 005b 08       		.byte	0x8
- 254 005c 05       		.byte	0x5
- 255 005d 00000000 		.4byte	.LASF6
- 256 0061 02       		.uleb128 0x2
- 257 0062 08       		.byte	0x8
- 258 0063 07       		.byte	0x7
- 259 0064 FD000000 		.4byte	.LASF7
- 260 0068 04       		.uleb128 0x4
- 261 0069 04       		.byte	0x4
- 262 006a 05       		.byte	0x5
- 263 006b 696E7400 		.ascii	"int\000"
- 264 006f 02       		.uleb128 0x2
- 265 0070 04       		.byte	0x4
- 266 0071 07       		.byte	0x7
- 267 0072 F0000000 		.4byte	.LASF8
- 268 0076 03       		.uleb128 0x3
- 269 0077 46000000 		.4byte	.LASF10
- 270 007b 03       		.byte	0x3
- 271 007c 41       		.byte	0x41
- 272 007d 41000000 		.4byte	0x41
- 273 0081 03       		.uleb128 0x3
- 274 0082 CF010000 		.4byte	.LASF11
- 275 0086 04       		.byte	0x4
- 276 0087 B4       		.byte	0xb4
- 277 0088 2C000000 		.4byte	0x2c
- 278 008c 02       		.uleb128 0x2
- 279 008d 04       		.byte	0x4
- 280 008e 04       		.byte	0x4
- 281 008f 4E000000 		.4byte	.LASF12
- 282 0093 02       		.uleb128 0x2
- 283 0094 08       		.byte	0x8
- 284 0095 04       		.byte	0x4
- 285 0096 C8000000 		.4byte	.LASF13
- 286 009a 02       		.uleb128 0x2
- 287 009b 01       		.byte	0x1
- 288 009c 08       		.byte	0x8
- 289 009d AF010000 		.4byte	.LASF14
- 290 00a1 02       		.uleb128 0x2
- 291 00a2 04       		.byte	0x4
- 292 00a3 07       		.byte	0x7
- 293 00a4 A1010000 		.4byte	.LASF15
- 294 00a8 05       		.uleb128 0x5
- 295 00a9 DE010000 		.4byte	.LASF16
- 296 00ad 01       		.byte	0x1
- 297 00ae 09       		.byte	0x9
- 298 00af 68000000 		.4byte	0x68
- 299 00b3 00000000 		.4byte	.LFB63
- 300 00b7 12000000 		.4byte	.LFE63-.LFB63
- 301 00bb 01       		.uleb128 0x1
- 302 00bc 9C       		.byte	0x9c
- 303 00bd DD000000 		.4byte	0xdd
- 304 00c1 06       		.uleb128 0x6
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 13
+ 579 02c4 DAD9     		bls	.L38
+ 168:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 580              		.loc 1 168 0
+ 581 02c6 0AF1010A 		add	r10, r10, #1
+ 582              	.LVL99:
+ 583 02ca 5FFA8AFA 		uxtb	r10, r10
+ 584              	.LVL100:
+ 585 02ce 0DE0     		b	.L36
+ 586              	.L84:
+ 587              		.align	2
+ 588              	.L83:
+ 589 02d0 00000000 		.word	Camera_framebuffer
+ 590 02d4 ABAAAAAA 		.word	-1431655765
+ 591 02d8 56555555 		.word	1431655766
+ 592              	.LVL101:
+ 593              	.L71:
+ 594 02dc CDF814B0 		str	fp, [sp, #20]
+ 595 02e0 4FF0000A 		mov	r10, #0
+ 596              		.loc 1 170 0
+ 597 02e4 A04A     		ldr	r2, .L85
+ 598 02e6 D146     		mov	r9, r10
+ 599 02e8 4FF00208 		mov	r8, #2
+ 600              	.LVL102:
+ 601              	.L36:
+ 168:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
+ 602              		.loc 1 168 0 discriminator 1
+ 603 02ec BAF18F0F 		cmp	r10, #143
+ 604 02f0 E2D9     		bls	.L73
+ 605 02f2 0025     		movs	r5, #0
+ 606 02f4 0123     		movs	r3, #1
+ 607 02f6 2A46     		mov	r2, r5
+ 171:.\cv.c        ****         }
+ 172:.\cv.c        ****     }
+ 173:.\cv.c        ****     // NOTE: In imgAll, R=3, G=2, B=5, 0=ignore
+ 174:.\cv.c        ****     const uint8 cRED = 3, cGREEN = 2, cBLUE = 5;
+ 175:.\cv.c        ****     
+ 176:.\cv.c        ****     
+ 177:.\cv.c        ****     // Vars for main parse
+ 178:.\cv.c        ****     uint8 j = hPos;
+ 179:.\cv.c        ****     uint8 maxLength = 0;
+ 180:.\cv.c        ****     uint8 rowUpTo = 1;
+ 181:.\cv.c        ****     uint8 mode = 0;
+ 182:.\cv.c        ****     uint8 numBoxes = 0;
+ 183:.\cv.c        ****     
+ 184:.\cv.c        ****     // Main parse
+ 185:.\cv.c        ****     while (1) {
+ 186:.\cv.c        ****         // Loop condition
+ 187:.\cv.c        ****         j++;
+ 188:.\cv.c        ****         if (j > hPos + maxHeight)
+ 608              		.loc 1 188 0
+ 609 02f8 DDF814A0 		ldr	r10, [sp, #20]
+ 610              	.LVL103:
+ 611 02fc 0199     		ldr	r1, [sp, #4]
+ 612 02fe 8A44     		add	r10, r10, r1
+ 189:.\cv.c        ****             break;
+ 190:.\cv.c        ****         
+ 191:.\cv.c        ****         // Switch on colour mode
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 16
 
 
- 305 00c2 06000000 		.4byte	.LVL0
- 306 00c6 4E020000 		.4byte	0x24e
- 307 00ca 06       		.uleb128 0x6
- 308 00cb 0A000000 		.4byte	.LVL1
- 309 00cf 5B020000 		.4byte	0x25b
- 310 00d3 06       		.uleb128 0x6
- 311 00d4 0E000000 		.4byte	.LVL2
- 312 00d8 4E020000 		.4byte	0x24e
- 313 00dc 00       		.byte	0
- 314 00dd 05       		.uleb128 0x5
- 315 00de 18000000 		.4byte	.LASF17
- 316 00e2 01       		.byte	0x1
- 317 00e3 11       		.byte	0x11
- 318 00e4 B7010000 		.4byte	0x1b7
- 319 00e8 00000000 		.4byte	.LFB64
- 320 00ec 60000000 		.4byte	.LFE64-.LFB64
- 321 00f0 01       		.uleb128 0x1
- 322 00f1 9C       		.byte	0x9c
- 323 00f2 B7010000 		.4byte	0x1b7
- 324 00f6 07       		.uleb128 0x7
- 325 00f7 AA010000 		.4byte	.LASF28
- 326 00fb 01       		.byte	0x1
- 327 00fc 13       		.byte	0x13
- 328 00fd BD010000 		.4byte	0x1bd
- 329 0101 02       		.uleb128 0x2
- 330 0102 91       		.byte	0x91
- 331 0103 74       		.sleb128 -12
- 332 0104 08       		.uleb128 0x8
- 333 0105 D8000000 		.4byte	.LASF18
- 334 0109 01       		.byte	0x1
- 335 010a 16       		.byte	0x16
- 336 010b CD010000 		.4byte	0x1cd
- 337 010f 08       		.uleb128 0x8
- 338 0110 B9000000 		.4byte	.LASF19
- 339 0114 01       		.byte	0x1
- 340 0115 17       		.byte	0x17
- 341 0116 CD010000 		.4byte	0x1cd
- 342 011a 08       		.uleb128 0x8
- 343 011b 9D000000 		.4byte	.LASF20
- 344 011f 01       		.byte	0x1
- 345 0120 18       		.byte	0x18
- 346 0121 CD010000 		.4byte	0x1cd
- 347 0125 08       		.uleb128 0x8
- 348 0126 BE000000 		.4byte	.LASF21
- 349 012a 01       		.byte	0x1
- 350 012b 19       		.byte	0x19
- 351 012c CD010000 		.4byte	0x1cd
- 352 0130 08       		.uleb128 0x8
- 353 0131 60000000 		.4byte	.LASF22
- 354 0135 01       		.byte	0x1
- 355 0136 1A       		.byte	0x1a
- 356 0137 CD010000 		.4byte	0x1cd
- 357 013b 08       		.uleb128 0x8
- 358 013c A2000000 		.4byte	.LASF23
- 359 0140 01       		.byte	0x1
- 360 0141 1B       		.byte	0x1b
- 361 0142 CD010000 		.4byte	0x1cd
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 14
+ 192:.\cv.c        ****         switch (mode) {
+ 193:.\cv.c        ****             case RED:
+ 194:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cRED) {
+ 195:.\cv.c        ****                     maxLength++;
+ 196:.\cv.c        ****                 }
+ 197:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cRED) {
+ 198:.\cv.c        ****                     maxLength += 2;
+ 199:.\cv.c        ****                     i++;
+ 200:.\cv.c        ****                 }
+ 201:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cRED) {
+ 202:.\cv.c        ****                     maxLength += 3;
+ 203:.\cv.c        ****                     i += 2;
+ 204:.\cv.c        ****                 }
+ 205:.\cv.c        ****                 else {
+ 206:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
+ 207:.\cv.c        ****                         numBoxes = maxLength / boxHeight;
+ 208:.\cv.c        ****                         
+ 209:.\cv.c        ****                         if (numBoxes == 2) {
+ 210:.\cv.c        ****                             plan[rowUpTo] = RED;
+ 211:.\cv.c        ****                             plan[rowUpTo+1] = RED;
+ 212:.\cv.c        ****                             rowUpTo += 2;
+ 213:.\cv.c        ****                         }
+ 214:.\cv.c        ****                         else if (numBoxes == 3) {
+ 215:.\cv.c        ****                             plan[rowUpTo] = RED;
+ 216:.\cv.c        ****                             plan[rowUpTo+1] = RED;
+ 217:.\cv.c        ****                             plan[rowUpTo+2] = RED;
+ 218:.\cv.c        ****                             rowUpTo += 3;
+ 219:.\cv.c        ****                         }
+ 220:.\cv.c        ****                         else {
+ 221:.\cv.c        ****                             plan[rowUpTo] = RED;
+ 222:.\cv.c        ****                             rowUpTo++;
+ 223:.\cv.c        ****                         }
+ 224:.\cv.c        ****                     }
+ 225:.\cv.c        ****                     
+ 226:.\cv.c        ****                     maxLength = 0;
+ 227:.\cv.c        ****                     if (Camera_framebuffer[i][halfWidth][3] == cGREEN)
+ 228:.\cv.c        ****                         mode = GREEN;
+ 229:.\cv.c        ****                     else
+ 230:.\cv.c        ****                         mode = BLUE;
+ 231:.\cv.c        ****                     maxLength++;
+ 232:.\cv.c        ****                 }
+ 233:.\cv.c        ****                 break;
+ 234:.\cv.c        ****             
+ 235:.\cv.c        ****             case GREEN:
+ 236:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cGREEN) {
+ 613              		.loc 1 236 0
+ 614 0300 994C     		ldr	r4, .L85
+ 615 0302 4FF4B071 		mov	r1, #352
+ 237:.\cv.c        ****                     maxLength++;
+ 238:.\cv.c        ****                 }
+ 239:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cGREEN) {
+ 240:.\cv.c        ****                     maxLength += 2;
+ 241:.\cv.c        ****                     i++;
+ 242:.\cv.c        ****                 }
+ 243:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cGREEN) {
+ 244:.\cv.c        ****                     maxLength += 3;
+ 245:.\cv.c        ****                     i += 2;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 17
 
 
- 362 0146 08       		.uleb128 0x8
- 363 0147 23000000 		.4byte	.LASF24
- 364 014b 01       		.byte	0x1
- 365 014c 1C       		.byte	0x1c
- 366 014d CD010000 		.4byte	0x1cd
- 367 0151 08       		.uleb128 0x8
- 368 0152 CF000000 		.4byte	.LASF25
- 369 0156 01       		.byte	0x1
- 370 0157 1D       		.byte	0x1d
- 371 0158 CD010000 		.4byte	0x1cd
- 372 015c 08       		.uleb128 0x8
- 373 015d C6010000 		.4byte	.LASF26
- 374 0161 01       		.byte	0x1
- 375 0162 1E       		.byte	0x1e
- 376 0163 CD010000 		.4byte	0x1cd
- 377 0167 08       		.uleb128 0x8
- 378 0168 B4010000 		.4byte	.LASF27
- 379 016c 01       		.byte	0x1
- 380 016d 1F       		.byte	0x1f
- 381 016e CD010000 		.4byte	0x1cd
- 382 0172 09       		.uleb128 0x9
- 383 0173 6800     		.ascii	"h\000"
- 384 0175 01       		.byte	0x1
- 385 0176 25       		.byte	0x25
- 386 0177 68000000 		.4byte	0x68
- 387 017b 00000000 		.4byte	.LLST0
- 388 017f 09       		.uleb128 0x9
- 389 0180 7700     		.ascii	"w\000"
- 390 0182 01       		.byte	0x1
- 391 0183 25       		.byte	0x25
- 392 0184 68000000 		.4byte	0x68
- 393 0188 40000000 		.4byte	.LLST1
- 394 018c 0A       		.uleb128 0xa
- 395 018d 5500     		.ascii	"U\000"
- 396 018f 01       		.byte	0x1
- 397 0190 26       		.byte	0x26
- 398 0191 68000000 		.4byte	0x68
- 399 0195 00       		.byte	0
- 400 0196 0A       		.uleb128 0xa
- 401 0197 593000   		.ascii	"Y0\000"
- 402 019a 01       		.byte	0x1
- 403 019b 26       		.byte	0x26
- 404 019c 68000000 		.4byte	0x68
- 405 01a0 01       		.byte	0x1
- 406 01a1 0A       		.uleb128 0xa
- 407 01a2 5600     		.ascii	"V\000"
- 408 01a4 01       		.byte	0x1
- 409 01a5 26       		.byte	0x26
- 410 01a6 68000000 		.4byte	0x68
- 411 01aa 02       		.byte	0x2
- 412 01ab 0A       		.uleb128 0xa
- 413 01ac 593100   		.ascii	"Y1\000"
- 414 01af 01       		.byte	0x1
- 415 01b0 26       		.byte	0x26
- 416 01b1 68000000 		.4byte	0x68
- 417 01b5 03       		.byte	0x3
- 418 01b6 00       		.byte	0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 15
+ 246:.\cv.c        ****                 }
+ 247:.\cv.c        ****                 else {
+ 248:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
+ 249:.\cv.c        ****                         numBoxes = maxLength / boxHeight;
+ 250:.\cv.c        ****                         
+ 251:.\cv.c        ****                         if (numBoxes == 2) {
+ 252:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 253:.\cv.c        ****                             plan[rowUpTo+1] = GREEN;
+ 254:.\cv.c        ****                             rowUpTo += 2;
+ 255:.\cv.c        ****                         }
+ 256:.\cv.c        ****                         else if (numBoxes == 3) {
+ 257:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 258:.\cv.c        ****                             plan[rowUpTo+1] = GREEN;
+ 259:.\cv.c        ****                             plan[rowUpTo+2] = GREEN;
+ 260:.\cv.c        ****                             rowUpTo += 3;
+ 261:.\cv.c        ****                         }
+ 262:.\cv.c        ****                         else {
+ 263:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 264:.\cv.c        ****                             rowUpTo++;
+ 265:.\cv.c        ****                         }
+ 266:.\cv.c        ****                     }
+ 267:.\cv.c        ****                     
+ 268:.\cv.c        ****                     maxLength = 0;
+ 269:.\cv.c        ****                     if (Camera_framebuffer[i][halfWidth][3] == cRED)
+ 270:.\cv.c        ****                         mode = RED;
+ 616              		.loc 1 270 0
+ 617 0306 1846     		mov	r0, r3
+ 271:.\cv.c        ****                     else
+ 272:.\cv.c        ****                         mode = BLUE;
+ 618              		.loc 1 272 0
+ 619 0308 0327     		movs	r7, #3
+ 263:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 620              		.loc 1 263 0
+ 621 030a 0226     		movs	r6, #2
+ 622 030c DDF80880 		ldr	r8, [sp, #8]
+ 623 0310 DDF810C0 		ldr	ip, [sp, #16]
+ 624 0314 CDF808A0 		str	r10, [sp, #8]
+ 625              	.LVL104:
+ 626 0318 0193     		str	r3, [sp, #4]
+ 627              	.LVL105:
+ 628 031a 07E0     		b	.L81
+ 629              	.LVL106:
+ 630              	.L53:
+ 228:.\cv.c        ****                         mode = GREEN;
+ 631              		.loc 1 228 0
+ 632 031c 3546     		mov	r5, r6
+ 231:.\cv.c        ****                     maxLength++;
+ 633              		.loc 1 231 0
+ 634 031e 0246     		mov	r2, r0
+ 635 0320 04E0     		b	.L81
+ 636              	.LVL107:
+ 637              	.L74:
+ 638              		.loc 1 272 0
+ 639 0322 3D46     		mov	r5, r7
+ 640              	.LVL108:
+ 273:.\cv.c        ****                     maxLength++;
+ 641              		.loc 1 273 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 18
 
 
- 419 01b7 0B       		.uleb128 0xb
- 420 01b8 04       		.byte	0x4
- 421 01b9 68000000 		.4byte	0x68
- 422 01bd 0C       		.uleb128 0xc
- 423 01be 68000000 		.4byte	0x68
- 424 01c2 CD010000 		.4byte	0x1cd
- 425 01c6 0D       		.uleb128 0xd
- 426 01c7 A1000000 		.4byte	0xa1
- 427 01cb 02       		.byte	0x2
- 428 01cc 00       		.byte	0
- 429 01cd 0C       		.uleb128 0xc
- 430 01ce 68000000 		.4byte	0x68
- 431 01d2 E3010000 		.4byte	0x1e3
- 432 01d6 0D       		.uleb128 0xd
- 433 01d7 A1000000 		.4byte	0xa1
- 434 01db 8F       		.byte	0x8f
- 435 01dc 0D       		.uleb128 0xd
- 436 01dd A1000000 		.4byte	0xa1
- 437 01e1 AF       		.byte	0xaf
- 438 01e2 00       		.byte	0
- 439 01e3 0E       		.uleb128 0xe
- 440 01e4 DD000000 		.4byte	.LASF29
- 441 01e8 01       		.byte	0x1
- 442 01e9 6901     		.2byte	0x169
- 443 01eb B7010000 		.4byte	0x1b7
- 444 01ef 00000000 		.4byte	.LFB65
- 445 01f3 0C000000 		.4byte	.LFE65-.LFB65
- 446 01f7 01       		.uleb128 0x1
- 447 01f8 9C       		.byte	0x9c
- 448 01f9 10020000 		.4byte	0x210
- 449 01fd 06       		.uleb128 0x6
- 450 01fe 06000000 		.4byte	.LVL27
- 451 0202 A8000000 		.4byte	0xa8
- 452 0206 06       		.uleb128 0x6
- 453 0207 0A000000 		.4byte	.LVL28
- 454 020b DD000000 		.4byte	0xdd
- 455 020f 00       		.byte	0
- 456 0210 0F       		.uleb128 0xf
- 457 0211 AC000000 		.4byte	.LASF30
- 458 0215 05       		.byte	0x5
- 459 0216 2A06     		.2byte	0x62a
- 460 0218 1C020000 		.4byte	0x21c
- 461 021c 10       		.uleb128 0x10
- 462 021d 76000000 		.4byte	0x76
- 463 0221 0C       		.uleb128 0xc
- 464 0222 81000000 		.4byte	0x81
- 465 0226 3D020000 		.4byte	0x23d
- 466 022a 0D       		.uleb128 0xd
- 467 022b A1000000 		.4byte	0xa1
- 468 022f 8F       		.byte	0x8f
- 469 0230 0D       		.uleb128 0xd
- 470 0231 A1000000 		.4byte	0xa1
- 471 0235 57       		.byte	0x57
- 472 0236 0D       		.uleb128 0xd
- 473 0237 A1000000 		.4byte	0xa1
- 474 023b 03       		.byte	0x3
- 475 023c 00       		.byte	0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 16
+ 642 0324 0246     		mov	r2, r0
+ 643 0326 01E0     		b	.L81
+ 644              	.L75:
+ 274:.\cv.c        ****                 }
+ 275:.\cv.c        ****                 break;
+ 276:.\cv.c        ****             
+ 277:.\cv.c        ****             case BLUE:
+ 278:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cBLUE) {
+ 279:.\cv.c        ****                     maxLength++;
+ 280:.\cv.c        ****                 }
+ 281:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cBLUE) {
+ 282:.\cv.c        ****                     maxLength += 2;
+ 283:.\cv.c        ****                     i++;
+ 284:.\cv.c        ****                 }
+ 285:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cBLUE) {
+ 286:.\cv.c        ****                     maxLength += 3;
+ 287:.\cv.c        ****                     i += 2;
+ 288:.\cv.c        ****                 }
+ 289:.\cv.c        ****                 else {
+ 290:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
+ 291:.\cv.c        ****                         numBoxes = maxLength / boxHeight;
+ 292:.\cv.c        ****                         
+ 293:.\cv.c        ****                         if (numBoxes == 2) {
+ 294:.\cv.c        ****                             plan[rowUpTo] = BLUE;
+ 295:.\cv.c        ****                             plan[rowUpTo+1] = BLUE;
+ 296:.\cv.c        ****                             rowUpTo += 2;
+ 297:.\cv.c        ****                         }
+ 298:.\cv.c        ****                         else if (numBoxes == 3) {
+ 299:.\cv.c        ****                             plan[rowUpTo] = BLUE;
+ 300:.\cv.c        ****                             plan[rowUpTo+1] = BLUE;
+ 301:.\cv.c        ****                             plan[rowUpTo+2] = BLUE;
+ 302:.\cv.c        ****                             rowUpTo += 3;
+ 303:.\cv.c        ****                         }
+ 304:.\cv.c        ****                         else {
+ 305:.\cv.c        ****                             plan[rowUpTo] = BLUE;
+ 306:.\cv.c        ****                             rowUpTo++;
+ 307:.\cv.c        ****                         }
+ 308:.\cv.c        ****                     }
+ 309:.\cv.c        ****                     
+ 310:.\cv.c        ****                     maxLength = 0;
+ 311:.\cv.c        ****                     if (Camera_framebuffer[i][halfWidth][3] == cRED)
+ 312:.\cv.c        ****                         mode = RED;
+ 313:.\cv.c        ****                     else
+ 314:.\cv.c        ****                         mode = GREEN;
+ 645              		.loc 1 314 0
+ 646 0328 3546     		mov	r5, r6
+ 315:.\cv.c        ****                     maxLength++;
+ 647              		.loc 1 315 0
+ 648 032a 0246     		mov	r2, r0
+ 649              	.LVL109:
+ 650              	.L81:
+ 187:.\cv.c        ****         j++;
+ 651              		.loc 1 187 0
+ 652 032c 0BF1010B 		add	fp, fp, #1
+ 653              	.LVL110:
+ 654 0330 5FFA8BFB 		uxtb	fp, fp
+ 655              	.LVL111:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 19
 
 
- 476 023d 11       		.uleb128 0x11
- 477 023e 33000000 		.4byte	.LASF31
- 478 0242 06       		.byte	0x6
- 479 0243 08       		.byte	0x8
- 480 0244 21020000 		.4byte	0x221
- 481 0248 05       		.uleb128 0x5
- 482 0249 03       		.byte	0x3
- 483 024a 00000000 		.4byte	Camera_framebuffer
- 484 024e 12       		.uleb128 0x12
- 485 024f 14010000 		.4byte	.LASF35
- 486 0253 06       		.byte	0x6
- 487 0254 0D       		.byte	0xd
- 488 0255 5B020000 		.4byte	0x25b
- 489 0259 13       		.uleb128 0x13
- 490 025a 00       		.byte	0
- 491 025b 14       		.uleb128 0x14
- 492 025c 68020000 		.4byte	.LASF36
- 493 0260 06       		.byte	0x6
- 494 0261 1B       		.byte	0x1b
- 495 0262 13       		.uleb128 0x13
- 496 0263 00       		.byte	0
- 497 0264 00       		.byte	0
- 498              		.section	.debug_abbrev,"",%progbits
- 499              	.Ldebug_abbrev0:
- 500 0000 01       		.uleb128 0x1
- 501 0001 11       		.uleb128 0x11
- 502 0002 01       		.byte	0x1
- 503 0003 25       		.uleb128 0x25
- 504 0004 0E       		.uleb128 0xe
- 505 0005 13       		.uleb128 0x13
- 506 0006 0B       		.uleb128 0xb
- 507 0007 03       		.uleb128 0x3
- 508 0008 0E       		.uleb128 0xe
- 509 0009 1B       		.uleb128 0x1b
- 510 000a 0E       		.uleb128 0xe
- 511 000b 55       		.uleb128 0x55
- 512 000c 17       		.uleb128 0x17
- 513 000d 11       		.uleb128 0x11
- 514 000e 01       		.uleb128 0x1
- 515 000f 10       		.uleb128 0x10
- 516 0010 17       		.uleb128 0x17
- 517 0011 00       		.byte	0
- 518 0012 00       		.byte	0
- 519 0013 02       		.uleb128 0x2
- 520 0014 24       		.uleb128 0x24
- 521 0015 00       		.byte	0
- 522 0016 0B       		.uleb128 0xb
- 523 0017 0B       		.uleb128 0xb
- 524 0018 3E       		.uleb128 0x3e
- 525 0019 0B       		.uleb128 0xb
- 526 001a 03       		.uleb128 0x3
- 527 001b 0E       		.uleb128 0xe
- 528 001c 00       		.byte	0
- 529 001d 00       		.byte	0
- 530 001e 03       		.uleb128 0x3
- 531 001f 16       		.uleb128 0x16
- 532 0020 00       		.byte	0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 17
+ 188:.\cv.c        ****         if (j > hPos + maxHeight)
+ 656              		.loc 1 188 0
+ 657 0334 DDF808A0 		ldr	r10, [sp, #8]
+ 658 0338 D345     		cmp	fp, r10
+ 659 033a 00F31181 		bgt	.L41
+ 192:.\cv.c        ****         switch (mode) {
+ 660              		.loc 1 192 0
+ 661 033e 022D     		cmp	r5, #2
+ 662 0340 57D0     		beq	.L43
+ 663 0342 032D     		cmp	r5, #3
+ 664 0344 00F0A980 		beq	.L44
+ 665 0348 012D     		cmp	r5, #1
+ 666 034a 40F0F980 		bne	.L82
+ 194:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cRED) {
+ 667              		.loc 1 194 0
+ 668 034e 01FB0B4A 		mla	r10, r1, fp, r4
+ 669 0352 9AF8B3A0 		ldrb	r10, [r10, #179]	@ zero_extendqisi2
+ 670 0356 BAF1030F 		cmp	r10, #3
+ 671 035a 02D1     		bne	.L46
+ 195:.\cv.c        ****                     maxLength++;
+ 672              		.loc 1 195 0
+ 673 035c 0132     		adds	r2, r2, #1
+ 674              	.LVL112:
+ 675 035e D2B2     		uxtb	r2, r2
+ 676              	.LVL113:
+ 677 0360 E4E7     		b	.L81
+ 678              	.L46:
+ 197:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cRED) {
+ 679              		.loc 1 197 0
+ 680 0362 0BFB011A 		mla	r10, fp, r1, r1
+ 681 0366 A244     		add	r10, r10, r4
+ 682 0368 9AF8B3A0 		ldrb	r10, [r10, #179]	@ zero_extendqisi2
+ 683 036c BAF1030F 		cmp	r10, #3
+ 684 0370 06D1     		bne	.L48
+ 198:.\cv.c        ****                     maxLength += 2;
+ 685              		.loc 1 198 0
+ 686 0372 0232     		adds	r2, r2, #2
+ 687              	.LVL114:
+ 688 0374 D2B2     		uxtb	r2, r2
+ 689              	.LVL115:
+ 199:.\cv.c        ****                     i++;
+ 690              		.loc 1 199 0
+ 691 0376 08F10108 		add	r8, r8, #1
+ 692              	.LVL116:
+ 693 037a 5FFA88F8 		uxtb	r8, r8
+ 694              	.LVL117:
+ 695 037e D5E7     		b	.L81
+ 696              	.L48:
+ 201:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cRED) {
+ 697              		.loc 1 201 0
+ 698 0380 0BF10209 		add	r9, fp, #2
+ 699 0384 01FB0949 		mla	r9, r1, r9, r4
+ 700 0388 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
+ 701 038c B9F1030F 		cmp	r9, #3
+ 702 0390 06D1     		bne	.L49
+ 202:.\cv.c        ****                     maxLength += 3;
+ 703              		.loc 1 202 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 20
 
 
- 533 0021 03       		.uleb128 0x3
- 534 0022 0E       		.uleb128 0xe
- 535 0023 3A       		.uleb128 0x3a
- 536 0024 0B       		.uleb128 0xb
- 537 0025 3B       		.uleb128 0x3b
- 538 0026 0B       		.uleb128 0xb
- 539 0027 49       		.uleb128 0x49
- 540 0028 13       		.uleb128 0x13
- 541 0029 00       		.byte	0
- 542 002a 00       		.byte	0
- 543 002b 04       		.uleb128 0x4
- 544 002c 24       		.uleb128 0x24
- 545 002d 00       		.byte	0
- 546 002e 0B       		.uleb128 0xb
- 547 002f 0B       		.uleb128 0xb
- 548 0030 3E       		.uleb128 0x3e
- 549 0031 0B       		.uleb128 0xb
- 550 0032 03       		.uleb128 0x3
- 551 0033 08       		.uleb128 0x8
- 552 0034 00       		.byte	0
- 553 0035 00       		.byte	0
- 554 0036 05       		.uleb128 0x5
- 555 0037 2E       		.uleb128 0x2e
- 556 0038 01       		.byte	0x1
- 557 0039 3F       		.uleb128 0x3f
- 558 003a 19       		.uleb128 0x19
- 559 003b 03       		.uleb128 0x3
- 560 003c 0E       		.uleb128 0xe
- 561 003d 3A       		.uleb128 0x3a
- 562 003e 0B       		.uleb128 0xb
- 563 003f 3B       		.uleb128 0x3b
- 564 0040 0B       		.uleb128 0xb
- 565 0041 49       		.uleb128 0x49
- 566 0042 13       		.uleb128 0x13
- 567 0043 11       		.uleb128 0x11
- 568 0044 01       		.uleb128 0x1
- 569 0045 12       		.uleb128 0x12
- 570 0046 06       		.uleb128 0x6
- 571 0047 40       		.uleb128 0x40
- 572 0048 18       		.uleb128 0x18
- 573 0049 9742     		.uleb128 0x2117
- 574 004b 19       		.uleb128 0x19
- 575 004c 01       		.uleb128 0x1
- 576 004d 13       		.uleb128 0x13
- 577 004e 00       		.byte	0
- 578 004f 00       		.byte	0
- 579 0050 06       		.uleb128 0x6
- 580 0051 898201   		.uleb128 0x4109
- 581 0054 00       		.byte	0
- 582 0055 11       		.uleb128 0x11
- 583 0056 01       		.uleb128 0x1
- 584 0057 31       		.uleb128 0x31
- 585 0058 13       		.uleb128 0x13
- 586 0059 00       		.byte	0
- 587 005a 00       		.byte	0
- 588 005b 07       		.uleb128 0x7
- 589 005c 34       		.uleb128 0x34
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 18
+ 704 0392 0332     		adds	r2, r2, #3
+ 705              	.LVL118:
+ 706 0394 D2B2     		uxtb	r2, r2
+ 707              	.LVL119:
+ 203:.\cv.c        ****                     i += 2;
+ 708              		.loc 1 203 0
+ 709 0396 08F10208 		add	r8, r8, #2
+ 710              	.LVL120:
+ 711 039a 5FFA88F8 		uxtb	r8, r8
+ 712              	.LVL121:
+ 713 039e C5E7     		b	.L81
+ 714              	.L49:
+ 206:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
+ 715              		.loc 1 206 0
+ 716 03a0 052A     		cmp	r2, #5
+ 717 03a2 1DD9     		bls	.L50
+ 207:.\cv.c        ****                         numBoxes = maxLength / boxHeight;
+ 718              		.loc 1 207 0
+ 719 03a4 039D     		ldr	r5, [sp, #12]
+ 720              	.LVL122:
+ 721 03a6 B2FBF5F2 		udiv	r2, r2, r5
+ 722              	.LVL123:
+ 209:.\cv.c        ****                         if (numBoxes == 2) {
+ 723              		.loc 1 209 0
+ 724 03aa 022A     		cmp	r2, #2
+ 725 03ac 07D1     		bne	.L51
+ 210:.\cv.c        ****                             plan[rowUpTo] = RED;
+ 726              		.loc 1 210 0
+ 727 03ae 0CF80300 		strb	r0, [ip, r3]
+ 211:.\cv.c        ****                             plan[rowUpTo+1] = RED;
+ 728              		.loc 1 211 0
+ 729 03b2 5A1C     		adds	r2, r3, #1
+ 730              	.LVL124:
+ 731 03b4 0CF80200 		strb	r0, [ip, r2]
+ 212:.\cv.c        ****                             rowUpTo += 2;
+ 732              		.loc 1 212 0
+ 733 03b8 0233     		adds	r3, r3, #2
+ 734              	.LVL125:
+ 735 03ba DBB2     		uxtb	r3, r3
+ 736              	.LVL126:
+ 737 03bc 10E0     		b	.L50
+ 738              	.LVL127:
+ 739              	.L51:
+ 214:.\cv.c        ****                         else if (numBoxes == 3) {
+ 740              		.loc 1 214 0
+ 741 03be 032A     		cmp	r2, #3
+ 742 03c0 0AD1     		bne	.L52
+ 215:.\cv.c        ****                             plan[rowUpTo] = RED;
+ 743              		.loc 1 215 0
+ 744 03c2 0CF80300 		strb	r0, [ip, r3]
+ 216:.\cv.c        ****                             plan[rowUpTo+1] = RED;
+ 745              		.loc 1 216 0
+ 746 03c6 5A1C     		adds	r2, r3, #1
+ 747              	.LVL128:
+ 748 03c8 0CF80200 		strb	r0, [ip, r2]
+ 217:.\cv.c        ****                             plan[rowUpTo+2] = RED;
+ 749              		.loc 1 217 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 21
 
 
- 590 005d 00       		.byte	0
- 591 005e 03       		.uleb128 0x3
- 592 005f 0E       		.uleb128 0xe
- 593 0060 3A       		.uleb128 0x3a
- 594 0061 0B       		.uleb128 0xb
- 595 0062 3B       		.uleb128 0x3b
- 596 0063 0B       		.uleb128 0xb
- 597 0064 49       		.uleb128 0x49
- 598 0065 13       		.uleb128 0x13
- 599 0066 02       		.uleb128 0x2
- 600 0067 18       		.uleb128 0x18
- 601 0068 00       		.byte	0
- 602 0069 00       		.byte	0
- 603 006a 08       		.uleb128 0x8
- 604 006b 34       		.uleb128 0x34
- 605 006c 00       		.byte	0
- 606 006d 03       		.uleb128 0x3
- 607 006e 0E       		.uleb128 0xe
- 608 006f 3A       		.uleb128 0x3a
- 609 0070 0B       		.uleb128 0xb
- 610 0071 3B       		.uleb128 0x3b
- 611 0072 0B       		.uleb128 0xb
- 612 0073 49       		.uleb128 0x49
- 613 0074 13       		.uleb128 0x13
- 614 0075 00       		.byte	0
- 615 0076 00       		.byte	0
- 616 0077 09       		.uleb128 0x9
- 617 0078 34       		.uleb128 0x34
- 618 0079 00       		.byte	0
- 619 007a 03       		.uleb128 0x3
- 620 007b 08       		.uleb128 0x8
- 621 007c 3A       		.uleb128 0x3a
- 622 007d 0B       		.uleb128 0xb
- 623 007e 3B       		.uleb128 0x3b
- 624 007f 0B       		.uleb128 0xb
- 625 0080 49       		.uleb128 0x49
- 626 0081 13       		.uleb128 0x13
- 627 0082 02       		.uleb128 0x2
- 628 0083 17       		.uleb128 0x17
- 629 0084 00       		.byte	0
- 630 0085 00       		.byte	0
- 631 0086 0A       		.uleb128 0xa
- 632 0087 34       		.uleb128 0x34
- 633 0088 00       		.byte	0
- 634 0089 03       		.uleb128 0x3
- 635 008a 08       		.uleb128 0x8
- 636 008b 3A       		.uleb128 0x3a
- 637 008c 0B       		.uleb128 0xb
- 638 008d 3B       		.uleb128 0x3b
- 639 008e 0B       		.uleb128 0xb
- 640 008f 49       		.uleb128 0x49
- 641 0090 13       		.uleb128 0x13
- 642 0091 1C       		.uleb128 0x1c
- 643 0092 0B       		.uleb128 0xb
- 644 0093 00       		.byte	0
- 645 0094 00       		.byte	0
- 646 0095 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 19
+ 750 03cc 9A1C     		adds	r2, r3, #2
+ 751 03ce 0CF80200 		strb	r0, [ip, r2]
+ 218:.\cv.c        ****                             rowUpTo += 3;
+ 752              		.loc 1 218 0
+ 753 03d2 0333     		adds	r3, r3, #3
+ 754              	.LVL129:
+ 755 03d4 DBB2     		uxtb	r3, r3
+ 756              	.LVL130:
+ 757 03d6 03E0     		b	.L50
+ 758              	.LVL131:
+ 759              	.L52:
+ 221:.\cv.c        ****                             plan[rowUpTo] = RED;
+ 760              		.loc 1 221 0
+ 761 03d8 0CF80300 		strb	r0, [ip, r3]
+ 222:.\cv.c        ****                             rowUpTo++;
+ 762              		.loc 1 222 0
+ 763 03dc 0133     		adds	r3, r3, #1
+ 764              	.LVL132:
+ 765 03de DBB2     		uxtb	r3, r3
+ 766              	.LVL133:
+ 767              	.L50:
+ 227:.\cv.c        ****                     if (Camera_framebuffer[i][halfWidth][3] == cGREEN)
+ 768              		.loc 1 227 0
+ 769 03e0 01FB0842 		mla	r2, r1, r8, r4
+ 770 03e4 92F8B320 		ldrb	r2, [r2, #179]	@ zero_extendqisi2
+ 771 03e8 022A     		cmp	r2, #2
+ 772 03ea 97D0     		beq	.L53
+ 230:.\cv.c        ****                         mode = BLUE;
+ 773              		.loc 1 230 0
+ 774 03ec 3D46     		mov	r5, r7
+ 231:.\cv.c        ****                     maxLength++;
+ 775              		.loc 1 231 0
+ 776 03ee 0246     		mov	r2, r0
+ 777 03f0 9CE7     		b	.L81
+ 778              	.LVL134:
+ 779              	.L43:
+ 236:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cGREEN) {
+ 780              		.loc 1 236 0
+ 781 03f2 01FB0B4A 		mla	r10, r1, fp, r4
+ 782 03f6 9AF8B3A0 		ldrb	r10, [r10, #179]	@ zero_extendqisi2
+ 783 03fa BAF1020F 		cmp	r10, #2
+ 784 03fe 02D1     		bne	.L54
+ 237:.\cv.c        ****                     maxLength++;
+ 785              		.loc 1 237 0
+ 786 0400 0132     		adds	r2, r2, #1
+ 787              	.LVL135:
+ 788 0402 D2B2     		uxtb	r2, r2
+ 789              	.LVL136:
+ 790 0404 92E7     		b	.L81
+ 791              	.L54:
+ 239:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cGREEN) {
+ 792              		.loc 1 239 0
+ 793 0406 0BFB011A 		mla	r10, fp, r1, r1
+ 794 040a A244     		add	r10, r10, r4
+ 795 040c 9AF8B3A0 		ldrb	r10, [r10, #179]	@ zero_extendqisi2
+ 796 0410 BAF1020F 		cmp	r10, #2
+ 797 0414 06D1     		bne	.L55
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 22
 
 
- 647 0096 0F       		.uleb128 0xf
- 648 0097 00       		.byte	0
- 649 0098 0B       		.uleb128 0xb
- 650 0099 0B       		.uleb128 0xb
- 651 009a 49       		.uleb128 0x49
- 652 009b 13       		.uleb128 0x13
- 653 009c 00       		.byte	0
- 654 009d 00       		.byte	0
- 655 009e 0C       		.uleb128 0xc
- 656 009f 01       		.uleb128 0x1
- 657 00a0 01       		.byte	0x1
- 658 00a1 49       		.uleb128 0x49
- 659 00a2 13       		.uleb128 0x13
- 660 00a3 01       		.uleb128 0x1
- 661 00a4 13       		.uleb128 0x13
- 662 00a5 00       		.byte	0
- 663 00a6 00       		.byte	0
- 664 00a7 0D       		.uleb128 0xd
- 665 00a8 21       		.uleb128 0x21
- 666 00a9 00       		.byte	0
- 667 00aa 49       		.uleb128 0x49
- 668 00ab 13       		.uleb128 0x13
- 669 00ac 2F       		.uleb128 0x2f
- 670 00ad 0B       		.uleb128 0xb
- 671 00ae 00       		.byte	0
- 672 00af 00       		.byte	0
- 673 00b0 0E       		.uleb128 0xe
- 674 00b1 2E       		.uleb128 0x2e
- 675 00b2 01       		.byte	0x1
- 676 00b3 3F       		.uleb128 0x3f
- 677 00b4 19       		.uleb128 0x19
- 678 00b5 03       		.uleb128 0x3
- 679 00b6 0E       		.uleb128 0xe
- 680 00b7 3A       		.uleb128 0x3a
- 681 00b8 0B       		.uleb128 0xb
- 682 00b9 3B       		.uleb128 0x3b
- 683 00ba 05       		.uleb128 0x5
- 684 00bb 49       		.uleb128 0x49
- 685 00bc 13       		.uleb128 0x13
- 686 00bd 11       		.uleb128 0x11
- 687 00be 01       		.uleb128 0x1
- 688 00bf 12       		.uleb128 0x12
- 689 00c0 06       		.uleb128 0x6
- 690 00c1 40       		.uleb128 0x40
- 691 00c2 18       		.uleb128 0x18
- 692 00c3 9742     		.uleb128 0x2117
- 693 00c5 19       		.uleb128 0x19
- 694 00c6 01       		.uleb128 0x1
- 695 00c7 13       		.uleb128 0x13
- 696 00c8 00       		.byte	0
- 697 00c9 00       		.byte	0
- 698 00ca 0F       		.uleb128 0xf
- 699 00cb 34       		.uleb128 0x34
- 700 00cc 00       		.byte	0
- 701 00cd 03       		.uleb128 0x3
- 702 00ce 0E       		.uleb128 0xe
- 703 00cf 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 20
+ 240:.\cv.c        ****                     maxLength += 2;
+ 798              		.loc 1 240 0
+ 799 0416 0232     		adds	r2, r2, #2
+ 800              	.LVL137:
+ 801 0418 D2B2     		uxtb	r2, r2
+ 802              	.LVL138:
+ 241:.\cv.c        ****                     i++;
+ 803              		.loc 1 241 0
+ 804 041a 08F10108 		add	r8, r8, #1
+ 805              	.LVL139:
+ 806 041e 5FFA88F8 		uxtb	r8, r8
+ 807              	.LVL140:
+ 808 0422 83E7     		b	.L81
+ 809              	.L55:
+ 243:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cGREEN) {
+ 810              		.loc 1 243 0
+ 811 0424 0BF10209 		add	r9, fp, #2
+ 812 0428 01FB0949 		mla	r9, r1, r9, r4
+ 813 042c 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
+ 814 0430 B9F1020F 		cmp	r9, #2
+ 815 0434 06D1     		bne	.L56
+ 244:.\cv.c        ****                     maxLength += 3;
+ 816              		.loc 1 244 0
+ 817 0436 0332     		adds	r2, r2, #3
+ 818              	.LVL141:
+ 819 0438 D2B2     		uxtb	r2, r2
+ 820              	.LVL142:
+ 245:.\cv.c        ****                     i += 2;
+ 821              		.loc 1 245 0
+ 822 043a 08F10208 		add	r8, r8, #2
+ 823              	.LVL143:
+ 824 043e 5FFA88F8 		uxtb	r8, r8
+ 825              	.LVL144:
+ 826 0442 73E7     		b	.L81
+ 827              	.L56:
+ 248:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
+ 828              		.loc 1 248 0
+ 829 0444 052A     		cmp	r2, #5
+ 830 0446 1ED9     		bls	.L57
+ 249:.\cv.c        ****                         numBoxes = maxLength / boxHeight;
+ 831              		.loc 1 249 0
+ 832 0448 DDF80CA0 		ldr	r10, [sp, #12]
+ 833 044c B2FBFAF2 		udiv	r2, r2, r10
+ 834              	.LVL145:
+ 251:.\cv.c        ****                         if (numBoxes == 2) {
+ 835              		.loc 1 251 0
+ 836 0450 022A     		cmp	r2, #2
+ 837 0452 07D1     		bne	.L58
+ 252:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 838              		.loc 1 252 0
+ 839 0454 0CF80360 		strb	r6, [ip, r3]
+ 253:.\cv.c        ****                             plan[rowUpTo+1] = GREEN;
+ 840              		.loc 1 253 0
+ 841 0458 5A1C     		adds	r2, r3, #1
+ 842              	.LVL146:
+ 843 045a 0CF80260 		strb	r6, [ip, r2]
+ 254:.\cv.c        ****                             rowUpTo += 2;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 23
 
 
- 704 00d0 0B       		.uleb128 0xb
- 705 00d1 3B       		.uleb128 0x3b
- 706 00d2 05       		.uleb128 0x5
- 707 00d3 49       		.uleb128 0x49
- 708 00d4 13       		.uleb128 0x13
- 709 00d5 3F       		.uleb128 0x3f
- 710 00d6 19       		.uleb128 0x19
- 711 00d7 3C       		.uleb128 0x3c
- 712 00d8 19       		.uleb128 0x19
- 713 00d9 00       		.byte	0
- 714 00da 00       		.byte	0
- 715 00db 10       		.uleb128 0x10
- 716 00dc 35       		.uleb128 0x35
- 717 00dd 00       		.byte	0
- 718 00de 49       		.uleb128 0x49
- 719 00df 13       		.uleb128 0x13
- 720 00e0 00       		.byte	0
- 721 00e1 00       		.byte	0
- 722 00e2 11       		.uleb128 0x11
- 723 00e3 34       		.uleb128 0x34
- 724 00e4 00       		.byte	0
- 725 00e5 03       		.uleb128 0x3
- 726 00e6 0E       		.uleb128 0xe
- 727 00e7 3A       		.uleb128 0x3a
- 728 00e8 0B       		.uleb128 0xb
- 729 00e9 3B       		.uleb128 0x3b
- 730 00ea 0B       		.uleb128 0xb
- 731 00eb 49       		.uleb128 0x49
- 732 00ec 13       		.uleb128 0x13
- 733 00ed 3F       		.uleb128 0x3f
- 734 00ee 19       		.uleb128 0x19
- 735 00ef 02       		.uleb128 0x2
- 736 00f0 18       		.uleb128 0x18
- 737 00f1 00       		.byte	0
- 738 00f2 00       		.byte	0
- 739 00f3 12       		.uleb128 0x12
- 740 00f4 2E       		.uleb128 0x2e
- 741 00f5 01       		.byte	0x1
- 742 00f6 3F       		.uleb128 0x3f
- 743 00f7 19       		.uleb128 0x19
- 744 00f8 03       		.uleb128 0x3
- 745 00f9 0E       		.uleb128 0xe
- 746 00fa 3A       		.uleb128 0x3a
- 747 00fb 0B       		.uleb128 0xb
- 748 00fc 3B       		.uleb128 0x3b
- 749 00fd 0B       		.uleb128 0xb
- 750 00fe 3C       		.uleb128 0x3c
- 751 00ff 19       		.uleb128 0x19
- 752 0100 01       		.uleb128 0x1
- 753 0101 13       		.uleb128 0x13
- 754 0102 00       		.byte	0
- 755 0103 00       		.byte	0
- 756 0104 13       		.uleb128 0x13
- 757 0105 18       		.uleb128 0x18
- 758 0106 00       		.byte	0
- 759 0107 00       		.byte	0
- 760 0108 00       		.byte	0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 21
+ 844              		.loc 1 254 0
+ 845 045e 0233     		adds	r3, r3, #2
+ 846              	.LVL147:
+ 847 0460 DBB2     		uxtb	r3, r3
+ 848              	.LVL148:
+ 849 0462 10E0     		b	.L57
+ 850              	.LVL149:
+ 851              	.L58:
+ 256:.\cv.c        ****                         else if (numBoxes == 3) {
+ 852              		.loc 1 256 0
+ 853 0464 032A     		cmp	r2, #3
+ 854 0466 0AD1     		bne	.L59
+ 257:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 855              		.loc 1 257 0
+ 856 0468 0CF80360 		strb	r6, [ip, r3]
+ 258:.\cv.c        ****                             plan[rowUpTo+1] = GREEN;
+ 857              		.loc 1 258 0
+ 858 046c 5A1C     		adds	r2, r3, #1
+ 859              	.LVL150:
+ 860 046e 0CF80260 		strb	r6, [ip, r2]
+ 259:.\cv.c        ****                             plan[rowUpTo+2] = GREEN;
+ 861              		.loc 1 259 0
+ 862 0472 9A1C     		adds	r2, r3, #2
+ 863 0474 0CF80260 		strb	r6, [ip, r2]
+ 260:.\cv.c        ****                             rowUpTo += 3;
+ 864              		.loc 1 260 0
+ 865 0478 0333     		adds	r3, r3, #3
+ 866              	.LVL151:
+ 867 047a DBB2     		uxtb	r3, r3
+ 868              	.LVL152:
+ 869 047c 03E0     		b	.L57
+ 870              	.LVL153:
+ 871              	.L59:
+ 263:.\cv.c        ****                             plan[rowUpTo] = GREEN;
+ 872              		.loc 1 263 0
+ 873 047e 0CF80360 		strb	r6, [ip, r3]
+ 264:.\cv.c        ****                             rowUpTo++;
+ 874              		.loc 1 264 0
+ 875 0482 0133     		adds	r3, r3, #1
+ 876              	.LVL154:
+ 877 0484 DBB2     		uxtb	r3, r3
+ 878              	.LVL155:
+ 879              	.L57:
+ 269:.\cv.c        ****                     if (Camera_framebuffer[i][halfWidth][3] == cRED)
+ 880              		.loc 1 269 0
+ 881 0486 01FB0842 		mla	r2, r1, r8, r4
+ 882 048a 92F8B320 		ldrb	r2, [r2, #179]	@ zero_extendqisi2
+ 883 048e 032A     		cmp	r2, #3
+ 884 0490 7FF447AF 		bne	.L74
+ 270:.\cv.c        ****                         mode = RED;
+ 885              		.loc 1 270 0
+ 886 0494 0546     		mov	r5, r0
+ 887              	.LVL156:
+ 273:.\cv.c        ****                     maxLength++;
+ 888              		.loc 1 273 0
+ 889 0496 019A     		ldr	r2, [sp, #4]
+ 890 0498 48E7     		b	.L81
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 24
 
 
- 761 0109 14       		.uleb128 0x14
- 762 010a 2E       		.uleb128 0x2e
- 763 010b 01       		.byte	0x1
- 764 010c 3F       		.uleb128 0x3f
- 765 010d 19       		.uleb128 0x19
- 766 010e 03       		.uleb128 0x3
- 767 010f 0E       		.uleb128 0xe
- 768 0110 3A       		.uleb128 0x3a
- 769 0111 0B       		.uleb128 0xb
- 770 0112 3B       		.uleb128 0x3b
- 771 0113 0B       		.uleb128 0xb
- 772 0114 3C       		.uleb128 0x3c
- 773 0115 19       		.uleb128 0x19
- 774 0116 00       		.byte	0
- 775 0117 00       		.byte	0
- 776 0118 00       		.byte	0
- 777              		.section	.debug_loc,"",%progbits
- 778              	.Ldebug_loc0:
- 779              	.LLST0:
- 780 0000 02000000 		.4byte	.LVL3
- 781 0004 08000000 		.4byte	.LVL4
- 782 0008 0200     		.2byte	0x2
- 783 000a 30       		.byte	0x30
- 784 000b 9F       		.byte	0x9f
- 785 000c 08000000 		.4byte	.LVL4
- 786 0010 1A000000 		.4byte	.LVL9
- 787 0014 0100     		.2byte	0x1
- 788 0016 52       		.byte	0x52
- 789 0017 1E000000 		.4byte	.LVL10
- 790 001b 30000000 		.4byte	.LVL15
- 791 001f 0100     		.2byte	0x1
- 792 0021 52       		.byte	0x52
- 793 0022 34000000 		.4byte	.LVL16
- 794 0026 46000000 		.4byte	.LVL21
- 795 002a 0100     		.2byte	0x1
- 796 002c 52       		.byte	0x52
- 797 002d 4A000000 		.4byte	.LVL22
- 798 0031 60000000 		.4byte	.LFE64
- 799 0035 0100     		.2byte	0x1
- 800 0037 52       		.byte	0x52
- 801 0038 00000000 		.4byte	0
- 802 003c 00000000 		.4byte	0
- 803              	.LLST1:
- 804 0040 08000000 		.4byte	.LVL4
- 805 0044 0C000000 		.4byte	.LVL6
- 806 0048 0100     		.2byte	0x1
- 807 004a 53       		.byte	0x53
- 808 004b 0E000000 		.4byte	.LVL7
- 809 004f 14000000 		.4byte	.LVL8
- 810 0053 0100     		.2byte	0x1
- 811 0055 53       		.byte	0x53
- 812 0056 1E000000 		.4byte	.LVL10
- 813 005a 22000000 		.4byte	.LVL12
- 814 005e 0100     		.2byte	0x1
- 815 0060 53       		.byte	0x53
- 816 0061 24000000 		.4byte	.LVL13
- 817 0065 2A000000 		.4byte	.LVL14
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 22
+ 891              	.LVL157:
+ 892              	.L44:
+ 278:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cBLUE) {
+ 893              		.loc 1 278 0
+ 894 049a 01FB0B4A 		mla	r10, r1, fp, r4
+ 895 049e 9AF8B3A0 		ldrb	r10, [r10, #179]	@ zero_extendqisi2
+ 896 04a2 BAF1050F 		cmp	r10, #5
+ 897 04a6 02D1     		bne	.L60
+ 279:.\cv.c        ****                     maxLength++;
+ 898              		.loc 1 279 0
+ 899 04a8 0132     		adds	r2, r2, #1
+ 900              	.LVL158:
+ 901 04aa D2B2     		uxtb	r2, r2
+ 902              	.LVL159:
+ 903 04ac 3EE7     		b	.L81
+ 904              	.L60:
+ 281:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cBLUE) {
+ 905              		.loc 1 281 0
+ 906 04ae 0BFB011A 		mla	r10, fp, r1, r1
+ 907 04b2 A244     		add	r10, r10, r4
+ 908 04b4 9AF8B3A0 		ldrb	r10, [r10, #179]	@ zero_extendqisi2
+ 909 04b8 BAF1050F 		cmp	r10, #5
+ 910 04bc 06D1     		bne	.L61
+ 282:.\cv.c        ****                     maxLength += 2;
+ 911              		.loc 1 282 0
+ 912 04be 0232     		adds	r2, r2, #2
+ 913              	.LVL160:
+ 914 04c0 D2B2     		uxtb	r2, r2
+ 915              	.LVL161:
+ 283:.\cv.c        ****                     i++;
+ 916              		.loc 1 283 0
+ 917 04c2 08F10108 		add	r8, r8, #1
+ 918              	.LVL162:
+ 919 04c6 5FFA88F8 		uxtb	r8, r8
+ 920              	.LVL163:
+ 921 04ca 2FE7     		b	.L81
+ 922              	.L61:
+ 285:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cBLUE) {
+ 923              		.loc 1 285 0
+ 924 04cc 0BF10209 		add	r9, fp, #2
+ 925 04d0 01FB0949 		mla	r9, r1, r9, r4
+ 926 04d4 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
+ 927 04d8 B9F1050F 		cmp	r9, #5
+ 928 04dc 06D1     		bne	.L62
+ 286:.\cv.c        ****                     maxLength += 3;
+ 929              		.loc 1 286 0
+ 930 04de 0332     		adds	r2, r2, #3
+ 931              	.LVL164:
+ 932 04e0 D2B2     		uxtb	r2, r2
+ 933              	.LVL165:
+ 287:.\cv.c        ****                     i += 2;
+ 934              		.loc 1 287 0
+ 935 04e2 08F10208 		add	r8, r8, #2
+ 936              	.LVL166:
+ 937 04e6 5FFA88F8 		uxtb	r8, r8
+ 938              	.LVL167:
+ 939 04ea 1FE7     		b	.L81
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 25
 
 
- 818 0069 0100     		.2byte	0x1
- 819 006b 53       		.byte	0x53
- 820 006c 34000000 		.4byte	.LVL16
- 821 0070 38000000 		.4byte	.LVL18
- 822 0074 0100     		.2byte	0x1
- 823 0076 53       		.byte	0x53
- 824 0077 3A000000 		.4byte	.LVL19
- 825 007b 40000000 		.4byte	.LVL20
- 826 007f 0100     		.2byte	0x1
- 827 0081 53       		.byte	0x53
- 828 0082 4A000000 		.4byte	.LVL22
- 829 0086 4E000000 		.4byte	.LVL24
- 830 008a 0100     		.2byte	0x1
- 831 008c 53       		.byte	0x53
- 832 008d 50000000 		.4byte	.LVL25
- 833 0091 56000000 		.4byte	.LVL26
- 834 0095 0100     		.2byte	0x1
- 835 0097 53       		.byte	0x53
- 836 0098 00000000 		.4byte	0
- 837 009c 00000000 		.4byte	0
- 838              		.section	.debug_aranges,"",%progbits
- 839 0000 2C000000 		.4byte	0x2c
- 840 0004 0200     		.2byte	0x2
- 841 0006 00000000 		.4byte	.Ldebug_info0
- 842 000a 04       		.byte	0x4
- 843 000b 00       		.byte	0
- 844 000c 0000     		.2byte	0
- 845 000e 0000     		.2byte	0
- 846 0010 00000000 		.4byte	.LFB63
- 847 0014 12000000 		.4byte	.LFE63-.LFB63
- 848 0018 00000000 		.4byte	.LFB64
- 849 001c 60000000 		.4byte	.LFE64-.LFB64
- 850 0020 00000000 		.4byte	.LFB65
- 851 0024 0C000000 		.4byte	.LFE65-.LFB65
- 852 0028 00000000 		.4byte	0
- 853 002c 00000000 		.4byte	0
- 854              		.section	.debug_ranges,"",%progbits
- 855              	.Ldebug_ranges0:
- 856 0000 00000000 		.4byte	.LFB63
- 857 0004 12000000 		.4byte	.LFE63
- 858 0008 00000000 		.4byte	.LFB64
- 859 000c 60000000 		.4byte	.LFE64
- 860 0010 00000000 		.4byte	.LFB65
- 861 0014 0C000000 		.4byte	.LFE65
- 862 0018 00000000 		.4byte	0
- 863 001c 00000000 		.4byte	0
- 864              		.section	.debug_line,"",%progbits
- 865              	.Ldebug_line0:
- 866 0000 DF010000 		.section	.debug_str,"MS",%progbits,1
- 866      02005301 
- 866      00000201 
- 866      FB0E0D00 
- 866      01010101 
- 867              	.LASF6:
- 868 0000 6C6F6E67 		.ascii	"long long int\000"
- 868      206C6F6E 
- 868      6720696E 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 23
+ 940              	.L62:
+ 290:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
+ 941              		.loc 1 290 0
+ 942 04ec 052A     		cmp	r2, #5
+ 943 04ee 1DD9     		bls	.L63
+ 291:.\cv.c        ****                         numBoxes = maxLength / boxHeight;
+ 944              		.loc 1 291 0
+ 945 04f0 039D     		ldr	r5, [sp, #12]
+ 946              	.LVL168:
+ 947 04f2 B2FBF5F2 		udiv	r2, r2, r5
+ 948              	.LVL169:
+ 293:.\cv.c        ****                         if (numBoxes == 2) {
+ 949              		.loc 1 293 0
+ 950 04f6 022A     		cmp	r2, #2
+ 951 04f8 07D1     		bne	.L64
+ 294:.\cv.c        ****                             plan[rowUpTo] = BLUE;
+ 952              		.loc 1 294 0
+ 953 04fa 0CF80370 		strb	r7, [ip, r3]
+ 295:.\cv.c        ****                             plan[rowUpTo+1] = BLUE;
+ 954              		.loc 1 295 0
+ 955 04fe 5A1C     		adds	r2, r3, #1
+ 956              	.LVL170:
+ 957 0500 0CF80270 		strb	r7, [ip, r2]
+ 296:.\cv.c        ****                             rowUpTo += 2;
+ 958              		.loc 1 296 0
+ 959 0504 0233     		adds	r3, r3, #2
+ 960              	.LVL171:
+ 961 0506 DBB2     		uxtb	r3, r3
+ 962              	.LVL172:
+ 963 0508 10E0     		b	.L63
+ 964              	.LVL173:
+ 965              	.L64:
+ 298:.\cv.c        ****                         else if (numBoxes == 3) {
+ 966              		.loc 1 298 0
+ 967 050a 032A     		cmp	r2, #3
+ 968 050c 0AD1     		bne	.L65
+ 299:.\cv.c        ****                             plan[rowUpTo] = BLUE;
+ 969              		.loc 1 299 0
+ 970 050e 0CF80370 		strb	r7, [ip, r3]
+ 300:.\cv.c        ****                             plan[rowUpTo+1] = BLUE;
+ 971              		.loc 1 300 0
+ 972 0512 5A1C     		adds	r2, r3, #1
+ 973              	.LVL174:
+ 974 0514 0CF80270 		strb	r7, [ip, r2]
+ 301:.\cv.c        ****                             plan[rowUpTo+2] = BLUE;
+ 975              		.loc 1 301 0
+ 976 0518 9A1C     		adds	r2, r3, #2
+ 977 051a 0CF80270 		strb	r7, [ip, r2]
+ 302:.\cv.c        ****                             rowUpTo += 3;
+ 978              		.loc 1 302 0
+ 979 051e 0333     		adds	r3, r3, #3
+ 980              	.LVL175:
+ 981 0520 DBB2     		uxtb	r3, r3
+ 982              	.LVL176:
+ 983 0522 03E0     		b	.L63
+ 984              	.LVL177:
+ 985              	.L65:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 26
 
 
- 868      7400
- 869              	.LASF9:
- 870 000e 5F5F696E 		.ascii	"__int32_t\000"
- 870      7433325F 
- 870      7400
- 871              	.LASF17:
- 872 0018 70617273 		.ascii	"parsePhoto\000"
- 872      6550686F 
- 872      746F00
- 873              	.LASF24:
- 874 0023 696D6752 		.ascii	"imgR_Bin\000"
- 874      5F42696E 
- 874      00
- 875              	.LASF33:
- 876 002c 2E5C6376 		.ascii	".\\cv.c\000"
- 876      2E6300
- 877              	.LASF31:
- 878 0033 43616D65 		.ascii	"Camera_framebuffer\000"
- 878      72615F66 
- 878      72616D65 
- 878      62756666 
- 878      657200
- 879              	.LASF10:
- 880 0046 696E7433 		.ascii	"int32_t\000"
- 880      325F7400 
- 881              	.LASF12:
- 882 004e 666C6F61 		.ascii	"float\000"
- 882      7400
- 883              	.LASF0:
- 884 0054 7369676E 		.ascii	"signed char\000"
- 884      65642063 
- 884      68617200 
- 885              	.LASF22:
- 886 0060 696D6747 		.ascii	"imgG_Diff\000"
- 886      5F446966 
- 886      6600
- 887              	.LASF1:
- 888 006a 756E7369 		.ascii	"unsigned char\000"
- 888      676E6564 
- 888      20636861 
- 888      7200
- 889              	.LASF5:
- 890 0078 6C6F6E67 		.ascii	"long unsigned int\000"
- 890      20756E73 
- 890      69676E65 
- 890      6420696E 
- 890      7400
- 891              	.LASF3:
- 892 008a 73686F72 		.ascii	"short unsigned int\000"
- 892      7420756E 
- 892      7369676E 
- 892      65642069 
- 892      6E7400
- 893              	.LASF20:
- 894 009d 696D6742 		.ascii	"imgB\000"
- 894      00
- 895              	.LASF23:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 24
+ 305:.\cv.c        ****                             plan[rowUpTo] = BLUE;
+ 986              		.loc 1 305 0
+ 987 0524 0CF80370 		strb	r7, [ip, r3]
+ 306:.\cv.c        ****                             rowUpTo++;
+ 988              		.loc 1 306 0
+ 989 0528 0133     		adds	r3, r3, #1
+ 990              	.LVL178:
+ 991 052a DBB2     		uxtb	r3, r3
+ 992              	.LVL179:
+ 993              	.L63:
+ 311:.\cv.c        ****                     if (Camera_framebuffer[i][halfWidth][3] == cRED)
+ 994              		.loc 1 311 0
+ 995 052c 01FB0842 		mla	r2, r1, r8, r4
+ 996 0530 92F8B320 		ldrb	r2, [r2, #179]	@ zero_extendqisi2
+ 997 0534 032A     		cmp	r2, #3
+ 998 0536 7FF4F7AE 		bne	.L75
+ 312:.\cv.c        ****                         mode = RED;
+ 999              		.loc 1 312 0
+ 1000 053a 0546     		mov	r5, r0
+ 1001              		.loc 1 315 0
+ 1002 053c 019A     		ldr	r2, [sp, #4]
+ 1003 053e F5E6     		b	.L81
+ 1004              	.LVL180:
+ 1005              	.L82:
+ 316:.\cv.c        ****                 }
+ 317:.\cv.c        ****                 break;
+ 318:.\cv.c        ****                 
+ 319:.\cv.c        ****             default: // Initial
+ 320:.\cv.c        ****                 if (Camera_framebuffer[i][halfWidth][3] == cRED)
+ 1006              		.loc 1 320 0
+ 1007 0540 01FB0845 		mla	r5, r1, r8, r4
+ 1008              	.LVL181:
+ 1009 0544 95F8B350 		ldrb	r5, [r5, #179]	@ zero_extendqisi2
+ 1010 0548 032D     		cmp	r5, #3
+ 1011 054a 03D0     		beq	.L76
+ 321:.\cv.c        ****                     mode = RED;
+ 322:.\cv.c        ****                 else if (Camera_framebuffer[i][halfWidth][3] == cGREEN)
+ 1012              		.loc 1 322 0
+ 1013 054c 022D     		cmp	r5, #2
+ 1014 054e 03D1     		bne	.L77
+ 323:.\cv.c        ****                     mode = GREEN;
+ 1015              		.loc 1 323 0
+ 1016 0550 3546     		mov	r5, r6
+ 1017 0552 02E0     		b	.L66
+ 1018              	.L76:
+ 321:.\cv.c        ****                     mode = RED;
+ 1019              		.loc 1 321 0
+ 1020 0554 0546     		mov	r5, r0
+ 1021 0556 00E0     		b	.L66
+ 1022              	.L77:
+ 324:.\cv.c        ****                 else
+ 325:.\cv.c        ****                     mode = BLUE;
+ 1023              		.loc 1 325 0
+ 1024 0558 3D46     		mov	r5, r7
+ 1025              	.L66:
+ 1026              	.LVL182:
+ 326:.\cv.c        ****                 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 27
 
 
- 896 00a2 696D6742 		.ascii	"imgB_Diff\000"
- 896      5F446966 
- 896      6600
- 897              	.LASF30:
- 898 00ac 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 898      52784275 
- 898      66666572 
- 898      00
- 899              	.LASF19:
- 900 00b9 696D6747 		.ascii	"imgG\000"
- 900      00
- 901              	.LASF21:
- 902 00be 696D6752 		.ascii	"imgR_Diff\000"
- 902      5F446966 
- 902      6600
- 903              	.LASF13:
- 904 00c8 646F7562 		.ascii	"double\000"
- 904      6C6500
- 905              	.LASF25:
- 906 00cf 696D6747 		.ascii	"imgG_Bin\000"
- 906      5F42696E 
- 906      00
- 907              	.LASF18:
- 908 00d8 696D6752 		.ascii	"imgR\000"
- 908      00
- 909              	.LASF29:
- 910 00dd 72656164 		.ascii	"readPlanWithCamera\000"
- 910      506C616E 
- 910      57697468 
- 910      43616D65 
- 910      726100
- 911              	.LASF8:
- 912 00f0 756E7369 		.ascii	"unsigned int\000"
- 912      676E6564 
- 912      20696E74 
- 912      00
- 913              	.LASF7:
- 914 00fd 6C6F6E67 		.ascii	"long long unsigned int\000"
- 914      206C6F6E 
- 914      6720756E 
- 914      7369676E 
- 914      65642069 
- 915              	.LASF35:
- 916 0114 43616D65 		.ascii	"Camera_SyncFrame\000"
- 916      72615F53 
- 916      796E6346 
- 916      72616D65 
- 916      00
- 917              	.LASF32:
- 918 0125 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 918      4320342E 
- 918      382E3420 
- 918      32303134 
- 918      30353236 
- 919 0158 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 919      20726576 
- 919      6973696F 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 25
+ 327:.\cv.c        ****                 maxLength++;
+ 1027              		.loc 1 327 0
+ 1028 055a 0132     		adds	r2, r2, #1
+ 1029              	.LVL183:
+ 1030 055c D2B2     		uxtb	r2, r2
+ 1031              	.LVL184:
+ 328:.\cv.c        ****                 break;
+ 1032              		.loc 1 328 0
+ 1033 055e E5E6     		b	.L81
+ 1034              	.L41:
+ 329:.\cv.c        ****         }
+ 330:.\cv.c        ****     }
+ 331:.\cv.c        ****     
+ 332:.\cv.c        ****     
+ 333:.\cv.c        ****     return plan; // TODO: Check if returning the right thing
+ 334:.\cv.c        **** }
+ 1035              		.loc 1 334 0
+ 1036 0560 0498     		ldr	r0, [sp, #16]
+ 1037 0562 07B0     		add	sp, sp, #28
+ 1038              		@ sp needed
+ 1039 0564 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1040              	.LVL185:
+ 1041              	.L86:
+ 1042              		.align	2
+ 1043              	.L85:
+ 1044 0568 00000000 		.word	Camera_framebuffer
+ 1045              		.cfi_endproc
+ 1046              	.LFE64:
+ 1047              		.size	parsePhoto, .-parsePhoto
+ 1048              		.section	.text.readPlanWithCamera,"ax",%progbits
+ 1049              		.align	2
+ 1050              		.global	readPlanWithCamera
+ 1051              		.thumb
+ 1052              		.thumb_func
+ 1053              		.type	readPlanWithCamera, %function
+ 1054              	readPlanWithCamera:
+ 1055              	.LFB65:
+ 335:.\cv.c        **** 
+ 336:.\cv.c        **** uint8 * readPlanWithCamera() {
+ 1056              		.loc 1 336 0
+ 1057              		.cfi_startproc
+ 1058              		@ args = 0, pretend = 0, frame = 0
+ 1059              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1060 0000 08B5     		push	{r3, lr}
+ 1061              		.cfi_def_cfa_offset 8
+ 1062              		.cfi_offset 3, -8
+ 1063              		.cfi_offset 14, -4
+ 337:.\cv.c        **** //    int * plan = (int *) malloc(sizeof(int) * ROWS);
+ 338:.\cv.c        ****     
+ 339:.\cv.c        ****     takePhoto();
+ 1064              		.loc 1 339 0
+ 1065 0002 FFF7FEFF 		bl	takePhoto
+ 1066              	.LVL186:
+ 340:.\cv.c        ****     return parsePhoto();
+ 1067              		.loc 1 340 0
+ 1068 0006 FFF7FEFF 		bl	parsePhoto
+ 1069              	.LVL187:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 28
 
 
- 919      6E203231 
- 919      31333538 
- 920 018b 67202D66 		.ascii	"g -ffunction-sections\000"
- 920      66756E63 
- 920      74696F6E 
- 920      2D736563 
- 920      74696F6E 
- 921              	.LASF15:
- 922 01a1 73697A65 		.ascii	"sizetype\000"
- 922      74797065 
- 922      00
- 923              	.LASF28:
- 924 01aa 706C616E 		.ascii	"plan\000"
- 924      00
- 925              	.LASF14:
- 926 01af 63686172 		.ascii	"char\000"
- 926      00
- 927              	.LASF27:
- 928 01b4 696D6747 		.ascii	"imgGrey\000"
- 928      72657900 
- 929              	.LASF2:
- 930 01bc 73686F72 		.ascii	"short int\000"
- 930      7420696E 
- 930      7400
- 931              	.LASF26:
- 932 01c6 696D6742 		.ascii	"imgB_Bin\000"
- 932      5F42696E 
- 932      00
- 933              	.LASF11:
- 934 01cf 75696E74 		.ascii	"uint8\000"
- 934      3800
- 935              	.LASF4:
- 936 01d5 6C6F6E67 		.ascii	"long int\000"
- 936      20696E74 
- 936      00
- 937              	.LASF16:
- 938 01de 74616B65 		.ascii	"takePhoto\000"
- 938      50686F74 
- 938      6F00
- 939              	.LASF34:
- 940 01e8 433A5C55 		.ascii	"C:\\Users\\Nick\\Dropbox\\Uni Docs\\y4s2\\ECE3091 -"
- 940      73657273 
- 940      5C4E6963 
- 940      6B5C4472 
- 940      6F70626F 
- 941 0215 20456E67 		.ascii	" Engineering Design\\PSoc Creator\\eng_design_2015\\"
- 941      696E6565 
- 941      72696E67 
- 941      20446573 
- 941      69676E5C 
- 942 0246 45434533 		.ascii	"ECE3091-chickybot\\chickybot.cydsn\000"
- 942      3039312D 
- 942      63686963 
- 942      6B79626F 
- 942      745C6368 
- 943              	.LASF36:
- 944 0268 43616D65 		.ascii	"Camera_GetFrame\000"
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCAQWgX.s 			page 26
+ 341:.\cv.c        ****     
+ 342:.\cv.c        **** //    plan[0] = 1;
+ 343:.\cv.c        **** //    plan[1] = 2;
+ 344:.\cv.c        **** //    plan[2] = 3;
+ 345:.\cv.c        **** //    
+ 346:.\cv.c        **** //    return plan;
+ 347:.\cv.c        **** }...
+ 1070              		.loc 1 347 0
+ 1071 000a 08BD     		pop	{r3, pc}
+ 1072              		.cfi_endproc
+ 1073              	.LFE65:
+ 1074              		.size	readPlanWithCamera, .-readPlanWithCamera
+ 1075              		.comm	Camera_framebuffer,50688,4
+ 1076              		.text
+ 1077              	.Letext0:
+ 1078              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1079              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1080              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 1081              		.file 5 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1082              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 1083              		.file 7 "Generated_Source\\PSoC5/Camera.h"
+ 1084              		.file 8 ".\\cv.h"
+ 1085              		.file 9 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1086              		.section	.debug_info,"",%progbits
+ 1087              	.Ldebug_info0:
+ 1088 0000 18030000 		.4byte	0x318
+ 1089 0004 0400     		.2byte	0x4
+ 1090 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1091 000a 04       		.byte	0x4
+ 1092 000b 01       		.uleb128 0x1
+ 1093 000c 38010000 		.4byte	.LASF44
+ 1094 0010 01       		.byte	0x1
+ 1095 0011 37000000 		.4byte	.LASF45
+ 1096 0015 38020000 		.4byte	.LASF46
+ 1097 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1098 001d 00000000 		.4byte	0
+ 1099 0021 00000000 		.4byte	.Ldebug_line0
+ 1100 0025 02       		.uleb128 0x2
+ 1101 0026 01       		.byte	0x1
+ 1102 0027 06       		.byte	0x6
+ 1103 0028 10020000 		.4byte	.LASF0
+ 1104 002c 02       		.uleb128 0x2
+ 1105 002d 01       		.byte	0x1
+ 1106 002e 08       		.byte	0x8
+ 1107 002f EE000000 		.4byte	.LASF1
+ 1108 0033 02       		.uleb128 0x2
+ 1109 0034 02       		.byte	0x2
+ 1110 0035 05       		.byte	0x5
+ 1111 0036 D4000000 		.4byte	.LASF2
+ 1112 003a 02       		.uleb128 0x2
+ 1113 003b 02       		.byte	0x2
+ 1114 003c 07       		.byte	0x7
+ 1115 003d 1C020000 		.4byte	.LASF3
+ 1116 0041 03       		.uleb128 0x3
+ 1117 0042 1D000000 		.4byte	.LASF9
+ 1118 0046 02       		.byte	0x2
+ 1119 0047 37       		.byte	0x37
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 29
 
 
- 944      72615F47 
- 944      65744672 
- 944      616D6500 
- 945              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 1120 0048 4C000000 		.4byte	0x4c
+ 1121 004c 02       		.uleb128 0x2
+ 1122 004d 04       		.byte	0x4
+ 1123 004e 05       		.byte	0x5
+ 1124 004f FD010000 		.4byte	.LASF4
+ 1125 0053 02       		.uleb128 0x2
+ 1126 0054 04       		.byte	0x4
+ 1127 0055 07       		.byte	0x7
+ 1128 0056 83000000 		.4byte	.LASF5
+ 1129 005a 02       		.uleb128 0x2
+ 1130 005b 08       		.byte	0x8
+ 1131 005c 05       		.byte	0x5
+ 1132 005d 00000000 		.4byte	.LASF6
+ 1133 0061 02       		.uleb128 0x2
+ 1134 0062 08       		.byte	0x8
+ 1135 0063 07       		.byte	0x7
+ 1136 0064 09010000 		.4byte	.LASF7
+ 1137 0068 04       		.uleb128 0x4
+ 1138 0069 04       		.byte	0x4
+ 1139 006a 05       		.byte	0x5
+ 1140 006b 696E7400 		.ascii	"int\000"
+ 1141 006f 02       		.uleb128 0x2
+ 1142 0070 04       		.byte	0x4
+ 1143 0071 07       		.byte	0x7
+ 1144 0072 FC000000 		.4byte	.LASF8
+ 1145 0076 03       		.uleb128 0x3
+ 1146 0077 62000000 		.4byte	.LASF10
+ 1147 007b 03       		.byte	0x3
+ 1148 007c 41       		.byte	0x41
+ 1149 007d 41000000 		.4byte	0x41
+ 1150 0081 03       		.uleb128 0x3
+ 1151 0082 F2010000 		.4byte	.LASF11
+ 1152 0086 04       		.byte	0x4
+ 1153 0087 B4       		.byte	0xb4
+ 1154 0088 2C000000 		.4byte	0x2c
+ 1155 008c 02       		.uleb128 0x2
+ 1156 008d 04       		.byte	0x4
+ 1157 008e 04       		.byte	0x4
+ 1158 008f 6A000000 		.4byte	.LASF12
+ 1159 0093 02       		.uleb128 0x2
+ 1160 0094 08       		.byte	0x8
+ 1161 0095 04       		.byte	0x4
+ 1162 0096 C6000000 		.4byte	.LASF13
+ 1163 009a 02       		.uleb128 0x2
+ 1164 009b 01       		.byte	0x1
+ 1165 009c 08       		.byte	0x8
+ 1166 009d D5010000 		.4byte	.LASF14
+ 1167 00a1 03       		.uleb128 0x3
+ 1168 00a2 9D000000 		.4byte	.LASF15
+ 1169 00a6 05       		.byte	0x5
+ 1170 00a7 D4       		.byte	0xd4
+ 1171 00a8 6F000000 		.4byte	0x6f
+ 1172 00ac 02       		.uleb128 0x2
+ 1173 00ad 04       		.byte	0x4
+ 1174 00ae 07       		.byte	0x7
+ 1175 00af B4010000 		.4byte	.LASF16
+ 1176 00b3 05       		.uleb128 0x5
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 30
+
+
+ 1177 00b4 04       		.byte	0x4
+ 1178 00b5 06       		.uleb128 0x6
+ 1179 00b6 CD000000 		.4byte	.LASF47
+ 1180 00ba 01       		.byte	0x1
+ 1181 00bb 08       		.byte	0x8
+ 1182 00bc 12       		.byte	0x12
+ 1183 00bd DA000000 		.4byte	0xda
+ 1184 00c1 07       		.uleb128 0x7
+ 1185 00c2 18000000 		.4byte	.LASF17
+ 1186 00c6 00       		.sleb128 0
+ 1187 00c7 08       		.uleb128 0x8
+ 1188 00c8 52454400 		.ascii	"RED\000"
+ 1189 00cc 01       		.sleb128 1
+ 1190 00cd 07       		.uleb128 0x7
+ 1191 00ce E8000000 		.4byte	.LASF18
+ 1192 00d2 02       		.sleb128 2
+ 1193 00d3 07       		.uleb128 0x7
+ 1194 00d4 32000000 		.4byte	.LASF19
+ 1195 00d8 03       		.sleb128 3
+ 1196 00d9 00       		.byte	0
+ 1197 00da 09       		.uleb128 0x9
+ 1198 00db 06020000 		.4byte	.LASF20
+ 1199 00df 01       		.byte	0x1
+ 1200 00e0 0A       		.byte	0xa
+ 1201 00e1 68000000 		.4byte	0x68
+ 1202 00e5 00000000 		.4byte	.LFB63
+ 1203 00e9 12000000 		.4byte	.LFE63-.LFB63
+ 1204 00ed 01       		.uleb128 0x1
+ 1205 00ee 9C       		.byte	0x9c
+ 1206 00ef 0F010000 		.4byte	0x10f
+ 1207 00f3 0A       		.uleb128 0xa
+ 1208 00f4 06000000 		.4byte	.LVL0
+ 1209 00f8 F0020000 		.4byte	0x2f0
+ 1210 00fc 0A       		.uleb128 0xa
+ 1211 00fd 0A000000 		.4byte	.LVL1
+ 1212 0101 FD020000 		.4byte	0x2fd
+ 1213 0105 0A       		.uleb128 0xa
+ 1214 0106 0E000000 		.4byte	.LVL2
+ 1215 010a F0020000 		.4byte	0x2f0
+ 1216 010e 00       		.byte	0
+ 1217 010f 09       		.uleb128 0x9
+ 1218 0110 27000000 		.4byte	.LASF21
+ 1219 0114 01       		.byte	0x1
+ 1220 0115 12       		.byte	0x12
+ 1221 0116 7A020000 		.4byte	0x27a
+ 1222 011a 00000000 		.4byte	.LFB64
+ 1223 011e 6C050000 		.4byte	.LFE64-.LFB64
+ 1224 0122 01       		.uleb128 0x1
+ 1225 0123 9C       		.byte	0x9c
+ 1226 0124 7A020000 		.4byte	0x27a
+ 1227 0128 0B       		.uleb128 0xb
+ 1228 0129 D0010000 		.4byte	.LASF22
+ 1229 012d 01       		.byte	0x1
+ 1230 012e 14       		.byte	0x14
+ 1231 012f 7A020000 		.4byte	0x27a
+ 1232 0133 00000000 		.4byte	.LLST0
+ 1233 0137 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 31
+
+
+ 1234 0138 6800     		.ascii	"h\000"
+ 1235 013a 01       		.byte	0x1
+ 1236 013b 1A       		.byte	0x1a
+ 1237 013c 81000000 		.4byte	0x81
+ 1238 0140 2B000000 		.4byte	.LLST1
+ 1239 0144 0C       		.uleb128 0xc
+ 1240 0145 7700     		.ascii	"w\000"
+ 1241 0147 01       		.byte	0x1
+ 1242 0148 1A       		.byte	0x1a
+ 1243 0149 81000000 		.4byte	0x81
+ 1244 014d E1000000 		.4byte	.LLST2
+ 1245 0151 0C       		.uleb128 0xc
+ 1246 0152 7500     		.ascii	"u\000"
+ 1247 0154 01       		.byte	0x1
+ 1248 0155 1C       		.byte	0x1c
+ 1249 0156 81000000 		.4byte	0x81
+ 1250 015a CD010000 		.4byte	.LLST3
+ 1251 015e 0C       		.uleb128 0xc
+ 1252 015f 7600     		.ascii	"v\000"
+ 1253 0161 01       		.byte	0x1
+ 1254 0162 1C       		.byte	0x1c
+ 1255 0163 81000000 		.4byte	0x81
+ 1256 0167 FD010000 		.4byte	.LLST4
+ 1257 016b 0C       		.uleb128 0xc
+ 1258 016c 7900     		.ascii	"y\000"
+ 1259 016e 01       		.byte	0x1
+ 1260 016f 1C       		.byte	0x1c
+ 1261 0170 81000000 		.4byte	0x81
+ 1262 0174 11020000 		.4byte	.LLST5
+ 1263 0178 0B       		.uleb128 0xb
+ 1264 0179 BC000000 		.4byte	.LASF23
+ 1265 017d 01       		.byte	0x1
+ 1266 017e 52       		.byte	0x52
+ 1267 017f 81000000 		.4byte	0x81
+ 1268 0183 25020000 		.4byte	.LLST6
+ 1269 0187 0B       		.uleb128 0xb
+ 1270 0188 75000000 		.4byte	.LASF24
+ 1271 018c 01       		.byte	0x1
+ 1272 018d 53       		.byte	0x53
+ 1273 018e 81000000 		.4byte	0x81
+ 1274 0192 7B020000 		.4byte	.LLST7
+ 1275 0196 0D       		.uleb128 0xd
+ 1276 0197 20010000 		.4byte	.LASF26
+ 1277 019b 01       		.byte	0x1
+ 1278 019c 54       		.byte	0x54
+ 1279 019d 81000000 		.4byte	0x81
+ 1280 01a1 0B       		.uleb128 0xb
+ 1281 01a2 DA010000 		.4byte	.LASF25
+ 1282 01a6 01       		.byte	0x1
+ 1283 01a7 55       		.byte	0x55
+ 1284 01a8 81000000 		.4byte	0x81
+ 1285 01ac ED020000 		.4byte	.LLST8
+ 1286 01b0 0D       		.uleb128 0xd
+ 1287 01b1 B1000000 		.4byte	.LASF27
+ 1288 01b5 01       		.byte	0x1
+ 1289 01b6 56       		.byte	0x56
+ 1290 01b7 81000000 		.4byte	0x81
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 32
+
+
+ 1291 01bb 0D       		.uleb128 0xd
+ 1292 01bc 2E010000 		.4byte	.LASF28
+ 1293 01c0 01       		.byte	0x1
+ 1294 01c1 57       		.byte	0x57
+ 1295 01c2 81000000 		.4byte	0x81
+ 1296 01c6 0C       		.uleb128 0xc
+ 1297 01c7 6900     		.ascii	"i\000"
+ 1298 01c9 01       		.byte	0x1
+ 1299 01ca 58       		.byte	0x58
+ 1300 01cb 81000000 		.4byte	0x81
+ 1301 01cf 5F030000 		.4byte	.LLST9
+ 1302 01d3 0B       		.uleb128 0xb
+ 1303 01d4 DE000000 		.4byte	.LASF29
+ 1304 01d8 01       		.byte	0x1
+ 1305 01d9 73       		.byte	0x73
+ 1306 01da 81000000 		.4byte	0x81
+ 1307 01de F0040000 		.4byte	.LLST10
+ 1308 01e2 0B       		.uleb128 0xb
+ 1309 01e3 70000000 		.4byte	.LASF30
+ 1310 01e7 01       		.byte	0x1
+ 1311 01e8 92       		.byte	0x92
+ 1312 01e9 81000000 		.4byte	0x81
+ 1313 01ed 10050000 		.4byte	.LLST11
+ 1314 01f1 0B       		.uleb128 0xb
+ 1315 01f2 ED010000 		.4byte	.LASF31
+ 1316 01f6 01       		.byte	0x1
+ 1317 01f7 93       		.byte	0x93
+ 1318 01f8 81000000 		.4byte	0x81
+ 1319 01fc 81050000 		.4byte	.LLST12
+ 1320 0200 0D       		.uleb128 0xd
+ 1321 0201 F8010000 		.4byte	.LASF32
+ 1322 0205 01       		.byte	0x1
+ 1323 0206 AE       		.byte	0xae
+ 1324 0207 80020000 		.4byte	0x280
+ 1325 020b 0D       		.uleb128 0xd
+ 1326 020c BF020000 		.4byte	.LASF33
+ 1327 0210 01       		.byte	0x1
+ 1328 0211 AE       		.byte	0xae
+ 1329 0212 80020000 		.4byte	0x280
+ 1330 0216 0D       		.uleb128 0xd
+ 1331 0217 E7010000 		.4byte	.LASF34
+ 1332 021b 01       		.byte	0x1
+ 1333 021c AE       		.byte	0xae
+ 1334 021d 80020000 		.4byte	0x280
+ 1335 0221 0C       		.uleb128 0xc
+ 1336 0222 6A00     		.ascii	"j\000"
+ 1337 0224 01       		.byte	0x1
+ 1338 0225 B2       		.byte	0xb2
+ 1339 0226 81000000 		.4byte	0x81
+ 1340 022a E5050000 		.4byte	.LLST13
+ 1341 022e 0B       		.uleb128 0xb
+ 1342 022f 0E000000 		.4byte	.LASF35
+ 1343 0233 01       		.byte	0x1
+ 1344 0234 B3       		.byte	0xb3
+ 1345 0235 81000000 		.4byte	0x81
+ 1346 0239 10060000 		.4byte	.LLST14
+ 1347 023d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 33
+
+
+ 1348 023e 95000000 		.4byte	.LASF36
+ 1349 0242 01       		.byte	0x1
+ 1350 0243 B4       		.byte	0xb4
+ 1351 0244 81000000 		.4byte	0x81
+ 1352 0248 64070000 		.4byte	.LLST15
+ 1353 024c 0B       		.uleb128 0xb
+ 1354 024d 29010000 		.4byte	.LASF37
+ 1355 0251 01       		.byte	0x1
+ 1356 0252 B5       		.byte	0xb5
+ 1357 0253 81000000 		.4byte	0x81
+ 1358 0257 4F080000 		.4byte	.LLST16
+ 1359 025b 0B       		.uleb128 0xb
+ 1360 025c 2F020000 		.4byte	.LASF38
+ 1361 0260 01       		.byte	0x1
+ 1362 0261 B6       		.byte	0xb6
+ 1363 0262 81000000 		.4byte	0x81
+ 1364 0266 99080000 		.4byte	.LLST17
+ 1365 026a 0E       		.uleb128 0xe
+ 1366 026b 0C000000 		.4byte	.LVL3
+ 1367 026f 0A030000 		.4byte	0x30a
+ 1368 0273 0F       		.uleb128 0xf
+ 1369 0274 01       		.uleb128 0x1
+ 1370 0275 50       		.byte	0x50
+ 1371 0276 01       		.uleb128 0x1
+ 1372 0277 33       		.byte	0x33
+ 1373 0278 00       		.byte	0
+ 1374 0279 00       		.byte	0
+ 1375 027a 10       		.uleb128 0x10
+ 1376 027b 04       		.byte	0x4
+ 1377 027c 81000000 		.4byte	0x81
+ 1378 0280 11       		.uleb128 0x11
+ 1379 0281 81000000 		.4byte	0x81
+ 1380 0285 12       		.uleb128 0x12
+ 1381 0286 BD010000 		.4byte	.LASF39
+ 1382 028a 01       		.byte	0x1
+ 1383 028b 5001     		.2byte	0x150
+ 1384 028d 7A020000 		.4byte	0x27a
+ 1385 0291 00000000 		.4byte	.LFB65
+ 1386 0295 0C000000 		.4byte	.LFE65-.LFB65
+ 1387 0299 01       		.uleb128 0x1
+ 1388 029a 9C       		.byte	0x9c
+ 1389 029b B2020000 		.4byte	0x2b2
+ 1390 029f 0A       		.uleb128 0xa
+ 1391 02a0 06000000 		.4byte	.LVL186
+ 1392 02a4 DA000000 		.4byte	0xda
+ 1393 02a8 0A       		.uleb128 0xa
+ 1394 02a9 0A000000 		.4byte	.LVL187
+ 1395 02ad 0F010000 		.4byte	0x10f
+ 1396 02b1 00       		.byte	0
+ 1397 02b2 13       		.uleb128 0x13
+ 1398 02b3 A4000000 		.4byte	.LASF40
+ 1399 02b7 06       		.byte	0x6
+ 1400 02b8 2A06     		.2byte	0x62a
+ 1401 02ba BE020000 		.4byte	0x2be
+ 1402 02be 14       		.uleb128 0x14
+ 1403 02bf 76000000 		.4byte	0x76
+ 1404 02c3 15       		.uleb128 0x15
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 34
+
+
+ 1405 02c4 81000000 		.4byte	0x81
+ 1406 02c8 DF020000 		.4byte	0x2df
+ 1407 02cc 16       		.uleb128 0x16
+ 1408 02cd AC000000 		.4byte	0xac
+ 1409 02d1 8F       		.byte	0x8f
+ 1410 02d2 16       		.uleb128 0x16
+ 1411 02d3 AC000000 		.4byte	0xac
+ 1412 02d7 57       		.byte	0x57
+ 1413 02d8 16       		.uleb128 0x16
+ 1414 02d9 AC000000 		.4byte	0xac
+ 1415 02dd 03       		.byte	0x3
+ 1416 02de 00       		.byte	0
+ 1417 02df 17       		.uleb128 0x17
+ 1418 02e0 4F000000 		.4byte	.LASF41
+ 1419 02e4 07       		.byte	0x7
+ 1420 02e5 08       		.byte	0x8
+ 1421 02e6 C3020000 		.4byte	0x2c3
+ 1422 02ea 05       		.uleb128 0x5
+ 1423 02eb 03       		.byte	0x3
+ 1424 02ec 00000000 		.4byte	Camera_framebuffer
+ 1425 02f0 18       		.uleb128 0x18
+ 1426 02f1 3E000000 		.4byte	.LASF42
+ 1427 02f5 07       		.byte	0x7
+ 1428 02f6 0D       		.byte	0xd
+ 1429 02f7 FD020000 		.4byte	0x2fd
+ 1430 02fb 19       		.uleb128 0x19
+ 1431 02fc 00       		.byte	0
+ 1432 02fd 18       		.uleb128 0x18
+ 1433 02fe C6020000 		.4byte	.LASF43
+ 1434 0302 07       		.byte	0x7
+ 1435 0303 1B       		.byte	0x1b
+ 1436 0304 0A030000 		.4byte	0x30a
+ 1437 0308 19       		.uleb128 0x19
+ 1438 0309 00       		.byte	0
+ 1439 030a 1A       		.uleb128 0x1a
+ 1440 030b B8020000 		.4byte	.LASF48
+ 1441 030f 09       		.byte	0x9
+ 1442 0310 60       		.byte	0x60
+ 1443 0311 B3000000 		.4byte	0xb3
+ 1444 0315 1B       		.uleb128 0x1b
+ 1445 0316 A1000000 		.4byte	0xa1
+ 1446 031a 00       		.byte	0
+ 1447 031b 00       		.byte	0
+ 1448              		.section	.debug_abbrev,"",%progbits
+ 1449              	.Ldebug_abbrev0:
+ 1450 0000 01       		.uleb128 0x1
+ 1451 0001 11       		.uleb128 0x11
+ 1452 0002 01       		.byte	0x1
+ 1453 0003 25       		.uleb128 0x25
+ 1454 0004 0E       		.uleb128 0xe
+ 1455 0005 13       		.uleb128 0x13
+ 1456 0006 0B       		.uleb128 0xb
+ 1457 0007 03       		.uleb128 0x3
+ 1458 0008 0E       		.uleb128 0xe
+ 1459 0009 1B       		.uleb128 0x1b
+ 1460 000a 0E       		.uleb128 0xe
+ 1461 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 35
+
+
+ 1462 000c 17       		.uleb128 0x17
+ 1463 000d 11       		.uleb128 0x11
+ 1464 000e 01       		.uleb128 0x1
+ 1465 000f 10       		.uleb128 0x10
+ 1466 0010 17       		.uleb128 0x17
+ 1467 0011 00       		.byte	0
+ 1468 0012 00       		.byte	0
+ 1469 0013 02       		.uleb128 0x2
+ 1470 0014 24       		.uleb128 0x24
+ 1471 0015 00       		.byte	0
+ 1472 0016 0B       		.uleb128 0xb
+ 1473 0017 0B       		.uleb128 0xb
+ 1474 0018 3E       		.uleb128 0x3e
+ 1475 0019 0B       		.uleb128 0xb
+ 1476 001a 03       		.uleb128 0x3
+ 1477 001b 0E       		.uleb128 0xe
+ 1478 001c 00       		.byte	0
+ 1479 001d 00       		.byte	0
+ 1480 001e 03       		.uleb128 0x3
+ 1481 001f 16       		.uleb128 0x16
+ 1482 0020 00       		.byte	0
+ 1483 0021 03       		.uleb128 0x3
+ 1484 0022 0E       		.uleb128 0xe
+ 1485 0023 3A       		.uleb128 0x3a
+ 1486 0024 0B       		.uleb128 0xb
+ 1487 0025 3B       		.uleb128 0x3b
+ 1488 0026 0B       		.uleb128 0xb
+ 1489 0027 49       		.uleb128 0x49
+ 1490 0028 13       		.uleb128 0x13
+ 1491 0029 00       		.byte	0
+ 1492 002a 00       		.byte	0
+ 1493 002b 04       		.uleb128 0x4
+ 1494 002c 24       		.uleb128 0x24
+ 1495 002d 00       		.byte	0
+ 1496 002e 0B       		.uleb128 0xb
+ 1497 002f 0B       		.uleb128 0xb
+ 1498 0030 3E       		.uleb128 0x3e
+ 1499 0031 0B       		.uleb128 0xb
+ 1500 0032 03       		.uleb128 0x3
+ 1501 0033 08       		.uleb128 0x8
+ 1502 0034 00       		.byte	0
+ 1503 0035 00       		.byte	0
+ 1504 0036 05       		.uleb128 0x5
+ 1505 0037 0F       		.uleb128 0xf
+ 1506 0038 00       		.byte	0
+ 1507 0039 0B       		.uleb128 0xb
+ 1508 003a 0B       		.uleb128 0xb
+ 1509 003b 00       		.byte	0
+ 1510 003c 00       		.byte	0
+ 1511 003d 06       		.uleb128 0x6
+ 1512 003e 04       		.uleb128 0x4
+ 1513 003f 01       		.byte	0x1
+ 1514 0040 03       		.uleb128 0x3
+ 1515 0041 0E       		.uleb128 0xe
+ 1516 0042 0B       		.uleb128 0xb
+ 1517 0043 0B       		.uleb128 0xb
+ 1518 0044 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 36
+
+
+ 1519 0045 0B       		.uleb128 0xb
+ 1520 0046 3B       		.uleb128 0x3b
+ 1521 0047 0B       		.uleb128 0xb
+ 1522 0048 01       		.uleb128 0x1
+ 1523 0049 13       		.uleb128 0x13
+ 1524 004a 00       		.byte	0
+ 1525 004b 00       		.byte	0
+ 1526 004c 07       		.uleb128 0x7
+ 1527 004d 28       		.uleb128 0x28
+ 1528 004e 00       		.byte	0
+ 1529 004f 03       		.uleb128 0x3
+ 1530 0050 0E       		.uleb128 0xe
+ 1531 0051 1C       		.uleb128 0x1c
+ 1532 0052 0D       		.uleb128 0xd
+ 1533 0053 00       		.byte	0
+ 1534 0054 00       		.byte	0
+ 1535 0055 08       		.uleb128 0x8
+ 1536 0056 28       		.uleb128 0x28
+ 1537 0057 00       		.byte	0
+ 1538 0058 03       		.uleb128 0x3
+ 1539 0059 08       		.uleb128 0x8
+ 1540 005a 1C       		.uleb128 0x1c
+ 1541 005b 0D       		.uleb128 0xd
+ 1542 005c 00       		.byte	0
+ 1543 005d 00       		.byte	0
+ 1544 005e 09       		.uleb128 0x9
+ 1545 005f 2E       		.uleb128 0x2e
+ 1546 0060 01       		.byte	0x1
+ 1547 0061 3F       		.uleb128 0x3f
+ 1548 0062 19       		.uleb128 0x19
+ 1549 0063 03       		.uleb128 0x3
+ 1550 0064 0E       		.uleb128 0xe
+ 1551 0065 3A       		.uleb128 0x3a
+ 1552 0066 0B       		.uleb128 0xb
+ 1553 0067 3B       		.uleb128 0x3b
+ 1554 0068 0B       		.uleb128 0xb
+ 1555 0069 49       		.uleb128 0x49
+ 1556 006a 13       		.uleb128 0x13
+ 1557 006b 11       		.uleb128 0x11
+ 1558 006c 01       		.uleb128 0x1
+ 1559 006d 12       		.uleb128 0x12
+ 1560 006e 06       		.uleb128 0x6
+ 1561 006f 40       		.uleb128 0x40
+ 1562 0070 18       		.uleb128 0x18
+ 1563 0071 9742     		.uleb128 0x2117
+ 1564 0073 19       		.uleb128 0x19
+ 1565 0074 01       		.uleb128 0x1
+ 1566 0075 13       		.uleb128 0x13
+ 1567 0076 00       		.byte	0
+ 1568 0077 00       		.byte	0
+ 1569 0078 0A       		.uleb128 0xa
+ 1570 0079 898201   		.uleb128 0x4109
+ 1571 007c 00       		.byte	0
+ 1572 007d 11       		.uleb128 0x11
+ 1573 007e 01       		.uleb128 0x1
+ 1574 007f 31       		.uleb128 0x31
+ 1575 0080 13       		.uleb128 0x13
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 37
+
+
+ 1576 0081 00       		.byte	0
+ 1577 0082 00       		.byte	0
+ 1578 0083 0B       		.uleb128 0xb
+ 1579 0084 34       		.uleb128 0x34
+ 1580 0085 00       		.byte	0
+ 1581 0086 03       		.uleb128 0x3
+ 1582 0087 0E       		.uleb128 0xe
+ 1583 0088 3A       		.uleb128 0x3a
+ 1584 0089 0B       		.uleb128 0xb
+ 1585 008a 3B       		.uleb128 0x3b
+ 1586 008b 0B       		.uleb128 0xb
+ 1587 008c 49       		.uleb128 0x49
+ 1588 008d 13       		.uleb128 0x13
+ 1589 008e 02       		.uleb128 0x2
+ 1590 008f 17       		.uleb128 0x17
+ 1591 0090 00       		.byte	0
+ 1592 0091 00       		.byte	0
+ 1593 0092 0C       		.uleb128 0xc
+ 1594 0093 34       		.uleb128 0x34
+ 1595 0094 00       		.byte	0
+ 1596 0095 03       		.uleb128 0x3
+ 1597 0096 08       		.uleb128 0x8
+ 1598 0097 3A       		.uleb128 0x3a
+ 1599 0098 0B       		.uleb128 0xb
+ 1600 0099 3B       		.uleb128 0x3b
+ 1601 009a 0B       		.uleb128 0xb
+ 1602 009b 49       		.uleb128 0x49
+ 1603 009c 13       		.uleb128 0x13
+ 1604 009d 02       		.uleb128 0x2
+ 1605 009e 17       		.uleb128 0x17
+ 1606 009f 00       		.byte	0
+ 1607 00a0 00       		.byte	0
+ 1608 00a1 0D       		.uleb128 0xd
+ 1609 00a2 34       		.uleb128 0x34
+ 1610 00a3 00       		.byte	0
+ 1611 00a4 03       		.uleb128 0x3
+ 1612 00a5 0E       		.uleb128 0xe
+ 1613 00a6 3A       		.uleb128 0x3a
+ 1614 00a7 0B       		.uleb128 0xb
+ 1615 00a8 3B       		.uleb128 0x3b
+ 1616 00a9 0B       		.uleb128 0xb
+ 1617 00aa 49       		.uleb128 0x49
+ 1618 00ab 13       		.uleb128 0x13
+ 1619 00ac 00       		.byte	0
+ 1620 00ad 00       		.byte	0
+ 1621 00ae 0E       		.uleb128 0xe
+ 1622 00af 898201   		.uleb128 0x4109
+ 1623 00b2 01       		.byte	0x1
+ 1624 00b3 11       		.uleb128 0x11
+ 1625 00b4 01       		.uleb128 0x1
+ 1626 00b5 31       		.uleb128 0x31
+ 1627 00b6 13       		.uleb128 0x13
+ 1628 00b7 00       		.byte	0
+ 1629 00b8 00       		.byte	0
+ 1630 00b9 0F       		.uleb128 0xf
+ 1631 00ba 8A8201   		.uleb128 0x410a
+ 1632 00bd 00       		.byte	0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 38
+
+
+ 1633 00be 02       		.uleb128 0x2
+ 1634 00bf 18       		.uleb128 0x18
+ 1635 00c0 9142     		.uleb128 0x2111
+ 1636 00c2 18       		.uleb128 0x18
+ 1637 00c3 00       		.byte	0
+ 1638 00c4 00       		.byte	0
+ 1639 00c5 10       		.uleb128 0x10
+ 1640 00c6 0F       		.uleb128 0xf
+ 1641 00c7 00       		.byte	0
+ 1642 00c8 0B       		.uleb128 0xb
+ 1643 00c9 0B       		.uleb128 0xb
+ 1644 00ca 49       		.uleb128 0x49
+ 1645 00cb 13       		.uleb128 0x13
+ 1646 00cc 00       		.byte	0
+ 1647 00cd 00       		.byte	0
+ 1648 00ce 11       		.uleb128 0x11
+ 1649 00cf 26       		.uleb128 0x26
+ 1650 00d0 00       		.byte	0
+ 1651 00d1 49       		.uleb128 0x49
+ 1652 00d2 13       		.uleb128 0x13
+ 1653 00d3 00       		.byte	0
+ 1654 00d4 00       		.byte	0
+ 1655 00d5 12       		.uleb128 0x12
+ 1656 00d6 2E       		.uleb128 0x2e
+ 1657 00d7 01       		.byte	0x1
+ 1658 00d8 3F       		.uleb128 0x3f
+ 1659 00d9 19       		.uleb128 0x19
+ 1660 00da 03       		.uleb128 0x3
+ 1661 00db 0E       		.uleb128 0xe
+ 1662 00dc 3A       		.uleb128 0x3a
+ 1663 00dd 0B       		.uleb128 0xb
+ 1664 00de 3B       		.uleb128 0x3b
+ 1665 00df 05       		.uleb128 0x5
+ 1666 00e0 49       		.uleb128 0x49
+ 1667 00e1 13       		.uleb128 0x13
+ 1668 00e2 11       		.uleb128 0x11
+ 1669 00e3 01       		.uleb128 0x1
+ 1670 00e4 12       		.uleb128 0x12
+ 1671 00e5 06       		.uleb128 0x6
+ 1672 00e6 40       		.uleb128 0x40
+ 1673 00e7 18       		.uleb128 0x18
+ 1674 00e8 9742     		.uleb128 0x2117
+ 1675 00ea 19       		.uleb128 0x19
+ 1676 00eb 01       		.uleb128 0x1
+ 1677 00ec 13       		.uleb128 0x13
+ 1678 00ed 00       		.byte	0
+ 1679 00ee 00       		.byte	0
+ 1680 00ef 13       		.uleb128 0x13
+ 1681 00f0 34       		.uleb128 0x34
+ 1682 00f1 00       		.byte	0
+ 1683 00f2 03       		.uleb128 0x3
+ 1684 00f3 0E       		.uleb128 0xe
+ 1685 00f4 3A       		.uleb128 0x3a
+ 1686 00f5 0B       		.uleb128 0xb
+ 1687 00f6 3B       		.uleb128 0x3b
+ 1688 00f7 05       		.uleb128 0x5
+ 1689 00f8 49       		.uleb128 0x49
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 39
+
+
+ 1690 00f9 13       		.uleb128 0x13
+ 1691 00fa 3F       		.uleb128 0x3f
+ 1692 00fb 19       		.uleb128 0x19
+ 1693 00fc 3C       		.uleb128 0x3c
+ 1694 00fd 19       		.uleb128 0x19
+ 1695 00fe 00       		.byte	0
+ 1696 00ff 00       		.byte	0
+ 1697 0100 14       		.uleb128 0x14
+ 1698 0101 35       		.uleb128 0x35
+ 1699 0102 00       		.byte	0
+ 1700 0103 49       		.uleb128 0x49
+ 1701 0104 13       		.uleb128 0x13
+ 1702 0105 00       		.byte	0
+ 1703 0106 00       		.byte	0
+ 1704 0107 15       		.uleb128 0x15
+ 1705 0108 01       		.uleb128 0x1
+ 1706 0109 01       		.byte	0x1
+ 1707 010a 49       		.uleb128 0x49
+ 1708 010b 13       		.uleb128 0x13
+ 1709 010c 01       		.uleb128 0x1
+ 1710 010d 13       		.uleb128 0x13
+ 1711 010e 00       		.byte	0
+ 1712 010f 00       		.byte	0
+ 1713 0110 16       		.uleb128 0x16
+ 1714 0111 21       		.uleb128 0x21
+ 1715 0112 00       		.byte	0
+ 1716 0113 49       		.uleb128 0x49
+ 1717 0114 13       		.uleb128 0x13
+ 1718 0115 2F       		.uleb128 0x2f
+ 1719 0116 0B       		.uleb128 0xb
+ 1720 0117 00       		.byte	0
+ 1721 0118 00       		.byte	0
+ 1722 0119 17       		.uleb128 0x17
+ 1723 011a 34       		.uleb128 0x34
+ 1724 011b 00       		.byte	0
+ 1725 011c 03       		.uleb128 0x3
+ 1726 011d 0E       		.uleb128 0xe
+ 1727 011e 3A       		.uleb128 0x3a
+ 1728 011f 0B       		.uleb128 0xb
+ 1729 0120 3B       		.uleb128 0x3b
+ 1730 0121 0B       		.uleb128 0xb
+ 1731 0122 49       		.uleb128 0x49
+ 1732 0123 13       		.uleb128 0x13
+ 1733 0124 3F       		.uleb128 0x3f
+ 1734 0125 19       		.uleb128 0x19
+ 1735 0126 02       		.uleb128 0x2
+ 1736 0127 18       		.uleb128 0x18
+ 1737 0128 00       		.byte	0
+ 1738 0129 00       		.byte	0
+ 1739 012a 18       		.uleb128 0x18
+ 1740 012b 2E       		.uleb128 0x2e
+ 1741 012c 01       		.byte	0x1
+ 1742 012d 3F       		.uleb128 0x3f
+ 1743 012e 19       		.uleb128 0x19
+ 1744 012f 03       		.uleb128 0x3
+ 1745 0130 0E       		.uleb128 0xe
+ 1746 0131 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 40
+
+
+ 1747 0132 0B       		.uleb128 0xb
+ 1748 0133 3B       		.uleb128 0x3b
+ 1749 0134 0B       		.uleb128 0xb
+ 1750 0135 3C       		.uleb128 0x3c
+ 1751 0136 19       		.uleb128 0x19
+ 1752 0137 01       		.uleb128 0x1
+ 1753 0138 13       		.uleb128 0x13
+ 1754 0139 00       		.byte	0
+ 1755 013a 00       		.byte	0
+ 1756 013b 19       		.uleb128 0x19
+ 1757 013c 18       		.uleb128 0x18
+ 1758 013d 00       		.byte	0
+ 1759 013e 00       		.byte	0
+ 1760 013f 00       		.byte	0
+ 1761 0140 1A       		.uleb128 0x1a
+ 1762 0141 2E       		.uleb128 0x2e
+ 1763 0142 01       		.byte	0x1
+ 1764 0143 3F       		.uleb128 0x3f
+ 1765 0144 19       		.uleb128 0x19
+ 1766 0145 03       		.uleb128 0x3
+ 1767 0146 0E       		.uleb128 0xe
+ 1768 0147 3A       		.uleb128 0x3a
+ 1769 0148 0B       		.uleb128 0xb
+ 1770 0149 3B       		.uleb128 0x3b
+ 1771 014a 0B       		.uleb128 0xb
+ 1772 014b 27       		.uleb128 0x27
+ 1773 014c 19       		.uleb128 0x19
+ 1774 014d 49       		.uleb128 0x49
+ 1775 014e 13       		.uleb128 0x13
+ 1776 014f 3C       		.uleb128 0x3c
+ 1777 0150 19       		.uleb128 0x19
+ 1778 0151 00       		.byte	0
+ 1779 0152 00       		.byte	0
+ 1780 0153 1B       		.uleb128 0x1b
+ 1781 0154 05       		.uleb128 0x5
+ 1782 0155 00       		.byte	0
+ 1783 0156 49       		.uleb128 0x49
+ 1784 0157 13       		.uleb128 0x13
+ 1785 0158 00       		.byte	0
+ 1786 0159 00       		.byte	0
+ 1787 015a 00       		.byte	0
+ 1788              		.section	.debug_loc,"",%progbits
+ 1789              	.Ldebug_loc0:
+ 1790              	.LLST0:
+ 1791 0000 0E000000 		.4byte	.LVL4
+ 1792 0004 16000000 		.4byte	.LVL5
+ 1793 0008 0100     		.2byte	0x1
+ 1794 000a 50       		.byte	0x50
+ 1795 000b 16000000 		.4byte	.LVL5
+ 1796 000f 68050000 		.4byte	.LVL185
+ 1797 0013 0200     		.2byte	0x2
+ 1798 0015 91       		.byte	0x91
+ 1799 0016 50       		.sleb128 -48
+ 1800 0017 68050000 		.4byte	.LVL185
+ 1801 001b 6C050000 		.4byte	.LFE64
+ 1802 001f 0200     		.2byte	0x2
+ 1803 0021 7D       		.byte	0x7d
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 41
+
+
+ 1804 0022 50       		.sleb128 -48
+ 1805 0023 00000000 		.4byte	0
+ 1806 0027 00000000 		.4byte	0
+ 1807              	.LLST1:
+ 1808 002b 0E000000 		.4byte	.LVL4
+ 1809 002f 20000000 		.4byte	.LVL6
+ 1810 0033 0200     		.2byte	0x2
+ 1811 0035 30       		.byte	0x30
+ 1812 0036 9F       		.byte	0x9f
+ 1813 0037 20000000 		.4byte	.LVL6
+ 1814 003b 6A000000 		.4byte	.LVL19
+ 1815 003f 0100     		.2byte	0x1
+ 1816 0041 59       		.byte	0x59
+ 1817 0042 6A000000 		.4byte	.LVL19
+ 1818 0046 6E000000 		.4byte	.LVL20
+ 1819 004a 0300     		.2byte	0x3
+ 1820 004c 79       		.byte	0x79
+ 1821 004d 7F       		.sleb128 -1
+ 1822 004e 9F       		.byte	0x9f
+ 1823 004f 6E000000 		.4byte	.LVL20
+ 1824 0053 7E000000 		.4byte	.LVL21
+ 1825 0057 0100     		.2byte	0x1
+ 1826 0059 59       		.byte	0x59
+ 1827 005a 7E000000 		.4byte	.LVL21
+ 1828 005e B4000000 		.4byte	.LVL26
+ 1829 0062 0100     		.2byte	0x1
+ 1830 0064 56       		.byte	0x56
+ 1831 0065 B4000000 		.4byte	.LVL26
+ 1832 0069 B6000000 		.4byte	.LVL27
+ 1833 006d 0300     		.2byte	0x3
+ 1834 006f 76       		.byte	0x76
+ 1835 0070 7F       		.sleb128 -1
+ 1836 0071 9F       		.byte	0x9f
+ 1837 0072 B6000000 		.4byte	.LVL27
+ 1838 0076 C0000000 		.4byte	.LVL28
+ 1839 007a 0100     		.2byte	0x1
+ 1840 007c 56       		.byte	0x56
+ 1841 007d CA000000 		.4byte	.LVL29
+ 1842 0081 36010000 		.4byte	.LVL38
+ 1843 0085 0100     		.2byte	0x1
+ 1844 0087 5C       		.byte	0x5c
+ 1845 0088 36010000 		.4byte	.LVL38
+ 1846 008c 3A010000 		.4byte	.LVL39
+ 1847 0090 0300     		.2byte	0x3
+ 1848 0092 7C       		.byte	0x7c
+ 1849 0093 7F       		.sleb128 -1
+ 1850 0094 9F       		.byte	0x9f
+ 1851 0095 3A010000 		.4byte	.LVL39
+ 1852 0099 7C020000 		.4byte	.LVL94
+ 1853 009d 0100     		.2byte	0x1
+ 1854 009f 5C       		.byte	0x5c
+ 1855 00a0 7C020000 		.4byte	.LVL94
+ 1856 00a4 CA020000 		.4byte	.LVL99
+ 1857 00a8 0100     		.2byte	0x1
+ 1858 00aa 5A       		.byte	0x5a
+ 1859 00ab CA020000 		.4byte	.LVL99
+ 1860 00af CE020000 		.4byte	.LVL100
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 42
+
+
+ 1861 00b3 0300     		.2byte	0x3
+ 1862 00b5 7A       		.byte	0x7a
+ 1863 00b6 7F       		.sleb128 -1
+ 1864 00b7 9F       		.byte	0x9f
+ 1865 00b8 CE020000 		.4byte	.LVL100
+ 1866 00bc DC020000 		.4byte	.LVL101
+ 1867 00c0 0100     		.2byte	0x1
+ 1868 00c2 5A       		.byte	0x5a
+ 1869 00c3 DC020000 		.4byte	.LVL101
+ 1870 00c7 EC020000 		.4byte	.LVL102
+ 1871 00cb 0100     		.2byte	0x1
+ 1872 00cd 5C       		.byte	0x5c
+ 1873 00ce EC020000 		.4byte	.LVL102
+ 1874 00d2 FC020000 		.4byte	.LVL103
+ 1875 00d6 0100     		.2byte	0x1
+ 1876 00d8 5A       		.byte	0x5a
+ 1877 00d9 00000000 		.4byte	0
+ 1878 00dd 00000000 		.4byte	0
+ 1879              	.LLST2:
+ 1880 00e1 20000000 		.4byte	.LVL6
+ 1881 00e5 58000000 		.4byte	.LVL15
+ 1882 00e9 0100     		.2byte	0x1
+ 1883 00eb 51       		.byte	0x51
+ 1884 00ec 58000000 		.4byte	.LVL15
+ 1885 00f0 5A000000 		.4byte	.LVL16
+ 1886 00f4 0300     		.2byte	0x3
+ 1887 00f6 71       		.byte	0x71
+ 1888 00f7 7F       		.sleb128 -1
+ 1889 00f8 9F       		.byte	0x9f
+ 1890 00f9 5A000000 		.4byte	.LVL16
+ 1891 00fd 5C000000 		.4byte	.LVL17
+ 1892 0101 0100     		.2byte	0x1
+ 1893 0103 51       		.byte	0x51
+ 1894 0104 62000000 		.4byte	.LVL18
+ 1895 0108 6E000000 		.4byte	.LVL20
+ 1896 010c 0100     		.2byte	0x1
+ 1897 010e 51       		.byte	0x51
+ 1898 010f 7E000000 		.4byte	.LVL21
+ 1899 0113 A4000000 		.4byte	.LVL22
+ 1900 0117 0100     		.2byte	0x1
+ 1901 0119 52       		.byte	0x52
+ 1902 011a A4000000 		.4byte	.LVL22
+ 1903 011e A6000000 		.4byte	.LVL23
+ 1904 0122 0300     		.2byte	0x3
+ 1905 0124 72       		.byte	0x72
+ 1906 0125 7F       		.sleb128 -1
+ 1907 0126 9F       		.byte	0x9f
+ 1908 0127 A6000000 		.4byte	.LVL23
+ 1909 012b A8000000 		.4byte	.LVL24
+ 1910 012f 0100     		.2byte	0x1
+ 1911 0131 52       		.byte	0x52
+ 1912 0132 AE000000 		.4byte	.LVL25
+ 1913 0136 B6000000 		.4byte	.LVL27
+ 1914 013a 0100     		.2byte	0x1
+ 1915 013c 52       		.byte	0x52
+ 1916 013d CA000000 		.4byte	.LVL29
+ 1917 0141 D6000000 		.4byte	.LVL30
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 43
+
+
+ 1918 0145 0100     		.2byte	0x1
+ 1919 0147 53       		.byte	0x53
+ 1920 0148 D6000000 		.4byte	.LVL30
+ 1921 014c 10010000 		.4byte	.LVL31
+ 1922 0150 0100     		.2byte	0x1
+ 1923 0152 51       		.byte	0x51
+ 1924 0153 10010000 		.4byte	.LVL31
+ 1925 0157 18010000 		.4byte	.LVL32
+ 1926 015b 0100     		.2byte	0x1
+ 1927 015d 53       		.byte	0x53
+ 1928 015e 18010000 		.4byte	.LVL32
+ 1929 0162 1A010000 		.4byte	.LVL33
+ 1930 0166 0100     		.2byte	0x1
+ 1931 0168 51       		.byte	0x51
+ 1932 0169 1A010000 		.4byte	.LVL33
+ 1933 016d 22010000 		.4byte	.LVL34
+ 1934 0171 0100     		.2byte	0x1
+ 1935 0173 53       		.byte	0x53
+ 1936 0174 22010000 		.4byte	.LVL34
+ 1937 0178 24010000 		.4byte	.LVL35
+ 1938 017c 0300     		.2byte	0x3
+ 1939 017e 73       		.byte	0x73
+ 1940 017f 7F       		.sleb128 -1
+ 1941 0180 9F       		.byte	0x9f
+ 1942 0181 24010000 		.4byte	.LVL35
+ 1943 0185 26010000 		.4byte	.LVL36
+ 1944 0189 0100     		.2byte	0x1
+ 1945 018b 53       		.byte	0x53
+ 1946 018c 2E010000 		.4byte	.LVL37
+ 1947 0190 3A010000 		.4byte	.LVL39
+ 1948 0194 0100     		.2byte	0x1
+ 1949 0196 53       		.byte	0x53
+ 1950 0197 7C020000 		.4byte	.LVL94
+ 1951 019b B4020000 		.4byte	.LVL95
+ 1952 019f 0100     		.2byte	0x1
+ 1953 01a1 53       		.byte	0x53
+ 1954 01a2 B4020000 		.4byte	.LVL95
+ 1955 01a6 B6020000 		.4byte	.LVL96
+ 1956 01aa 0300     		.2byte	0x3
+ 1957 01ac 73       		.byte	0x73
+ 1958 01ad 7F       		.sleb128 -1
+ 1959 01ae 9F       		.byte	0x9f
+ 1960 01af B6020000 		.4byte	.LVL96
+ 1961 01b3 B8020000 		.4byte	.LVL97
+ 1962 01b7 0100     		.2byte	0x1
+ 1963 01b9 53       		.byte	0x53
+ 1964 01ba C2020000 		.4byte	.LVL98
+ 1965 01be DC020000 		.4byte	.LVL101
+ 1966 01c2 0100     		.2byte	0x1
+ 1967 01c4 53       		.byte	0x53
+ 1968 01c5 00000000 		.4byte	0
+ 1969 01c9 00000000 		.4byte	0
+ 1970              	.LLST3:
+ 1971 01cd 26000000 		.4byte	.LVL7
+ 1972 01d1 2A000000 		.4byte	.LVL8
+ 1973 01d5 0700     		.2byte	0x7
+ 1974 01d7 72       		.byte	0x72
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 44
+
+
+ 1975 01d8 00       		.sleb128 0
+ 1976 01d9 32       		.byte	0x32
+ 1977 01da 24       		.byte	0x24
+ 1978 01db 70       		.byte	0x70
+ 1979 01dc 00       		.sleb128 0
+ 1980 01dd 22       		.byte	0x22
+ 1981 01de 2A000000 		.4byte	.LVL8
+ 1982 01e2 36000000 		.4byte	.LVL11
+ 1983 01e6 0200     		.2byte	0x2
+ 1984 01e8 73       		.byte	0x73
+ 1985 01e9 00       		.sleb128 0
+ 1986 01ea 36000000 		.4byte	.LVL11
+ 1987 01ee 4A000000 		.4byte	.LVL14
+ 1988 01f2 0100     		.2byte	0x1
+ 1989 01f4 55       		.byte	0x55
+ 1990 01f5 00000000 		.4byte	0
+ 1991 01f9 00000000 		.4byte	0
+ 1992              	.LLST4:
+ 1993 01fd 2C000000 		.4byte	.LVL9
+ 1994 0201 40000000 		.4byte	.LVL12
+ 1995 0205 0200     		.2byte	0x2
+ 1996 0207 73       		.byte	0x73
+ 1997 0208 01       		.sleb128 1
+ 1998 0209 00000000 		.4byte	0
+ 1999 020d 00000000 		.4byte	0
+ 2000              	.LLST5:
+ 2001 0211 2E000000 		.4byte	.LVL10
+ 2002 0215 46000000 		.4byte	.LVL13
+ 2003 0219 0200     		.2byte	0x2
+ 2004 021b 73       		.byte	0x73
+ 2005 021c 02       		.sleb128 2
+ 2006 021d 00000000 		.4byte	0
+ 2007 0221 00000000 		.4byte	0
+ 2008              	.LLST6:
+ 2009 0225 50010000 		.4byte	.LVL40
+ 2010 0229 9A010000 		.4byte	.LVL53
+ 2011 022d 0100     		.2byte	0x1
+ 2012 022f 55       		.byte	0x55
+ 2013 0230 9A010000 		.4byte	.LVL53
+ 2014 0234 A2010000 		.4byte	.LVL56
+ 2015 0238 0100     		.2byte	0x1
+ 2016 023a 52       		.byte	0x52
+ 2017 023b A2010000 		.4byte	.LVL56
+ 2018 023f AC010000 		.4byte	.LVL59
+ 2019 0243 0100     		.2byte	0x1
+ 2020 0245 55       		.byte	0x55
+ 2021 0246 C2010000 		.4byte	.LVL62
+ 2022 024a 04020000 		.4byte	.LVL75
+ 2023 024e 0100     		.2byte	0x1
+ 2024 0250 55       		.byte	0x55
+ 2025 0251 04020000 		.4byte	.LVL75
+ 2026 0255 0C020000 		.4byte	.LVL78
+ 2027 0259 0100     		.2byte	0x1
+ 2028 025b 53       		.byte	0x53
+ 2029 025c 0C020000 		.4byte	.LVL78
+ 2030 0260 1A020000 		.4byte	.LVL81
+ 2031 0264 0100     		.2byte	0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 45
+
+
+ 2032 0266 55       		.byte	0x55
+ 2033 0267 1A020000 		.4byte	.LVL81
+ 2034 026b 1A030000 		.4byte	.LVL105
+ 2035 026f 0200     		.2byte	0x2
+ 2036 0271 91       		.byte	0x91
+ 2037 0272 44       		.sleb128 -60
+ 2038 0273 00000000 		.4byte	0
+ 2039 0277 00000000 		.4byte	0
+ 2040              	.LLST7:
+ 2041 027b 50010000 		.4byte	.LVL40
+ 2042 027f 60010000 		.4byte	.LVL41
+ 2043 0283 0100     		.2byte	0x1
+ 2044 0285 52       		.byte	0x52
+ 2045 0286 60010000 		.4byte	.LVL41
+ 2046 028a 62010000 		.4byte	.LVL42
+ 2047 028e 0300     		.2byte	0x3
+ 2048 0290 72       		.byte	0x72
+ 2049 0291 7F       		.sleb128 -1
+ 2050 0292 9F       		.byte	0x9f
+ 2051 0293 62010000 		.4byte	.LVL42
+ 2052 0297 76010000 		.4byte	.LVL45
+ 2053 029b 0100     		.2byte	0x1
+ 2054 029d 52       		.byte	0x52
+ 2055 029e 76010000 		.4byte	.LVL45
+ 2056 02a2 78010000 		.4byte	.LVL46
+ 2057 02a6 0300     		.2byte	0x3
+ 2058 02a8 72       		.byte	0x72
+ 2059 02a9 7E       		.sleb128 -2
+ 2060 02aa 9F       		.byte	0x9f
+ 2061 02ab 78010000 		.4byte	.LVL46
+ 2062 02af 8C010000 		.4byte	.LVL49
+ 2063 02b3 0100     		.2byte	0x1
+ 2064 02b5 52       		.byte	0x52
+ 2065 02b6 8C010000 		.4byte	.LVL49
+ 2066 02ba 8E010000 		.4byte	.LVL50
+ 2067 02be 0300     		.2byte	0x3
+ 2068 02c0 72       		.byte	0x72
+ 2069 02c1 7D       		.sleb128 -3
+ 2070 02c2 9F       		.byte	0x9f
+ 2071 02c3 8E010000 		.4byte	.LVL50
+ 2072 02c7 9A010000 		.4byte	.LVL53
+ 2073 02cb 0100     		.2byte	0x1
+ 2074 02cd 52       		.byte	0x52
+ 2075 02ce 9A010000 		.4byte	.LVL53
+ 2076 02d2 A4010000 		.4byte	.LVL57
+ 2077 02d6 0200     		.2byte	0x2
+ 2078 02d8 30       		.byte	0x30
+ 2079 02d9 9F       		.byte	0x9f
+ 2080 02da A4010000 		.4byte	.LVL57
+ 2081 02de BC010000 		.4byte	.LVL61
+ 2082 02e2 0100     		.2byte	0x1
+ 2083 02e4 52       		.byte	0x52
+ 2084 02e5 00000000 		.4byte	0
+ 2085 02e9 00000000 		.4byte	0
+ 2086              	.LLST8:
+ 2087 02ed C2010000 		.4byte	.LVL62
+ 2088 02f1 D0010000 		.4byte	.LVL63
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 46
+
+
+ 2089 02f5 0100     		.2byte	0x1
+ 2090 02f7 53       		.byte	0x53
+ 2091 02f8 D0010000 		.4byte	.LVL63
+ 2092 02fc D2010000 		.4byte	.LVL64
+ 2093 0300 0300     		.2byte	0x3
+ 2094 0302 73       		.byte	0x73
+ 2095 0303 7F       		.sleb128 -1
+ 2096 0304 9F       		.byte	0x9f
+ 2097 0305 D2010000 		.4byte	.LVL64
+ 2098 0309 E4010000 		.4byte	.LVL67
+ 2099 030d 0100     		.2byte	0x1
+ 2100 030f 53       		.byte	0x53
+ 2101 0310 E4010000 		.4byte	.LVL67
+ 2102 0314 E6010000 		.4byte	.LVL68
+ 2103 0318 0300     		.2byte	0x3
+ 2104 031a 73       		.byte	0x73
+ 2105 031b 7E       		.sleb128 -2
+ 2106 031c 9F       		.byte	0x9f
+ 2107 031d E6010000 		.4byte	.LVL68
+ 2108 0321 F8010000 		.4byte	.LVL71
+ 2109 0325 0100     		.2byte	0x1
+ 2110 0327 53       		.byte	0x53
+ 2111 0328 F8010000 		.4byte	.LVL71
+ 2112 032c FA010000 		.4byte	.LVL72
+ 2113 0330 0300     		.2byte	0x3
+ 2114 0332 73       		.byte	0x73
+ 2115 0333 7D       		.sleb128 -3
+ 2116 0334 9F       		.byte	0x9f
+ 2117 0335 FA010000 		.4byte	.LVL72
+ 2118 0339 04020000 		.4byte	.LVL75
+ 2119 033d 0100     		.2byte	0x1
+ 2120 033f 53       		.byte	0x53
+ 2121 0340 04020000 		.4byte	.LVL75
+ 2122 0344 0E020000 		.4byte	.LVL79
+ 2123 0348 0200     		.2byte	0x2
+ 2124 034a 30       		.byte	0x30
+ 2125 034b 9F       		.byte	0x9f
+ 2126 034c 0E020000 		.4byte	.LVL79
+ 2127 0350 14020000 		.4byte	.LVL80
+ 2128 0354 0100     		.2byte	0x1
+ 2129 0356 53       		.byte	0x53
+ 2130 0357 00000000 		.4byte	0
+ 2131 035b 00000000 		.4byte	0
+ 2132              	.LLST9:
+ 2133 035f 50010000 		.4byte	.LVL40
+ 2134 0363 64010000 		.4byte	.LVL43
+ 2135 0367 0100     		.2byte	0x1
+ 2136 0369 53       		.byte	0x53
+ 2137 036a 64010000 		.4byte	.LVL43
+ 2138 036e 66010000 		.4byte	.LVL44
+ 2139 0372 0300     		.2byte	0x3
+ 2140 0374 73       		.byte	0x73
+ 2141 0375 7F       		.sleb128 -1
+ 2142 0376 9F       		.byte	0x9f
+ 2143 0377 66010000 		.4byte	.LVL44
+ 2144 037b 7A010000 		.4byte	.LVL47
+ 2145 037f 0100     		.2byte	0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 47
+
+
+ 2146 0381 53       		.byte	0x53
+ 2147 0382 7A010000 		.4byte	.LVL47
+ 2148 0386 7C010000 		.4byte	.LVL48
+ 2149 038a 0300     		.2byte	0x3
+ 2150 038c 73       		.byte	0x73
+ 2151 038d 7F       		.sleb128 -1
+ 2152 038e 9F       		.byte	0x9f
+ 2153 038f 7C010000 		.4byte	.LVL48
+ 2154 0393 90010000 		.4byte	.LVL51
+ 2155 0397 0100     		.2byte	0x1
+ 2156 0399 53       		.byte	0x53
+ 2157 039a 90010000 		.4byte	.LVL51
+ 2158 039e 92010000 		.4byte	.LVL52
+ 2159 03a2 0300     		.2byte	0x3
+ 2160 03a4 73       		.byte	0x73
+ 2161 03a5 7E       		.sleb128 -2
+ 2162 03a6 9F       		.byte	0x9f
+ 2163 03a7 92010000 		.4byte	.LVL52
+ 2164 03ab 9C010000 		.4byte	.LVL54
+ 2165 03af 0100     		.2byte	0x1
+ 2166 03b1 53       		.byte	0x53
+ 2167 03b2 9C010000 		.4byte	.LVL54
+ 2168 03b6 9E010000 		.4byte	.LVL55
+ 2169 03ba 0300     		.2byte	0x3
+ 2170 03bc 73       		.byte	0x73
+ 2171 03bd 7F       		.sleb128 -1
+ 2172 03be 9F       		.byte	0x9f
+ 2173 03bf 9E010000 		.4byte	.LVL55
+ 2174 03c3 A8010000 		.4byte	.LVL58
+ 2175 03c7 0100     		.2byte	0x1
+ 2176 03c9 53       		.byte	0x53
+ 2177 03ca B2010000 		.4byte	.LVL60
+ 2178 03ce C2010000 		.4byte	.LVL62
+ 2179 03d2 0200     		.2byte	0x2
+ 2180 03d4 30       		.byte	0x30
+ 2181 03d5 9F       		.byte	0x9f
+ 2182 03d6 C2010000 		.4byte	.LVL62
+ 2183 03da D4010000 		.4byte	.LVL65
+ 2184 03de 0100     		.2byte	0x1
+ 2185 03e0 54       		.byte	0x54
+ 2186 03e1 D4010000 		.4byte	.LVL65
+ 2187 03e5 D6010000 		.4byte	.LVL66
+ 2188 03e9 0300     		.2byte	0x3
+ 2189 03eb 74       		.byte	0x74
+ 2190 03ec 7F       		.sleb128 -1
+ 2191 03ed 9F       		.byte	0x9f
+ 2192 03ee D6010000 		.4byte	.LVL66
+ 2193 03f2 E8010000 		.4byte	.LVL69
+ 2194 03f6 0100     		.2byte	0x1
+ 2195 03f8 54       		.byte	0x54
+ 2196 03f9 E8010000 		.4byte	.LVL69
+ 2197 03fd EA010000 		.4byte	.LVL70
+ 2198 0401 0300     		.2byte	0x3
+ 2199 0403 74       		.byte	0x74
+ 2200 0404 7F       		.sleb128 -1
+ 2201 0405 9F       		.byte	0x9f
+ 2202 0406 EA010000 		.4byte	.LVL70
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 48
+
+
+ 2203 040a FC010000 		.4byte	.LVL73
+ 2204 040e 0100     		.2byte	0x1
+ 2205 0410 54       		.byte	0x54
+ 2206 0411 FC010000 		.4byte	.LVL73
+ 2207 0415 FE010000 		.4byte	.LVL74
+ 2208 0419 0300     		.2byte	0x3
+ 2209 041b 74       		.byte	0x74
+ 2210 041c 7E       		.sleb128 -2
+ 2211 041d 9F       		.byte	0x9f
+ 2212 041e FE010000 		.4byte	.LVL74
+ 2213 0422 06020000 		.4byte	.LVL76
+ 2214 0426 0100     		.2byte	0x1
+ 2215 0428 54       		.byte	0x54
+ 2216 0429 06020000 		.4byte	.LVL76
+ 2217 042d 08020000 		.4byte	.LVL77
+ 2218 0431 0300     		.2byte	0x3
+ 2219 0433 74       		.byte	0x74
+ 2220 0434 7F       		.sleb128 -1
+ 2221 0435 9F       		.byte	0x9f
+ 2222 0436 08020000 		.4byte	.LVL77
+ 2223 043a 1C020000 		.4byte	.LVL82
+ 2224 043e 0100     		.2byte	0x1
+ 2225 0440 54       		.byte	0x54
+ 2226 0441 1C020000 		.4byte	.LVL82
+ 2227 0445 18030000 		.4byte	.LVL104
+ 2228 0449 0200     		.2byte	0x2
+ 2229 044b 91       		.byte	0x91
+ 2230 044c 48       		.sleb128 -56
+ 2231 044d 1C030000 		.4byte	.LVL106
+ 2232 0451 7A030000 		.4byte	.LVL116
+ 2233 0455 0100     		.2byte	0x1
+ 2234 0457 58       		.byte	0x58
+ 2235 0458 7A030000 		.4byte	.LVL116
+ 2236 045c 7E030000 		.4byte	.LVL117
+ 2237 0460 0300     		.2byte	0x3
+ 2238 0462 78       		.byte	0x78
+ 2239 0463 7F       		.sleb128 -1
+ 2240 0464 9F       		.byte	0x9f
+ 2241 0465 7E030000 		.4byte	.LVL117
+ 2242 0469 9A030000 		.4byte	.LVL120
+ 2243 046d 0100     		.2byte	0x1
+ 2244 046f 58       		.byte	0x58
+ 2245 0470 9A030000 		.4byte	.LVL120
+ 2246 0474 9E030000 		.4byte	.LVL121
+ 2247 0478 0300     		.2byte	0x3
+ 2248 047a 78       		.byte	0x78
+ 2249 047b 7E       		.sleb128 -2
+ 2250 047c 9F       		.byte	0x9f
+ 2251 047d 9E030000 		.4byte	.LVL121
+ 2252 0481 1E040000 		.4byte	.LVL139
+ 2253 0485 0100     		.2byte	0x1
+ 2254 0487 58       		.byte	0x58
+ 2255 0488 1E040000 		.4byte	.LVL139
+ 2256 048c 22040000 		.4byte	.LVL140
+ 2257 0490 0300     		.2byte	0x3
+ 2258 0492 78       		.byte	0x78
+ 2259 0493 7F       		.sleb128 -1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 49
+
+
+ 2260 0494 9F       		.byte	0x9f
+ 2261 0495 22040000 		.4byte	.LVL140
+ 2262 0499 3E040000 		.4byte	.LVL143
+ 2263 049d 0100     		.2byte	0x1
+ 2264 049f 58       		.byte	0x58
+ 2265 04a0 3E040000 		.4byte	.LVL143
+ 2266 04a4 42040000 		.4byte	.LVL144
+ 2267 04a8 0300     		.2byte	0x3
+ 2268 04aa 78       		.byte	0x78
+ 2269 04ab 7E       		.sleb128 -2
+ 2270 04ac 9F       		.byte	0x9f
+ 2271 04ad 42040000 		.4byte	.LVL144
+ 2272 04b1 C6040000 		.4byte	.LVL162
+ 2273 04b5 0100     		.2byte	0x1
+ 2274 04b7 58       		.byte	0x58
+ 2275 04b8 C6040000 		.4byte	.LVL162
+ 2276 04bc CA040000 		.4byte	.LVL163
+ 2277 04c0 0300     		.2byte	0x3
+ 2278 04c2 78       		.byte	0x78
+ 2279 04c3 7F       		.sleb128 -1
+ 2280 04c4 9F       		.byte	0x9f
+ 2281 04c5 CA040000 		.4byte	.LVL163
+ 2282 04c9 E6040000 		.4byte	.LVL166
+ 2283 04cd 0100     		.2byte	0x1
+ 2284 04cf 58       		.byte	0x58
+ 2285 04d0 E6040000 		.4byte	.LVL166
+ 2286 04d4 EA040000 		.4byte	.LVL167
+ 2287 04d8 0300     		.2byte	0x3
+ 2288 04da 78       		.byte	0x78
+ 2289 04db 7E       		.sleb128 -2
+ 2290 04dc 9F       		.byte	0x9f
+ 2291 04dd EA040000 		.4byte	.LVL167
+ 2292 04e1 68050000 		.4byte	.LVL185
+ 2293 04e5 0100     		.2byte	0x1
+ 2294 04e7 58       		.byte	0x58
+ 2295 04e8 00000000 		.4byte	0
+ 2296 04ec 00000000 		.4byte	0
+ 2297              	.LLST10:
+ 2298 04f0 B2010000 		.4byte	.LVL60
+ 2299 04f4 68050000 		.4byte	.LVL185
+ 2300 04f8 0200     		.2byte	0x2
+ 2301 04fa 91       		.byte	0x91
+ 2302 04fb 4C       		.sleb128 -52
+ 2303 04fc 68050000 		.4byte	.LVL185
+ 2304 0500 6C050000 		.4byte	.LFE64
+ 2305 0504 0200     		.2byte	0x2
+ 2306 0506 7D       		.byte	0x7d
+ 2307 0507 4C       		.sleb128 -52
+ 2308 0508 00000000 		.4byte	0
+ 2309 050c 00000000 		.4byte	0
+ 2310              	.LLST11:
+ 2311 0510 1C020000 		.4byte	.LVL82
+ 2312 0514 32020000 		.4byte	.LVL83
+ 2313 0518 0100     		.2byte	0x1
+ 2314 051a 5B       		.byte	0x5b
+ 2315 051b 32020000 		.4byte	.LVL83
+ 2316 051f 36020000 		.4byte	.LVL85
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 50
+
+
+ 2317 0523 0100     		.2byte	0x1
+ 2318 0525 52       		.byte	0x52
+ 2319 0526 36020000 		.4byte	.LVL85
+ 2320 052a 46020000 		.4byte	.LVL86
+ 2321 052e 0100     		.2byte	0x1
+ 2322 0530 5B       		.byte	0x5b
+ 2323 0531 46020000 		.4byte	.LVL86
+ 2324 0535 4A020000 		.4byte	.LVL87
+ 2325 0539 0300     		.2byte	0x3
+ 2326 053b 7B       		.byte	0x7b
+ 2327 053c 01       		.sleb128 1
+ 2328 053d 9F       		.byte	0x9f
+ 2329 053e 4A020000 		.4byte	.LVL87
+ 2330 0542 72020000 		.4byte	.LVL90
+ 2331 0546 0100     		.2byte	0x1
+ 2332 0548 5B       		.byte	0x5b
+ 2333 0549 72020000 		.4byte	.LVL90
+ 2334 054d 76020000 		.4byte	.LVL91
+ 2335 0551 0300     		.2byte	0x3
+ 2336 0553 7B       		.byte	0x7b
+ 2337 0554 01       		.sleb128 1
+ 2338 0555 9F       		.byte	0x9f
+ 2339 0556 76020000 		.4byte	.LVL91
+ 2340 055a 1C030000 		.4byte	.LVL106
+ 2341 055e 0100     		.2byte	0x1
+ 2342 0560 5B       		.byte	0x5b
+ 2343 0561 1C030000 		.4byte	.LVL106
+ 2344 0565 68050000 		.4byte	.LVL185
+ 2345 0569 0200     		.2byte	0x2
+ 2346 056b 91       		.byte	0x91
+ 2347 056c 54       		.sleb128 -44
+ 2348 056d 68050000 		.4byte	.LVL185
+ 2349 0571 6C050000 		.4byte	.LFE64
+ 2350 0575 0200     		.2byte	0x2
+ 2351 0577 7D       		.byte	0x7d
+ 2352 0578 54       		.sleb128 -44
+ 2353 0579 00000000 		.4byte	0
+ 2354 057d 00000000 		.4byte	0
+ 2355              	.LLST12:
+ 2356 0581 1C020000 		.4byte	.LVL82
+ 2357 0585 34020000 		.4byte	.LVL84
+ 2358 0589 0100     		.2byte	0x1
+ 2359 058b 53       		.byte	0x53
+ 2360 058c 34020000 		.4byte	.LVL84
+ 2361 0590 36020000 		.4byte	.LVL85
+ 2362 0594 0100     		.2byte	0x1
+ 2363 0596 51       		.byte	0x51
+ 2364 0597 36020000 		.4byte	.LVL85
+ 2365 059b 5A020000 		.4byte	.LVL88
+ 2366 059f 0100     		.2byte	0x1
+ 2367 05a1 53       		.byte	0x53
+ 2368 05a2 5A020000 		.4byte	.LVL88
+ 2369 05a6 5C020000 		.4byte	.LVL89
+ 2370 05aa 0300     		.2byte	0x3
+ 2371 05ac 73       		.byte	0x73
+ 2372 05ad 01       		.sleb128 1
+ 2373 05ae 9F       		.byte	0x9f
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 51
+
+
+ 2374 05af 5C020000 		.4byte	.LVL89
+ 2375 05b3 78020000 		.4byte	.LVL92
+ 2376 05b7 0100     		.2byte	0x1
+ 2377 05b9 53       		.byte	0x53
+ 2378 05ba 78020000 		.4byte	.LVL92
+ 2379 05be 7A020000 		.4byte	.LVL93
+ 2380 05c2 0300     		.2byte	0x3
+ 2381 05c4 73       		.byte	0x73
+ 2382 05c5 7F       		.sleb128 -1
+ 2383 05c6 9F       		.byte	0x9f
+ 2384 05c7 7A020000 		.4byte	.LVL93
+ 2385 05cb 7C020000 		.4byte	.LVL94
+ 2386 05cf 0100     		.2byte	0x1
+ 2387 05d1 53       		.byte	0x53
+ 2388 05d2 DC020000 		.4byte	.LVL101
+ 2389 05d6 EC020000 		.4byte	.LVL102
+ 2390 05da 0100     		.2byte	0x1
+ 2391 05dc 53       		.byte	0x53
+ 2392 05dd 00000000 		.4byte	0
+ 2393 05e1 00000000 		.4byte	0
+ 2394              	.LLST13:
+ 2395 05e5 1C030000 		.4byte	.LVL106
+ 2396 05e9 30030000 		.4byte	.LVL110
+ 2397 05ed 0100     		.2byte	0x1
+ 2398 05ef 5B       		.byte	0x5b
+ 2399 05f0 30030000 		.4byte	.LVL110
+ 2400 05f4 34030000 		.4byte	.LVL111
+ 2401 05f8 0300     		.2byte	0x3
+ 2402 05fa 7B       		.byte	0x7b
+ 2403 05fb 7F       		.sleb128 -1
+ 2404 05fc 9F       		.byte	0x9f
+ 2405 05fd 34030000 		.4byte	.LVL111
+ 2406 0601 68050000 		.4byte	.LVL185
+ 2407 0605 0100     		.2byte	0x1
+ 2408 0607 5B       		.byte	0x5b
+ 2409 0608 00000000 		.4byte	0
+ 2410 060c 00000000 		.4byte	0
+ 2411              	.LLST14:
+ 2412 0610 1C030000 		.4byte	.LVL106
+ 2413 0614 2C030000 		.4byte	.LVL109
+ 2414 0618 0200     		.2byte	0x2
+ 2415 061a 30       		.byte	0x30
+ 2416 061b 9F       		.byte	0x9f
+ 2417 061c 2C030000 		.4byte	.LVL109
+ 2418 0620 5E030000 		.4byte	.LVL112
+ 2419 0624 0100     		.2byte	0x1
+ 2420 0626 52       		.byte	0x52
+ 2421 0627 5E030000 		.4byte	.LVL112
+ 2422 062b 60030000 		.4byte	.LVL113
+ 2423 062f 0300     		.2byte	0x3
+ 2424 0631 72       		.byte	0x72
+ 2425 0632 7F       		.sleb128 -1
+ 2426 0633 9F       		.byte	0x9f
+ 2427 0634 60030000 		.4byte	.LVL113
+ 2428 0638 74030000 		.4byte	.LVL114
+ 2429 063c 0100     		.2byte	0x1
+ 2430 063e 52       		.byte	0x52
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 52
+
+
+ 2431 063f 74030000 		.4byte	.LVL114
+ 2432 0643 76030000 		.4byte	.LVL115
+ 2433 0647 0300     		.2byte	0x3
+ 2434 0649 72       		.byte	0x72
+ 2435 064a 7E       		.sleb128 -2
+ 2436 064b 9F       		.byte	0x9f
+ 2437 064c 76030000 		.4byte	.LVL115
+ 2438 0650 94030000 		.4byte	.LVL118
+ 2439 0654 0100     		.2byte	0x1
+ 2440 0656 52       		.byte	0x52
+ 2441 0657 94030000 		.4byte	.LVL118
+ 2442 065b 96030000 		.4byte	.LVL119
+ 2443 065f 0300     		.2byte	0x3
+ 2444 0661 72       		.byte	0x72
+ 2445 0662 7D       		.sleb128 -3
+ 2446 0663 9F       		.byte	0x9f
+ 2447 0664 96030000 		.4byte	.LVL119
+ 2448 0668 AA030000 		.4byte	.LVL123
+ 2449 066c 0100     		.2byte	0x1
+ 2450 066e 52       		.byte	0x52
+ 2451 066f E0030000 		.4byte	.LVL133
+ 2452 0673 F2030000 		.4byte	.LVL134
+ 2453 0677 0200     		.2byte	0x2
+ 2454 0679 30       		.byte	0x30
+ 2455 067a 9F       		.byte	0x9f
+ 2456 067b F2030000 		.4byte	.LVL134
+ 2457 067f 02040000 		.4byte	.LVL135
+ 2458 0683 0100     		.2byte	0x1
+ 2459 0685 52       		.byte	0x52
+ 2460 0686 02040000 		.4byte	.LVL135
+ 2461 068a 04040000 		.4byte	.LVL136
+ 2462 068e 0300     		.2byte	0x3
+ 2463 0690 72       		.byte	0x72
+ 2464 0691 7F       		.sleb128 -1
+ 2465 0692 9F       		.byte	0x9f
+ 2466 0693 04040000 		.4byte	.LVL136
+ 2467 0697 18040000 		.4byte	.LVL137
+ 2468 069b 0100     		.2byte	0x1
+ 2469 069d 52       		.byte	0x52
+ 2470 069e 18040000 		.4byte	.LVL137
+ 2471 06a2 1A040000 		.4byte	.LVL138
+ 2472 06a6 0300     		.2byte	0x3
+ 2473 06a8 72       		.byte	0x72
+ 2474 06a9 7E       		.sleb128 -2
+ 2475 06aa 9F       		.byte	0x9f
+ 2476 06ab 1A040000 		.4byte	.LVL138
+ 2477 06af 38040000 		.4byte	.LVL141
+ 2478 06b3 0100     		.2byte	0x1
+ 2479 06b5 52       		.byte	0x52
+ 2480 06b6 38040000 		.4byte	.LVL141
+ 2481 06ba 3A040000 		.4byte	.LVL142
+ 2482 06be 0300     		.2byte	0x3
+ 2483 06c0 72       		.byte	0x72
+ 2484 06c1 7D       		.sleb128 -3
+ 2485 06c2 9F       		.byte	0x9f
+ 2486 06c3 3A040000 		.4byte	.LVL142
+ 2487 06c7 50040000 		.4byte	.LVL145
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 53
+
+
+ 2488 06cb 0100     		.2byte	0x1
+ 2489 06cd 52       		.byte	0x52
+ 2490 06ce 86040000 		.4byte	.LVL155
+ 2491 06d2 9A040000 		.4byte	.LVL157
+ 2492 06d6 0200     		.2byte	0x2
+ 2493 06d8 30       		.byte	0x30
+ 2494 06d9 9F       		.byte	0x9f
+ 2495 06da 9A040000 		.4byte	.LVL157
+ 2496 06de AA040000 		.4byte	.LVL158
+ 2497 06e2 0100     		.2byte	0x1
+ 2498 06e4 52       		.byte	0x52
+ 2499 06e5 AA040000 		.4byte	.LVL158
+ 2500 06e9 AC040000 		.4byte	.LVL159
+ 2501 06ed 0300     		.2byte	0x3
+ 2502 06ef 72       		.byte	0x72
+ 2503 06f0 7F       		.sleb128 -1
+ 2504 06f1 9F       		.byte	0x9f
+ 2505 06f2 AC040000 		.4byte	.LVL159
+ 2506 06f6 C0040000 		.4byte	.LVL160
+ 2507 06fa 0100     		.2byte	0x1
+ 2508 06fc 52       		.byte	0x52
+ 2509 06fd C0040000 		.4byte	.LVL160
+ 2510 0701 C2040000 		.4byte	.LVL161
+ 2511 0705 0300     		.2byte	0x3
+ 2512 0707 72       		.byte	0x72
+ 2513 0708 7E       		.sleb128 -2
+ 2514 0709 9F       		.byte	0x9f
+ 2515 070a C2040000 		.4byte	.LVL161
+ 2516 070e E0040000 		.4byte	.LVL164
+ 2517 0712 0100     		.2byte	0x1
+ 2518 0714 52       		.byte	0x52
+ 2519 0715 E0040000 		.4byte	.LVL164
+ 2520 0719 E2040000 		.4byte	.LVL165
+ 2521 071d 0300     		.2byte	0x3
+ 2522 071f 72       		.byte	0x72
+ 2523 0720 7D       		.sleb128 -3
+ 2524 0721 9F       		.byte	0x9f
+ 2525 0722 E2040000 		.4byte	.LVL165
+ 2526 0726 F6040000 		.4byte	.LVL169
+ 2527 072a 0100     		.2byte	0x1
+ 2528 072c 52       		.byte	0x52
+ 2529 072d 2C050000 		.4byte	.LVL179
+ 2530 0731 40050000 		.4byte	.LVL180
+ 2531 0735 0200     		.2byte	0x2
+ 2532 0737 30       		.byte	0x30
+ 2533 0738 9F       		.byte	0x9f
+ 2534 0739 40050000 		.4byte	.LVL180
+ 2535 073d 5C050000 		.4byte	.LVL183
+ 2536 0741 0100     		.2byte	0x1
+ 2537 0743 52       		.byte	0x52
+ 2538 0744 5C050000 		.4byte	.LVL183
+ 2539 0748 5E050000 		.4byte	.LVL184
+ 2540 074c 0300     		.2byte	0x3
+ 2541 074e 72       		.byte	0x72
+ 2542 074f 7F       		.sleb128 -1
+ 2543 0750 9F       		.byte	0x9f
+ 2544 0751 5E050000 		.4byte	.LVL184
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 54
+
+
+ 2545 0755 6C050000 		.4byte	.LFE64
+ 2546 0759 0100     		.2byte	0x1
+ 2547 075b 52       		.byte	0x52
+ 2548 075c 00000000 		.4byte	0
+ 2549 0760 00000000 		.4byte	0
+ 2550              	.LLST15:
+ 2551 0764 1C030000 		.4byte	.LVL106
+ 2552 0768 BA030000 		.4byte	.LVL125
+ 2553 076c 0100     		.2byte	0x1
+ 2554 076e 53       		.byte	0x53
+ 2555 076f BA030000 		.4byte	.LVL125
+ 2556 0773 BC030000 		.4byte	.LVL126
+ 2557 0777 0300     		.2byte	0x3
+ 2558 0779 73       		.byte	0x73
+ 2559 077a 7E       		.sleb128 -2
+ 2560 077b 9F       		.byte	0x9f
+ 2561 077c BC030000 		.4byte	.LVL126
+ 2562 0780 D4030000 		.4byte	.LVL129
+ 2563 0784 0100     		.2byte	0x1
+ 2564 0786 53       		.byte	0x53
+ 2565 0787 D4030000 		.4byte	.LVL129
+ 2566 078b D6030000 		.4byte	.LVL130
+ 2567 078f 0300     		.2byte	0x3
+ 2568 0791 73       		.byte	0x73
+ 2569 0792 7D       		.sleb128 -3
+ 2570 0793 9F       		.byte	0x9f
+ 2571 0794 D6030000 		.4byte	.LVL130
+ 2572 0798 DE030000 		.4byte	.LVL132
+ 2573 079c 0100     		.2byte	0x1
+ 2574 079e 53       		.byte	0x53
+ 2575 079f DE030000 		.4byte	.LVL132
+ 2576 07a3 E0030000 		.4byte	.LVL133
+ 2577 07a7 0300     		.2byte	0x3
+ 2578 07a9 73       		.byte	0x73
+ 2579 07aa 7F       		.sleb128 -1
+ 2580 07ab 9F       		.byte	0x9f
+ 2581 07ac E0030000 		.4byte	.LVL133
+ 2582 07b0 60040000 		.4byte	.LVL147
+ 2583 07b4 0100     		.2byte	0x1
+ 2584 07b6 53       		.byte	0x53
+ 2585 07b7 60040000 		.4byte	.LVL147
+ 2586 07bb 62040000 		.4byte	.LVL148
+ 2587 07bf 0300     		.2byte	0x3
+ 2588 07c1 73       		.byte	0x73
+ 2589 07c2 7E       		.sleb128 -2
+ 2590 07c3 9F       		.byte	0x9f
+ 2591 07c4 62040000 		.4byte	.LVL148
+ 2592 07c8 7A040000 		.4byte	.LVL151
+ 2593 07cc 0100     		.2byte	0x1
+ 2594 07ce 53       		.byte	0x53
+ 2595 07cf 7A040000 		.4byte	.LVL151
+ 2596 07d3 7C040000 		.4byte	.LVL152
+ 2597 07d7 0300     		.2byte	0x3
+ 2598 07d9 73       		.byte	0x73
+ 2599 07da 7D       		.sleb128 -3
+ 2600 07db 9F       		.byte	0x9f
+ 2601 07dc 7C040000 		.4byte	.LVL152
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 55
+
+
+ 2602 07e0 84040000 		.4byte	.LVL154
+ 2603 07e4 0100     		.2byte	0x1
+ 2604 07e6 53       		.byte	0x53
+ 2605 07e7 84040000 		.4byte	.LVL154
+ 2606 07eb 86040000 		.4byte	.LVL155
+ 2607 07ef 0300     		.2byte	0x3
+ 2608 07f1 73       		.byte	0x73
+ 2609 07f2 7F       		.sleb128 -1
+ 2610 07f3 9F       		.byte	0x9f
+ 2611 07f4 86040000 		.4byte	.LVL155
+ 2612 07f8 06050000 		.4byte	.LVL171
+ 2613 07fc 0100     		.2byte	0x1
+ 2614 07fe 53       		.byte	0x53
+ 2615 07ff 06050000 		.4byte	.LVL171
+ 2616 0803 08050000 		.4byte	.LVL172
+ 2617 0807 0300     		.2byte	0x3
+ 2618 0809 73       		.byte	0x73
+ 2619 080a 7E       		.sleb128 -2
+ 2620 080b 9F       		.byte	0x9f
+ 2621 080c 08050000 		.4byte	.LVL172
+ 2622 0810 20050000 		.4byte	.LVL175
+ 2623 0814 0100     		.2byte	0x1
+ 2624 0816 53       		.byte	0x53
+ 2625 0817 20050000 		.4byte	.LVL175
+ 2626 081b 22050000 		.4byte	.LVL176
+ 2627 081f 0300     		.2byte	0x3
+ 2628 0821 73       		.byte	0x73
+ 2629 0822 7D       		.sleb128 -3
+ 2630 0823 9F       		.byte	0x9f
+ 2631 0824 22050000 		.4byte	.LVL176
+ 2632 0828 2A050000 		.4byte	.LVL178
+ 2633 082c 0100     		.2byte	0x1
+ 2634 082e 53       		.byte	0x53
+ 2635 082f 2A050000 		.4byte	.LVL178
+ 2636 0833 2C050000 		.4byte	.LVL179
+ 2637 0837 0300     		.2byte	0x3
+ 2638 0839 73       		.byte	0x73
+ 2639 083a 7F       		.sleb128 -1
+ 2640 083b 9F       		.byte	0x9f
+ 2641 083c 2C050000 		.4byte	.LVL179
+ 2642 0840 6C050000 		.4byte	.LFE64
+ 2643 0844 0100     		.2byte	0x1
+ 2644 0846 53       		.byte	0x53
+ 2645 0847 00000000 		.4byte	0
+ 2646 084b 00000000 		.4byte	0
+ 2647              	.LLST16:
+ 2648 084f 22030000 		.4byte	.LVL107
+ 2649 0853 24030000 		.4byte	.LVL108
+ 2650 0857 0100     		.2byte	0x1
+ 2651 0859 55       		.byte	0x55
+ 2652 085a 2C030000 		.4byte	.LVL109
+ 2653 085e A6030000 		.4byte	.LVL122
+ 2654 0862 0100     		.2byte	0x1
+ 2655 0864 55       		.byte	0x55
+ 2656 0865 F2030000 		.4byte	.LVL134
+ 2657 0869 96040000 		.4byte	.LVL156
+ 2658 086d 0100     		.2byte	0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 56
+
+
+ 2659 086f 55       		.byte	0x55
+ 2660 0870 9A040000 		.4byte	.LVL157
+ 2661 0874 F2040000 		.4byte	.LVL168
+ 2662 0878 0100     		.2byte	0x1
+ 2663 087a 55       		.byte	0x55
+ 2664 087b 40050000 		.4byte	.LVL180
+ 2665 087f 44050000 		.4byte	.LVL181
+ 2666 0883 0100     		.2byte	0x1
+ 2667 0885 55       		.byte	0x55
+ 2668 0886 5A050000 		.4byte	.LVL182
+ 2669 088a 68050000 		.4byte	.LVL185
+ 2670 088e 0100     		.2byte	0x1
+ 2671 0890 55       		.byte	0x55
+ 2672 0891 00000000 		.4byte	0
+ 2673 0895 00000000 		.4byte	0
+ 2674              	.LLST17:
+ 2675 0899 AA030000 		.4byte	.LVL123
+ 2676 089d B4030000 		.4byte	.LVL124
+ 2677 08a1 0100     		.2byte	0x1
+ 2678 08a3 52       		.byte	0x52
+ 2679 08a4 BE030000 		.4byte	.LVL127
+ 2680 08a8 C8030000 		.4byte	.LVL128
+ 2681 08ac 0100     		.2byte	0x1
+ 2682 08ae 52       		.byte	0x52
+ 2683 08af D8030000 		.4byte	.LVL131
+ 2684 08b3 E0030000 		.4byte	.LVL133
+ 2685 08b7 0100     		.2byte	0x1
+ 2686 08b9 52       		.byte	0x52
+ 2687 08ba 50040000 		.4byte	.LVL145
+ 2688 08be 5A040000 		.4byte	.LVL146
+ 2689 08c2 0100     		.2byte	0x1
+ 2690 08c4 52       		.byte	0x52
+ 2691 08c5 64040000 		.4byte	.LVL149
+ 2692 08c9 6E040000 		.4byte	.LVL150
+ 2693 08cd 0100     		.2byte	0x1
+ 2694 08cf 52       		.byte	0x52
+ 2695 08d0 7E040000 		.4byte	.LVL153
+ 2696 08d4 86040000 		.4byte	.LVL155
+ 2697 08d8 0100     		.2byte	0x1
+ 2698 08da 52       		.byte	0x52
+ 2699 08db F6040000 		.4byte	.LVL169
+ 2700 08df 00050000 		.4byte	.LVL170
+ 2701 08e3 0100     		.2byte	0x1
+ 2702 08e5 52       		.byte	0x52
+ 2703 08e6 0A050000 		.4byte	.LVL173
+ 2704 08ea 14050000 		.4byte	.LVL174
+ 2705 08ee 0100     		.2byte	0x1
+ 2706 08f0 52       		.byte	0x52
+ 2707 08f1 24050000 		.4byte	.LVL177
+ 2708 08f5 2C050000 		.4byte	.LVL179
+ 2709 08f9 0100     		.2byte	0x1
+ 2710 08fb 52       		.byte	0x52
+ 2711 08fc 00000000 		.4byte	0
+ 2712 0900 00000000 		.4byte	0
+ 2713              		.section	.debug_aranges,"",%progbits
+ 2714 0000 2C000000 		.4byte	0x2c
+ 2715 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 57
+
+
+ 2716 0006 00000000 		.4byte	.Ldebug_info0
+ 2717 000a 04       		.byte	0x4
+ 2718 000b 00       		.byte	0
+ 2719 000c 0000     		.2byte	0
+ 2720 000e 0000     		.2byte	0
+ 2721 0010 00000000 		.4byte	.LFB63
+ 2722 0014 12000000 		.4byte	.LFE63-.LFB63
+ 2723 0018 00000000 		.4byte	.LFB64
+ 2724 001c 6C050000 		.4byte	.LFE64-.LFB64
+ 2725 0020 00000000 		.4byte	.LFB65
+ 2726 0024 0C000000 		.4byte	.LFE65-.LFB65
+ 2727 0028 00000000 		.4byte	0
+ 2728 002c 00000000 		.4byte	0
+ 2729              		.section	.debug_ranges,"",%progbits
+ 2730              	.Ldebug_ranges0:
+ 2731 0000 00000000 		.4byte	.LFB63
+ 2732 0004 12000000 		.4byte	.LFE63
+ 2733 0008 00000000 		.4byte	.LFB64
+ 2734 000c 6C050000 		.4byte	.LFE64
+ 2735 0010 00000000 		.4byte	.LFB65
+ 2736 0014 0C000000 		.4byte	.LFE65
+ 2737 0018 00000000 		.4byte	0
+ 2738 001c 00000000 		.4byte	0
+ 2739              		.section	.debug_line,"",%progbits
+ 2740              	.Ldebug_line0:
+ 2741 0000 72030000 		.section	.debug_str,"MS",%progbits,1
+ 2741      0200EB01 
+ 2741      00000201 
+ 2741      FB0E0D00 
+ 2741      01010101 
+ 2742              	.LASF6:
+ 2743 0000 6C6F6E67 		.ascii	"long long int\000"
+ 2743      206C6F6E 
+ 2743      6720696E 
+ 2743      7400
+ 2744              	.LASF35:
+ 2745 000e 6D61784C 		.ascii	"maxLength\000"
+ 2745      656E6774 
+ 2745      6800
+ 2746              	.LASF17:
+ 2747 0018 4E4F4E45 		.ascii	"NONE\000"
+ 2747      00
+ 2748              	.LASF9:
+ 2749 001d 5F5F696E 		.ascii	"__int32_t\000"
+ 2749      7433325F 
+ 2749      7400
+ 2750              	.LASF21:
+ 2751 0027 70617273 		.ascii	"parsePhoto\000"
+ 2751      6550686F 
+ 2751      746F00
+ 2752              	.LASF19:
+ 2753 0032 424C5545 		.ascii	"BLUE\000"
+ 2753      00
+ 2754              	.LASF45:
+ 2755 0037 2E5C6376 		.ascii	".\\cv.c\000"
+ 2755      2E6300
+ 2756              	.LASF42:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 58
+
+
+ 2757 003e 43616D65 		.ascii	"Camera_SyncFrame\000"
+ 2757      72615F53 
+ 2757      796E6346 
+ 2757      72616D65 
+ 2757      00
+ 2758              	.LASF41:
+ 2759 004f 43616D65 		.ascii	"Camera_framebuffer\000"
+ 2759      72615F66 
+ 2759      72616D65 
+ 2759      62756666 
+ 2759      657200
+ 2760              	.LASF10:
+ 2761 0062 696E7433 		.ascii	"int32_t\000"
+ 2761      325F7400 
+ 2762              	.LASF12:
+ 2763 006a 666C6F61 		.ascii	"float\000"
+ 2763      7400
+ 2764              	.LASF30:
+ 2765 0070 68506F73 		.ascii	"hPos\000"
+ 2765      00
+ 2766              	.LASF24:
+ 2767 0075 63757272 		.ascii	"currentHeight\000"
+ 2767      656E7448 
+ 2767      65696768 
+ 2767      7400
+ 2768              	.LASF5:
+ 2769 0083 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2769      20756E73 
+ 2769      69676E65 
+ 2769      6420696E 
+ 2769      7400
+ 2770              	.LASF36:
+ 2771 0095 726F7755 		.ascii	"rowUpTo\000"
+ 2771      70546F00 
+ 2772              	.LASF15:
+ 2773 009d 73697A65 		.ascii	"size_t\000"
+ 2773      5F7400
+ 2774              	.LASF40:
+ 2775 00a4 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2775      52784275 
+ 2775      66666572 
+ 2775      00
+ 2776              	.LASF27:
+ 2777 00b1 68616C66 		.ascii	"halfHeight\000"
+ 2777      48656967 
+ 2777      687400
+ 2778              	.LASF23:
+ 2779 00bc 6D617848 		.ascii	"maxHeight\000"
+ 2779      65696768 
+ 2779      7400
+ 2780              	.LASF13:
+ 2781 00c6 646F7562 		.ascii	"double\000"
+ 2781      6C6500
+ 2782              	.LASF47:
+ 2783 00cd 436F6C6F 		.ascii	"Colour\000"
+ 2783      757200
+ 2784              	.LASF2:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 59
+
+
+ 2785 00d4 73686F72 		.ascii	"short int\000"
+ 2785      7420696E 
+ 2785      7400
+ 2786              	.LASF29:
+ 2787 00de 626F7848 		.ascii	"boxHeight\000"
+ 2787      65696768 
+ 2787      7400
+ 2788              	.LASF18:
+ 2789 00e8 47524545 		.ascii	"GREEN\000"
+ 2789      4E00
+ 2790              	.LASF1:
+ 2791 00ee 756E7369 		.ascii	"unsigned char\000"
+ 2791      676E6564 
+ 2791      20636861 
+ 2791      7200
+ 2792              	.LASF8:
+ 2793 00fc 756E7369 		.ascii	"unsigned int\000"
+ 2793      676E6564 
+ 2793      20696E74 
+ 2793      00
+ 2794              	.LASF7:
+ 2795 0109 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2795      206C6F6E 
+ 2795      6720756E 
+ 2795      7369676E 
+ 2795      65642069 
+ 2796              	.LASF26:
+ 2797 0120 6D617857 		.ascii	"maxWidth\000"
+ 2797      69647468 
+ 2797      00
+ 2798              	.LASF37:
+ 2799 0129 6D6F6465 		.ascii	"mode\000"
+ 2799      00
+ 2800              	.LASF28:
+ 2801 012e 68616C66 		.ascii	"halfWidth\000"
+ 2801      57696474 
+ 2801      6800
+ 2802              	.LASF44:
+ 2803 0138 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 2803      4320342E 
+ 2803      382E3420 
+ 2803      32303134 
+ 2803      30353236 
+ 2804 016b 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 2804      20726576 
+ 2804      6973696F 
+ 2804      6E203231 
+ 2804      31333538 
+ 2805 019e 67202D66 		.ascii	"g -ffunction-sections\000"
+ 2805      66756E63 
+ 2805      74696F6E 
+ 2805      2D736563 
+ 2805      74696F6E 
+ 2806              	.LASF16:
+ 2807 01b4 73697A65 		.ascii	"sizetype\000"
+ 2807      74797065 
+ 2807      00
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 60
+
+
+ 2808              	.LASF39:
+ 2809 01bd 72656164 		.ascii	"readPlanWithCamera\000"
+ 2809      506C616E 
+ 2809      57697468 
+ 2809      43616D65 
+ 2809      726100
+ 2810              	.LASF22:
+ 2811 01d0 706C616E 		.ascii	"plan\000"
+ 2811      00
+ 2812              	.LASF14:
+ 2813 01d5 63686172 		.ascii	"char\000"
+ 2813      00
+ 2814              	.LASF25:
+ 2815 01da 63757272 		.ascii	"currentWidth\000"
+ 2815      656E7457 
+ 2815      69647468 
+ 2815      00
+ 2816              	.LASF34:
+ 2817 01e7 63424C55 		.ascii	"cBLUE\000"
+ 2817      4500
+ 2818              	.LASF31:
+ 2819 01ed 77506F73 		.ascii	"wPos\000"
+ 2819      00
+ 2820              	.LASF11:
+ 2821 01f2 75696E74 		.ascii	"uint8\000"
+ 2821      3800
+ 2822              	.LASF32:
+ 2823 01f8 63524544 		.ascii	"cRED\000"
+ 2823      00
+ 2824              	.LASF4:
+ 2825 01fd 6C6F6E67 		.ascii	"long int\000"
+ 2825      20696E74 
+ 2825      00
+ 2826              	.LASF20:
+ 2827 0206 74616B65 		.ascii	"takePhoto\000"
+ 2827      50686F74 
+ 2827      6F00
+ 2828              	.LASF0:
+ 2829 0210 7369676E 		.ascii	"signed char\000"
+ 2829      65642063 
+ 2829      68617200 
+ 2830              	.LASF3:
+ 2831 021c 73686F72 		.ascii	"short unsigned int\000"
+ 2831      7420756E 
+ 2831      7369676E 
+ 2831      65642069 
+ 2831      6E7400
+ 2832              	.LASF38:
+ 2833 022f 6E756D42 		.ascii	"numBoxes\000"
+ 2833      6F786573 
+ 2833      00
+ 2834              	.LASF46:
+ 2835 0238 433A5C55 		.ascii	"C:\\Users\\Nick\\Dropbox\\Uni Docs\\y4s2\\ECE3091 -"
+ 2835      73657273 
+ 2835      5C4E6963 
+ 2835      6B5C4472 
+ 2835      6F70626F 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccDqiPli.s 			page 61
+
+
+ 2836 0265 20456E67 		.ascii	" Engineering Design\\PSoc Creator\\eng_design_2015\\"
+ 2836      696E6565 
+ 2836      72696E67 
+ 2836      20446573 
+ 2836      69676E5C 
+ 2837 0296 45434533 		.ascii	"ECE3091-chickybot\\chickybot.cydsn\000"
+ 2837      3039312D 
+ 2837      63686963 
+ 2837      6B79626F 
+ 2837      745C6368 
+ 2838              	.LASF48:
+ 2839 02b8 6D616C6C 		.ascii	"malloc\000"
+ 2839      6F6300
+ 2840              	.LASF33:
+ 2841 02bf 63475245 		.ascii	"cGREEN\000"
+ 2841      454E00
+ 2842              	.LASF43:
+ 2843 02c6 43616D65 		.ascii	"Camera_GetFrame\000"
+ 2843      72615F47 
+ 2843      65744672 
+ 2843      616D6500 
+ 2844              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
