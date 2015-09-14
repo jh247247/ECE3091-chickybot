@@ -32,11 +32,13 @@ void getPlan() {
 //    
 //}
 //
-//void UsSensorTrigger() {
-//    LedYellow_Write(!LedYellow_Read());
-//    
-//    
-//}
+void UsSensorTrigger() {
+    LedYellow_Write(!LedYellow_Read());
+    
+    Lcd_Position(0,0);
+    Lcd_PrintDecUint16(UsTimer_ReadCapture()); // Possibly losing info here, b/c capture is uint32
+    uint32 dist = UsTimer_ReadCapture() * 10 / 58;
+}
 
 
 int main()
@@ -45,7 +47,7 @@ int main()
     CyGlobalIntEnable; /* Enable global interrupts. */
     IsrBtn0Pressed_StartEx(Btn0Pressed);
     IsrBtn1Pressed_StartEx(Btn1Pressed);
-//    IsrUsTimer_StartEx(UsSensorTrigger);
+    IsrUsTimer_StartEx(UsSensorTrigger);
 
     // Starts
     CsBtns_Start();
@@ -56,13 +58,13 @@ int main()
     
     CyDelay(500); // TODO: Necessary to wait for Camera to start up?
     
-    getPlan();
+//    getPlan();
     
     
 
     for(;;)
     {
-        displayPlanOnLcd();
+//        displayPlanOnLcd();
         
         
 //        Lcd_Position(0,0);
