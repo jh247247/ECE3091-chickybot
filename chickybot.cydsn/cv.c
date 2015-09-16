@@ -87,7 +87,6 @@ uint8 * parsePhoto() {
     uint8 halfWidth = IMG_W / 2;
     uint8 i = 0;
     
-    
     while (1) {
         if (i > IMG_H)
             break;
@@ -113,6 +112,7 @@ uint8 * parsePhoto() {
         }
     }
     uint8 boxHeight = maxHeight / ROWS;
+//    Lcd_PrintDecUint16(maxHeight);
     
     i = 0;
     while (1) {
@@ -329,7 +329,7 @@ uint8 * parsePhoto() {
         }
     }
     
-    
+//    Lcd_PosPrintString(0, 0, "here");
     return plan; // TODO: Check if returning the right thing
 }
 

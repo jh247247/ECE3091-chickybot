@@ -1,6 +1,6 @@
 // ======================================================================
 // chickybot.v generated from TopDesign.cysch
-// 09/15/2015 at 08:56
+// 09/16/2015 at 09:16
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1185,7 +1185,7 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\B_Timer_v2_70\B_Timer_v2_70.v"
 `endif
 
-// Timer_v2_70(CaptureAlternatingFall=false, CaptureAlternatingRise=false, CaptureCount=2, CaptureCounterEnabled=false, CaptureInputEnabled=true, CaptureMode=2, CONTROL3=0, ControlRegRemoved=0, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG24, CySetRegReplacementString=CY_SET_REG24, DeviceFamily=PSoC5, EnableMode=2, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, HWCaptureCounterEnabled=false, InterruptOnCapture=true, InterruptOnFIFOFull=false, InterruptOnTC=false, IntOnCapture=1, IntOnFIFOFull=0, IntOnTC=0, NumberOfCaptures=1, param45=1, Period=911999, RegDefReplacementString=reg32, RegSizeReplacementString=uint32, Resolution=24, RstStatusReplacementString=rstSts, RunMode=0, SiliconRevision=0, SoftwareCaptureModeEnabled=false, SoftwareTriggerModeEnabled=false, TriggerInputEnabled=true, TriggerMode=1, UDB16=false, UDB24=true, UDB32=false, UDB8=false, UDBControlReg=false, UsesHWEnable=1, VerilogSectionReplacementString=sT24, CY_COMPONENT_NAME=Timer_v2_70, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=UsTimer, CY_INSTANCE_SHORT_NAME=UsTimer, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=70, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.2 SP1, INSTANCE_NAME=UsTimer, )
+// Timer_v2_70(CaptureAlternatingFall=false, CaptureAlternatingRise=false, CaptureCount=2, CaptureCounterEnabled=false, CaptureInputEnabled=true, CaptureMode=2, CONTROL3=0, ControlRegRemoved=0, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeviceFamily=PSoC5, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, HWCaptureCounterEnabled=false, InterruptOnCapture=true, InterruptOnFIFOFull=false, InterruptOnTC=false, IntOnCapture=1, IntOnFIFOFull=0, IntOnTC=0, NumberOfCaptures=1, param45=1, Period=37999, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=rstSts, RunMode=0, SiliconRevision=0, SoftwareCaptureModeEnabled=false, SoftwareTriggerModeEnabled=false, TriggerInputEnabled=true, TriggerMode=1, UDB16=true, UDB24=false, UDB32=false, UDB8=false, UDBControlReg=true, UsesHWEnable=0, VerilogSectionReplacementString=sT16, CY_COMPONENT_NAME=Timer_v2_70, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=UsTimer, CY_INSTANCE_SHORT_NAME=UsTimer, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=70, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.2 SP1, INSTANCE_NAME=UsTimer, )
 module Timer_v2_70_5 (
     clock,
     reset,
@@ -1209,7 +1209,7 @@ module Timer_v2_70_5 (
     parameter DeviceFamily = "PSoC5";
     parameter InterruptOnCapture = 1;
     parameter InterruptOnTC = 0;
-    parameter Resolution = 24;
+    parameter Resolution = 16;
     parameter SiliconRevision = "0";
 
           wire  Net_261;
@@ -1242,9 +1242,9 @@ module Timer_v2_70_5 (
     defparam TimerUDB.Capture_Count = 2;
     defparam TimerUDB.CaptureCounterEnabled = 0;
     defparam TimerUDB.CaptureMode = 2;
-    defparam TimerUDB.EnableMode = 2;
+    defparam TimerUDB.EnableMode = 0;
     defparam TimerUDB.InterruptOnCapture = 1;
-    defparam TimerUDB.Resolution = 24;
+    defparam TimerUDB.Resolution = 16;
     defparam TimerUDB.RunMode = 0;
     defparam TimerUDB.TriggerMode = 1;
 
@@ -1252,7 +1252,7 @@ module Timer_v2_70_5 (
         .o(Net_102));
 
 	// VirtualMux_1 (cy_virtualmux_v1_0)
-	assign Net_266 = enable;
+	assign Net_266 = Net_102;
 
 
 
@@ -1383,8 +1383,9 @@ module top ;
           wire  Net_217;
           wire  Net_146;
           wire  Net_140;
-          wire  Net_730;
-          wire  Net_967;
+          wire  Net_1209;
+          wire  Net_1201;
+          wire  Net_10;
           wire  Net_657;
           wire  Net_138;
           wire  Net_57;
@@ -1403,7 +1404,6 @@ module top ;
           wire  Net_22;
           wire  Net_21;
           wire  Net_952;
-          wire  Net_10;
           wire  Net_126;
           wire  Net_216;
 
@@ -2577,13 +2577,13 @@ module top ;
 
 
 	cy_clock_v1_0
-		#(.id("c0fb34bd-1044-4931-9788-16b01ce89812"),
-		  .source_clock_id("75C2148C-3656-4d8a-846D-0CAE99AB6FF7"),
+		#(.id("5c5f057f-2e32-4760-930f-c64b3048fb5f"),
+		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("0"),
-		  .is_direct(1),
+		  .period("1000000000"),
+		  .is_direct(0),
 		  .is_digital(1))
-		timer_clock
+		Clock_1
 		 (.clock_out(Net_10));
 
 
@@ -2593,7 +2593,7 @@ module top ;
     Timer_v2_70_5 UsTimer (
         .reset(Net_952),
         .interrupt(Net_138),
-        .enable(Net_730),
+        .enable(1'b1),
         .trigger(Net_126),
         .capture(Net_126),
         .capture_out(Net_140),
@@ -2604,7 +2604,7 @@ module top ;
     defparam UsTimer.DeviceFamily = "PSoC5";
     defparam UsTimer.InterruptOnCapture = 1;
     defparam UsTimer.InterruptOnTC = 0;
-    defparam UsTimer.Resolution = 24;
+    defparam UsTimer.Resolution = 16;
     defparam UsTimer.SiliconRevision = "0";
 
     PWM_v3_30_6 UsPWM (
@@ -2783,8 +2783,6 @@ module top ;
 
 
     assign Net_216 = 1'h0;
-
-    assign Net_730 = 1'h1;
 
 
 

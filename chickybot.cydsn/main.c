@@ -16,6 +16,7 @@ void displayPlanOnLcd() {
     Lcd_Position(0,0);
     int i;
     for (i = 0; i < ROWS; i++) {
+        Lcd_Position(0, 4*i);
         Lcd_PrintDecUint16(plan[i]);
     }
 }
@@ -23,22 +24,24 @@ void displayPlanOnLcd() {
 void getPlan() {
     //plan = (uint8 *) malloc(sizeof(int) * ROWS);
     plan = readPlanWithCamera();
-    Lcd_PosPrintString(0, 0, "returned");
+    Lcd_PosPrintString(1, 0, "returned");
 }
 
 //void UsSensor() {
 //    LedRed_Write(!LedRed_Read());
 //    
-//    
+//    Lcd_Position(0,0);
+//    Lcd_PrintDecUint16(UsTimer_ReadCapture());
 //}
-//
-void UsSensorTrigger() {
-    LedYellow_Write(!LedYellow_Read());
-    
-    Lcd_Position(0,0);
-    Lcd_PrintDecUint16(UsTimer_ReadCapture()); // Possibly losing info here, b/c capture is uint32
-    uint32 dist = UsTimer_ReadCapture() * 10 / 58;
-}
+
+//void UsSensorTrigger() {
+//    LedYellow_Write(!LedYellow_Read());
+//    
+//    Lcd_Position(0,0);
+//    Lcd_PrintDecUint16(UsTimer_ReadCapture());
+//    uint16 dist = UsTimer_ReadCapture() / 58;
+////    Lcd_PrintDecUint16(dist);
+//}
 
 
 int main()
@@ -47,19 +50,19 @@ int main()
     CyGlobalIntEnable; /* Enable global interrupts. */
     IsrBtn0Pressed_StartEx(Btn0Pressed);
     IsrBtn1Pressed_StartEx(Btn1Pressed);
-    IsrUsTimer_StartEx(UsSensorTrigger);
+//    IsrUsTimer_StartEx(UsSensorTrigger);
 
     // Starts
     CsBtns_Start();
     Lcd_Start();
     Camera_Start();
-    UsPWM_Start();
-    UsTimer_Start();
+//    UsPWM_Start();
+//    UsTimer_Start();
     
     CyDelay(500); // TODO: Necessary to wait for Camera to start up?
     
-//    getPlan();
-    
+    getPlan();
+    displayPlanOnLcd();
     
 
     for(;;)

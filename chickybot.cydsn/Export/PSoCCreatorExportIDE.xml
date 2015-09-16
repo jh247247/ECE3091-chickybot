@@ -27,7 +27,7 @@
   </Toolchains>
   <Project Name="chickybot" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn" Version="5.10" Type="Bootloadable">
     <CMSIS_SVD_File>chickybot.svd</CMSIS_SVD_File>
-    <Datasheet />
+    <Datasheet>chickybot_datasheet.pdf</Datasheet>
     <LinkerFiles>
       <LinkerFile Toolchain="ARM GCC Generic">.\Generated_Source\PSoC5\cm3gcc.ld</LinkerFile>
       <LinkerFile Toolchain="ARM MDK Generic">.\Generated_Source\PSoC5\Cm3RealView.scat</LinkerFile>
@@ -189,6 +189,8 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsOutput.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsPWM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsPWM.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_1.h</File>
         </Files>
       </Folder>
       <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">
