@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: UsTC.h  
+* File Name: CompIn2Elbow.h  
 * Version 2.10
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_UsTC_ALIASES_H) /* Pins UsTC_ALIASES_H */
-#define CY_PINS_UsTC_ALIASES_H
+#if !defined(CY_PINS_CompIn2Elbow_ALIASES_H) /* Pins CompIn2Elbow_ALIASES_H */
+#define CY_PINS_CompIn2Elbow_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,8 +25,8 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define UsTC_0		(UsTC__0__PC)
+#define CompIn2Elbow_0		(CompIn2Elbow__0__PC)
 
-#endif /* End Pins UsTC_ALIASES_H */
+#endif /* End Pins CompIn2Elbow_ALIASES_H */
 
 /* [] END OF FILE */

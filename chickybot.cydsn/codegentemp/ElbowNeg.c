@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: UsTC.c  
+* File Name: ElbowNeg.c  
 * Version 2.10
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "UsTC.h"
+#include "ElbowNeg.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 UsTC__PORT == 15 && ((UsTC__MASK & 0xC0) != 0))
+	 ElbowNeg__PORT == 15 && ((ElbowNeg__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: UsTC_Write
+* Function Name: ElbowNeg_Write
 ********************************************************************************
 *
 * Summary:
@@ -36,15 +36,15 @@
 *  None
 *  
 *******************************************************************************/
-void UsTC_Write(uint8 value) 
+void ElbowNeg_Write(uint8 value) 
 {
-    uint8 staticBits = (UsTC_DR & (uint8)(~UsTC_MASK));
-    UsTC_DR = staticBits | ((uint8)(value << UsTC_SHIFT) & UsTC_MASK);
+    uint8 staticBits = (ElbowNeg_DR & (uint8)(~ElbowNeg_MASK));
+    ElbowNeg_DR = staticBits | ((uint8)(value << ElbowNeg_SHIFT) & ElbowNeg_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: UsTC_SetDriveMode
+* Function Name: ElbowNeg_SetDriveMode
 ********************************************************************************
 *
 * Summary:
@@ -53,27 +53,27 @@ void UsTC_Write(uint8 value)
 * Parameters:  
 *  mode:  Change the pins to one of the following drive modes.
 *
-*  UsTC_DM_STRONG     Strong Drive 
-*  UsTC_DM_OD_HI      Open Drain, Drives High 
-*  UsTC_DM_OD_LO      Open Drain, Drives Low 
-*  UsTC_DM_RES_UP     Resistive Pull Up 
-*  UsTC_DM_RES_DWN    Resistive Pull Down 
-*  UsTC_DM_RES_UPDWN  Resistive Pull Up/Down 
-*  UsTC_DM_DIG_HIZ    High Impedance Digital 
-*  UsTC_DM_ALG_HIZ    High Impedance Analog 
+*  ElbowNeg_DM_STRONG     Strong Drive 
+*  ElbowNeg_DM_OD_HI      Open Drain, Drives High 
+*  ElbowNeg_DM_OD_LO      Open Drain, Drives Low 
+*  ElbowNeg_DM_RES_UP     Resistive Pull Up 
+*  ElbowNeg_DM_RES_DWN    Resistive Pull Down 
+*  ElbowNeg_DM_RES_UPDWN  Resistive Pull Up/Down 
+*  ElbowNeg_DM_DIG_HIZ    High Impedance Digital 
+*  ElbowNeg_DM_ALG_HIZ    High Impedance Analog 
 *
 * Return: 
 *  None
 *
 *******************************************************************************/
-void UsTC_SetDriveMode(uint8 mode) 
+void ElbowNeg_SetDriveMode(uint8 mode) 
 {
-	CyPins_SetPinDriveMode(UsTC_0, mode);
+	CyPins_SetPinDriveMode(ElbowNeg_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: UsTC_Read
+* Function Name: ElbowNeg_Read
 ********************************************************************************
 *
 * Summary:
@@ -87,17 +87,17 @@ void UsTC_SetDriveMode(uint8 mode)
 *  Returns the current value of the Digital Port as a right justified number
 *  
 * Note:
-*  Macro UsTC_ReadPS calls this function. 
+*  Macro ElbowNeg_ReadPS calls this function. 
 *  
 *******************************************************************************/
-uint8 UsTC_Read(void) 
+uint8 ElbowNeg_Read(void) 
 {
-    return (UsTC_PS & UsTC_MASK) >> UsTC_SHIFT;
+    return (ElbowNeg_PS & ElbowNeg_MASK) >> ElbowNeg_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: UsTC_ReadDataReg
+* Function Name: ElbowNeg_ReadDataReg
 ********************************************************************************
 *
 * Summary:
@@ -110,17 +110,17 @@ uint8 UsTC_Read(void)
 *  Returns the current value assigned to the Digital Port's data output register
 *  
 *******************************************************************************/
-uint8 UsTC_ReadDataReg(void) 
+uint8 ElbowNeg_ReadDataReg(void) 
 {
-    return (UsTC_DR & UsTC_MASK) >> UsTC_SHIFT;
+    return (ElbowNeg_DR & ElbowNeg_MASK) >> ElbowNeg_SHIFT;
 }
 
 
 /* If Interrupts Are Enabled for this Pins component */ 
-#if defined(UsTC_INTSTAT) 
+#if defined(ElbowNeg_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: UsTC_ClearInterrupt
+    * Function Name: ElbowNeg_ClearInterrupt
     ********************************************************************************
     * Summary:
     *  Clears any active interrupts attached to port and returns the value of the 
@@ -133,9 +133,9 @@ uint8 UsTC_ReadDataReg(void)
     *  Returns the value of the interrupt status register
     *  
     *******************************************************************************/
-    uint8 UsTC_ClearInterrupt(void) 
+    uint8 ElbowNeg_ClearInterrupt(void) 
     {
-        return (UsTC_INTSTAT & UsTC_MASK) >> UsTC_SHIFT;
+        return (ElbowNeg_INTSTAT & ElbowNeg_MASK) >> ElbowNeg_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

@@ -1,0 +1,830 @@
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"UsMicroSecs.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.UsMicroSecs_Write,"ax",%progbits
+  19              		.align	2
+  20              		.global	UsMicroSecs_Write
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	UsMicroSecs_Write, %function
+  24              	UsMicroSecs_Write:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\UsMicroSecs.c"
+   1:.\Generated_Source\PSoC5/UsMicroSecs.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/UsMicroSecs.c **** * File Name: UsMicroSecs.c  
+   3:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Version 2.10
+   4:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+   5:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Description:
+   6:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+   8:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Note:
+   9:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  10:.\Generated_Source\PSoC5/UsMicroSecs.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/UsMicroSecs.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC5/UsMicroSecs.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC5/UsMicroSecs.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/UsMicroSecs.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  17:.\Generated_Source\PSoC5/UsMicroSecs.c **** #include "cytypes.h"
+  18:.\Generated_Source\PSoC5/UsMicroSecs.c **** #include "UsMicroSecs.h"
+  19:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  20:.\Generated_Source\PSoC5/UsMicroSecs.c **** /* APIs are not generated for P15[7:6] on PSoC 5 */
+  21:.\Generated_Source\PSoC5/UsMicroSecs.c **** #if !(CY_PSOC5A &&\
+  22:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	 UsMicroSecs__PORT == 15 && ((UsMicroSecs__MASK & 0xC0) != 0))
+  23:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  24:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  25:.\Generated_Source\PSoC5/UsMicroSecs.c **** /*******************************************************************************
+  26:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Function Name: UsMicroSecs_Write
+  27:.\Generated_Source\PSoC5/UsMicroSecs.c **** ********************************************************************************
+  28:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  29:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Summary:
+  30:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Assign a new value to the digital port's data output register.  
+  31:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Parameters:  
+  33:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  prtValue:  The value to be assigned to the Digital Port. 
+  34:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  35:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Return: 
+  36:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  None
+  37:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  
+  38:.\Generated_Source\PSoC5/UsMicroSecs.c **** *******************************************************************************/
+  39:.\Generated_Source\PSoC5/UsMicroSecs.c **** void UsMicroSecs_Write(uint8 value) 
+  40:.\Generated_Source\PSoC5/UsMicroSecs.c **** {
+  27              		.loc 1 40 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  41:.\Generated_Source\PSoC5/UsMicroSecs.c ****     uint8 staticBits = (UsMicroSecs_DR & (uint8)(~UsMicroSecs_MASK));
+  33              		.loc 1 41 0
+  34 0000 014B     		ldr	r3, .L2
+  35 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  36              	.LVL1:
+  42:.\Generated_Source\PSoC5/UsMicroSecs.c ****     UsMicroSecs_DR = staticBits | ((uint8)(value << UsMicroSecs_SHIFT) & UsMicroSecs_MASK);
+  37              		.loc 1 42 0
+  38 0004 1870     		strb	r0, [r3]
+  39 0006 7047     		bx	lr
+  40              	.L3:
+  41              		.align	2
+  42              	.L2:
+  43 0008 10510040 		.word	1073762576
+  44              		.cfi_endproc
+  45              	.LFE0:
+  46              		.size	UsMicroSecs_Write, .-UsMicroSecs_Write
+  47              		.section	.text.UsMicroSecs_SetDriveMode,"ax",%progbits
+  48              		.align	2
+  49              		.global	UsMicroSecs_SetDriveMode
+  50              		.thumb
+  51              		.thumb_func
+  52              		.type	UsMicroSecs_SetDriveMode, %function
+  53              	UsMicroSecs_SetDriveMode:
+  54              	.LFB1:
+  43:.\Generated_Source\PSoC5/UsMicroSecs.c **** }
+  44:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  45:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  46:.\Generated_Source\PSoC5/UsMicroSecs.c **** /*******************************************************************************
+  47:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Function Name: UsMicroSecs_SetDriveMode
+  48:.\Generated_Source\PSoC5/UsMicroSecs.c **** ********************************************************************************
+  49:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  50:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Summary:
+  51:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Change the drive mode on the pins of the port.
+  52:.\Generated_Source\PSoC5/UsMicroSecs.c **** * 
+  53:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Parameters:  
+  54:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  mode:  Change the pins to one of the following drive modes.
+  55:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  56:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_STRONG     Strong Drive 
+  57:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_OD_HI      Open Drain, Drives High 
+  58:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_OD_LO      Open Drain, Drives Low 
+  59:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_RES_UP     Resistive Pull Up 
+  60:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_RES_DWN    Resistive Pull Down 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 3
+
+
+  61:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_RES_UPDWN  Resistive Pull Up/Down 
+  62:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_DIG_HIZ    High Impedance Digital 
+  63:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  UsMicroSecs_DM_ALG_HIZ    High Impedance Analog 
+  64:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  65:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Return: 
+  66:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  None
+  67:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  68:.\Generated_Source\PSoC5/UsMicroSecs.c **** *******************************************************************************/
+  69:.\Generated_Source\PSoC5/UsMicroSecs.c **** void UsMicroSecs_SetDriveMode(uint8 mode) 
+  70:.\Generated_Source\PSoC5/UsMicroSecs.c **** {
+  55              		.loc 1 70 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+  60              	.LVL2:
+  71:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_0, mode);
+  61              		.loc 1 71 0
+  62 0000 194B     		ldr	r3, .L5
+  63 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  64 0004 00F00E00 		and	r0, r0, #14
+  65              	.LVL3:
+  66 0008 02F0F102 		and	r2, r2, #241
+  67 000c 0243     		orrs	r2, r2, r0
+  68 000e 1A70     		strb	r2, [r3]
+  72:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_1, mode);
+  69              		.loc 1 72 0
+  70 0010 0133     		adds	r3, r3, #1
+  71 0012 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  72 0014 02F0F102 		and	r2, r2, #241
+  73 0018 0243     		orrs	r2, r2, r0
+  74 001a 1A70     		strb	r2, [r3]
+  73:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_2, mode);
+  75              		.loc 1 73 0
+  76 001c 0133     		adds	r3, r3, #1
+  77 001e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  78 0020 02F0F102 		and	r2, r2, #241
+  79 0024 0243     		orrs	r2, r2, r0
+  80 0026 1A70     		strb	r2, [r3]
+  74:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_3, mode);
+  81              		.loc 1 74 0
+  82 0028 0133     		adds	r3, r3, #1
+  83 002a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  84 002c 02F0F102 		and	r2, r2, #241
+  85 0030 0243     		orrs	r2, r2, r0
+  86 0032 1A70     		strb	r2, [r3]
+  75:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_4, mode);
+  87              		.loc 1 75 0
+  88 0034 0133     		adds	r3, r3, #1
+  89 0036 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  90 0038 02F0F102 		and	r2, r2, #241
+  91 003c 0243     		orrs	r2, r2, r0
+  92 003e 1A70     		strb	r2, [r3]
+  76:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_5, mode);
+  93              		.loc 1 76 0
+  94 0040 0133     		adds	r3, r3, #1
+  95 0042 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 4
+
+
+  96 0044 02F0F102 		and	r2, r2, #241
+  97 0048 0243     		orrs	r2, r2, r0
+  98 004a 1A70     		strb	r2, [r3]
+  77:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_6, mode);
+  99              		.loc 1 77 0
+ 100 004c 0133     		adds	r3, r3, #1
+ 101 004e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 102 0050 02F0F102 		and	r2, r2, #241
+ 103 0054 0243     		orrs	r2, r2, r0
+ 104 0056 1A70     		strb	r2, [r3]
+  78:.\Generated_Source\PSoC5/UsMicroSecs.c **** 	CyPins_SetPinDriveMode(UsMicroSecs_7, mode);
+ 105              		.loc 1 78 0
+ 106 0058 0133     		adds	r3, r3, #1
+ 107 005a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 108 005c 02F0F102 		and	r2, r2, #241
+ 109 0060 1043     		orrs	r0, r0, r2
+ 110 0062 1870     		strb	r0, [r3]
+ 111 0064 7047     		bx	lr
+ 112              	.L6:
+ 113 0066 00BF     		.align	2
+ 114              	.L5:
+ 115 0068 08500040 		.word	1073762312
+ 116              		.cfi_endproc
+ 117              	.LFE1:
+ 118              		.size	UsMicroSecs_SetDriveMode, .-UsMicroSecs_SetDriveMode
+ 119              		.section	.text.UsMicroSecs_Read,"ax",%progbits
+ 120              		.align	2
+ 121              		.global	UsMicroSecs_Read
+ 122              		.thumb
+ 123              		.thumb_func
+ 124              		.type	UsMicroSecs_Read, %function
+ 125              	UsMicroSecs_Read:
+ 126              	.LFB2:
+  79:.\Generated_Source\PSoC5/UsMicroSecs.c **** }
+  80:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  81:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+  82:.\Generated_Source\PSoC5/UsMicroSecs.c **** /*******************************************************************************
+  83:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Function Name: UsMicroSecs_Read
+  84:.\Generated_Source\PSoC5/UsMicroSecs.c **** ********************************************************************************
+  85:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  86:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Summary:
+  87:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Read the current value on the pins of the Digital Port in right justified 
+  88:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  form.
+  89:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  90:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Parameters:  
+  91:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  None
+  92:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+  93:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Return: 
+  94:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Returns the current value of the Digital Port as a right justified number
+  95:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  
+  96:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Note:
+  97:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Macro UsMicroSecs_ReadPS calls this function. 
+  98:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  
+  99:.\Generated_Source\PSoC5/UsMicroSecs.c **** *******************************************************************************/
+ 100:.\Generated_Source\PSoC5/UsMicroSecs.c **** uint8 UsMicroSecs_Read(void) 
+ 101:.\Generated_Source\PSoC5/UsMicroSecs.c **** {
+ 127              		.loc 1 101 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 5
+
+
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+ 102:.\Generated_Source\PSoC5/UsMicroSecs.c ****     return (UsMicroSecs_PS & UsMicroSecs_MASK) >> UsMicroSecs_SHIFT;
+ 132              		.loc 1 102 0
+ 133 0000 014B     		ldr	r3, .L8
+ 134 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 103:.\Generated_Source\PSoC5/UsMicroSecs.c **** }
+ 135              		.loc 1 103 0
+ 136 0004 7047     		bx	lr
+ 137              	.L9:
+ 138 0006 00BF     		.align	2
+ 139              	.L8:
+ 140 0008 11510040 		.word	1073762577
+ 141              		.cfi_endproc
+ 142              	.LFE2:
+ 143              		.size	UsMicroSecs_Read, .-UsMicroSecs_Read
+ 144              		.section	.text.UsMicroSecs_ReadDataReg,"ax",%progbits
+ 145              		.align	2
+ 146              		.global	UsMicroSecs_ReadDataReg
+ 147              		.thumb
+ 148              		.thumb_func
+ 149              		.type	UsMicroSecs_ReadDataReg, %function
+ 150              	UsMicroSecs_ReadDataReg:
+ 151              	.LFB3:
+ 104:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+ 105:.\Generated_Source\PSoC5/UsMicroSecs.c **** 
+ 106:.\Generated_Source\PSoC5/UsMicroSecs.c **** /*******************************************************************************
+ 107:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Function Name: UsMicroSecs_ReadDataReg
+ 108:.\Generated_Source\PSoC5/UsMicroSecs.c **** ********************************************************************************
+ 109:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+ 110:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Summary:
+ 111:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Read the current value assigned to a Digital Port's data output register
+ 112:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+ 113:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Parameters:  
+ 114:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  None 
+ 115:.\Generated_Source\PSoC5/UsMicroSecs.c **** *
+ 116:.\Generated_Source\PSoC5/UsMicroSecs.c **** * Return: 
+ 117:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  Returns the current value assigned to the Digital Port's data output register
+ 118:.\Generated_Source\PSoC5/UsMicroSecs.c **** *  
+ 119:.\Generated_Source\PSoC5/UsMicroSecs.c **** *******************************************************************************/
+ 120:.\Generated_Source\PSoC5/UsMicroSecs.c **** uint8 UsMicroSecs_ReadDataReg(void) 
+ 121:.\Generated_Source\PSoC5/UsMicroSecs.c **** {
+ 152              		.loc 1 121 0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
+ 122:.\Generated_Source\PSoC5/UsMicroSecs.c ****     return (UsMicroSecs_DR & UsMicroSecs_MASK) >> UsMicroSecs_SHIFT;
+ 157              		.loc 1 122 0
+ 158 0000 014B     		ldr	r3, .L11
+ 159 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 123:.\Generated_Source\PSoC5/UsMicroSecs.c **** }
+ 160              		.loc 1 123 0
+ 161 0004 7047     		bx	lr
+ 162              	.L12:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 6
+
+
+ 163 0006 00BF     		.align	2
+ 164              	.L11:
+ 165 0008 10510040 		.word	1073762576
+ 166              		.cfi_endproc
+ 167              	.LFE3:
+ 168              		.size	UsMicroSecs_ReadDataReg, .-UsMicroSecs_ReadDataReg
+ 169              		.text
+ 170              	.Letext0:
+ 171              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 172              		.section	.debug_info,"",%progbits
+ 173              	.Ldebug_info0:
+ 174 0000 17010000 		.4byte	0x117
+ 175 0004 0400     		.2byte	0x4
+ 176 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 177 000a 04       		.byte	0x4
+ 178 000b 01       		.uleb128 0x1
+ 179 000c D1000000 		.4byte	.LASF20
+ 180 0010 01       		.byte	0x1
+ 181 0011 81000000 		.4byte	.LASF21
+ 182 0015 AE010000 		.4byte	.LASF22
+ 183 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 184 001d 00000000 		.4byte	0
+ 185 0021 00000000 		.4byte	.Ldebug_line0
+ 186 0025 02       		.uleb128 0x2
+ 187 0026 01       		.byte	0x1
+ 188 0027 06       		.byte	0x6
+ 189 0028 8A010000 		.4byte	.LASF0
+ 190 002c 02       		.uleb128 0x2
+ 191 002d 01       		.byte	0x1
+ 192 002e 08       		.byte	0x8
+ 193 002f 17000000 		.4byte	.LASF1
+ 194 0033 02       		.uleb128 0x2
+ 195 0034 02       		.byte	0x2
+ 196 0035 05       		.byte	0x5
+ 197 0036 60010000 		.4byte	.LASF2
+ 198 003a 02       		.uleb128 0x2
+ 199 003b 02       		.byte	0x2
+ 200 003c 07       		.byte	0x7
+ 201 003d 3C000000 		.4byte	.LASF3
+ 202 0041 02       		.uleb128 0x2
+ 203 0042 04       		.byte	0x4
+ 204 0043 05       		.byte	0x5
+ 205 0044 70010000 		.4byte	.LASF4
+ 206 0048 02       		.uleb128 0x2
+ 207 0049 04       		.byte	0x4
+ 208 004a 07       		.byte	0x7
+ 209 004b 2A000000 		.4byte	.LASF5
+ 210 004f 02       		.uleb128 0x2
+ 211 0050 08       		.byte	0x8
+ 212 0051 05       		.byte	0x5
+ 213 0052 4D010000 		.4byte	.LASF6
+ 214 0056 02       		.uleb128 0x2
+ 215 0057 08       		.byte	0x8
+ 216 0058 07       		.byte	0x7
+ 217 0059 B5000000 		.4byte	.LASF7
+ 218 005d 03       		.uleb128 0x3
+ 219 005e 04       		.byte	0x4
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 7
+
+
+ 220 005f 05       		.byte	0x5
+ 221 0060 696E7400 		.ascii	"int\000"
+ 222 0064 02       		.uleb128 0x2
+ 223 0065 04       		.byte	0x4
+ 224 0066 07       		.byte	0x7
+ 225 0067 A8000000 		.4byte	.LASF8
+ 226 006b 04       		.uleb128 0x4
+ 227 006c 6A010000 		.4byte	.LASF12
+ 228 0070 02       		.byte	0x2
+ 229 0071 B4       		.byte	0xb4
+ 230 0072 2C000000 		.4byte	0x2c
+ 231 0076 02       		.uleb128 0x2
+ 232 0077 04       		.byte	0x4
+ 233 0078 04       		.byte	0x4
+ 234 0079 11000000 		.4byte	.LASF9
+ 235 007d 02       		.uleb128 0x2
+ 236 007e 08       		.byte	0x8
+ 237 007f 04       		.byte	0x4
+ 238 0080 7A000000 		.4byte	.LASF10
+ 239 0084 02       		.uleb128 0x2
+ 240 0085 01       		.byte	0x1
+ 241 0086 08       		.byte	0x8
+ 242 0087 5B010000 		.4byte	.LASF11
+ 243 008b 05       		.uleb128 0x5
+ 244 008c 25000000 		.4byte	.LASF13
+ 245 0090 02       		.byte	0x2
+ 246 0091 5E01     		.2byte	0x15e
+ 247 0093 97000000 		.4byte	0x97
+ 248 0097 06       		.uleb128 0x6
+ 249 0098 6B000000 		.4byte	0x6b
+ 250 009c 07       		.uleb128 0x7
+ 251 009d 68000000 		.4byte	.LASF14
+ 252 00a1 01       		.byte	0x1
+ 253 00a2 27       		.byte	0x27
+ 254 00a3 00000000 		.4byte	.LFB0
+ 255 00a7 0C000000 		.4byte	.LFE0-.LFB0
+ 256 00ab 01       		.uleb128 0x1
+ 257 00ac 9C       		.byte	0x9c
+ 258 00ad CB000000 		.4byte	0xcb
+ 259 00b1 08       		.uleb128 0x8
+ 260 00b2 00000000 		.4byte	.LASF16
+ 261 00b6 01       		.byte	0x1
+ 262 00b7 27       		.byte	0x27
+ 263 00b8 6B000000 		.4byte	0x6b
+ 264 00bc 01       		.uleb128 0x1
+ 265 00bd 50       		.byte	0x50
+ 266 00be 09       		.uleb128 0x9
+ 267 00bf 06000000 		.4byte	.LASF23
+ 268 00c3 01       		.byte	0x1
+ 269 00c4 29       		.byte	0x29
+ 270 00c5 6B000000 		.4byte	0x6b
+ 271 00c9 00       		.byte	0
+ 272 00ca 00       		.byte	0
+ 273 00cb 07       		.uleb128 0x7
+ 274 00cc 4F000000 		.4byte	.LASF15
+ 275 00d0 01       		.byte	0x1
+ 276 00d1 45       		.byte	0x45
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 8
+
+
+ 277 00d2 00000000 		.4byte	.LFB1
+ 278 00d6 6C000000 		.4byte	.LFE1-.LFB1
+ 279 00da 01       		.uleb128 0x1
+ 280 00db 9C       		.byte	0x9c
+ 281 00dc F0000000 		.4byte	0xf0
+ 282 00e0 0A       		.uleb128 0xa
+ 283 00e1 CC000000 		.4byte	.LASF17
+ 284 00e5 01       		.byte	0x1
+ 285 00e6 45       		.byte	0x45
+ 286 00e7 6B000000 		.4byte	0x6b
+ 287 00eb 00000000 		.4byte	.LLST0
+ 288 00ef 00       		.byte	0
+ 289 00f0 0B       		.uleb128 0xb
+ 290 00f1 79010000 		.4byte	.LASF18
+ 291 00f5 01       		.byte	0x1
+ 292 00f6 64       		.byte	0x64
+ 293 00f7 6B000000 		.4byte	0x6b
+ 294 00fb 00000000 		.4byte	.LFB2
+ 295 00ff 0C000000 		.4byte	.LFE2-.LFB2
+ 296 0103 01       		.uleb128 0x1
+ 297 0104 9C       		.byte	0x9c
+ 298 0105 0B       		.uleb128 0xb
+ 299 0106 96010000 		.4byte	.LASF19
+ 300 010a 01       		.byte	0x1
+ 301 010b 78       		.byte	0x78
+ 302 010c 6B000000 		.4byte	0x6b
+ 303 0110 00000000 		.4byte	.LFB3
+ 304 0114 0C000000 		.4byte	.LFE3-.LFB3
+ 305 0118 01       		.uleb128 0x1
+ 306 0119 9C       		.byte	0x9c
+ 307 011a 00       		.byte	0
+ 308              		.section	.debug_abbrev,"",%progbits
+ 309              	.Ldebug_abbrev0:
+ 310 0000 01       		.uleb128 0x1
+ 311 0001 11       		.uleb128 0x11
+ 312 0002 01       		.byte	0x1
+ 313 0003 25       		.uleb128 0x25
+ 314 0004 0E       		.uleb128 0xe
+ 315 0005 13       		.uleb128 0x13
+ 316 0006 0B       		.uleb128 0xb
+ 317 0007 03       		.uleb128 0x3
+ 318 0008 0E       		.uleb128 0xe
+ 319 0009 1B       		.uleb128 0x1b
+ 320 000a 0E       		.uleb128 0xe
+ 321 000b 55       		.uleb128 0x55
+ 322 000c 17       		.uleb128 0x17
+ 323 000d 11       		.uleb128 0x11
+ 324 000e 01       		.uleb128 0x1
+ 325 000f 10       		.uleb128 0x10
+ 326 0010 17       		.uleb128 0x17
+ 327 0011 00       		.byte	0
+ 328 0012 00       		.byte	0
+ 329 0013 02       		.uleb128 0x2
+ 330 0014 24       		.uleb128 0x24
+ 331 0015 00       		.byte	0
+ 332 0016 0B       		.uleb128 0xb
+ 333 0017 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 9
+
+
+ 334 0018 3E       		.uleb128 0x3e
+ 335 0019 0B       		.uleb128 0xb
+ 336 001a 03       		.uleb128 0x3
+ 337 001b 0E       		.uleb128 0xe
+ 338 001c 00       		.byte	0
+ 339 001d 00       		.byte	0
+ 340 001e 03       		.uleb128 0x3
+ 341 001f 24       		.uleb128 0x24
+ 342 0020 00       		.byte	0
+ 343 0021 0B       		.uleb128 0xb
+ 344 0022 0B       		.uleb128 0xb
+ 345 0023 3E       		.uleb128 0x3e
+ 346 0024 0B       		.uleb128 0xb
+ 347 0025 03       		.uleb128 0x3
+ 348 0026 08       		.uleb128 0x8
+ 349 0027 00       		.byte	0
+ 350 0028 00       		.byte	0
+ 351 0029 04       		.uleb128 0x4
+ 352 002a 16       		.uleb128 0x16
+ 353 002b 00       		.byte	0
+ 354 002c 03       		.uleb128 0x3
+ 355 002d 0E       		.uleb128 0xe
+ 356 002e 3A       		.uleb128 0x3a
+ 357 002f 0B       		.uleb128 0xb
+ 358 0030 3B       		.uleb128 0x3b
+ 359 0031 0B       		.uleb128 0xb
+ 360 0032 49       		.uleb128 0x49
+ 361 0033 13       		.uleb128 0x13
+ 362 0034 00       		.byte	0
+ 363 0035 00       		.byte	0
+ 364 0036 05       		.uleb128 0x5
+ 365 0037 16       		.uleb128 0x16
+ 366 0038 00       		.byte	0
+ 367 0039 03       		.uleb128 0x3
+ 368 003a 0E       		.uleb128 0xe
+ 369 003b 3A       		.uleb128 0x3a
+ 370 003c 0B       		.uleb128 0xb
+ 371 003d 3B       		.uleb128 0x3b
+ 372 003e 05       		.uleb128 0x5
+ 373 003f 49       		.uleb128 0x49
+ 374 0040 13       		.uleb128 0x13
+ 375 0041 00       		.byte	0
+ 376 0042 00       		.byte	0
+ 377 0043 06       		.uleb128 0x6
+ 378 0044 35       		.uleb128 0x35
+ 379 0045 00       		.byte	0
+ 380 0046 49       		.uleb128 0x49
+ 381 0047 13       		.uleb128 0x13
+ 382 0048 00       		.byte	0
+ 383 0049 00       		.byte	0
+ 384 004a 07       		.uleb128 0x7
+ 385 004b 2E       		.uleb128 0x2e
+ 386 004c 01       		.byte	0x1
+ 387 004d 3F       		.uleb128 0x3f
+ 388 004e 19       		.uleb128 0x19
+ 389 004f 03       		.uleb128 0x3
+ 390 0050 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 10
+
+
+ 391 0051 3A       		.uleb128 0x3a
+ 392 0052 0B       		.uleb128 0xb
+ 393 0053 3B       		.uleb128 0x3b
+ 394 0054 0B       		.uleb128 0xb
+ 395 0055 27       		.uleb128 0x27
+ 396 0056 19       		.uleb128 0x19
+ 397 0057 11       		.uleb128 0x11
+ 398 0058 01       		.uleb128 0x1
+ 399 0059 12       		.uleb128 0x12
+ 400 005a 06       		.uleb128 0x6
+ 401 005b 40       		.uleb128 0x40
+ 402 005c 18       		.uleb128 0x18
+ 403 005d 9742     		.uleb128 0x2117
+ 404 005f 19       		.uleb128 0x19
+ 405 0060 01       		.uleb128 0x1
+ 406 0061 13       		.uleb128 0x13
+ 407 0062 00       		.byte	0
+ 408 0063 00       		.byte	0
+ 409 0064 08       		.uleb128 0x8
+ 410 0065 05       		.uleb128 0x5
+ 411 0066 00       		.byte	0
+ 412 0067 03       		.uleb128 0x3
+ 413 0068 0E       		.uleb128 0xe
+ 414 0069 3A       		.uleb128 0x3a
+ 415 006a 0B       		.uleb128 0xb
+ 416 006b 3B       		.uleb128 0x3b
+ 417 006c 0B       		.uleb128 0xb
+ 418 006d 49       		.uleb128 0x49
+ 419 006e 13       		.uleb128 0x13
+ 420 006f 02       		.uleb128 0x2
+ 421 0070 18       		.uleb128 0x18
+ 422 0071 00       		.byte	0
+ 423 0072 00       		.byte	0
+ 424 0073 09       		.uleb128 0x9
+ 425 0074 34       		.uleb128 0x34
+ 426 0075 00       		.byte	0
+ 427 0076 03       		.uleb128 0x3
+ 428 0077 0E       		.uleb128 0xe
+ 429 0078 3A       		.uleb128 0x3a
+ 430 0079 0B       		.uleb128 0xb
+ 431 007a 3B       		.uleb128 0x3b
+ 432 007b 0B       		.uleb128 0xb
+ 433 007c 49       		.uleb128 0x49
+ 434 007d 13       		.uleb128 0x13
+ 435 007e 1C       		.uleb128 0x1c
+ 436 007f 0B       		.uleb128 0xb
+ 437 0080 00       		.byte	0
+ 438 0081 00       		.byte	0
+ 439 0082 0A       		.uleb128 0xa
+ 440 0083 05       		.uleb128 0x5
+ 441 0084 00       		.byte	0
+ 442 0085 03       		.uleb128 0x3
+ 443 0086 0E       		.uleb128 0xe
+ 444 0087 3A       		.uleb128 0x3a
+ 445 0088 0B       		.uleb128 0xb
+ 446 0089 3B       		.uleb128 0x3b
+ 447 008a 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 11
+
+
+ 448 008b 49       		.uleb128 0x49
+ 449 008c 13       		.uleb128 0x13
+ 450 008d 02       		.uleb128 0x2
+ 451 008e 17       		.uleb128 0x17
+ 452 008f 00       		.byte	0
+ 453 0090 00       		.byte	0
+ 454 0091 0B       		.uleb128 0xb
+ 455 0092 2E       		.uleb128 0x2e
+ 456 0093 00       		.byte	0
+ 457 0094 3F       		.uleb128 0x3f
+ 458 0095 19       		.uleb128 0x19
+ 459 0096 03       		.uleb128 0x3
+ 460 0097 0E       		.uleb128 0xe
+ 461 0098 3A       		.uleb128 0x3a
+ 462 0099 0B       		.uleb128 0xb
+ 463 009a 3B       		.uleb128 0x3b
+ 464 009b 0B       		.uleb128 0xb
+ 465 009c 27       		.uleb128 0x27
+ 466 009d 19       		.uleb128 0x19
+ 467 009e 49       		.uleb128 0x49
+ 468 009f 13       		.uleb128 0x13
+ 469 00a0 11       		.uleb128 0x11
+ 470 00a1 01       		.uleb128 0x1
+ 471 00a2 12       		.uleb128 0x12
+ 472 00a3 06       		.uleb128 0x6
+ 473 00a4 40       		.uleb128 0x40
+ 474 00a5 18       		.uleb128 0x18
+ 475 00a6 9742     		.uleb128 0x2117
+ 476 00a8 19       		.uleb128 0x19
+ 477 00a9 00       		.byte	0
+ 478 00aa 00       		.byte	0
+ 479 00ab 00       		.byte	0
+ 480              		.section	.debug_loc,"",%progbits
+ 481              	.Ldebug_loc0:
+ 482              	.LLST0:
+ 483 0000 00000000 		.4byte	.LVL2
+ 484 0004 08000000 		.4byte	.LVL3
+ 485 0008 0100     		.2byte	0x1
+ 486 000a 50       		.byte	0x50
+ 487 000b 08000000 		.4byte	.LVL3
+ 488 000f 6C000000 		.4byte	.LFE1
+ 489 0013 0400     		.2byte	0x4
+ 490 0015 F3       		.byte	0xf3
+ 491 0016 01       		.uleb128 0x1
+ 492 0017 50       		.byte	0x50
+ 493 0018 9F       		.byte	0x9f
+ 494 0019 00000000 		.4byte	0
+ 495 001d 00000000 		.4byte	0
+ 496              		.section	.debug_aranges,"",%progbits
+ 497 0000 34000000 		.4byte	0x34
+ 498 0004 0200     		.2byte	0x2
+ 499 0006 00000000 		.4byte	.Ldebug_info0
+ 500 000a 04       		.byte	0x4
+ 501 000b 00       		.byte	0
+ 502 000c 0000     		.2byte	0
+ 503 000e 0000     		.2byte	0
+ 504 0010 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 12
+
+
+ 505 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 506 0018 00000000 		.4byte	.LFB1
+ 507 001c 6C000000 		.4byte	.LFE1-.LFB1
+ 508 0020 00000000 		.4byte	.LFB2
+ 509 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 510 0028 00000000 		.4byte	.LFB3
+ 511 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 512 0030 00000000 		.4byte	0
+ 513 0034 00000000 		.4byte	0
+ 514              		.section	.debug_ranges,"",%progbits
+ 515              	.Ldebug_ranges0:
+ 516 0000 00000000 		.4byte	.LFB0
+ 517 0004 0C000000 		.4byte	.LFE0
+ 518 0008 00000000 		.4byte	.LFB1
+ 519 000c 6C000000 		.4byte	.LFE1
+ 520 0010 00000000 		.4byte	.LFB2
+ 521 0014 0C000000 		.4byte	.LFE2
+ 522 0018 00000000 		.4byte	.LFB3
+ 523 001c 0C000000 		.4byte	.LFE3
+ 524 0020 00000000 		.4byte	0
+ 525 0024 00000000 		.4byte	0
+ 526              		.section	.debug_line,"",%progbits
+ 527              	.Ldebug_line0:
+ 528 0000 9D000000 		.section	.debug_str,"MS",%progbits,1
+ 528      02004A00 
+ 528      00000201 
+ 528      FB0E0D00 
+ 528      01010101 
+ 529              	.LASF16:
+ 530 0000 76616C75 		.ascii	"value\000"
+ 530      6500
+ 531              	.LASF23:
+ 532 0006 73746174 		.ascii	"staticBits\000"
+ 532      69634269 
+ 532      747300
+ 533              	.LASF9:
+ 534 0011 666C6F61 		.ascii	"float\000"
+ 534      7400
+ 535              	.LASF1:
+ 536 0017 756E7369 		.ascii	"unsigned char\000"
+ 536      676E6564 
+ 536      20636861 
+ 536      7200
+ 537              	.LASF13:
+ 538 0025 72656738 		.ascii	"reg8\000"
+ 538      00
+ 539              	.LASF5:
+ 540 002a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 540      20756E73 
+ 540      69676E65 
+ 540      6420696E 
+ 540      7400
+ 541              	.LASF3:
+ 542 003c 73686F72 		.ascii	"short unsigned int\000"
+ 542      7420756E 
+ 542      7369676E 
+ 542      65642069 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 13
+
+
+ 542      6E7400
+ 543              	.LASF15:
+ 544 004f 55734D69 		.ascii	"UsMicroSecs_SetDriveMode\000"
+ 544      63726F53 
+ 544      6563735F 
+ 544      53657444 
+ 544      72697665 
+ 545              	.LASF14:
+ 546 0068 55734D69 		.ascii	"UsMicroSecs_Write\000"
+ 546      63726F53 
+ 546      6563735F 
+ 546      57726974 
+ 546      6500
+ 547              	.LASF10:
+ 548 007a 646F7562 		.ascii	"double\000"
+ 548      6C6500
+ 549              	.LASF21:
+ 550 0081 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\UsMicroSecs.c\000"
+ 550      6E657261 
+ 550      7465645F 
+ 550      536F7572 
+ 550      63655C50 
+ 551              	.LASF8:
+ 552 00a8 756E7369 		.ascii	"unsigned int\000"
+ 552      676E6564 
+ 552      20696E74 
+ 552      00
+ 553              	.LASF7:
+ 554 00b5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 554      206C6F6E 
+ 554      6720756E 
+ 554      7369676E 
+ 554      65642069 
+ 555              	.LASF17:
+ 556 00cc 6D6F6465 		.ascii	"mode\000"
+ 556      00
+ 557              	.LASF20:
+ 558 00d1 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 558      4320342E 
+ 558      382E3420 
+ 558      32303134 
+ 558      30353236 
+ 559 0104 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 559      20726576 
+ 559      6973696F 
+ 559      6E203231 
+ 559      31333538 
+ 560 0137 67202D66 		.ascii	"g -ffunction-sections\000"
+ 560      66756E63 
+ 560      74696F6E 
+ 560      2D736563 
+ 560      74696F6E 
+ 561              	.LASF6:
+ 562 014d 6C6F6E67 		.ascii	"long long int\000"
+ 562      206C6F6E 
+ 562      6720696E 
+ 562      7400
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccHirBbv.s 			page 14
+
+
+ 563              	.LASF11:
+ 564 015b 63686172 		.ascii	"char\000"
+ 564      00
+ 565              	.LASF2:
+ 566 0160 73686F72 		.ascii	"short int\000"
+ 566      7420696E 
+ 566      7400
+ 567              	.LASF12:
+ 568 016a 75696E74 		.ascii	"uint8\000"
+ 568      3800
+ 569              	.LASF4:
+ 570 0170 6C6F6E67 		.ascii	"long int\000"
+ 570      20696E74 
+ 570      00
+ 571              	.LASF18:
+ 572 0179 55734D69 		.ascii	"UsMicroSecs_Read\000"
+ 572      63726F53 
+ 572      6563735F 
+ 572      52656164 
+ 572      00
+ 573              	.LASF0:
+ 574 018a 7369676E 		.ascii	"signed char\000"
+ 574      65642063 
+ 574      68617200 
+ 575              	.LASF19:
+ 576 0196 55734D69 		.ascii	"UsMicroSecs_ReadDataReg\000"
+ 576      63726F53 
+ 576      6563735F 
+ 576      52656164 
+ 576      44617461 
+ 577              	.LASF22:
+ 578 01ae 433A5C55 		.ascii	"C:\\Users\\Nick\\Dropbox\\Uni Docs\\y4s2\\ECE3091 -"
+ 578      73657273 
+ 578      5C4E6963 
+ 578      6B5C4472 
+ 578      6F70626F 
+ 579 01db 20456E67 		.ascii	" Engineering Design\\PSoc Creator\\eng_design_2015\\"
+ 579      696E6565 
+ 579      72696E67 
+ 579      20446573 
+ 579      69676E5C 
+ 580 020c 45434533 		.ascii	"ECE3091-chickybot\\chickybot.cydsn\000"
+ 580      3039312D 
+ 580      63686963 
+ 580      6B79626F 
+ 580      745C6368 
+ 581              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

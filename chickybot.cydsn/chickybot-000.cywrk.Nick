@@ -6,7 +6,7 @@
 <CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
 <userData>
 <dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
-<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Datasheet">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
 <TreeKeys>
 <v>Source</v>
 <v>Components</v>
@@ -27,6 +27,17 @@
 <v>chickybot-000\chickybot\Source Files\sensors.c</v>
 <v>chickybot-000\chickybot\Source Files\sensors.h</v>
 <v>chickybot-000\chickybot\Generated_Source</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow\ADC_Elbow.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow\ADC_Elbow.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow\ADC_Elbow_INT.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow\ADC_Elbow_PM.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow_IRQ</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow_IRQ\ADC_Elbow_IRQ.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow_IRQ\ADC_Elbow_IRQ.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow_theACLK</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow_theACLK\ADC_Elbow_theACLK.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ADC_Elbow_theACLK\ADC_Elbow_theACLK.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.h</v>
@@ -58,9 +69,6 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC_aliases.h</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\Clock_1</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\Clock_1\Clock_1.c</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\Clock_1\Clock_1.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCamera</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCamera\ClockCamera.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockCamera\ClockCamera.h</v>
@@ -73,13 +81,15 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockUsPWM</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockUsPWM\ClockUsPWM.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockUsPWM\ClockUsPWM.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockUsTimer</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockUsTimer\ClockUsTimer.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ClockUsTimer\ClockUsTimer.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns\CsBtns.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM\CsBtns_PWM.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM\CsBtns_PWM.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\CsBtns_PWM\CsBtns_PWM_PM.c</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
@@ -104,6 +114,18 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowNeg</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowNeg\ElbowNeg.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowNeg\ElbowNeg.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowNeg\ElbowNeg_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPos</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPos\ElbowPos.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPos\ElbowPos.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPos\ElbowPos_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPot</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPot\ElbowPot.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPot\ElbowPot.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ElbowPot\ElbowPot_aliases.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\IsrBtn0Pressed</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\IsrBtn0Pressed\IsrBtn0Pressed.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\IsrBtn0Pressed\IsrBtn0Pressed.h</v>
@@ -173,22 +195,22 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\RESET\RESET.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\RESET\RESET.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\RESET\RESET_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderNeg</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderNeg\ShoulderNeg.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderNeg\ShoulderNeg.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderNeg\ShoulderNeg_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderPos</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderPos\ShoulderPos.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderPos\ShoulderPos.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\ShoulderPos\ShoulderPos_aliases.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsEcho</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsEcho\UsEcho.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsEcho\UsEcho.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsEcho\UsEcho_aliases.h</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsOutput</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsOutput\UsOutput.c</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsOutput\UsOutput.h</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsOutput\UsOutput_aliases.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsPWM</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsPWM\UsPWM.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsPWM\UsPWM.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsPWM\UsPWM_PM.c</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTC</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTC\UsTC.c</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTC\UsTC.h</v>
-<v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTC\UsTC_aliases.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTimer</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTimer\UsTimer.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\UsTimer\UsTimer.h</v>
@@ -323,6 +345,11 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_INT.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_IRQ.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_PM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_theACLK.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Bootloadable_1.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_DMA_dma.lst</v>
@@ -336,11 +363,11 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_SIOC.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_SIOD.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_VSYNC.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Clock_1.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockCamera.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockCsBtns.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockLcdBacklight.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockUsPWM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockUsTimer.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CsBtns_PWM.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CsBtns_PWM_PM.lst</v>
@@ -355,6 +382,9 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CySpc.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ElbowNeg.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ElbowPos.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ElbowPot.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrBtn0Pressed.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrBtn1Pressed.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrUsTimer.lst</v>
@@ -377,11 +407,11 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\PWDN.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\RESET.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\sensors.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ShoulderNeg.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ShoulderPos.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsEcho.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsOutput.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsPWM.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsPWM_PM.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsTC.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsTimer.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsTimer_PM.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\UsTrig.lst</v>
@@ -400,6 +430,11 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_INT.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_IRQ.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_PM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ADC_Elbow_theACLK.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Bootloadable_1.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_DMA_dma.lst</v>
@@ -413,11 +448,11 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_SIOC.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_SIOD.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_VSYNC.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Clock_1.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockCamera.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockCsBtns.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockLcdBacklight.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockUsPWM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockUsTimer.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CsBtns_PWM.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CsBtns_PWM_PM.lst</v>
@@ -431,11 +466,6 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cymetadata.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CySpc.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrBtn0Pressed.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrBtn1Pressed.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrUsTimer.lst</v>
-<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Lcd.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -452,6 +482,7 @@
 <v>chickybot-000\chickybot\System Reference Guides</v>
 <v>chickybot-000\chickybot\System Reference Guides\cy_boot_v5_10</v>
 <v>chickybot-000\chickybot\Project Datasheet</v>
+<v>chickybot-000\chickybot\ADC_SAR_v3_0</v>
 <v>chickybot-000\chickybot\Bootloadable_v1_30</v>
 <v>chickybot-000\chickybot\CharLCDmp_v1_2</v>
 <v>chickybot-000\chickybot\cy_clock_v2_20</v>
@@ -470,6 +501,7 @@
 <v>chickybot-000\chickybot\System Reference Guides</v>
 <v>chickybot-000\chickybot\System Reference Guides\cy_boot_v5_10</v>
 <v>chickybot-000\chickybot\Project Datasheet</v>
+<v>chickybot-000\chickybot\ADC_SAR_v3_0</v>
 <v>chickybot-000\chickybot\Bootloadable_v1_30</v>
 <v>chickybot-000\chickybot\CharLCDmp_v1_2</v>
 <v>chickybot-000\chickybot\cy_clock_v2_20</v>
@@ -491,8 +523,8 @@
 <name v=".\TopDesign\TopDesign.cysch" />
 <name v=".\chickybot.cydwr" />
 <name v=".\main.c" />
-<name v=".\cv.c" />
-<name v=".\cv.h" />
+<name v=".\sensors.c" />
+<name v=".\sensors.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

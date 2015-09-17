@@ -1,6 +1,7 @@
 #include <project.h>
 #include <stdlib.h>
 #include "cv.h"
+#include "sensors.h"
 
 uint8 * plan;
 
@@ -27,20 +28,10 @@ void getPlan() {
     Lcd_PosPrintString(1, 0, "returned");
 }
 
-//void UsSensor() {
-//    LedRed_Write(!LedRed_Read());
-//    
-//    Lcd_Position(0,0);
-//    Lcd_PrintDecUint16(UsTimer_ReadCapture());
-//}
 
-//void UsSensorTrigger() {
-//    LedYellow_Write(!LedYellow_Read());
-//    
-//    Lcd_Position(0,0);
-//    Lcd_PrintDecUint16(UsTimer_ReadCapture());
-//    uint16 dist = UsTimer_ReadCapture() / 58;
-////    Lcd_PrintDecUint16(dist);
+
+//void ADC_Elbow_EOC() {
+//    int16 result = ADC_Elbow_GetResult16();
 //}
 
 
@@ -50,20 +41,24 @@ int main()
     CyGlobalIntEnable; /* Enable global interrupts. */
     IsrBtn0Pressed_StartEx(Btn0Pressed);
     IsrBtn1Pressed_StartEx(Btn1Pressed);
-//    IsrUsTimer_StartEx(UsSensorTrigger);
+    IsrUsTimer_StartEx(UsSensorTrigger);
+//    IsrADC_Elbow_EOC_StartEx(ADC_Elbow_EOC);
 
     // Starts
     CsBtns_Start();
     Lcd_Start();
     Camera_Start();
-//    UsPWM_Start();
-//    UsTimer_Start();
+    UsPWM_Start();
+    UsTimer_Start();
+    ADC_Elbow_Start();
+    ADC_Elbow_StartConvert();
     
     CyDelay(500); // TODO: Necessary to wait for Camera to start up?
     
-    getPlan();
-    displayPlanOnLcd();
+//    getPlan();
+//    displayPlanOnLcd();
     
+//    UsTimer_EnableTrigger();
 
     for(;;)
     {
@@ -76,9 +71,13 @@ int main()
         // UltraSonic Test
 //        UsSensor();
 //        
+        drawDistToLcd();
+        
+//        ADC_Elbow_IsEndConversion(ADC_Elbow_WAIT_FOR_RESULT);
 //        Lcd_Position(0,0);
-//        Lcd_PrintDecUint16(UsTimer_ReadCapture());
+//        Lcd_PrintDecUint16(ADC_Elbow_GetResult16());
         
         CyDelay(500);
+//        UsTimer_EnableTrigger();
     }
 }

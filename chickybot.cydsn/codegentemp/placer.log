@@ -6,7 +6,7 @@
 
 #Build Date:         May  8 2015 09:27:37
 
-#File Generated:     Sep 16 2015 09:16:49
+#File Generated:     Sep 16 2015 23:13:43
 
 #Purpose:            
 
@@ -45,7 +45,7 @@ Phase 3
 
 Design Statistics after Packing
     Number of Combinational MCs 	:	5
-    Number of Sequential MCs    	:	14
+    Number of Sequential MCs    	:	12
     Number of DPs               	:	5
     Number of Controls          	:	3
     Number of Status            	:	2
@@ -53,9 +53,9 @@ Design Statistics after Packing
     Number of count7cells       	:	0
 
 Device Utilization Summary after Packing
-    Macrocells                  :	19/192
+    Macrocells                  :	17/192
     UDBS                        :	6/24
-    IOs                         :	33/72
+    IOs                         :	36/72
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -79,7 +79,9 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 16
+Number of clocks: 18
+Clock: ADC_Elbow_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_Elbow_theACLK(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ClockCamera          | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCamera(routed)  | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCsBtns          | Frequency: N/A       | Target:  12.0 MHz
@@ -87,8 +89,8 @@ Clock: ClockCsBtns(fixed-function) | Frequency:  29.7 MHz | Target:  12.0 MHz
 Clock: ClockLcdBacklight    | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockLcdBacklight(routed) | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockUsPWM           | Frequency:  59.7 MHz | Target:   6.0 MHz
-Clock: Clock_1              | Frequency:  47.2 MHz | Target:   1.0 MHz
-Clock: CyBUS_CLK            | Frequency:  53.2 MHz | Target:  24.0 MHz
+Clock: ClockUsTimer         | Frequency:  48.4 MHz | Target:   1.0 MHz
+Clock: CyBUS_CLK            | Frequency:  51.1 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
@@ -107,7 +109,9 @@ Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 16
+Number of clocks: 18
+Clock: ADC_Elbow_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_Elbow_theACLK(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ClockCamera          | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCamera(routed)  | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCsBtns          | Frequency: N/A       | Target:  12.0 MHz
@@ -115,7 +119,7 @@ Clock: ClockCsBtns(fixed-function) | Frequency:  30.4 MHz | Target:  12.0 MHz
 Clock: ClockLcdBacklight    | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockLcdBacklight(routed) | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockUsPWM           | Frequency:  59.7 MHz | Target:   6.0 MHz
-Clock: Clock_1              | Frequency:   2.6 MHz | Target:   1.0 MHz
+Clock: ClockUsTimer         | Frequency:   2.6 MHz | Target:   1.0 MHz
 Clock: CyBUS_CLK            | Frequency:   2.6 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
@@ -128,21 +132,21 @@ Clock: \CsBtns:PWM:PWMHW\/tc | Frequency:  30.4 MHz | Target:   6.0 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.2 (sec)
+D2088: Phase 7, elapsed time : 0.3 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	5
-    Number of Sequential MCs    	:	14
+    Number of Sequential MCs    	:	12
     Number of DPs               	:	5
     Number of Controls          	:	3
     Number of Status            	:	2
     Number of SyncCells         	:	0
     Number of count7cells       	:	0
-    Number of IOs       	:	33
+    Number of IOs       	:	36
 
 Device Utilization Summary
-    Macrocells                  :	19/192
-    IOs                         :	33/72
+    Macrocells                  :	17/192
+    IOs                         :	36/72
 
 
 
@@ -158,7 +162,9 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 16
+Number of clocks: 18
+Clock: ADC_Elbow_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_Elbow_theACLK(routed) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ClockCamera          | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCamera(routed)  | Frequency: N/A       | Target:  24.0 MHz
 Clock: ClockCsBtns          | Frequency: N/A       | Target:  12.0 MHz
@@ -166,8 +172,8 @@ Clock: ClockCsBtns(fixed-function) | Frequency:  30.4 MHz | Target:  12.0 MHz
 Clock: ClockLcdBacklight    | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockLcdBacklight(routed) | Frequency: N/A       | Target:   0.0 MHz
 Clock: ClockUsPWM           | Frequency:  59.7 MHz | Target:   6.0 MHz
-Clock: Clock_1              | Frequency:   2.6 MHz | Target:   1.0 MHz
-Clock: CyBUS_CLK            | Frequency:   2.6 MHz | Target:  24.0 MHz
+Clock: ClockUsTimer         | Frequency:   2.7 MHz | Target:   1.0 MHz
+Clock: CyBUS_CLK            | Frequency:   2.7 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
@@ -185,5 +191,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 1.0 sec.
+I2076: Total run-time: 1.1 sec.
 

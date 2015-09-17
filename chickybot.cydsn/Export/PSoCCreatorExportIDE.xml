@@ -181,16 +181,33 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsPWM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsPWM.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsPWM_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTC_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTC.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTC.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsOutput_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsOutput.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsOutput.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsPWM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsPWM.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPos_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPos.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPos.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowNeg_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowNeg.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowNeg.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPos_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPos.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPos.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_theACLK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_theACLK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsTimer.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsTimer.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot.h</File>
         </Files>
       </Folder>
       <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">
