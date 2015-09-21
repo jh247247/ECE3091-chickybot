@@ -1,0 +1,2397 @@
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Comp_Elbow.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Comp_Elbow_trimAdjust,"ax",%progbits
+  19              		.align	2
+  20              		.thumb
+  21              		.thumb_func
+  22              		.type	Comp_Elbow_trimAdjust, %function
+  23              	Comp_Elbow_trimAdjust:
+  24              	.LFB6:
+  25              		.file 1 ".\\Generated_Source\\PSoC5\\Comp_Elbow.c"
+   1:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Comp_Elbow.c **** * File Name: Comp_Elbow.c
+   3:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Version 2.0
+   4:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+   5:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Description:
+   6:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This file provides the source code to the API for the Comparator component
+   7:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+   8:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Note:
+   9:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  None
+  10:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  11:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/Comp_Elbow.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC5/Comp_Elbow.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC5/Comp_Elbow.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  18:.\Generated_Source\PSoC5/Comp_Elbow.c **** #include "Comp_Elbow.h"
+  19:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  20:.\Generated_Source\PSoC5/Comp_Elbow.c **** uint8 Comp_Elbow_initVar = 0u;
+  21:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  22:.\Generated_Source\PSoC5/Comp_Elbow.c **** /* Internal functions definitoin */
+  23:.\Generated_Source\PSoC5/Comp_Elbow.c **** static void Comp_Elbow_trimAdjust(uint8 nibble) ;
+  24:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  25:.\Generated_Source\PSoC5/Comp_Elbow.c **** /* static Comp_Elbow_backupStruct  Comp_Elbow_backup; */
+  26:.\Generated_Source\PSoC5/Comp_Elbow.c **** #if (CY_PSOC5A)
+  27:.\Generated_Source\PSoC5/Comp_Elbow.c ****     static Comp_Elbow_LOWPOWER_BACKUP_STRUCT  Comp_Elbow_lowPowerBackup;
+  28:.\Generated_Source\PSoC5/Comp_Elbow.c **** #endif /* CY_PSOC5A */
+  29:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  30:.\Generated_Source\PSoC5/Comp_Elbow.c **** /* variable to decide whether or not to restore the control register in 
+  31:.\Generated_Source\PSoC5/Comp_Elbow.c ****    Enable() API for PSoC5A only */
+  32:.\Generated_Source\PSoC5/Comp_Elbow.c **** #if (CY_PSOC5A)
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 2
+
+
+  33:.\Generated_Source\PSoC5/Comp_Elbow.c ****     static uint8 Comp_Elbow_restoreReg = 0u;
+  34:.\Generated_Source\PSoC5/Comp_Elbow.c **** #endif /* CY_PSOC5A */
+  35:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  36:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  37:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+  38:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_Init
+  39:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+  40:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  41:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+  42:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Initialize to the schematic state
+  43:.\Generated_Source\PSoC5/Comp_Elbow.c **** * 
+  44:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+  45:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+  46:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  47:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+  48:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+  49:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  50:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+  51:.\Generated_Source\PSoC5/Comp_Elbow.c **** void Comp_Elbow_Init(void) 
+  52:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+  53:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Set default speed/power */
+  54:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SetSpeed(Comp_Elbow_DEFAULT_SPEED);
+  55:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  56:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Set default Hysteresis */
+  57:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if ( Comp_Elbow_DEFAULT_HYSTERESIS == 0u )
+  58:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CR |= Comp_Elbow_HYST_OFF;
+  59:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #else
+  60:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CR &= (uint8)(~Comp_Elbow_HYST_OFF);
+  61:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* Comp_Elbow_DEFAULT_HYSTERESIS == 0u */
+  62:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Power down override feature is not supported for PSoC5A. */
+  63:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+  64:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Set default Power Down Override */
+  65:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #if ( Comp_Elbow_DEFAULT_PWRDWN_OVRD == 0u )
+  66:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_CR &= (uint8)(~Comp_Elbow_PWRDWN_OVRD);
+  67:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #else 
+  68:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_CR |= Comp_Elbow_PWRDWN_OVRD;
+  69:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #endif /* Comp_Elbow_DEFAULT_PWRDWN_OVRD == 0u */
+  70:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+  71:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+  72:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Set mux always on logic */
+  73:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CR |= Comp_Elbow_MX_AO;
+  74:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  75:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Set default sync */
+  76:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CLK &= (uint8)(~Comp_Elbow_SYNCCLK_MASK);
+  77:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if ( Comp_Elbow_DEFAULT_BYPASS_SYNC == 0u )
+  78:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CLK |= Comp_Elbow_SYNC_CLK_EN;
+  79:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #else
+  80:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CLK |= Comp_Elbow_BYPASS_SYNC;
+  81:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* Comp_Elbow_DEFAULT_BYPASS_SYNC == 0u */
+  82:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+  83:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  84:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+  85:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+  86:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_Enable
+  87:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+  88:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  89:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 3
+
+
+  90:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Enable the Comparator
+  91:.\Generated_Source\PSoC5/Comp_Elbow.c **** * 
+  92:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+  93:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+  94:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  95:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+  96:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+  97:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+  98:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+  99:.\Generated_Source\PSoC5/Comp_Elbow.c **** void Comp_Elbow_Enable(void) 
+ 100:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 101:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_PWRMGR |= Comp_Elbow_ACT_PWR_EN;
+ 102:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_STBY_PWRMGR |= Comp_Elbow_STBY_PWR_EN;
+ 103:.\Generated_Source\PSoC5/Comp_Elbow.c ****      
+ 104:.\Generated_Source\PSoC5/Comp_Elbow.c ****      /* This is to restore the value of register CR which is saved 
+ 105:.\Generated_Source\PSoC5/Comp_Elbow.c ****     in prior to the modification in stop() API */
+ 106:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC5A)
+ 107:.\Generated_Source\PSoC5/Comp_Elbow.c ****         if(Comp_Elbow_restoreReg == 1u)
+ 108:.\Generated_Source\PSoC5/Comp_Elbow.c ****         {
+ 109:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_CR = Comp_Elbow_lowPowerBackup.compCRReg;
+ 110:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 111:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* Clear the flag */
+ 112:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_restoreReg = 0u;
+ 113:.\Generated_Source\PSoC5/Comp_Elbow.c ****         }
+ 114:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC5A */
+ 115:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 116:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 117:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 118:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 119:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_Start
+ 120:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 121:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 122:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 123:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  The start function initializes the Analog Comparator with the default values.
+ 124:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 125:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+ 126:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+ 127:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 128:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 129:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void 
+ 130:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 131:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Global variables:
+ 132:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Comp_Elbow_initVar: Is modified when this function is called for the 
+ 133:.\Generated_Source\PSoC5/Comp_Elbow.c **** *   first time. Is used to ensure that initialization happens only once.
+ 134:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  
+ 135:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 136:.\Generated_Source\PSoC5/Comp_Elbow.c **** void Comp_Elbow_Start(void) 
+ 137:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 138:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 139:.\Generated_Source\PSoC5/Comp_Elbow.c ****     if ( Comp_Elbow_initVar == 0u )
+ 140:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 141:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_Init();
+ 142:.\Generated_Source\PSoC5/Comp_Elbow.c ****         
+ 143:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_initVar = 1u;
+ 144:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }   
+ 145:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 146:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Enable power to comparator */
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 4
+
+
+ 147:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_Enable();    
+ 148:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 149:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 150:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 151:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 152:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_Stop
+ 153:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 154:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 155:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 156:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Powers down amplifier to lowest power state.
+ 157:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 158:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+ 159:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+ 160:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 161:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 162:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+ 163:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 164:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 165:.\Generated_Source\PSoC5/Comp_Elbow.c **** void Comp_Elbow_Stop(void) 
+ 166:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 167:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Disable power to comparator */
+ 168:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_PWRMGR &= (uint8)(~Comp_Elbow_ACT_PWR_EN);
+ 169:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_STBY_PWRMGR &= (uint8)(~Comp_Elbow_STBY_PWR_EN);
+ 170:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 171:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC5A)
+ 172:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Enable the variable */
+ 173:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_restoreReg = 1u;
+ 174:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 175:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Save the control register before clearing it */
+ 176:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_lowPowerBackup.compCRReg = Comp_Elbow_CR;
+ 177:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CR = Comp_Elbow_COMP_REG_CLR;
+ 178:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC5A */
+ 179:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 180:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 181:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 182:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 183:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_SetSpeed
+ 184:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 185:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 186:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 187:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This function sets the speed of the Analog Comparator. The faster the speed
+ 188:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  the more power that is used.
+ 189:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 190:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+ 191:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  speed: (uint8) Sets operation mode of Comparator
+ 192:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 193:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 194:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  void
+ 195:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 196:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 197:.\Generated_Source\PSoC5/Comp_Elbow.c **** void Comp_Elbow_SetSpeed(uint8 speed) 
+ 198:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 199:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Clear and Set power level */    
+ 200:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CR = (Comp_Elbow_CR & (uint8)(~Comp_Elbow_PWR_MODE_MASK)) |
+ 201:.\Generated_Source\PSoC5/Comp_Elbow.c ****                            (speed & Comp_Elbow_PWR_MODE_MASK);
+ 202:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 203:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Set trim value for high speed comparator */
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 5
+
+
+ 204:.\Generated_Source\PSoC5/Comp_Elbow.c ****     if(speed == Comp_Elbow_HIGHSPEED)
+ 205:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 206:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* PSoC5A */
+ 207:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #if (CY_PSOC5A)
+ 208:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR = Comp_Elbow_HS_TRIM_TR0;
+ 209:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #endif /* CY_PSOC5A */
+ 210:.\Generated_Source\PSoC5/Comp_Elbow.c ****         
+ 211:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* PSoC3, PSoC5LP or later */
+ 212:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #if (CY_PSOC3 || CY_PSOC5LP) 
+ 213:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR0 = Comp_Elbow_HS_TRIM_TR0;
+ 214:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR1 = Comp_Elbow_HS_TRIM_TR1;
+ 215:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 216:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 217:.\Generated_Source\PSoC5/Comp_Elbow.c ****     else
+ 218:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 219:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC5A */
+ 220:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #if (CY_PSOC5A)
+ 221:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR = Comp_Elbow_LS_TRIM_TR0;
+ 222:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #endif /* CY_PSOC5A */
+ 223:.\Generated_Source\PSoC5/Comp_Elbow.c ****         
+ 224:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* PSoC3, PSoC5LP or later */
+ 225:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #if (CY_PSOC3 || CY_PSOC5LP) 
+ 226:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR0 = Comp_Elbow_LS_TRIM_TR0;
+ 227:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR1 = Comp_Elbow_LS_TRIM_TR1;
+ 228:.\Generated_Source\PSoC5/Comp_Elbow.c ****         #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 229:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 230:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 231:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 232:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 233:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 234:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 235:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_GetCompare
+ 236:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 237:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 238:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 239:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This function returns the comparator output value.
+ 240:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This value is not affected by the Polarity parameter.
+ 241:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This valuea lways reflects a noninverted state.
+ 242:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 243:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+ 244:.\Generated_Source\PSoC5/Comp_Elbow.c **** *   None
+ 245:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 246:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 247:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  (uint8)  0     - if Pos_Input less than Neg_input
+ 248:.\Generated_Source\PSoC5/Comp_Elbow.c **** *           non 0 - if Pos_Input greater than Neg_input.
+ 249:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 250:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 251:.\Generated_Source\PSoC5/Comp_Elbow.c **** uint8 Comp_Elbow_GetCompare(void) 
+ 252:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 253:.\Generated_Source\PSoC5/Comp_Elbow.c ****     return( Comp_Elbow_WRK & Comp_Elbow_CMP_OUT_MASK);
+ 254:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 255:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 256:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 257:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 258:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_trimAdjust
+ 259:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 260:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 6
+
+
+ 261:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 262:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This function adjusts the value in the low nibble/high nibble of the Analog 
+ 263:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Comparator trim register
+ 264:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 265:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:  
+ 266:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  nibble:
+ 267:.\Generated_Source\PSoC5/Comp_Elbow.c **** *      0 -- adjusts the value in the low nibble
+ 268:.\Generated_Source\PSoC5/Comp_Elbow.c **** *      1 -- adjusts the value in the high nibble
+ 269:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 270:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 271:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  None
+ 272:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 273:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Theory: 
+ 274:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Function assumes comparator block is setup for trim adjust.
+ 275:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Intended to be called from Comp_ZeroCal()
+ 276:.\Generated_Source\PSoC5/Comp_Elbow.c **** * 
+ 277:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Side Effects:
+ 278:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Routine uses a course 1ms delay following each trim adjustment to allow 
+ 279:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  the comparator output to respond.
+ 280:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 281:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 282:.\Generated_Source\PSoC5/Comp_Elbow.c **** static void Comp_Elbow_trimAdjust(uint8 nibble) 
+ 283:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+  26              		.loc 1 283 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  32              		.cfi_def_cfa_offset 32
+  33              		.cfi_offset 4, -32
+  34              		.cfi_offset 5, -28
+  35              		.cfi_offset 6, -24
+  36              		.cfi_offset 7, -20
+  37              		.cfi_offset 8, -16
+  38              		.cfi_offset 9, -12
+  39              		.cfi_offset 10, -8
+  40              		.cfi_offset 14, -4
+ 284:.\Generated_Source\PSoC5/Comp_Elbow.c ****     uint8 trimCnt, trimCntMax;
+ 285:.\Generated_Source\PSoC5/Comp_Elbow.c ****     uint8 cmpState;   
+ 286:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 287:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* get current state of comparator output */
+ 288:.\Generated_Source\PSoC5/Comp_Elbow.c ****     cmpState = Comp_Elbow_WRK & Comp_Elbow_CMP_OUT_MASK;
+  41              		.loc 1 288 0
+  42 0004 1F4B     		ldr	r3, .L11
+  43 0006 1D78     		ldrb	r5, [r3]	@ zero_extendqisi2
+  44 0008 05F00205 		and	r5, r5, #2
+  45 000c EDB2     		uxtb	r5, r5
+  46              	.LVL1:
+ 289:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 290:.\Generated_Source\PSoC5/Comp_Elbow.c ****     if (nibble == 0u)
+  47              		.loc 1 290 0
+  48 000e 0646     		mov	r6, r0
+  49 0010 40B9     		cbnz	r0, .L2
+ 291:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {    
+ 292:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* if comparator output is high, negative offset adjust is required */
+ 293:.\Generated_Source\PSoC5/Comp_Elbow.c ****         if ( cmpState != 0u )
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 7
+
+
+  50              		.loc 1 293 0
+  51 0012 6DB1     		cbz	r5, .L3
+ 294:.\Generated_Source\PSoC5/Comp_Elbow.c ****         {
+ 295:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC5A */
+ 296:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC5A)
+ 297:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR |= Comp_Elbow_CMP_TRIM1_DIR;
+ 298:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC5A */
+ 299:.\Generated_Source\PSoC5/Comp_Elbow.c ****             
+ 300:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC3, PSoC5LP or later */
+ 301:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 302:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR0 |= Comp_Elbow_CMP_TR0_DIR;
+  52              		.loc 1 302 0
+  53 0014 A3F5AB53 		sub	r3, r3, #5472
+  54 0018 043B     		subs	r3, r3, #4
+  55 001a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  56 001c 42F01002 		orr	r2, r2, #16
+  57 0020 1A70     		strb	r2, [r3]
+  58 0022 05E0     		b	.L3
+  59              	.L2:
+ 303:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 304:.\Generated_Source\PSoC5/Comp_Elbow.c ****         }
+ 305:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 306:.\Generated_Source\PSoC5/Comp_Elbow.c ****     else
+ 307:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 308:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* if comparator output is low, positive offset adjust is required */
+ 309:.\Generated_Source\PSoC5/Comp_Elbow.c ****         if ( cmpState == 0u )
+  60              		.loc 1 309 0
+  61 0024 25B9     		cbnz	r5, .L3
+ 310:.\Generated_Source\PSoC5/Comp_Elbow.c ****         {
+ 311:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC5A */
+ 312:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC5A)
+ 313:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR |= Comp_Elbow_CMP_TRIM2_DIR; 
+ 314:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC5A */
+ 315:.\Generated_Source\PSoC5/Comp_Elbow.c ****             
+ 316:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC3, PSoC5LP or later */
+ 317:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 318:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR1 |= Comp_Elbow_CMP_TR1_DIR;
+  62              		.loc 1 318 0
+  63 0026 184B     		ldr	r3, .L11+4
+  64 0028 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  65 002a 42F01002 		orr	r2, r2, #16
+  66 002e 1A70     		strb	r2, [r3]
+  67              	.L3:
+ 319:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 320:.\Generated_Source\PSoC5/Comp_Elbow.c ****         }
+ 321:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 322:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 323:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Increment trim value until compare output changes state */
+ 324:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	
+ 325:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC5A */
+ 326:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	#if (CY_PSOC5A)
+ 327:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	    trimCntMax = 7u;
+ 328:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif
+ 329:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	
+ 330:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	/* PSoC3, PSoC5LP or later */
+ 331:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	#if (CY_PSOC3 || CY_PSOC5LP)
+ 332:.\Generated_Source\PSoC5/Comp_Elbow.c ****     	if(nibble == 0u)
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 8
+
+
+  68              		.loc 1 332 0
+  69 0030 0EB9     		cbnz	r6, .L10
+ 333:.\Generated_Source\PSoC5/Comp_Elbow.c ****     	{
+ 334:.\Generated_Source\PSoC5/Comp_Elbow.c ****     		trimCntMax = 15u;
+  70              		.loc 1 334 0
+  71 0032 0F27     		movs	r7, #15
+  72 0034 00E0     		b	.L4
+  73              	.L10:
+ 335:.\Generated_Source\PSoC5/Comp_Elbow.c ****     	}
+ 336:.\Generated_Source\PSoC5/Comp_Elbow.c ****     	else
+ 337:.\Generated_Source\PSoC5/Comp_Elbow.c ****     	{
+ 338:.\Generated_Source\PSoC5/Comp_Elbow.c ****     		trimCntMax = 7u;
+  74              		.loc 1 338 0
+  75 0036 0727     		movs	r7, #7
+  76              	.L4:
+  77              	.LVL2:
+ 339:.\Generated_Source\PSoC5/Comp_Elbow.c ****     	}
+ 340:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	#endif
+ 341:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	
+ 342:.\Generated_Source\PSoC5/Comp_Elbow.c ****     for ( trimCnt = 0u; trimCnt < trimCntMax; trimCnt++ )
+  78              		.loc 1 342 0
+  79 0038 0024     		movs	r4, #0
+ 343:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	{
+ 344:.\Generated_Source\PSoC5/Comp_Elbow.c ****         if (nibble == 0u)
+ 345:.\Generated_Source\PSoC5/Comp_Elbow.c ****         {
+ 346:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC5A */
+ 347:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC5A)
+ 348:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR += 1u;
+ 349:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC5A */
+ 350:.\Generated_Source\PSoC5/Comp_Elbow.c ****             
+ 351:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC3, PSoC5LP or later */
+ 352:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 353:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR0 += 1u;
+ 354:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 355:.\Generated_Source\PSoC5/Comp_Elbow.c ****         }
+ 356:.\Generated_Source\PSoC5/Comp_Elbow.c ****         else
+ 357:.\Generated_Source\PSoC5/Comp_Elbow.c ****         {
+ 358:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC5A */
+ 359:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC5A)
+ 360:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR += 0x10u;
+ 361:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC5A */
+ 362:.\Generated_Source\PSoC5/Comp_Elbow.c ****             
+ 363:.\Generated_Source\PSoC5/Comp_Elbow.c ****             /* PSoC3, PSoC5LP or later */
+ 364:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 365:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR1 += 1u;
+  80              		.loc 1 365 0
+  81 003a DFF84CA0 		ldr	r10, .L11+4
+ 353:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR0 += 1u;
+  82              		.loc 1 353 0
+  83 003e DFF84C90 		ldr	r9, .L11+8
+ 366:.\Generated_Source\PSoC5/Comp_Elbow.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 367:.\Generated_Source\PSoC5/Comp_Elbow.c ****         }
+ 368:.\Generated_Source\PSoC5/Comp_Elbow.c ****         
+ 369:.\Generated_Source\PSoC5/Comp_Elbow.c ****         CyDelayUs(10u);
+ 370:.\Generated_Source\PSoC5/Comp_Elbow.c ****         
+ 371:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Check for change in comparator output */
+ 372:.\Generated_Source\PSoC5/Comp_Elbow.c ****         if ((Comp_Elbow_WRK & Comp_Elbow_CMP_OUT_MASK) != cmpState)
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 9
+
+
+  84              		.loc 1 372 0
+  85 0042 DFF84080 		ldr	r8, .L11
+ 342:.\Generated_Source\PSoC5/Comp_Elbow.c ****     for ( trimCnt = 0u; trimCnt < trimCntMax; trimCnt++ )
+  86              		.loc 1 342 0
+  87 0046 19E0     		b	.L5
+  88              	.LVL3:
+  89              	.L9:
+ 344:.\Generated_Source\PSoC5/Comp_Elbow.c ****         if (nibble == 0u)
+  90              		.loc 1 344 0
+  91 0048 36B9     		cbnz	r6, .L6
+ 353:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR0 += 1u;
+  92              		.loc 1 353 0
+  93 004a 99F80030 		ldrb	r3, [r9]	@ zero_extendqisi2
+  94 004e 0133     		adds	r3, r3, #1
+  95 0050 DBB2     		uxtb	r3, r3
+  96 0052 89F80030 		strb	r3, [r9]
+  97 0056 05E0     		b	.L7
+  98              	.L6:
+ 365:.\Generated_Source\PSoC5/Comp_Elbow.c ****                 Comp_Elbow_TR1 += 1u;
+  99              		.loc 1 365 0
+ 100 0058 9AF80030 		ldrb	r3, [r10]	@ zero_extendqisi2
+ 101 005c 0133     		adds	r3, r3, #1
+ 102 005e DBB2     		uxtb	r3, r3
+ 103 0060 8AF80030 		strb	r3, [r10]
+ 104              	.L7:
+ 369:.\Generated_Source\PSoC5/Comp_Elbow.c ****         CyDelayUs(10u);
+ 105              		.loc 1 369 0
+ 106 0064 0A20     		movs	r0, #10
+ 107 0066 FFF7FEFF 		bl	CyDelayUs
+ 108              	.LVL4:
+ 109              		.loc 1 372 0
+ 110 006a 98F80030 		ldrb	r3, [r8]	@ zero_extendqisi2
+ 111 006e 03F00203 		and	r3, r3, #2
+ 112 0072 DBB2     		uxtb	r3, r3
+ 113 0074 AB42     		cmp	r3, r5
+ 114 0076 03D1     		bne	.L1
+ 342:.\Generated_Source\PSoC5/Comp_Elbow.c ****     for ( trimCnt = 0u; trimCnt < trimCntMax; trimCnt++ )
+ 115              		.loc 1 342 0
+ 116 0078 0134     		adds	r4, r4, #1
+ 117              	.LVL5:
+ 118 007a E4B2     		uxtb	r4, r4
+ 119              	.LVL6:
+ 120              	.L5:
+ 342:.\Generated_Source\PSoC5/Comp_Elbow.c ****     for ( trimCnt = 0u; trimCnt < trimCntMax; trimCnt++ )
+ 121              		.loc 1 342 0 is_stmt 0 discriminator 1
+ 122 007c BC42     		cmp	r4, r7
+ 123 007e E3D3     		bcc	.L9
+ 124              	.L1:
+ 125 0080 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 126              	.LVL7:
+ 127              	.L12:
+ 128              		.align	2
+ 129              	.L11:
+ 130 0084 965B0040 		.word	1073765270
+ 131 0088 33460040 		.word	1073759795
+ 132 008c 32460040 		.word	1073759794
+ 133              		.cfi_endproc
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 10
+
+
+ 134              	.LFE6:
+ 135              		.size	Comp_Elbow_trimAdjust, .-Comp_Elbow_trimAdjust
+ 136              		.section	.text.Comp_Elbow_Enable,"ax",%progbits
+ 137              		.align	2
+ 138              		.global	Comp_Elbow_Enable
+ 139              		.thumb
+ 140              		.thumb_func
+ 141              		.type	Comp_Elbow_Enable, %function
+ 142              	Comp_Elbow_Enable:
+ 143              	.LFB1:
+ 100:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 144              		.loc 1 100 0 is_stmt 1
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              		@ link register save eliminated.
+ 101:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_PWRMGR |= Comp_Elbow_ACT_PWR_EN;
+ 149              		.loc 1 101 0
+ 150 0000 054B     		ldr	r3, .L14
+ 151 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 152 0004 42F00202 		orr	r2, r2, #2
+ 153 0008 1A70     		strb	r2, [r3]
+ 102:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_STBY_PWRMGR |= Comp_Elbow_STBY_PWR_EN;
+ 154              		.loc 1 102 0
+ 155 000a 1033     		adds	r3, r3, #16
+ 156 000c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 157 000e 42F00202 		orr	r2, r2, #2
+ 158 0012 1A70     		strb	r2, [r3]
+ 159 0014 7047     		bx	lr
+ 160              	.L15:
+ 161 0016 00BF     		.align	2
+ 162              	.L14:
+ 163 0018 A7430040 		.word	1073759143
+ 164              		.cfi_endproc
+ 165              	.LFE1:
+ 166              		.size	Comp_Elbow_Enable, .-Comp_Elbow_Enable
+ 167              		.section	.text.Comp_Elbow_Stop,"ax",%progbits
+ 168              		.align	2
+ 169              		.global	Comp_Elbow_Stop
+ 170              		.thumb
+ 171              		.thumb_func
+ 172              		.type	Comp_Elbow_Stop, %function
+ 173              	Comp_Elbow_Stop:
+ 174              	.LFB3:
+ 166:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 175              		.loc 1 166 0
+ 176              		.cfi_startproc
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179              		@ link register save eliminated.
+ 168:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_PWRMGR &= (uint8)(~Comp_Elbow_ACT_PWR_EN);
+ 180              		.loc 1 168 0
+ 181 0000 054B     		ldr	r3, .L17
+ 182 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 183 0004 02F0FD02 		and	r2, r2, #253
+ 184 0008 1A70     		strb	r2, [r3]
+ 169:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_STBY_PWRMGR &= (uint8)(~Comp_Elbow_STBY_PWR_EN);
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 11
+
+
+ 185              		.loc 1 169 0
+ 186 000a 1033     		adds	r3, r3, #16
+ 187 000c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 188 000e 02F0FD02 		and	r2, r2, #253
+ 189 0012 1A70     		strb	r2, [r3]
+ 190 0014 7047     		bx	lr
+ 191              	.L18:
+ 192 0016 00BF     		.align	2
+ 193              	.L17:
+ 194 0018 A7430040 		.word	1073759143
+ 195              		.cfi_endproc
+ 196              	.LFE3:
+ 197              		.size	Comp_Elbow_Stop, .-Comp_Elbow_Stop
+ 198              		.section	.text.Comp_Elbow_SetSpeed,"ax",%progbits
+ 199              		.align	2
+ 200              		.global	Comp_Elbow_SetSpeed
+ 201              		.thumb
+ 202              		.thumb_func
+ 203              		.type	Comp_Elbow_SetSpeed, %function
+ 204              	Comp_Elbow_SetSpeed:
+ 205              	.LFB4:
+ 198:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 206              		.loc 1 198 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210              		@ link register save eliminated.
+ 211              	.LVL8:
+ 200:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CR = (Comp_Elbow_CR & (uint8)(~Comp_Elbow_PWR_MODE_MASK)) |
+ 212              		.loc 1 200 0
+ 213 0000 0F4B     		ldr	r3, .L22
+ 214 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 215 0004 02F0FC02 		and	r2, r2, #252
+ 216 0008 00F00301 		and	r1, r0, #3
+ 217 000c 0A43     		orrs	r2, r2, r1
+ 218 000e 1A70     		strb	r2, [r3]
+ 204:.\Generated_Source\PSoC5/Comp_Elbow.c ****     if(speed == Comp_Elbow_HIGHSPEED)
+ 219              		.loc 1 204 0
+ 220 0010 0128     		cmp	r0, #1
+ 221 0012 0AD1     		bne	.L20
+ 213:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR0 = Comp_Elbow_HS_TRIM_TR0;
+ 222              		.loc 1 213 0
+ 223 0014 0B4B     		ldr	r3, .L22+4
+ 224 0016 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 225 0018 D2B2     		uxtb	r2, r2
+ 226 001a 0B4B     		ldr	r3, .L22+8
+ 227 001c 1A70     		strb	r2, [r3]
+ 214:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR1 = Comp_Elbow_HS_TRIM_TR1;
+ 228              		.loc 1 214 0
+ 229 001e 0B4B     		ldr	r3, .L22+12
+ 230 0020 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 231 0022 D2B2     		uxtb	r2, r2
+ 232 0024 0A4B     		ldr	r3, .L22+16
+ 233 0026 1A70     		strb	r2, [r3]
+ 234 0028 7047     		bx	lr
+ 235              	.L20:
+ 226:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR0 = Comp_Elbow_LS_TRIM_TR0;
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 12
+
+
+ 236              		.loc 1 226 0
+ 237 002a 0A4B     		ldr	r3, .L22+20
+ 238 002c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 239 002e D2B2     		uxtb	r2, r2
+ 240 0030 054B     		ldr	r3, .L22+8
+ 241 0032 1A70     		strb	r2, [r3]
+ 227:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_TR1 = Comp_Elbow_LS_TRIM_TR1;
+ 242              		.loc 1 227 0
+ 243 0034 084B     		ldr	r3, .L22+24
+ 244 0036 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 245 0038 D2B2     		uxtb	r2, r2
+ 246 003a 054B     		ldr	r3, .L22+16
+ 247 003c 1A70     		strb	r2, [r3]
+ 248 003e 7047     		bx	lr
+ 249              	.L23:
+ 250              		.align	2
+ 251              	.L22:
+ 252 0040 41580040 		.word	1073764417
+ 253 0044 11010049 		.word	1224737041
+ 254 0048 32460040 		.word	1073759794
+ 255 004c 15010049 		.word	1224737045
+ 256 0050 33460040 		.word	1073759795
+ 257 0054 AF010049 		.word	1224737199
+ 258 0058 B7010049 		.word	1224737207
+ 259              		.cfi_endproc
+ 260              	.LFE4:
+ 261              		.size	Comp_Elbow_SetSpeed, .-Comp_Elbow_SetSpeed
+ 262              		.section	.text.Comp_Elbow_Init,"ax",%progbits
+ 263              		.align	2
+ 264              		.global	Comp_Elbow_Init
+ 265              		.thumb
+ 266              		.thumb_func
+ 267              		.type	Comp_Elbow_Init, %function
+ 268              	Comp_Elbow_Init:
+ 269              	.LFB0:
+  52:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 270              		.loc 1 52 0
+ 271              		.cfi_startproc
+ 272              		@ args = 0, pretend = 0, frame = 0
+ 273              		@ frame_needed = 0, uses_anonymous_args = 0
+ 274 0000 08B5     		push	{r3, lr}
+ 275              		.cfi_def_cfa_offset 8
+ 276              		.cfi_offset 3, -8
+ 277              		.cfi_offset 14, -4
+  54:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SetSpeed(Comp_Elbow_DEFAULT_SPEED);
+ 278              		.loc 1 54 0
+ 279 0002 0020     		movs	r0, #0
+ 280 0004 FFF7FEFF 		bl	Comp_Elbow_SetSpeed
+ 281              	.LVL9:
+  58:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CR |= Comp_Elbow_HYST_OFF;
+ 282              		.loc 1 58 0
+ 283 0008 0B4B     		ldr	r3, .L25
+ 284 000a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 285 000c 42F02002 		orr	r2, r2, #32
+ 286 0010 1A70     		strb	r2, [r3]
+  66:.\Generated_Source\PSoC5/Comp_Elbow.c ****             Comp_Elbow_CR &= (uint8)(~Comp_Elbow_PWRDWN_OVRD);
+ 287              		.loc 1 66 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 13
+
+
+ 288 0012 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 289 0014 02F0FB02 		and	r2, r2, #251
+ 290 0018 1A70     		strb	r2, [r3]
+  73:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CR |= Comp_Elbow_MX_AO;
+ 291              		.loc 1 73 0
+ 292 001a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 293 001c 42F00802 		orr	r2, r2, #8
+ 294 0020 1A70     		strb	r2, [r3]
+  76:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CLK &= (uint8)(~Comp_Elbow_SYNCCLK_MASK);
+ 295              		.loc 1 76 0
+ 296 0022 03F28E23 		addw	r3, r3, #654
+ 297 0026 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 298 0028 02F0E702 		and	r2, r2, #231
+ 299 002c 1A70     		strb	r2, [r3]
+  78:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CLK |= Comp_Elbow_SYNC_CLK_EN;
+ 300              		.loc 1 78 0
+ 301 002e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 302 0030 42F00802 		orr	r2, r2, #8
+ 303 0034 1A70     		strb	r2, [r3]
+ 304 0036 08BD     		pop	{r3, pc}
+ 305              	.L26:
+ 306              		.align	2
+ 307              	.L25:
+ 308 0038 41580040 		.word	1073764417
+ 309              		.cfi_endproc
+ 310              	.LFE0:
+ 311              		.size	Comp_Elbow_Init, .-Comp_Elbow_Init
+ 312              		.section	.text.Comp_Elbow_Start,"ax",%progbits
+ 313              		.align	2
+ 314              		.global	Comp_Elbow_Start
+ 315              		.thumb
+ 316              		.thumb_func
+ 317              		.type	Comp_Elbow_Start, %function
+ 318              	Comp_Elbow_Start:
+ 319              	.LFB2:
+ 137:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 320              		.loc 1 137 0
+ 321              		.cfi_startproc
+ 322              		@ args = 0, pretend = 0, frame = 0
+ 323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324 0000 08B5     		push	{r3, lr}
+ 325              		.cfi_def_cfa_offset 8
+ 326              		.cfi_offset 3, -8
+ 327              		.cfi_offset 14, -4
+ 139:.\Generated_Source\PSoC5/Comp_Elbow.c ****     if ( Comp_Elbow_initVar == 0u )
+ 328              		.loc 1 139 0
+ 329 0002 054B     		ldr	r3, .L29
+ 330 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 331 0006 23B9     		cbnz	r3, .L28
+ 141:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_Init();
+ 332              		.loc 1 141 0
+ 333 0008 FFF7FEFF 		bl	Comp_Elbow_Init
+ 334              	.LVL10:
+ 143:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_initVar = 1u;
+ 335              		.loc 1 143 0
+ 336 000c 0122     		movs	r2, #1
+ 337 000e 024B     		ldr	r3, .L29
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 14
+
+
+ 338 0010 1A70     		strb	r2, [r3]
+ 339              	.L28:
+ 147:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_Enable();    
+ 340              		.loc 1 147 0
+ 341 0012 FFF7FEFF 		bl	Comp_Elbow_Enable
+ 342              	.LVL11:
+ 343 0016 08BD     		pop	{r3, pc}
+ 344              	.L30:
+ 345              		.align	2
+ 346              	.L29:
+ 347 0018 00000000 		.word	.LANCHOR0
+ 348              		.cfi_endproc
+ 349              	.LFE2:
+ 350              		.size	Comp_Elbow_Start, .-Comp_Elbow_Start
+ 351              		.section	.text.Comp_Elbow_GetCompare,"ax",%progbits
+ 352              		.align	2
+ 353              		.global	Comp_Elbow_GetCompare
+ 354              		.thumb
+ 355              		.thumb_func
+ 356              		.type	Comp_Elbow_GetCompare, %function
+ 357              	Comp_Elbow_GetCompare:
+ 358              	.LFB5:
+ 252:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 359              		.loc 1 252 0
+ 360              		.cfi_startproc
+ 361              		@ args = 0, pretend = 0, frame = 0
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363              		@ link register save eliminated.
+ 253:.\Generated_Source\PSoC5/Comp_Elbow.c ****     return( Comp_Elbow_WRK & Comp_Elbow_CMP_OUT_MASK);
+ 364              		.loc 1 253 0
+ 365 0000 024B     		ldr	r3, .L32
+ 366 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 254:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 367              		.loc 1 254 0
+ 368 0004 00F00200 		and	r0, r0, #2
+ 369 0008 7047     		bx	lr
+ 370              	.L33:
+ 371 000a 00BF     		.align	2
+ 372              	.L32:
+ 373 000c 965B0040 		.word	1073765270
+ 374              		.cfi_endproc
+ 375              	.LFE5:
+ 376              		.size	Comp_Elbow_GetCompare, .-Comp_Elbow_GetCompare
+ 377              		.section	.text.Comp_Elbow_ZeroCal,"ax",%progbits
+ 378              		.align	2
+ 379              		.global	Comp_Elbow_ZeroCal
+ 380              		.thumb
+ 381              		.thumb_func
+ 382              		.type	Comp_Elbow_ZeroCal, %function
+ 383              	Comp_Elbow_ZeroCal:
+ 384              	.LFB7:
+ 373:.\Generated_Source\PSoC5/Comp_Elbow.c ****         {
+ 374:.\Generated_Source\PSoC5/Comp_Elbow.c ****             break;      /* output changed state, trim phase is complete */
+ 375:.\Generated_Source\PSoC5/Comp_Elbow.c ****         }        
+ 376:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }    
+ 377:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 378:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 15
+
+
+ 379:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 380:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 381:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_ZeroCal
+ 382:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 383:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 384:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 385:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This function calibrates the offset of the Analog Comparator.
+ 386:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 387:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:
+ 388:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  None
+ 389:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 390:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 391:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  (uint16)  value written in trim register when calibration complete.
+ 392:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 393:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Theory: 
+ 394:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This function is used to optimize the calibration for user specific voltage
+ 395:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  range.  The comparator trim is adjusted to counter transistor offsets
+ 396:.\Generated_Source\PSoC5/Comp_Elbow.c **** *   - offset is defined as positive if the output transitions to high before inP
+ 397:.\Generated_Source\PSoC5/Comp_Elbow.c **** *     is greater than inN
+ 398:.\Generated_Source\PSoC5/Comp_Elbow.c **** *   - offset is defined as negative if the output transitions to high after inP
+ 399:.\Generated_Source\PSoC5/Comp_Elbow.c **** *     is greater than inP
+ 400:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 401:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  PSoC5A
+ 402:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  The Analog Comparator provides 1 byte for offset trim.  The byte contains two
+ 403:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  4 bit trim fields - one is a course trim and the other allows smaller
+ 404:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  offset adjustments only for slow modes.
+ 405:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  - low nibble - fine trim
+ 406:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  - high nibble - course trim
+ 407:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  PSoC3, PSoC5LP or later
+ 408:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  The Analog Comparator provides 2 bytes for offset trim.  The bytes contain two
+ 409:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  5 bit trim fields - one is a course trim and the other allows smaller
+ 410:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  offset adjustments only for slow modes.
+ 411:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  - TR0 - fine trim
+ 412:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  - TR1 - course trim
+ 413:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 414:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Trim algorithm is a two phase process
+ 415:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  The first phase performs course offset adjustment
+ 416:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  The second phase serves one of two purposes depending on the outcome of the
+ 417:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  first phase
+ 418:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  - if the first trim value was maxed out without a comparator output 
+ 419:.\Generated_Source\PSoC5/Comp_Elbow.c **** *    transition, more offset will be added by adjusting the second trim value.
+ 420:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  - if the first trim phase resulted in a comparator output transition, the
+ 421:.\Generated_Source\PSoC5/Comp_Elbow.c **** *    second trim value will serve as fine trim (in the opposite direction)to
+ 422:.\Generated_Source\PSoC5/Comp_Elbow.c **** *    ensure the offset is < 1 mV.
+ 423:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 424:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Trim Process:   
+ 425:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  1) User applies a voltage to the negative input.  Voltage should be in the
+ 426:.\Generated_Source\PSoC5/Comp_Elbow.c **** *     comparator operating range or an average of the operating voltage range.
+ 427:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  2) Clear registers associated with analog routing to the positive input.
+ 428:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  3) Disable Hysteresis
+ 429:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  4) Set the calibration bit to short the negative and positive inputs to
+ 430:.\Generated_Source\PSoC5/Comp_Elbow.c **** *     the users calibration voltage.
+ 431:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  5) Clear the TR register  ( TR = 0x00 )
+ 432:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  ** LOW MODES
+ 433:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  6) Check if compare output is high, if so, set the MSb of course trim field 
+ 434:.\Generated_Source\PSoC5/Comp_Elbow.c **** *     to a 1.
+ 435:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  7) Increment the course trim field until the compare output changes
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 16
+
+
+ 436:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  8) Check if compare output is low, if so, set the MSb of fine trim field
+ 437:.\Generated_Source\PSoC5/Comp_Elbow.c **** *     to a 1.
+ 438:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  9) Increment the fine trim field until the compare output changes
+ 439:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  ** FAST MODE - skip the steps 8,9
+ 440:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 441:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Side Effects:
+ 442:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  Routine clears analog routing associated with the comparator positive input.  
+ 443:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This may affect routing of signals from other components that are connected
+ 444:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  to the positive input of the comparator.
+ 445:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 446:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 447:.\Generated_Source\PSoC5/Comp_Elbow.c **** uint16 Comp_Elbow_ZeroCal(void) 
+ 448:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 385              		.loc 1 448 0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 0
+ 388              		@ frame_needed = 0, uses_anonymous_args = 0
+ 389 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 390              		.cfi_def_cfa_offset 24
+ 391              		.cfi_offset 3, -24
+ 392              		.cfi_offset 4, -20
+ 393              		.cfi_offset 5, -16
+ 394              		.cfi_offset 6, -12
+ 395              		.cfi_offset 7, -8
+ 396              		.cfi_offset 14, -4
+ 449:.\Generated_Source\PSoC5/Comp_Elbow.c ****     uint8 tmpSW0;
+ 450:.\Generated_Source\PSoC5/Comp_Elbow.c ****     uint8 tmpSW2;
+ 451:.\Generated_Source\PSoC5/Comp_Elbow.c ****     uint8 tmpSW3;
+ 452:.\Generated_Source\PSoC5/Comp_Elbow.c ****     uint8 tmpCR;
+ 453:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 454:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Save a copy of routing registers associated with inP */
+ 455:.\Generated_Source\PSoC5/Comp_Elbow.c ****     tmpSW0 = Comp_Elbow_SW0;
+ 397              		.loc 1 455 0
+ 398 0002 1E48     		ldr	r0, .L37
+ 399 0004 0678     		ldrb	r6, [r0]	@ zero_extendqisi2
+ 400 0006 F6B2     		uxtb	r6, r6
+ 401              	.LVL12:
+ 456:.\Generated_Source\PSoC5/Comp_Elbow.c ****     tmpSW2 = Comp_Elbow_SW2;
+ 402              		.loc 1 456 0
+ 403 0008 1D49     		ldr	r1, .L37+4
+ 404 000a 0D78     		ldrb	r5, [r1]	@ zero_extendqisi2
+ 405 000c EDB2     		uxtb	r5, r5
+ 406              	.LVL13:
+ 457:.\Generated_Source\PSoC5/Comp_Elbow.c ****     tmpSW3 = Comp_Elbow_SW3;
+ 407              		.loc 1 457 0
+ 408 000e 1D4B     		ldr	r3, .L37+8
+ 409 0010 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 410 0012 E4B2     		uxtb	r4, r4
+ 411              	.LVL14:
+ 458:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 459:.\Generated_Source\PSoC5/Comp_Elbow.c ****      /* Clear routing for inP, retain routing for inN */
+ 460:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SW0 = 0x00u;
+ 412              		.loc 1 460 0
+ 413 0014 0022     		movs	r2, #0
+ 414 0016 0270     		strb	r2, [r0]
+ 461:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SW2 = 0x00u;
+ 415              		.loc 1 461 0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 17
+
+
+ 416 0018 0A70     		strb	r2, [r1]
+ 462:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SW3 = tmpSW3 & (uint8)(~Comp_Elbow_CMP_SW3_INPCTL_MASK);
+ 417              		.loc 1 462 0
+ 418 001a 04F0F601 		and	r1, r4, #246
+ 419 001e 1970     		strb	r1, [r3]
+ 463:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 464:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Preserve original configuration
+ 465:.\Generated_Source\PSoC5/Comp_Elbow.c ****      * - turn off Hysteresis
+ 466:.\Generated_Source\PSoC5/Comp_Elbow.c ****      * - set calibration bit - shorts inN to inP
+ 467:.\Generated_Source\PSoC5/Comp_Elbow.c ****     */
+ 468:.\Generated_Source\PSoC5/Comp_Elbow.c ****     tmpCR = Comp_Elbow_CR;
+ 420              		.loc 1 468 0
+ 421 0020 A3F28A23 		subw	r3, r3, #650
+ 422 0024 1F78     		ldrb	r7, [r3]	@ zero_extendqisi2
+ 423 0026 FFB2     		uxtb	r7, r7
+ 424              	.LVL15:
+ 469:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CR |= (Comp_Elbow_CAL_ON | Comp_Elbow_HYST_OFF);
+ 425              		.loc 1 469 0
+ 426 0028 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 427 002a 41F03001 		orr	r1, r1, #48
+ 428 002e 1970     		strb	r1, [r3]
+ 470:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 471:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Write default low values to trim register - no offset adjust */
+ 472:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC5A */
+ 473:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC5A)
+ 474:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_TR = Comp_Elbow_DEFAULT_CMP_TRIM;
+ 475:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC5A */
+ 476:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 477:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC3, PSoC5LP or later */
+ 478:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 479:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_TR0 = Comp_Elbow_DEFAULT_CMP_TRIM;
+ 429              		.loc 1 479 0
+ 430 0030 1549     		ldr	r1, .L37+12
+ 431 0032 0A70     		strb	r2, [r1]
+ 480:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_TR1 = Comp_Elbow_DEFAULT_CMP_TRIM;
+ 432              		.loc 1 480 0
+ 433 0034 0131     		adds	r1, r1, #1
+ 434 0036 0A70     		strb	r2, [r1]
+ 481:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 482:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	
+ 483:.\Generated_Source\PSoC5/Comp_Elbow.c **** 	/* Two phase trim - slow modes, one phase trim - for fast */ 
+ 484:.\Generated_Source\PSoC5/Comp_Elbow.c ****     if ( (Comp_Elbow_CR & Comp_Elbow_PWR_MODE_MASK) == Comp_Elbow_PWR_MODE_FAST)
+ 435              		.loc 1 484 0
+ 436 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 437 003a 03F00303 		and	r3, r3, #3
+ 438 003e 012B     		cmp	r3, #1
+ 439 0040 03D1     		bne	.L35
+ 485:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 486:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_trimAdjust(0u);
+ 440              		.loc 1 486 0
+ 441 0042 1046     		mov	r0, r2
+ 442 0044 FFF7FEFF 		bl	Comp_Elbow_trimAdjust
+ 443              	.LVL16:
+ 444 0048 05E0     		b	.L36
+ 445              	.L35:
+ 487:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 488:.\Generated_Source\PSoC5/Comp_Elbow.c ****     else /* default to trim for fast modes */
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 18
+
+
+ 489:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 490:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_trimAdjust(1u);
+ 446              		.loc 1 490 0
+ 447 004a 0120     		movs	r0, #1
+ 448 004c FFF7FEFF 		bl	Comp_Elbow_trimAdjust
+ 449              	.LVL17:
+ 491:.\Generated_Source\PSoC5/Comp_Elbow.c **** 		Comp_Elbow_trimAdjust(0u);
+ 450              		.loc 1 491 0
+ 451 0050 0020     		movs	r0, #0
+ 452 0052 FFF7FEFF 		bl	Comp_Elbow_trimAdjust
+ 453              	.LVL18:
+ 454              	.L36:
+ 492:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 493:.\Generated_Source\PSoC5/Comp_Elbow.c ****    
+ 494:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Restore Config Register */
+ 495:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_CR = tmpCR;
+ 455              		.loc 1 495 0
+ 456 0056 0D4B     		ldr	r3, .L37+16
+ 457 0058 1F70     		strb	r7, [r3]
+ 496:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 497:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Restore routing registers for inP */
+ 498:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SW0 = tmpSW0;
+ 458              		.loc 1 498 0
+ 459 005a 03F28723 		addw	r3, r3, #647
+ 460 005e 1E70     		strb	r6, [r3]
+ 499:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SW2 = tmpSW2;
+ 461              		.loc 1 499 0
+ 462 0060 0233     		adds	r3, r3, #2
+ 463 0062 1D70     		strb	r5, [r3]
+ 500:.\Generated_Source\PSoC5/Comp_Elbow.c ****     Comp_Elbow_SW3 = tmpSW3;
+ 464              		.loc 1 500 0
+ 465 0064 0133     		adds	r3, r3, #1
+ 466 0066 1C70     		strb	r4, [r3]
+ 501:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 502:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC5A */
+ 503:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC5A)
+ 504:.\Generated_Source\PSoC5/Comp_Elbow.c ****         return (uint16) Comp_Elbow_TR;
+ 505:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC5A */
+ 506:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 507:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC3, PSoC5LP or later */
+ 508:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 509:.\Generated_Source\PSoC5/Comp_Elbow.c ****         return ((uint16)((uint16)Comp_Elbow_TR1 << 8u) | (Comp_Elbow_TR0));        
+ 467              		.loc 1 509 0
+ 468 0068 A3F5A453 		sub	r3, r3, #5248
+ 469 006c 183B     		subs	r3, r3, #24
+ 470 006e 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 471 0070 013B     		subs	r3, r3, #1
+ 472 0072 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 510:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 511:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 473              		.loc 1 511 0
+ 474 0074 43EA0020 		orr	r0, r3, r0, lsl #8
+ 475 0078 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 476              	.LVL19:
+ 477              	.L38:
+ 478 007a 00BF     		.align	2
+ 479              	.L37:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 19
+
+
+ 480 007c C85A0040 		.word	1073765064
+ 481 0080 CA5A0040 		.word	1073765066
+ 482 0084 CB5A0040 		.word	1073765067
+ 483 0088 32460040 		.word	1073759794
+ 484 008c 41580040 		.word	1073764417
+ 485              		.cfi_endproc
+ 486              	.LFE7:
+ 487              		.size	Comp_Elbow_ZeroCal, .-Comp_Elbow_ZeroCal
+ 488              		.section	.text.Comp_Elbow_LoadTrim,"ax",%progbits
+ 489              		.align	2
+ 490              		.global	Comp_Elbow_LoadTrim
+ 491              		.thumb
+ 492              		.thumb_func
+ 493              		.type	Comp_Elbow_LoadTrim, %function
+ 494              	Comp_Elbow_LoadTrim:
+ 495              	.LFB8:
+ 512:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 513:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 514:.\Generated_Source\PSoC5/Comp_Elbow.c **** /*******************************************************************************
+ 515:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Function Name: Comp_Elbow_LoadTrim
+ 516:.\Generated_Source\PSoC5/Comp_Elbow.c **** ********************************************************************************
+ 517:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 518:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Summary:
+ 519:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  This function stores a value in the Analog Comparator trim register.
+ 520:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 521:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Parameters:  
+ 522:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  uint8 trimVal - trim value.  This value is the same format as the value 
+ 523:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  returned by the _ZeroCal routine.
+ 524:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 525:.\Generated_Source\PSoC5/Comp_Elbow.c **** * Return:
+ 526:.\Generated_Source\PSoC5/Comp_Elbow.c **** *  None
+ 527:.\Generated_Source\PSoC5/Comp_Elbow.c **** *
+ 528:.\Generated_Source\PSoC5/Comp_Elbow.c **** *******************************************************************************/
+ 529:.\Generated_Source\PSoC5/Comp_Elbow.c **** void Comp_Elbow_LoadTrim(uint16 trimVal) 
+ 530:.\Generated_Source\PSoC5/Comp_Elbow.c **** {
+ 496              		.loc 1 530 0
+ 497              		.cfi_startproc
+ 498              		@ args = 0, pretend = 0, frame = 0
+ 499              		@ frame_needed = 0, uses_anonymous_args = 0
+ 500              		@ link register save eliminated.
+ 501              	.LVL20:
+ 531:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* Stores value in the Analog Comparator trim register */
+ 532:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC5A */
+ 533:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC5A)
+ 534:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_TR = (uint8) trimVal;
+ 535:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC5A */
+ 536:.\Generated_Source\PSoC5/Comp_Elbow.c ****     
+ 537:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /* PSoC3, PSoC5LP or later */
+ 538:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 539:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Stores value in the Analog Comparator trim register for P-type load */
+ 540:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_TR0 = (uint8) trimVal;
+ 502              		.loc 1 540 0
+ 503 0000 C2B2     		uxtb	r2, r0
+ 504 0002 034B     		ldr	r3, .L40
+ 505 0004 1A70     		strb	r2, [r3]
+ 541:.\Generated_Source\PSoC5/Comp_Elbow.c ****         
+ 542:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Stores value in the Analog Comparator trim register for N-type load */
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 20
+
+
+ 543:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_TR1 = (uint8) (trimVal >> 8); 
+ 506              		.loc 1 543 0
+ 507 0006 000A     		lsrs	r0, r0, #8
+ 508              	.LVL21:
+ 509 0008 0133     		adds	r3, r3, #1
+ 510 000a 1870     		strb	r0, [r3]
+ 511 000c 7047     		bx	lr
+ 512              	.L41:
+ 513 000e 00BF     		.align	2
+ 514              	.L40:
+ 515 0010 32460040 		.word	1073759794
+ 516              		.cfi_endproc
+ 517              	.LFE8:
+ 518              		.size	Comp_Elbow_LoadTrim, .-Comp_Elbow_LoadTrim
+ 519              		.section	.text.Comp_Elbow_PwrDwnOverrideEnable,"ax",%progbits
+ 520              		.align	2
+ 521              		.global	Comp_Elbow_PwrDwnOverrideEnable
+ 522              		.thumb
+ 523              		.thumb_func
+ 524              		.type	Comp_Elbow_PwrDwnOverrideEnable, %function
+ 525              	Comp_Elbow_PwrDwnOverrideEnable:
+ 526              	.LFB9:
+ 544:.\Generated_Source\PSoC5/Comp_Elbow.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 545:.\Generated_Source\PSoC5/Comp_Elbow.c **** }
+ 546:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 547:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 548:.\Generated_Source\PSoC5/Comp_Elbow.c **** #if (CY_PSOC3 || CY_PSOC5LP)
+ 549:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 550:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /*******************************************************************************
+ 551:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Function Name: Comp_Elbow_PwrDwnOverrideEnable
+ 552:.\Generated_Source\PSoC5/Comp_Elbow.c ****     ********************************************************************************
+ 553:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 554:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Summary:
+ 555:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  This is the power down over-ride feature. This function ignores sleep 
+ 556:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  parameter and allows the component to stay active during sleep mode.
+ 557:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 558:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Parameters:
+ 559:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  None
+ 560:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 561:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Return:
+ 562:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  None
+ 563:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 564:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *******************************************************************************/
+ 565:.\Generated_Source\PSoC5/Comp_Elbow.c ****     void Comp_Elbow_PwrDwnOverrideEnable(void) 
+ 566:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 527              		.loc 1 566 0
+ 528              		.cfi_startproc
+ 529              		@ args = 0, pretend = 0, frame = 0
+ 530              		@ frame_needed = 0, uses_anonymous_args = 0
+ 531              		@ link register save eliminated.
+ 567:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Set the pd_override bit in CMP_CR register */
+ 568:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CR |= Comp_Elbow_PWRDWN_OVRD;
+ 532              		.loc 1 568 0
+ 533 0000 024B     		ldr	r3, .L43
+ 534 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 535 0004 42F00402 		orr	r2, r2, #4
+ 536 0008 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 21
+
+
+ 537 000a 7047     		bx	lr
+ 538              	.L44:
+ 539              		.align	2
+ 540              	.L43:
+ 541 000c 41580040 		.word	1073764417
+ 542              		.cfi_endproc
+ 543              	.LFE9:
+ 544              		.size	Comp_Elbow_PwrDwnOverrideEnable, .-Comp_Elbow_PwrDwnOverrideEnable
+ 545              		.section	.text.Comp_Elbow_PwrDwnOverrideDisable,"ax",%progbits
+ 546              		.align	2
+ 547              		.global	Comp_Elbow_PwrDwnOverrideDisable
+ 548              		.thumb
+ 549              		.thumb_func
+ 550              		.type	Comp_Elbow_PwrDwnOverrideDisable, %function
+ 551              	Comp_Elbow_PwrDwnOverrideDisable:
+ 552              	.LFB10:
+ 569:.\Generated_Source\PSoC5/Comp_Elbow.c ****     }
+ 570:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 571:.\Generated_Source\PSoC5/Comp_Elbow.c **** 
+ 572:.\Generated_Source\PSoC5/Comp_Elbow.c ****     /*******************************************************************************
+ 573:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Function Name: Comp_Elbow_PwrDwnOverrideDisable
+ 574:.\Generated_Source\PSoC5/Comp_Elbow.c ****     ********************************************************************************
+ 575:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 576:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Summary:
+ 577:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  This is the power down over-ride feature. This allows the component to stay
+ 578:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  inactive during sleep.
+ 579:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 580:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Parameters:
+ 581:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  None
+ 582:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 583:.\Generated_Source\PSoC5/Comp_Elbow.c ****     * Return:
+ 584:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *  None
+ 585:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *
+ 586:.\Generated_Source\PSoC5/Comp_Elbow.c ****     *******************************************************************************/
+ 587:.\Generated_Source\PSoC5/Comp_Elbow.c ****     void Comp_Elbow_PwrDwnOverrideDisable(void) 
+ 588:.\Generated_Source\PSoC5/Comp_Elbow.c ****     {
+ 553              		.loc 1 588 0
+ 554              		.cfi_startproc
+ 555              		@ args = 0, pretend = 0, frame = 0
+ 556              		@ frame_needed = 0, uses_anonymous_args = 0
+ 557              		@ link register save eliminated.
+ 589:.\Generated_Source\PSoC5/Comp_Elbow.c ****         /* Reset the pd_override bit in CMP_CR register */
+ 590:.\Generated_Source\PSoC5/Comp_Elbow.c ****         Comp_Elbow_CR &= (uint8)(~Comp_Elbow_PWRDWN_OVRD);
+ 558              		.loc 1 590 0
+ 559 0000 024B     		ldr	r3, .L46
+ 560 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 561 0004 02F0FB02 		and	r2, r2, #251
+ 562 0008 1A70     		strb	r2, [r3]
+ 563 000a 7047     		bx	lr
+ 564              	.L47:
+ 565              		.align	2
+ 566              	.L46:
+ 567 000c 41580040 		.word	1073764417
+ 568              		.cfi_endproc
+ 569              	.LFE10:
+ 570              		.size	Comp_Elbow_PwrDwnOverrideDisable, .-Comp_Elbow_PwrDwnOverrideDisable
+ 571              		.global	Comp_Elbow_initVar
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 22
+
+
+ 572              		.bss
+ 573              		.set	.LANCHOR0,. + 0
+ 574              		.type	Comp_Elbow_initVar, %object
+ 575              		.size	Comp_Elbow_initVar, 1
+ 576              	Comp_Elbow_initVar:
+ 577 0000 00       		.space	1
+ 578              		.text
+ 579              	.Letext0:
+ 580              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 581              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 582              		.section	.debug_info,"",%progbits
+ 583              	.Ldebug_info0:
+ 584 0000 BC020000 		.4byte	0x2bc
+ 585 0004 0400     		.2byte	0x4
+ 586 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 587 000a 04       		.byte	0x4
+ 588 000b 01       		.uleb128 0x1
+ 589 000c 8E010000 		.4byte	.LASF35
+ 590 0010 01       		.byte	0x1
+ 591 0011 41000000 		.4byte	.LASF36
+ 592 0015 93020000 		.4byte	.LASF37
+ 593 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 594 001d 00000000 		.4byte	0
+ 595 0021 00000000 		.4byte	.Ldebug_line0
+ 596 0025 02       		.uleb128 0x2
+ 597 0026 01       		.byte	0x1
+ 598 0027 06       		.byte	0x6
+ 599 0028 87020000 		.4byte	.LASF0
+ 600 002c 02       		.uleb128 0x2
+ 601 002d 01       		.byte	0x1
+ 602 002e 08       		.byte	0x8
+ 603 002f BE000000 		.4byte	.LASF1
+ 604 0033 02       		.uleb128 0x2
+ 605 0034 02       		.byte	0x2
+ 606 0035 05       		.byte	0x5
+ 607 0036 5C020000 		.4byte	.LASF2
+ 608 003a 02       		.uleb128 0x2
+ 609 003b 02       		.byte	0x2
+ 610 003c 07       		.byte	0x7
+ 611 003d 67000000 		.4byte	.LASF3
+ 612 0041 02       		.uleb128 0x2
+ 613 0042 04       		.byte	0x4
+ 614 0043 05       		.byte	0x5
+ 615 0044 79020000 		.4byte	.LASF4
+ 616 0048 02       		.uleb128 0x2
+ 617 0049 04       		.byte	0x4
+ 618 004a 07       		.byte	0x7
+ 619 004b EC000000 		.4byte	.LASF5
+ 620 004f 02       		.uleb128 0x2
+ 621 0050 08       		.byte	0x8
+ 622 0051 05       		.byte	0x5
+ 623 0052 1E020000 		.4byte	.LASF6
+ 624 0056 02       		.uleb128 0x2
+ 625 0057 08       		.byte	0x8
+ 626 0058 07       		.byte	0x7
+ 627 0059 61010000 		.4byte	.LASF7
+ 628 005d 03       		.uleb128 0x3
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 23
+
+
+ 629 005e 04       		.byte	0x4
+ 630 005f 05       		.byte	0x5
+ 631 0060 696E7400 		.ascii	"int\000"
+ 632 0064 02       		.uleb128 0x2
+ 633 0065 04       		.byte	0x4
+ 634 0066 07       		.byte	0x7
+ 635 0067 4B010000 		.4byte	.LASF8
+ 636 006b 04       		.uleb128 0x4
+ 637 006c FE000000 		.4byte	.LASF9
+ 638 0070 02       		.byte	0x2
+ 639 0071 B4       		.byte	0xb4
+ 640 0072 2C000000 		.4byte	0x2c
+ 641 0076 04       		.uleb128 0x4
+ 642 0077 3D010000 		.4byte	.LASF10
+ 643 007b 02       		.byte	0x2
+ 644 007c B5       		.byte	0xb5
+ 645 007d 3A000000 		.4byte	0x3a
+ 646 0081 04       		.uleb128 0x4
+ 647 0082 44010000 		.4byte	.LASF11
+ 648 0086 02       		.byte	0x2
+ 649 0087 B6       		.byte	0xb6
+ 650 0088 48000000 		.4byte	0x48
+ 651 008c 02       		.uleb128 0x2
+ 652 008d 04       		.byte	0x4
+ 653 008e 04       		.byte	0x4
+ 654 008f B1000000 		.4byte	.LASF12
+ 655 0093 02       		.uleb128 0x2
+ 656 0094 08       		.byte	0x8
+ 657 0095 04       		.byte	0x4
+ 658 0096 04010000 		.4byte	.LASF13
+ 659 009a 02       		.uleb128 0x2
+ 660 009b 01       		.byte	0x1
+ 661 009c 08       		.byte	0x8
+ 662 009d 82020000 		.4byte	.LASF14
+ 663 00a1 05       		.uleb128 0x5
+ 664 00a2 DF000000 		.4byte	.LASF15
+ 665 00a6 02       		.byte	0x2
+ 666 00a7 5E01     		.2byte	0x15e
+ 667 00a9 AD000000 		.4byte	0xad
+ 668 00ad 06       		.uleb128 0x6
+ 669 00ae 6B000000 		.4byte	0x6b
+ 670 00b2 02       		.uleb128 0x2
+ 671 00b3 04       		.byte	0x4
+ 672 00b4 07       		.byte	0x7
+ 673 00b5 0A020000 		.4byte	.LASF16
+ 674 00b9 07       		.uleb128 0x7
+ 675 00ba 36020000 		.4byte	.LASF38
+ 676 00be 01       		.byte	0x1
+ 677 00bf 1A01     		.2byte	0x11a
+ 678 00c1 00000000 		.4byte	.LFB6
+ 679 00c5 90000000 		.4byte	.LFE6-.LFB6
+ 680 00c9 01       		.uleb128 0x1
+ 681 00ca 9C       		.byte	0x9c
+ 682 00cb 1F010000 		.4byte	0x11f
+ 683 00cf 08       		.uleb128 0x8
+ 684 00d0 27030000 		.4byte	.LASF22
+ 685 00d4 01       		.byte	0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 24
+
+
+ 686 00d5 1A01     		.2byte	0x11a
+ 687 00d7 6B000000 		.4byte	0x6b
+ 688 00db 00000000 		.4byte	.LLST0
+ 689 00df 09       		.uleb128 0x9
+ 690 00e0 E4000000 		.4byte	.LASF17
+ 691 00e4 01       		.byte	0x1
+ 692 00e5 1C01     		.2byte	0x11c
+ 693 00e7 6B000000 		.4byte	0x6b
+ 694 00eb 21000000 		.4byte	.LLST1
+ 695 00ef 09       		.uleb128 0x9
+ 696 00f0 13020000 		.4byte	.LASF18
+ 697 00f4 01       		.byte	0x1
+ 698 00f5 1C01     		.2byte	0x11c
+ 699 00f7 6B000000 		.4byte	0x6b
+ 700 00fb 58000000 		.4byte	.LLST2
+ 701 00ff 09       		.uleb128 0x9
+ 702 0100 58010000 		.4byte	.LASF19
+ 703 0104 01       		.byte	0x1
+ 704 0105 1D01     		.2byte	0x11d
+ 705 0107 6B000000 		.4byte	0x6b
+ 706 010b 6B000000 		.4byte	.LLST3
+ 707 010f 0A       		.uleb128 0xa
+ 708 0110 6A000000 		.4byte	.LVL4
+ 709 0114 B2020000 		.4byte	0x2b2
+ 710 0118 0B       		.uleb128 0xb
+ 711 0119 01       		.uleb128 0x1
+ 712 011a 50       		.byte	0x50
+ 713 011b 01       		.uleb128 0x1
+ 714 011c 3A       		.byte	0x3a
+ 715 011d 00       		.byte	0
+ 716 011e 00       		.byte	0
+ 717 011f 0C       		.uleb128 0xc
+ 718 0120 2F000000 		.4byte	.LASF20
+ 719 0124 01       		.byte	0x1
+ 720 0125 63       		.byte	0x63
+ 721 0126 00000000 		.4byte	.LFB1
+ 722 012a 1C000000 		.4byte	.LFE1-.LFB1
+ 723 012e 01       		.uleb128 0x1
+ 724 012f 9C       		.byte	0x9c
+ 725 0130 0C       		.uleb128 0xc
+ 726 0131 7A000000 		.4byte	.LASF21
+ 727 0135 01       		.byte	0x1
+ 728 0136 A5       		.byte	0xa5
+ 729 0137 00000000 		.4byte	.LFB3
+ 730 013b 1C000000 		.4byte	.LFE3-.LFB3
+ 731 013f 01       		.uleb128 0x1
+ 732 0140 9C       		.byte	0x9c
+ 733 0141 0D       		.uleb128 0xd
+ 734 0142 13030000 		.4byte	.LASF24
+ 735 0146 01       		.byte	0x1
+ 736 0147 C5       		.byte	0xc5
+ 737 0148 00000000 		.4byte	.LFB4
+ 738 014c 5C000000 		.4byte	.LFE4-.LFB4
+ 739 0150 01       		.uleb128 0x1
+ 740 0151 9C       		.byte	0x9c
+ 741 0152 64010000 		.4byte	0x164
+ 742 0156 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 25
+
+
+ 743 0157 22000000 		.4byte	.LASF23
+ 744 015b 01       		.byte	0x1
+ 745 015c C5       		.byte	0xc5
+ 746 015d 6B000000 		.4byte	0x6b
+ 747 0161 01       		.uleb128 0x1
+ 748 0162 50       		.byte	0x50
+ 749 0163 00       		.byte	0
+ 750 0164 0D       		.uleb128 0xd
+ 751 0165 4C020000 		.4byte	.LASF25
+ 752 0169 01       		.byte	0x1
+ 753 016a 33       		.byte	0x33
+ 754 016b 00000000 		.4byte	.LFB0
+ 755 016f 3C000000 		.4byte	.LFE0-.LFB0
+ 756 0173 01       		.uleb128 0x1
+ 757 0174 9C       		.byte	0x9c
+ 758 0175 89010000 		.4byte	0x189
+ 759 0179 0A       		.uleb128 0xa
+ 760 017a 08000000 		.4byte	.LVL9
+ 761 017e 41010000 		.4byte	0x141
+ 762 0182 0B       		.uleb128 0xb
+ 763 0183 01       		.uleb128 0x1
+ 764 0184 50       		.byte	0x50
+ 765 0185 01       		.uleb128 0x1
+ 766 0186 30       		.byte	0x30
+ 767 0187 00       		.byte	0
+ 768 0188 00       		.byte	0
+ 769 0189 0D       		.uleb128 0xd
+ 770 018a 0B010000 		.4byte	.LASF26
+ 771 018e 01       		.byte	0x1
+ 772 018f 88       		.byte	0x88
+ 773 0190 00000000 		.4byte	.LFB2
+ 774 0194 1C000000 		.4byte	.LFE2-.LFB2
+ 775 0198 01       		.uleb128 0x1
+ 776 0199 9C       		.byte	0x9c
+ 777 019a B1010000 		.4byte	0x1b1
+ 778 019e 0F       		.uleb128 0xf
+ 779 019f 0C000000 		.4byte	.LVL10
+ 780 01a3 64010000 		.4byte	0x164
+ 781 01a7 0F       		.uleb128 0xf
+ 782 01a8 16000000 		.4byte	.LVL11
+ 783 01ac 1F010000 		.4byte	0x11f
+ 784 01b0 00       		.byte	0
+ 785 01b1 10       		.uleb128 0x10
+ 786 01b2 78010000 		.4byte	.LASF39
+ 787 01b6 01       		.byte	0x1
+ 788 01b7 FB       		.byte	0xfb
+ 789 01b8 6B000000 		.4byte	0x6b
+ 790 01bc 00000000 		.4byte	.LFB5
+ 791 01c0 10000000 		.4byte	.LFE5-.LFB5
+ 792 01c4 01       		.uleb128 0x1
+ 793 01c5 9C       		.byte	0x9c
+ 794 01c6 11       		.uleb128 0x11
+ 795 01c7 66020000 		.4byte	.LASF40
+ 796 01cb 01       		.byte	0x1
+ 797 01cc BF01     		.2byte	0x1bf
+ 798 01ce 76000000 		.4byte	0x76
+ 799 01d2 00000000 		.4byte	.LFB7
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 26
+
+
+ 800 01d6 90000000 		.4byte	.LFE7-.LFB7
+ 801 01da 01       		.uleb128 0x1
+ 802 01db 9C       		.byte	0x9c
+ 803 01dc 56020000 		.4byte	0x256
+ 804 01e0 09       		.uleb128 0x9
+ 805 01e1 AA000000 		.4byte	.LASF27
+ 806 01e5 01       		.byte	0x1
+ 807 01e6 C101     		.2byte	0x1c1
+ 808 01e8 6B000000 		.4byte	0x6b
+ 809 01ec 7E000000 		.4byte	.LLST4
+ 810 01f0 09       		.uleb128 0x9
+ 811 01f1 28000000 		.4byte	.LASF28
+ 812 01f5 01       		.byte	0x1
+ 813 01f6 C201     		.2byte	0x1c2
+ 814 01f8 6B000000 		.4byte	0x6b
+ 815 01fc 91000000 		.4byte	.LLST5
+ 816 0200 09       		.uleb128 0x9
+ 817 0201 B7000000 		.4byte	.LASF29
+ 818 0205 01       		.byte	0x1
+ 819 0206 C301     		.2byte	0x1c3
+ 820 0208 6B000000 		.4byte	0x6b
+ 821 020c A4000000 		.4byte	.LLST6
+ 822 0210 09       		.uleb128 0x9
+ 823 0211 1C000000 		.4byte	.LASF30
+ 824 0215 01       		.byte	0x1
+ 825 0216 C401     		.2byte	0x1c4
+ 826 0218 6B000000 		.4byte	0x6b
+ 827 021c B7000000 		.4byte	.LLST7
+ 828 0220 12       		.uleb128 0x12
+ 829 0221 48000000 		.4byte	.LVL16
+ 830 0225 B9000000 		.4byte	0xb9
+ 831 0229 33020000 		.4byte	0x233
+ 832 022d 0B       		.uleb128 0xb
+ 833 022e 01       		.uleb128 0x1
+ 834 022f 50       		.byte	0x50
+ 835 0230 01       		.uleb128 0x1
+ 836 0231 30       		.byte	0x30
+ 837 0232 00       		.byte	0
+ 838 0233 12       		.uleb128 0x12
+ 839 0234 50000000 		.4byte	.LVL17
+ 840 0238 B9000000 		.4byte	0xb9
+ 841 023c 46020000 		.4byte	0x246
+ 842 0240 0B       		.uleb128 0xb
+ 843 0241 01       		.uleb128 0x1
+ 844 0242 50       		.byte	0x50
+ 845 0243 01       		.uleb128 0x1
+ 846 0244 31       		.byte	0x31
+ 847 0245 00       		.byte	0
+ 848 0246 0A       		.uleb128 0xa
+ 849 0247 56000000 		.4byte	.LVL18
+ 850 024b B9000000 		.4byte	0xb9
+ 851 024f 0B       		.uleb128 0xb
+ 852 0250 01       		.uleb128 0x1
+ 853 0251 50       		.byte	0x50
+ 854 0252 01       		.uleb128 0x1
+ 855 0253 30       		.byte	0x30
+ 856 0254 00       		.byte	0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 27
+
+
+ 857 0255 00       		.byte	0
+ 858 0256 13       		.uleb128 0x13
+ 859 0257 08000000 		.4byte	.LASF31
+ 860 025b 01       		.byte	0x1
+ 861 025c 1102     		.2byte	0x211
+ 862 025e 00000000 		.4byte	.LFB8
+ 863 0262 14000000 		.4byte	.LFE8-.LFB8
+ 864 0266 01       		.uleb128 0x1
+ 865 0267 9C       		.byte	0x9c
+ 866 0268 7D020000 		.4byte	0x27d
+ 867 026c 08       		.uleb128 0x8
+ 868 026d 00000000 		.4byte	.LASF32
+ 869 0271 01       		.byte	0x1
+ 870 0272 1102     		.2byte	0x211
+ 871 0274 76000000 		.4byte	0x76
+ 872 0278 CA000000 		.4byte	.LLST8
+ 873 027c 00       		.byte	0
+ 874 027d 14       		.uleb128 0x14
+ 875 027e 8A000000 		.4byte	.LASF33
+ 876 0282 01       		.byte	0x1
+ 877 0283 3502     		.2byte	0x235
+ 878 0285 00000000 		.4byte	.LFB9
+ 879 0289 10000000 		.4byte	.LFE9-.LFB9
+ 880 028d 01       		.uleb128 0x1
+ 881 028e 9C       		.byte	0x9c
+ 882 028f 14       		.uleb128 0x14
+ 883 0290 1C010000 		.4byte	.LASF34
+ 884 0294 01       		.byte	0x1
+ 885 0295 4B02     		.2byte	0x24b
+ 886 0297 00000000 		.4byte	.LFB10
+ 887 029b 10000000 		.4byte	.LFE10-.LFB10
+ 888 029f 01       		.uleb128 0x1
+ 889 02a0 9C       		.byte	0x9c
+ 890 02a1 15       		.uleb128 0x15
+ 891 02a2 CC000000 		.4byte	.LASF41
+ 892 02a6 01       		.byte	0x1
+ 893 02a7 14       		.byte	0x14
+ 894 02a8 6B000000 		.4byte	0x6b
+ 895 02ac 05       		.uleb128 0x5
+ 896 02ad 03       		.byte	0x3
+ 897 02ae 00000000 		.4byte	Comp_Elbow_initVar
+ 898 02b2 16       		.uleb128 0x16
+ 899 02b3 2C020000 		.4byte	.LASF42
+ 900 02b7 03       		.byte	0x3
+ 901 02b8 78       		.byte	0x78
+ 902 02b9 17       		.uleb128 0x17
+ 903 02ba 76000000 		.4byte	0x76
+ 904 02be 00       		.byte	0
+ 905 02bf 00       		.byte	0
+ 906              		.section	.debug_abbrev,"",%progbits
+ 907              	.Ldebug_abbrev0:
+ 908 0000 01       		.uleb128 0x1
+ 909 0001 11       		.uleb128 0x11
+ 910 0002 01       		.byte	0x1
+ 911 0003 25       		.uleb128 0x25
+ 912 0004 0E       		.uleb128 0xe
+ 913 0005 13       		.uleb128 0x13
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 28
+
+
+ 914 0006 0B       		.uleb128 0xb
+ 915 0007 03       		.uleb128 0x3
+ 916 0008 0E       		.uleb128 0xe
+ 917 0009 1B       		.uleb128 0x1b
+ 918 000a 0E       		.uleb128 0xe
+ 919 000b 55       		.uleb128 0x55
+ 920 000c 17       		.uleb128 0x17
+ 921 000d 11       		.uleb128 0x11
+ 922 000e 01       		.uleb128 0x1
+ 923 000f 10       		.uleb128 0x10
+ 924 0010 17       		.uleb128 0x17
+ 925 0011 00       		.byte	0
+ 926 0012 00       		.byte	0
+ 927 0013 02       		.uleb128 0x2
+ 928 0014 24       		.uleb128 0x24
+ 929 0015 00       		.byte	0
+ 930 0016 0B       		.uleb128 0xb
+ 931 0017 0B       		.uleb128 0xb
+ 932 0018 3E       		.uleb128 0x3e
+ 933 0019 0B       		.uleb128 0xb
+ 934 001a 03       		.uleb128 0x3
+ 935 001b 0E       		.uleb128 0xe
+ 936 001c 00       		.byte	0
+ 937 001d 00       		.byte	0
+ 938 001e 03       		.uleb128 0x3
+ 939 001f 24       		.uleb128 0x24
+ 940 0020 00       		.byte	0
+ 941 0021 0B       		.uleb128 0xb
+ 942 0022 0B       		.uleb128 0xb
+ 943 0023 3E       		.uleb128 0x3e
+ 944 0024 0B       		.uleb128 0xb
+ 945 0025 03       		.uleb128 0x3
+ 946 0026 08       		.uleb128 0x8
+ 947 0027 00       		.byte	0
+ 948 0028 00       		.byte	0
+ 949 0029 04       		.uleb128 0x4
+ 950 002a 16       		.uleb128 0x16
+ 951 002b 00       		.byte	0
+ 952 002c 03       		.uleb128 0x3
+ 953 002d 0E       		.uleb128 0xe
+ 954 002e 3A       		.uleb128 0x3a
+ 955 002f 0B       		.uleb128 0xb
+ 956 0030 3B       		.uleb128 0x3b
+ 957 0031 0B       		.uleb128 0xb
+ 958 0032 49       		.uleb128 0x49
+ 959 0033 13       		.uleb128 0x13
+ 960 0034 00       		.byte	0
+ 961 0035 00       		.byte	0
+ 962 0036 05       		.uleb128 0x5
+ 963 0037 16       		.uleb128 0x16
+ 964 0038 00       		.byte	0
+ 965 0039 03       		.uleb128 0x3
+ 966 003a 0E       		.uleb128 0xe
+ 967 003b 3A       		.uleb128 0x3a
+ 968 003c 0B       		.uleb128 0xb
+ 969 003d 3B       		.uleb128 0x3b
+ 970 003e 05       		.uleb128 0x5
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 29
+
+
+ 971 003f 49       		.uleb128 0x49
+ 972 0040 13       		.uleb128 0x13
+ 973 0041 00       		.byte	0
+ 974 0042 00       		.byte	0
+ 975 0043 06       		.uleb128 0x6
+ 976 0044 35       		.uleb128 0x35
+ 977 0045 00       		.byte	0
+ 978 0046 49       		.uleb128 0x49
+ 979 0047 13       		.uleb128 0x13
+ 980 0048 00       		.byte	0
+ 981 0049 00       		.byte	0
+ 982 004a 07       		.uleb128 0x7
+ 983 004b 2E       		.uleb128 0x2e
+ 984 004c 01       		.byte	0x1
+ 985 004d 03       		.uleb128 0x3
+ 986 004e 0E       		.uleb128 0xe
+ 987 004f 3A       		.uleb128 0x3a
+ 988 0050 0B       		.uleb128 0xb
+ 989 0051 3B       		.uleb128 0x3b
+ 990 0052 05       		.uleb128 0x5
+ 991 0053 27       		.uleb128 0x27
+ 992 0054 19       		.uleb128 0x19
+ 993 0055 11       		.uleb128 0x11
+ 994 0056 01       		.uleb128 0x1
+ 995 0057 12       		.uleb128 0x12
+ 996 0058 06       		.uleb128 0x6
+ 997 0059 40       		.uleb128 0x40
+ 998 005a 18       		.uleb128 0x18
+ 999 005b 9742     		.uleb128 0x2117
+ 1000 005d 19       		.uleb128 0x19
+ 1001 005e 01       		.uleb128 0x1
+ 1002 005f 13       		.uleb128 0x13
+ 1003 0060 00       		.byte	0
+ 1004 0061 00       		.byte	0
+ 1005 0062 08       		.uleb128 0x8
+ 1006 0063 05       		.uleb128 0x5
+ 1007 0064 00       		.byte	0
+ 1008 0065 03       		.uleb128 0x3
+ 1009 0066 0E       		.uleb128 0xe
+ 1010 0067 3A       		.uleb128 0x3a
+ 1011 0068 0B       		.uleb128 0xb
+ 1012 0069 3B       		.uleb128 0x3b
+ 1013 006a 05       		.uleb128 0x5
+ 1014 006b 49       		.uleb128 0x49
+ 1015 006c 13       		.uleb128 0x13
+ 1016 006d 02       		.uleb128 0x2
+ 1017 006e 17       		.uleb128 0x17
+ 1018 006f 00       		.byte	0
+ 1019 0070 00       		.byte	0
+ 1020 0071 09       		.uleb128 0x9
+ 1021 0072 34       		.uleb128 0x34
+ 1022 0073 00       		.byte	0
+ 1023 0074 03       		.uleb128 0x3
+ 1024 0075 0E       		.uleb128 0xe
+ 1025 0076 3A       		.uleb128 0x3a
+ 1026 0077 0B       		.uleb128 0xb
+ 1027 0078 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 30
+
+
+ 1028 0079 05       		.uleb128 0x5
+ 1029 007a 49       		.uleb128 0x49
+ 1030 007b 13       		.uleb128 0x13
+ 1031 007c 02       		.uleb128 0x2
+ 1032 007d 17       		.uleb128 0x17
+ 1033 007e 00       		.byte	0
+ 1034 007f 00       		.byte	0
+ 1035 0080 0A       		.uleb128 0xa
+ 1036 0081 898201   		.uleb128 0x4109
+ 1037 0084 01       		.byte	0x1
+ 1038 0085 11       		.uleb128 0x11
+ 1039 0086 01       		.uleb128 0x1
+ 1040 0087 31       		.uleb128 0x31
+ 1041 0088 13       		.uleb128 0x13
+ 1042 0089 00       		.byte	0
+ 1043 008a 00       		.byte	0
+ 1044 008b 0B       		.uleb128 0xb
+ 1045 008c 8A8201   		.uleb128 0x410a
+ 1046 008f 00       		.byte	0
+ 1047 0090 02       		.uleb128 0x2
+ 1048 0091 18       		.uleb128 0x18
+ 1049 0092 9142     		.uleb128 0x2111
+ 1050 0094 18       		.uleb128 0x18
+ 1051 0095 00       		.byte	0
+ 1052 0096 00       		.byte	0
+ 1053 0097 0C       		.uleb128 0xc
+ 1054 0098 2E       		.uleb128 0x2e
+ 1055 0099 00       		.byte	0
+ 1056 009a 3F       		.uleb128 0x3f
+ 1057 009b 19       		.uleb128 0x19
+ 1058 009c 03       		.uleb128 0x3
+ 1059 009d 0E       		.uleb128 0xe
+ 1060 009e 3A       		.uleb128 0x3a
+ 1061 009f 0B       		.uleb128 0xb
+ 1062 00a0 3B       		.uleb128 0x3b
+ 1063 00a1 0B       		.uleb128 0xb
+ 1064 00a2 27       		.uleb128 0x27
+ 1065 00a3 19       		.uleb128 0x19
+ 1066 00a4 11       		.uleb128 0x11
+ 1067 00a5 01       		.uleb128 0x1
+ 1068 00a6 12       		.uleb128 0x12
+ 1069 00a7 06       		.uleb128 0x6
+ 1070 00a8 40       		.uleb128 0x40
+ 1071 00a9 18       		.uleb128 0x18
+ 1072 00aa 9742     		.uleb128 0x2117
+ 1073 00ac 19       		.uleb128 0x19
+ 1074 00ad 00       		.byte	0
+ 1075 00ae 00       		.byte	0
+ 1076 00af 0D       		.uleb128 0xd
+ 1077 00b0 2E       		.uleb128 0x2e
+ 1078 00b1 01       		.byte	0x1
+ 1079 00b2 3F       		.uleb128 0x3f
+ 1080 00b3 19       		.uleb128 0x19
+ 1081 00b4 03       		.uleb128 0x3
+ 1082 00b5 0E       		.uleb128 0xe
+ 1083 00b6 3A       		.uleb128 0x3a
+ 1084 00b7 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 31
+
+
+ 1085 00b8 3B       		.uleb128 0x3b
+ 1086 00b9 0B       		.uleb128 0xb
+ 1087 00ba 27       		.uleb128 0x27
+ 1088 00bb 19       		.uleb128 0x19
+ 1089 00bc 11       		.uleb128 0x11
+ 1090 00bd 01       		.uleb128 0x1
+ 1091 00be 12       		.uleb128 0x12
+ 1092 00bf 06       		.uleb128 0x6
+ 1093 00c0 40       		.uleb128 0x40
+ 1094 00c1 18       		.uleb128 0x18
+ 1095 00c2 9742     		.uleb128 0x2117
+ 1096 00c4 19       		.uleb128 0x19
+ 1097 00c5 01       		.uleb128 0x1
+ 1098 00c6 13       		.uleb128 0x13
+ 1099 00c7 00       		.byte	0
+ 1100 00c8 00       		.byte	0
+ 1101 00c9 0E       		.uleb128 0xe
+ 1102 00ca 05       		.uleb128 0x5
+ 1103 00cb 00       		.byte	0
+ 1104 00cc 03       		.uleb128 0x3
+ 1105 00cd 0E       		.uleb128 0xe
+ 1106 00ce 3A       		.uleb128 0x3a
+ 1107 00cf 0B       		.uleb128 0xb
+ 1108 00d0 3B       		.uleb128 0x3b
+ 1109 00d1 0B       		.uleb128 0xb
+ 1110 00d2 49       		.uleb128 0x49
+ 1111 00d3 13       		.uleb128 0x13
+ 1112 00d4 02       		.uleb128 0x2
+ 1113 00d5 18       		.uleb128 0x18
+ 1114 00d6 00       		.byte	0
+ 1115 00d7 00       		.byte	0
+ 1116 00d8 0F       		.uleb128 0xf
+ 1117 00d9 898201   		.uleb128 0x4109
+ 1118 00dc 00       		.byte	0
+ 1119 00dd 11       		.uleb128 0x11
+ 1120 00de 01       		.uleb128 0x1
+ 1121 00df 31       		.uleb128 0x31
+ 1122 00e0 13       		.uleb128 0x13
+ 1123 00e1 00       		.byte	0
+ 1124 00e2 00       		.byte	0
+ 1125 00e3 10       		.uleb128 0x10
+ 1126 00e4 2E       		.uleb128 0x2e
+ 1127 00e5 00       		.byte	0
+ 1128 00e6 3F       		.uleb128 0x3f
+ 1129 00e7 19       		.uleb128 0x19
+ 1130 00e8 03       		.uleb128 0x3
+ 1131 00e9 0E       		.uleb128 0xe
+ 1132 00ea 3A       		.uleb128 0x3a
+ 1133 00eb 0B       		.uleb128 0xb
+ 1134 00ec 3B       		.uleb128 0x3b
+ 1135 00ed 0B       		.uleb128 0xb
+ 1136 00ee 27       		.uleb128 0x27
+ 1137 00ef 19       		.uleb128 0x19
+ 1138 00f0 49       		.uleb128 0x49
+ 1139 00f1 13       		.uleb128 0x13
+ 1140 00f2 11       		.uleb128 0x11
+ 1141 00f3 01       		.uleb128 0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 32
+
+
+ 1142 00f4 12       		.uleb128 0x12
+ 1143 00f5 06       		.uleb128 0x6
+ 1144 00f6 40       		.uleb128 0x40
+ 1145 00f7 18       		.uleb128 0x18
+ 1146 00f8 9742     		.uleb128 0x2117
+ 1147 00fa 19       		.uleb128 0x19
+ 1148 00fb 00       		.byte	0
+ 1149 00fc 00       		.byte	0
+ 1150 00fd 11       		.uleb128 0x11
+ 1151 00fe 2E       		.uleb128 0x2e
+ 1152 00ff 01       		.byte	0x1
+ 1153 0100 3F       		.uleb128 0x3f
+ 1154 0101 19       		.uleb128 0x19
+ 1155 0102 03       		.uleb128 0x3
+ 1156 0103 0E       		.uleb128 0xe
+ 1157 0104 3A       		.uleb128 0x3a
+ 1158 0105 0B       		.uleb128 0xb
+ 1159 0106 3B       		.uleb128 0x3b
+ 1160 0107 05       		.uleb128 0x5
+ 1161 0108 27       		.uleb128 0x27
+ 1162 0109 19       		.uleb128 0x19
+ 1163 010a 49       		.uleb128 0x49
+ 1164 010b 13       		.uleb128 0x13
+ 1165 010c 11       		.uleb128 0x11
+ 1166 010d 01       		.uleb128 0x1
+ 1167 010e 12       		.uleb128 0x12
+ 1168 010f 06       		.uleb128 0x6
+ 1169 0110 40       		.uleb128 0x40
+ 1170 0111 18       		.uleb128 0x18
+ 1171 0112 9742     		.uleb128 0x2117
+ 1172 0114 19       		.uleb128 0x19
+ 1173 0115 01       		.uleb128 0x1
+ 1174 0116 13       		.uleb128 0x13
+ 1175 0117 00       		.byte	0
+ 1176 0118 00       		.byte	0
+ 1177 0119 12       		.uleb128 0x12
+ 1178 011a 898201   		.uleb128 0x4109
+ 1179 011d 01       		.byte	0x1
+ 1180 011e 11       		.uleb128 0x11
+ 1181 011f 01       		.uleb128 0x1
+ 1182 0120 31       		.uleb128 0x31
+ 1183 0121 13       		.uleb128 0x13
+ 1184 0122 01       		.uleb128 0x1
+ 1185 0123 13       		.uleb128 0x13
+ 1186 0124 00       		.byte	0
+ 1187 0125 00       		.byte	0
+ 1188 0126 13       		.uleb128 0x13
+ 1189 0127 2E       		.uleb128 0x2e
+ 1190 0128 01       		.byte	0x1
+ 1191 0129 3F       		.uleb128 0x3f
+ 1192 012a 19       		.uleb128 0x19
+ 1193 012b 03       		.uleb128 0x3
+ 1194 012c 0E       		.uleb128 0xe
+ 1195 012d 3A       		.uleb128 0x3a
+ 1196 012e 0B       		.uleb128 0xb
+ 1197 012f 3B       		.uleb128 0x3b
+ 1198 0130 05       		.uleb128 0x5
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 33
+
+
+ 1199 0131 27       		.uleb128 0x27
+ 1200 0132 19       		.uleb128 0x19
+ 1201 0133 11       		.uleb128 0x11
+ 1202 0134 01       		.uleb128 0x1
+ 1203 0135 12       		.uleb128 0x12
+ 1204 0136 06       		.uleb128 0x6
+ 1205 0137 40       		.uleb128 0x40
+ 1206 0138 18       		.uleb128 0x18
+ 1207 0139 9742     		.uleb128 0x2117
+ 1208 013b 19       		.uleb128 0x19
+ 1209 013c 01       		.uleb128 0x1
+ 1210 013d 13       		.uleb128 0x13
+ 1211 013e 00       		.byte	0
+ 1212 013f 00       		.byte	0
+ 1213 0140 14       		.uleb128 0x14
+ 1214 0141 2E       		.uleb128 0x2e
+ 1215 0142 00       		.byte	0
+ 1216 0143 3F       		.uleb128 0x3f
+ 1217 0144 19       		.uleb128 0x19
+ 1218 0145 03       		.uleb128 0x3
+ 1219 0146 0E       		.uleb128 0xe
+ 1220 0147 3A       		.uleb128 0x3a
+ 1221 0148 0B       		.uleb128 0xb
+ 1222 0149 3B       		.uleb128 0x3b
+ 1223 014a 05       		.uleb128 0x5
+ 1224 014b 27       		.uleb128 0x27
+ 1225 014c 19       		.uleb128 0x19
+ 1226 014d 11       		.uleb128 0x11
+ 1227 014e 01       		.uleb128 0x1
+ 1228 014f 12       		.uleb128 0x12
+ 1229 0150 06       		.uleb128 0x6
+ 1230 0151 40       		.uleb128 0x40
+ 1231 0152 18       		.uleb128 0x18
+ 1232 0153 9742     		.uleb128 0x2117
+ 1233 0155 19       		.uleb128 0x19
+ 1234 0156 00       		.byte	0
+ 1235 0157 00       		.byte	0
+ 1236 0158 15       		.uleb128 0x15
+ 1237 0159 34       		.uleb128 0x34
+ 1238 015a 00       		.byte	0
+ 1239 015b 03       		.uleb128 0x3
+ 1240 015c 0E       		.uleb128 0xe
+ 1241 015d 3A       		.uleb128 0x3a
+ 1242 015e 0B       		.uleb128 0xb
+ 1243 015f 3B       		.uleb128 0x3b
+ 1244 0160 0B       		.uleb128 0xb
+ 1245 0161 49       		.uleb128 0x49
+ 1246 0162 13       		.uleb128 0x13
+ 1247 0163 3F       		.uleb128 0x3f
+ 1248 0164 19       		.uleb128 0x19
+ 1249 0165 02       		.uleb128 0x2
+ 1250 0166 18       		.uleb128 0x18
+ 1251 0167 00       		.byte	0
+ 1252 0168 00       		.byte	0
+ 1253 0169 16       		.uleb128 0x16
+ 1254 016a 2E       		.uleb128 0x2e
+ 1255 016b 01       		.byte	0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 34
+
+
+ 1256 016c 3F       		.uleb128 0x3f
+ 1257 016d 19       		.uleb128 0x19
+ 1258 016e 03       		.uleb128 0x3
+ 1259 016f 0E       		.uleb128 0xe
+ 1260 0170 3A       		.uleb128 0x3a
+ 1261 0171 0B       		.uleb128 0xb
+ 1262 0172 3B       		.uleb128 0x3b
+ 1263 0173 0B       		.uleb128 0xb
+ 1264 0174 27       		.uleb128 0x27
+ 1265 0175 19       		.uleb128 0x19
+ 1266 0176 3C       		.uleb128 0x3c
+ 1267 0177 19       		.uleb128 0x19
+ 1268 0178 00       		.byte	0
+ 1269 0179 00       		.byte	0
+ 1270 017a 17       		.uleb128 0x17
+ 1271 017b 05       		.uleb128 0x5
+ 1272 017c 00       		.byte	0
+ 1273 017d 49       		.uleb128 0x49
+ 1274 017e 13       		.uleb128 0x13
+ 1275 017f 00       		.byte	0
+ 1276 0180 00       		.byte	0
+ 1277 0181 00       		.byte	0
+ 1278              		.section	.debug_loc,"",%progbits
+ 1279              	.Ldebug_loc0:
+ 1280              	.LLST0:
+ 1281 0000 00000000 		.4byte	.LVL0
+ 1282 0004 48000000 		.4byte	.LVL3
+ 1283 0008 0100     		.2byte	0x1
+ 1284 000a 50       		.byte	0x50
+ 1285 000b 48000000 		.4byte	.LVL3
+ 1286 000f 90000000 		.4byte	.LFE6
+ 1287 0013 0400     		.2byte	0x4
+ 1288 0015 F3       		.byte	0xf3
+ 1289 0016 01       		.uleb128 0x1
+ 1290 0017 50       		.byte	0x50
+ 1291 0018 9F       		.byte	0x9f
+ 1292 0019 00000000 		.4byte	0
+ 1293 001d 00000000 		.4byte	0
+ 1294              	.LLST1:
+ 1295 0021 38000000 		.4byte	.LVL2
+ 1296 0025 48000000 		.4byte	.LVL3
+ 1297 0029 0200     		.2byte	0x2
+ 1298 002b 30       		.byte	0x30
+ 1299 002c 9F       		.byte	0x9f
+ 1300 002d 48000000 		.4byte	.LVL3
+ 1301 0031 7A000000 		.4byte	.LVL5
+ 1302 0035 0100     		.2byte	0x1
+ 1303 0037 54       		.byte	0x54
+ 1304 0038 7A000000 		.4byte	.LVL5
+ 1305 003c 7C000000 		.4byte	.LVL6
+ 1306 0040 0300     		.2byte	0x3
+ 1307 0042 74       		.byte	0x74
+ 1308 0043 7F       		.sleb128 -1
+ 1309 0044 9F       		.byte	0x9f
+ 1310 0045 7C000000 		.4byte	.LVL6
+ 1311 0049 84000000 		.4byte	.LVL7
+ 1312 004d 0100     		.2byte	0x1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 35
+
+
+ 1313 004f 54       		.byte	0x54
+ 1314 0050 00000000 		.4byte	0
+ 1315 0054 00000000 		.4byte	0
+ 1316              	.LLST2:
+ 1317 0058 38000000 		.4byte	.LVL2
+ 1318 005c 84000000 		.4byte	.LVL7
+ 1319 0060 0100     		.2byte	0x1
+ 1320 0062 57       		.byte	0x57
+ 1321 0063 00000000 		.4byte	0
+ 1322 0067 00000000 		.4byte	0
+ 1323              	.LLST3:
+ 1324 006b 0E000000 		.4byte	.LVL1
+ 1325 006f 84000000 		.4byte	.LVL7
+ 1326 0073 0100     		.2byte	0x1
+ 1327 0075 55       		.byte	0x55
+ 1328 0076 00000000 		.4byte	0
+ 1329 007a 00000000 		.4byte	0
+ 1330              	.LLST4:
+ 1331 007e 08000000 		.4byte	.LVL12
+ 1332 0082 7A000000 		.4byte	.LVL19
+ 1333 0086 0100     		.2byte	0x1
+ 1334 0088 56       		.byte	0x56
+ 1335 0089 00000000 		.4byte	0
+ 1336 008d 00000000 		.4byte	0
+ 1337              	.LLST5:
+ 1338 0091 0E000000 		.4byte	.LVL13
+ 1339 0095 7A000000 		.4byte	.LVL19
+ 1340 0099 0100     		.2byte	0x1
+ 1341 009b 55       		.byte	0x55
+ 1342 009c 00000000 		.4byte	0
+ 1343 00a0 00000000 		.4byte	0
+ 1344              	.LLST6:
+ 1345 00a4 14000000 		.4byte	.LVL14
+ 1346 00a8 7A000000 		.4byte	.LVL19
+ 1347 00ac 0100     		.2byte	0x1
+ 1348 00ae 54       		.byte	0x54
+ 1349 00af 00000000 		.4byte	0
+ 1350 00b3 00000000 		.4byte	0
+ 1351              	.LLST7:
+ 1352 00b7 28000000 		.4byte	.LVL15
+ 1353 00bb 7A000000 		.4byte	.LVL19
+ 1354 00bf 0100     		.2byte	0x1
+ 1355 00c1 57       		.byte	0x57
+ 1356 00c2 00000000 		.4byte	0
+ 1357 00c6 00000000 		.4byte	0
+ 1358              	.LLST8:
+ 1359 00ca 00000000 		.4byte	.LVL20
+ 1360 00ce 08000000 		.4byte	.LVL21
+ 1361 00d2 0100     		.2byte	0x1
+ 1362 00d4 50       		.byte	0x50
+ 1363 00d5 08000000 		.4byte	.LVL21
+ 1364 00d9 14000000 		.4byte	.LFE8
+ 1365 00dd 0400     		.2byte	0x4
+ 1366 00df F3       		.byte	0xf3
+ 1367 00e0 01       		.uleb128 0x1
+ 1368 00e1 50       		.byte	0x50
+ 1369 00e2 9F       		.byte	0x9f
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 36
+
+
+ 1370 00e3 00000000 		.4byte	0
+ 1371 00e7 00000000 		.4byte	0
+ 1372              		.section	.debug_aranges,"",%progbits
+ 1373 0000 6C000000 		.4byte	0x6c
+ 1374 0004 0200     		.2byte	0x2
+ 1375 0006 00000000 		.4byte	.Ldebug_info0
+ 1376 000a 04       		.byte	0x4
+ 1377 000b 00       		.byte	0
+ 1378 000c 0000     		.2byte	0
+ 1379 000e 0000     		.2byte	0
+ 1380 0010 00000000 		.4byte	.LFB6
+ 1381 0014 90000000 		.4byte	.LFE6-.LFB6
+ 1382 0018 00000000 		.4byte	.LFB1
+ 1383 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 1384 0020 00000000 		.4byte	.LFB3
+ 1385 0024 1C000000 		.4byte	.LFE3-.LFB3
+ 1386 0028 00000000 		.4byte	.LFB4
+ 1387 002c 5C000000 		.4byte	.LFE4-.LFB4
+ 1388 0030 00000000 		.4byte	.LFB0
+ 1389 0034 3C000000 		.4byte	.LFE0-.LFB0
+ 1390 0038 00000000 		.4byte	.LFB2
+ 1391 003c 1C000000 		.4byte	.LFE2-.LFB2
+ 1392 0040 00000000 		.4byte	.LFB5
+ 1393 0044 10000000 		.4byte	.LFE5-.LFB5
+ 1394 0048 00000000 		.4byte	.LFB7
+ 1395 004c 90000000 		.4byte	.LFE7-.LFB7
+ 1396 0050 00000000 		.4byte	.LFB8
+ 1397 0054 14000000 		.4byte	.LFE8-.LFB8
+ 1398 0058 00000000 		.4byte	.LFB9
+ 1399 005c 10000000 		.4byte	.LFE9-.LFB9
+ 1400 0060 00000000 		.4byte	.LFB10
+ 1401 0064 10000000 		.4byte	.LFE10-.LFB10
+ 1402 0068 00000000 		.4byte	0
+ 1403 006c 00000000 		.4byte	0
+ 1404              		.section	.debug_ranges,"",%progbits
+ 1405              	.Ldebug_ranges0:
+ 1406 0000 00000000 		.4byte	.LFB6
+ 1407 0004 90000000 		.4byte	.LFE6
+ 1408 0008 00000000 		.4byte	.LFB1
+ 1409 000c 1C000000 		.4byte	.LFE1
+ 1410 0010 00000000 		.4byte	.LFB3
+ 1411 0014 1C000000 		.4byte	.LFE3
+ 1412 0018 00000000 		.4byte	.LFB4
+ 1413 001c 5C000000 		.4byte	.LFE4
+ 1414 0020 00000000 		.4byte	.LFB0
+ 1415 0024 3C000000 		.4byte	.LFE0
+ 1416 0028 00000000 		.4byte	.LFB2
+ 1417 002c 1C000000 		.4byte	.LFE2
+ 1418 0030 00000000 		.4byte	.LFB5
+ 1419 0034 10000000 		.4byte	.LFE5
+ 1420 0038 00000000 		.4byte	.LFB7
+ 1421 003c 90000000 		.4byte	.LFE7
+ 1422 0040 00000000 		.4byte	.LFB8
+ 1423 0044 14000000 		.4byte	.LFE8
+ 1424 0048 00000000 		.4byte	.LFB9
+ 1425 004c 10000000 		.4byte	.LFE9
+ 1426 0050 00000000 		.4byte	.LFB10
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 37
+
+
+ 1427 0054 10000000 		.4byte	.LFE10
+ 1428 0058 00000000 		.4byte	0
+ 1429 005c 00000000 		.4byte	0
+ 1430              		.section	.debug_line,"",%progbits
+ 1431              	.Ldebug_line0:
+ 1432 0000 6F010000 		.section	.debug_str,"MS",%progbits,1
+ 1432      02005400 
+ 1432      00000201 
+ 1432      FB0E0D00 
+ 1432      01010101 
+ 1433              	.LASF32:
+ 1434 0000 7472696D 		.ascii	"trimVal\000"
+ 1434      56616C00 
+ 1435              	.LASF31:
+ 1436 0008 436F6D70 		.ascii	"Comp_Elbow_LoadTrim\000"
+ 1436      5F456C62 
+ 1436      6F775F4C 
+ 1436      6F616454 
+ 1436      72696D00 
+ 1437              	.LASF30:
+ 1438 001c 746D7043 		.ascii	"tmpCR\000"
+ 1438      5200
+ 1439              	.LASF23:
+ 1440 0022 73706565 		.ascii	"speed\000"
+ 1440      6400
+ 1441              	.LASF28:
+ 1442 0028 746D7053 		.ascii	"tmpSW2\000"
+ 1442      573200
+ 1443              	.LASF20:
+ 1444 002f 436F6D70 		.ascii	"Comp_Elbow_Enable\000"
+ 1444      5F456C62 
+ 1444      6F775F45 
+ 1444      6E61626C 
+ 1444      6500
+ 1445              	.LASF36:
+ 1446 0041 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Comp_Elbow.c\000"
+ 1446      6E657261 
+ 1446      7465645F 
+ 1446      536F7572 
+ 1446      63655C50 
+ 1447              	.LASF3:
+ 1448 0067 73686F72 		.ascii	"short unsigned int\000"
+ 1448      7420756E 
+ 1448      7369676E 
+ 1448      65642069 
+ 1448      6E7400
+ 1449              	.LASF21:
+ 1450 007a 436F6D70 		.ascii	"Comp_Elbow_Stop\000"
+ 1450      5F456C62 
+ 1450      6F775F53 
+ 1450      746F7000 
+ 1451              	.LASF33:
+ 1452 008a 436F6D70 		.ascii	"Comp_Elbow_PwrDwnOverrideEnable\000"
+ 1452      5F456C62 
+ 1452      6F775F50 
+ 1452      77724477 
+ 1452      6E4F7665 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 38
+
+
+ 1453              	.LASF27:
+ 1454 00aa 746D7053 		.ascii	"tmpSW0\000"
+ 1454      573000
+ 1455              	.LASF12:
+ 1456 00b1 666C6F61 		.ascii	"float\000"
+ 1456      7400
+ 1457              	.LASF29:
+ 1458 00b7 746D7053 		.ascii	"tmpSW3\000"
+ 1458      573300
+ 1459              	.LASF1:
+ 1460 00be 756E7369 		.ascii	"unsigned char\000"
+ 1460      676E6564 
+ 1460      20636861 
+ 1460      7200
+ 1461              	.LASF41:
+ 1462 00cc 436F6D70 		.ascii	"Comp_Elbow_initVar\000"
+ 1462      5F456C62 
+ 1462      6F775F69 
+ 1462      6E697456 
+ 1462      617200
+ 1463              	.LASF15:
+ 1464 00df 72656738 		.ascii	"reg8\000"
+ 1464      00
+ 1465              	.LASF17:
+ 1466 00e4 7472696D 		.ascii	"trimCnt\000"
+ 1466      436E7400 
+ 1467              	.LASF5:
+ 1468 00ec 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1468      20756E73 
+ 1468      69676E65 
+ 1468      6420696E 
+ 1468      7400
+ 1469              	.LASF9:
+ 1470 00fe 75696E74 		.ascii	"uint8\000"
+ 1470      3800
+ 1471              	.LASF13:
+ 1472 0104 646F7562 		.ascii	"double\000"
+ 1472      6C6500
+ 1473              	.LASF26:
+ 1474 010b 436F6D70 		.ascii	"Comp_Elbow_Start\000"
+ 1474      5F456C62 
+ 1474      6F775F53 
+ 1474      74617274 
+ 1474      00
+ 1475              	.LASF34:
+ 1476 011c 436F6D70 		.ascii	"Comp_Elbow_PwrDwnOverrideDisable\000"
+ 1476      5F456C62 
+ 1476      6F775F50 
+ 1476      77724477 
+ 1476      6E4F7665 
+ 1477              	.LASF10:
+ 1478 013d 75696E74 		.ascii	"uint16\000"
+ 1478      313600
+ 1479              	.LASF11:
+ 1480 0144 75696E74 		.ascii	"uint32\000"
+ 1480      333200
+ 1481              	.LASF8:
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 39
+
+
+ 1482 014b 756E7369 		.ascii	"unsigned int\000"
+ 1482      676E6564 
+ 1482      20696E74 
+ 1482      00
+ 1483              	.LASF19:
+ 1484 0158 636D7053 		.ascii	"cmpState\000"
+ 1484      74617465 
+ 1484      00
+ 1485              	.LASF7:
+ 1486 0161 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1486      206C6F6E 
+ 1486      6720756E 
+ 1486      7369676E 
+ 1486      65642069 
+ 1487              	.LASF39:
+ 1488 0178 436F6D70 		.ascii	"Comp_Elbow_GetCompare\000"
+ 1488      5F456C62 
+ 1488      6F775F47 
+ 1488      6574436F 
+ 1488      6D706172 
+ 1489              	.LASF35:
+ 1490 018e 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1490      4320342E 
+ 1490      382E3420 
+ 1490      32303134 
+ 1490      30353236 
+ 1491 01c1 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1491      20726576 
+ 1491      6973696F 
+ 1491      6E203231 
+ 1491      31333538 
+ 1492 01f4 67202D66 		.ascii	"g -ffunction-sections\000"
+ 1492      66756E63 
+ 1492      74696F6E 
+ 1492      2D736563 
+ 1492      74696F6E 
+ 1493              	.LASF16:
+ 1494 020a 73697A65 		.ascii	"sizetype\000"
+ 1494      74797065 
+ 1494      00
+ 1495              	.LASF18:
+ 1496 0213 7472696D 		.ascii	"trimCntMax\000"
+ 1496      436E744D 
+ 1496      617800
+ 1497              	.LASF6:
+ 1498 021e 6C6F6E67 		.ascii	"long long int\000"
+ 1498      206C6F6E 
+ 1498      6720696E 
+ 1498      7400
+ 1499              	.LASF42:
+ 1500 022c 43794465 		.ascii	"CyDelayUs\000"
+ 1500      6C617955 
+ 1500      7300
+ 1501              	.LASF38:
+ 1502 0236 436F6D70 		.ascii	"Comp_Elbow_trimAdjust\000"
+ 1502      5F456C62 
+ 1502      6F775F74 
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccCZbt90.s 			page 40
+
+
+ 1502      72696D41 
+ 1502      646A7573 
+ 1503              	.LASF25:
+ 1504 024c 436F6D70 		.ascii	"Comp_Elbow_Init\000"
+ 1504      5F456C62 
+ 1504      6F775F49 
+ 1504      6E697400 
+ 1505              	.LASF2:
+ 1506 025c 73686F72 		.ascii	"short int\000"
+ 1506      7420696E 
+ 1506      7400
+ 1507              	.LASF40:
+ 1508 0266 436F6D70 		.ascii	"Comp_Elbow_ZeroCal\000"
+ 1508      5F456C62 
+ 1508      6F775F5A 
+ 1508      65726F43 
+ 1508      616C00
+ 1509              	.LASF4:
+ 1510 0279 6C6F6E67 		.ascii	"long int\000"
+ 1510      20696E74 
+ 1510      00
+ 1511              	.LASF14:
+ 1512 0282 63686172 		.ascii	"char\000"
+ 1512      00
+ 1513              	.LASF0:
+ 1514 0287 7369676E 		.ascii	"signed char\000"
+ 1514      65642063 
+ 1514      68617200 
+ 1515              	.LASF37:
+ 1516 0293 433A5C55 		.ascii	"C:\\Users\\Nick\\Dropbox\\Uni Docs\\y4s2\\ECE3091 -"
+ 1516      73657273 
+ 1516      5C4E6963 
+ 1516      6B5C4472 
+ 1516      6F70626F 
+ 1517 02c0 20456E67 		.ascii	" Engineering Design\\PSoc Creator\\eng_design_2015\\"
+ 1517      696E6565 
+ 1517      72696E67 
+ 1517      20446573 
+ 1517      69676E5C 
+ 1518 02f1 45434533 		.ascii	"ECE3091-chickybot\\chickybot.cydsn\000"
+ 1518      3039312D 
+ 1518      63686963 
+ 1518      6B79626F 
+ 1518      745C6368 
+ 1519              	.LASF24:
+ 1520 0313 436F6D70 		.ascii	"Comp_Elbow_SetSpeed\000"
+ 1520      5F456C62 
+ 1520      6F775F53 
+ 1520      65745370 
+ 1520      65656400 
+ 1521              	.LASF22:
+ 1522 0327 6E696262 		.ascii	"nibble\000"
+ 1522      6C6500
+ 1523              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

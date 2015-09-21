@@ -41,6 +41,9 @@
           <File BuildType="BUILD" Toolchain="">.\cv.h</File>
           <File BuildType="BUILD" Toolchain="">.\sensors.c</File>
           <File BuildType="BUILD" Toolchain="">.\sensors.h</File>
+          <File BuildType="BUILD" Toolchain="">.\motion.c</File>
+          <File BuildType="BUILD" Toolchain="">.\motion.h</File>
+          <File BuildType="BUILD" Toolchain="">.\main.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\Generated_Source\PSoC5">
@@ -195,19 +198,27 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Elbow_theACLK.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsTimer.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsTimer.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PhotoDiode1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PhotoDiode1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PhotoDiode1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\AMux.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\AMux.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_theACLK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_theACLK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot.h</File>
         </Files>
       </Folder>
       <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">

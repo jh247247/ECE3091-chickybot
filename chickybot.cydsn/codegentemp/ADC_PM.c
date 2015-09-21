@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: ADC_Elbow_PM.c
+* File Name: ADC_PM.c
 * Version 3.0
 *
 * Description:
@@ -14,21 +14,21 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "ADC_Elbow.h"
+#include "ADC.h"
 
 
 /***************************************
 * Local data allocation
 ***************************************/
 
-static ADC_Elbow_BACKUP_STRUCT  ADC_Elbow_backup =
+static ADC_BACKUP_STRUCT  ADC_backup =
 {
-    ADC_Elbow_DISABLED
+    ADC_DISABLED
 };
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_SaveConfig
+* Function Name: ADC_SaveConfig
 ********************************************************************************
 *
 * Summary:
@@ -41,14 +41,14 @@ static ADC_Elbow_BACKUP_STRUCT  ADC_Elbow_backup =
 *  None.
 *
 *******************************************************************************/
-void ADC_Elbow_SaveConfig(void)
+void ADC_SaveConfig(void)
 {
     /* All configuration registers are marked as [reset_all_retention] */
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_RestoreConfig
+* Function Name: ADC_RestoreConfig
 ********************************************************************************
 *
 * Summary:
@@ -61,19 +61,19 @@ void ADC_Elbow_SaveConfig(void)
 *  None.
 *
 *******************************************************************************/
-void ADC_Elbow_RestoreConfig(void)
+void ADC_RestoreConfig(void)
 {
     /* All congiguration registers are marked as [reset_all_retention] */
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_Sleep
+* Function Name: ADC_Sleep
 ********************************************************************************
 *
 * Summary:
 *  This is the preferred routine to prepare the component for sleep.
-*  The ADC_Elbow_Sleep() routine saves the current component state,
+*  The ADC_Sleep() routine saves the current component state,
 *  then it calls the ADC_Stop() function.
 *
 * Parameters:
@@ -83,40 +83,40 @@ void ADC_Elbow_RestoreConfig(void)
 *  None.
 *
 * Global Variables:
-*  ADC_Elbow_backup - The structure field 'enableState' is modified
+*  ADC_backup - The structure field 'enableState' is modified
 *  depending on the enable state of the block before entering to sleep mode.
 *
 *******************************************************************************/
-void ADC_Elbow_Sleep(void)
+void ADC_Sleep(void)
 {
-    if((ADC_Elbow_PWRMGR_SAR_REG  & ADC_Elbow_ACT_PWR_SAR_EN) != 0u)
+    if((ADC_PWRMGR_SAR_REG  & ADC_ACT_PWR_SAR_EN) != 0u)
     {
-        if((ADC_Elbow_SAR_CSR0_REG & ADC_Elbow_SAR_SOF_START_CONV) != 0u)
+        if((ADC_SAR_CSR0_REG & ADC_SAR_SOF_START_CONV) != 0u)
         {
-            ADC_Elbow_backup.enableState = ADC_Elbow_ENABLED | ADC_Elbow_STARTED;
+            ADC_backup.enableState = ADC_ENABLED | ADC_STARTED;
         }
         else
         {
-            ADC_Elbow_backup.enableState = ADC_Elbow_ENABLED;
+            ADC_backup.enableState = ADC_ENABLED;
         }
-        ADC_Elbow_Stop();
+        ADC_Stop();
     }
     else
     {
-        ADC_Elbow_backup.enableState = ADC_Elbow_DISABLED;
+        ADC_backup.enableState = ADC_DISABLED;
     }
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_Wakeup
+* Function Name: ADC_Wakeup
 ********************************************************************************
 *
 * Summary:
 *  This is the preferred routine to restore the component to the state when
-*  ADC_Elbow_Sleep() was called. If the component was enabled before the
-*  ADC_Elbow_Sleep() function was called, the
-*  ADC_Elbow_Wakeup() function also re-enables the component.
+*  ADC_Sleep() was called. If the component was enabled before the
+*  ADC_Sleep() function was called, the
+*  ADC_Wakeup() function also re-enables the component.
 *
 * Parameters:
 *  None.
@@ -125,21 +125,21 @@ void ADC_Elbow_Sleep(void)
 *  None.
 *
 * Global Variables:
-*  ADC_Elbow_backup - The structure field 'enableState' is used to
+*  ADC_backup - The structure field 'enableState' is used to
 *  restore the enable state of block after wakeup from sleep mode.
 *
 *******************************************************************************/
-void ADC_Elbow_Wakeup(void)
+void ADC_Wakeup(void)
 {
-    if(ADC_Elbow_backup.enableState != ADC_Elbow_DISABLED)
+    if(ADC_backup.enableState != ADC_DISABLED)
     {
-        ADC_Elbow_Enable();
-        #if(ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__HARDWARE_TRIGGER)
-            if((ADC_Elbow_backup.enableState & ADC_Elbow_STARTED) != 0u)
+        ADC_Enable();
+        #if(ADC_DEFAULT_CONV_MODE != ADC__HARDWARE_TRIGGER)
+            if((ADC_backup.enableState & ADC_STARTED) != 0u)
             {
-                ADC_Elbow_StartConvert();
+                ADC_StartConvert();
             }
-        #endif /* End ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__HARDWARE_TRIGGER */
+        #endif /* End ADC_DEFAULT_CONV_MODE != ADC__HARDWARE_TRIGGER */
     }
 }
 

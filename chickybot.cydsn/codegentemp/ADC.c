@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: ADC_Elbow.c
+* File Name: ADC.c
 * Version 3.0
 *
 * Description:
@@ -16,38 +16,38 @@
 *******************************************************************************/
 
 #include "CyLib.h"
-#include "ADC_Elbow.h"
+#include "ADC.h"
 
-#if(ADC_Elbow_DEFAULT_INTERNAL_CLK)
-    #include "ADC_Elbow_theACLK.h"
-#endif /* End ADC_Elbow_DEFAULT_INTERNAL_CLK */
+#if(ADC_DEFAULT_INTERNAL_CLK)
+    #include "ADC_theACLK.h"
+#endif /* End ADC_DEFAULT_INTERNAL_CLK */
 
 
 /***************************************
 * Forward function references
 ***************************************/
-static void ADC_Elbow_CalcGain(uint8 resolution);
+static void ADC_CalcGain(uint8 resolution);
 
 
 /***************************************
 * Global data allocation
 ***************************************/
-uint8 ADC_Elbow_initVar = 0u;
-volatile int16 ADC_Elbow_offset;
-volatile int16 ADC_Elbow_countsPerVolt;     /* Obsolete Gain compensation */
-volatile int32 ADC_Elbow_countsPer10Volt;   /* Gain compensation */
-volatile int16 ADC_Elbow_shift;
+uint8 ADC_initVar = 0u;
+volatile int16 ADC_offset;
+volatile int16 ADC_countsPerVolt;     /* Obsolete Gain compensation */
+volatile int32 ADC_countsPer10Volt;   /* Gain compensation */
+volatile int16 ADC_shift;
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_Start
+* Function Name: ADC_Start
 ********************************************************************************
 *
 * Summary:
 *  This is the preferred method to begin component operation.
-*  ADC_Elbow_Start() sets the initVar variable, calls the
-*  ADC_Elbow_Init() function, and then calls the
-*  ADC_Elbow_Enable() function.
+*  ADC_Start() sets the initVar variable, calls the
+*  ADC_Init() function, and then calls the
+*  ADC_Enable() function.
 *
 * Parameters:
 *  None.
@@ -56,42 +56,42 @@ volatile int16 ADC_Elbow_shift;
 *  None.
 *
 * Global variables:
-*  The ADC_Elbow_initVar variable is used to indicate when/if initial
+*  The ADC_initVar variable is used to indicate when/if initial
 *  configuration of this component has happened. The variable is initialized to
 *  zero and set to 1 the first time ADC_Start() is called. This allows for
 *  component Re-Start without re-initialization in all subsequent calls to the
-*  ADC_Elbow_Start() routine.
+*  ADC_Start() routine.
 *  If re-initialization of the component is required the variable should be set
-*  to zero before call of ADC_Elbow_Start() routine, or the user may call
-*  ADC_Elbow_Init() and ADC_Elbow_Enable() as done in the
-*  ADC_Elbow_Start() routine.
+*  to zero before call of ADC_Start() routine, or the user may call
+*  ADC_Init() and ADC_Enable() as done in the
+*  ADC_Start() routine.
 *
 * Side Effect:
 *  If the initVar variable is already set, this function only calls the
-*  ADC_Elbow_Enable() function.
+*  ADC_Enable() function.
 *
 *******************************************************************************/
-void ADC_Elbow_Start(void)
+void ADC_Start(void)
 {
 
     /* If not Initialized then initialize all required hardware and software */
-    if(ADC_Elbow_initVar == 0u)
+    if(ADC_initVar == 0u)
     {
-        ADC_Elbow_Init();
-        ADC_Elbow_initVar = 1u;
+        ADC_Init();
+        ADC_initVar = 1u;
     }
-    ADC_Elbow_Enable();
+    ADC_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_Init
+* Function Name: ADC_Init
 ********************************************************************************
 *
 * Summary:
 *  Initialize component's parameters to the parameters set by user in the
 *  customizer of the component placed onto schematic. Usually called in
-*  ADC_Elbow_Start().
+*  ADC_Start().
 *
 * Parameters:
 *  None.
@@ -100,34 +100,34 @@ void ADC_Elbow_Start(void)
 *  None.
 *
 * Global variables:
-*  The ADC_Elbow_offset variable is initialized to 0.
+*  The ADC_offset variable is initialized to 0.
 *
 *******************************************************************************/
-void ADC_Elbow_Init(void)
+void ADC_Init(void)
 {
 
     /* This is only valid if there is an internal clock */
-    #if(ADC_Elbow_DEFAULT_INTERNAL_CLK)
-        ADC_Elbow_theACLK_SetMode(CYCLK_DUTY);
-    #endif /* End ADC_Elbow_DEFAULT_INTERNAL_CLK */
+    #if(ADC_DEFAULT_INTERNAL_CLK)
+        ADC_theACLK_SetMode(CYCLK_DUTY);
+    #endif /* End ADC_DEFAULT_INTERNAL_CLK */
 
-    #if(ADC_Elbow_IRQ_REMOVE == 0u)
+    #if(ADC_IRQ_REMOVE == 0u)
         /* Start and set interrupt vector */
-        CyIntSetPriority(ADC_Elbow_INTC_NUMBER, ADC_Elbow_INTC_PRIOR_NUMBER);
-        (void)CyIntSetVector(ADC_Elbow_INTC_NUMBER, &ADC_Elbow_ISR);
-    #endif   /* End ADC_Elbow_IRQ_REMOVE */
+        CyIntSetPriority(ADC_INTC_NUMBER, ADC_INTC_PRIOR_NUMBER);
+        (void)CyIntSetVector(ADC_INTC_NUMBER, &ADC_ISR);
+    #endif   /* End ADC_IRQ_REMOVE */
 
     /* Enable IRQ mode*/
-    ADC_Elbow_SAR_CSR1_REG |= ADC_Elbow_SAR_IRQ_MASK_EN | ADC_Elbow_SAR_IRQ_MODE_EDGE;
+    ADC_SAR_CSR1_REG |= ADC_SAR_IRQ_MASK_EN | ADC_SAR_IRQ_MODE_EDGE;
 
     /*Set SAR ADC resolution ADC */
-    ADC_Elbow_SetResolution(ADC_Elbow_DEFAULT_RESOLUTION);
-    ADC_Elbow_offset = 0;
+    ADC_SetResolution(ADC_DEFAULT_RESOLUTION);
+    ADC_offset = 0;
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_Enable
+* Function Name: ADC_Enable
 ********************************************************************************
 *
 * Summary:
@@ -140,99 +140,99 @@ void ADC_Elbow_Init(void)
 *  None.
 *
 *******************************************************************************/
-void ADC_Elbow_Enable(void)
+void ADC_Enable(void)
 {
     uint8 tmpReg;
     uint8 enableInterrupts;
     enableInterrupts = CyEnterCriticalSection();
 
     /* Enable the SAR ADC block in Active Power Mode */
-    ADC_Elbow_PWRMGR_SAR_REG |= ADC_Elbow_ACT_PWR_SAR_EN;
+    ADC_PWRMGR_SAR_REG |= ADC_ACT_PWR_SAR_EN;
 
      /* Enable the SAR ADC in Standby Power Mode*/
-    ADC_Elbow_STBY_PWRMGR_SAR_REG |= ADC_Elbow_STBY_PWR_SAR_EN;
+    ADC_STBY_PWRMGR_SAR_REG |= ADC_STBY_PWR_SAR_EN;
 
     /* This is only valid if there is an internal clock */
-    #if(ADC_Elbow_DEFAULT_INTERNAL_CLK)
-        ADC_Elbow_PWRMGR_CLK_REG |= ADC_Elbow_ACT_PWR_CLK_EN;
-        ADC_Elbow_STBY_PWRMGR_CLK_REG |= ADC_Elbow_STBY_PWR_CLK_EN;
-    #endif /* End ADC_Elbow_DEFAULT_INTERNAL_CLK */
+    #if(ADC_DEFAULT_INTERNAL_CLK)
+        ADC_PWRMGR_CLK_REG |= ADC_ACT_PWR_CLK_EN;
+        ADC_STBY_PWRMGR_CLK_REG |= ADC_STBY_PWR_CLK_EN;
+    #endif /* End ADC_DEFAULT_INTERNAL_CLK */
 
     /* Enable VCM buffer and Enable Int Ref Amp */
-    tmpReg = ADC_Elbow_SAR_CSR3_REG;
-    tmpReg |= ADC_Elbow_SAR_EN_BUF_VCM_EN;
+    tmpReg = ADC_SAR_CSR3_REG;
+    tmpReg |= ADC_SAR_EN_BUF_VCM_EN;
     /* PD_BUF_VREF is OFF in External reference or Vdda reference mode */
-    #if((ADC_Elbow_DEFAULT_REFERENCE == ADC_Elbow__EXT_REF) || \
-        (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VNEG_VDDA_DIFF))
-        tmpReg &= (uint8)~ADC_Elbow_SAR_EN_BUF_VREF_EN;
+    #if((ADC_DEFAULT_REFERENCE == ADC__EXT_REF) || \
+        (ADC_DEFAULT_RANGE == ADC__VNEG_VDDA_DIFF))
+        tmpReg &= (uint8)~ADC_SAR_EN_BUF_VREF_EN;
     #else /* In INTREF or INTREF Bypassed this buffer is ON */
-        tmpReg |= ADC_Elbow_SAR_EN_BUF_VREF_EN;
-    #endif /* ADC_Elbow_DEFAULT_REFERENCE == ADC_Elbow__EXT_REF */
-    ADC_Elbow_SAR_CSR3_REG = tmpReg;
+        tmpReg |= ADC_SAR_EN_BUF_VREF_EN;
+    #endif /* ADC_DEFAULT_REFERENCE == ADC__EXT_REF */
+    ADC_SAR_CSR3_REG = tmpReg;
 
     /* Set reference for ADC */
-    #if(ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VNEG_VDDA_DIFF)
-        #if(ADC_Elbow_DEFAULT_REFERENCE == ADC_Elbow__EXT_REF)
-            ADC_Elbow_SAR_CSR6_REG = ADC_Elbow_INT_BYPASS_EXT_VREF; /* S2 */
+    #if(ADC_DEFAULT_RANGE == ADC__VNEG_VDDA_DIFF)
+        #if(ADC_DEFAULT_REFERENCE == ADC__EXT_REF)
+            ADC_SAR_CSR6_REG = ADC_INT_BYPASS_EXT_VREF; /* S2 */
         #else /* Internal Vdda reference or obsolete bypass mode */
-            ADC_Elbow_SAR_CSR6_REG = ADC_Elbow_VDDA_VREF;           /* S7 */
-        #endif /* ADC_Elbow_DEFAULT_REFERENCE == ADC_Elbow__EXT_REF */
+            ADC_SAR_CSR6_REG = ADC_VDDA_VREF;           /* S7 */
+        #endif /* ADC_DEFAULT_REFERENCE == ADC__EXT_REF */
     #else  /* Reference goes through internal buffer */
-        #if(ADC_Elbow_DEFAULT_REFERENCE == ADC_Elbow__INT_REF_NOT_BYPASSED)
-            ADC_Elbow_SAR_CSR6_REG = ADC_Elbow_INT_VREF;            /* S3 + S4 */
+        #if(ADC_DEFAULT_REFERENCE == ADC__INT_REF_NOT_BYPASSED)
+            ADC_SAR_CSR6_REG = ADC_INT_VREF;            /* S3 + S4 */
         #else /* INTREF Bypassed of External */
-            ADC_Elbow_SAR_CSR6_REG = ADC_Elbow_INT_BYPASS_EXT_VREF; /* S2 */
-        #endif /* ADC_Elbow_DEFAULT_REFERENCE == ADC_Elbow__INT_REF_NOT_BYPASSED */
+            ADC_SAR_CSR6_REG = ADC_INT_BYPASS_EXT_VREF; /* S2 */
+        #endif /* ADC_DEFAULT_REFERENCE == ADC__INT_REF_NOT_BYPASSED */
     #endif /* VNEG_VDDA_DIFF */
 
     /* Low non-overlap delay for sampling clock signals (for 1MSPS) */
-    #if(ADC_Elbow_HIGH_POWER_PULSE == 0u) /* MinPulseWidth <= 50 ns */
-        ADC_Elbow_SAR_CSR5_REG &= (uint8)~ADC_Elbow_SAR_DLY_INC;
+    #if(ADC_HIGH_POWER_PULSE == 0u) /* MinPulseWidth <= 50 ns */
+        ADC_SAR_CSR5_REG &= (uint8)~ADC_SAR_DLY_INC;
     #else /* Set High non-overlap delay for sampling clock signals (for <500KSPS)*/
-        ADC_Elbow_SAR_CSR5_REG |= ADC_Elbow_SAR_DLY_INC;
-    #endif /* ADC_Elbow_HIGH_POWER_PULSE == 0u */
+        ADC_SAR_CSR5_REG |= ADC_SAR_DLY_INC;
+    #endif /* ADC_HIGH_POWER_PULSE == 0u */
 
     /* Increase comparator latch enable delay by 20%, 
     *  Increase comparator bias current by 30% without impacting delaysDelay 
     *  Default for 1MSPS) 
     */
-    #if(ADC_Elbow_HIGH_POWER_PULSE == 0u)    /* MinPulseWidth <= 50 ns */
-        ADC_Elbow_SAR_CSR5_REG |= ADC_Elbow_SAR_SEL_CSEL_DFT_CHAR;
+    #if(ADC_HIGH_POWER_PULSE == 0u)    /* MinPulseWidth <= 50 ns */
+        ADC_SAR_CSR5_REG |= ADC_SAR_SEL_CSEL_DFT_CHAR;
     #else /* for <500ksps */
-        ADC_Elbow_SAR_CSR5_REG &= (uint8)~ADC_Elbow_SAR_SEL_CSEL_DFT_CHAR;
-    #endif /* ADC_Elbow_HIGH_POWER_PULSE == 0u */
+        ADC_SAR_CSR5_REG &= (uint8)~ADC_SAR_SEL_CSEL_DFT_CHAR;
+    #endif /* ADC_HIGH_POWER_PULSE == 0u */
 
     /* Set default power and other configurations for control register 0 in multiple lines */
-    ADC_Elbow_SAR_CSR0_REG = (uint8)((uint8)ADC_Elbow_DEFAULT_POWER << ADC_Elbow_SAR_POWER_SHIFT)
+    ADC_SAR_CSR0_REG = (uint8)((uint8)ADC_DEFAULT_POWER << ADC_SAR_POWER_SHIFT)
     /* SAR_HIZ_CLEAR:   Should not be used for LP */
-    #if ((CY_PSOC5LP) || (ADC_Elbow_DEFAULT_REFERENCE != ADC_Elbow__EXT_REF))
-        | ADC_Elbow_SAR_HIZ_CLEAR
+    #if ((CY_PSOC5LP) || (ADC_DEFAULT_REFERENCE != ADC__EXT_REF))
+        | ADC_SAR_HIZ_CLEAR
     #endif /* SAR_HIZ_CLEAR */
     /*Set Convertion mode */
-    #if(ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__FREE_RUNNING)      /* If triggered mode */
-        | ADC_Elbow_SAR_MX_SOF_UDB           /* source: UDB */
-        | ADC_Elbow_SAR_SOF_MODE_EDGE        /* Set edge-sensitive sof source */
-    #endif /* ADC_Elbow_DEFAULT_CONV_MODE */
+    #if(ADC_DEFAULT_CONV_MODE != ADC__FREE_RUNNING)      /* If triggered mode */
+        | ADC_SAR_MX_SOF_UDB           /* source: UDB */
+        | ADC_SAR_SOF_MODE_EDGE        /* Set edge-sensitive sof source */
+    #endif /* ADC_DEFAULT_CONV_MODE */
     ; /* end of multiple line initialization */
 
-    ADC_Elbow_SAR_TR0_REG = ADC_Elbow_SAR_CAP_TRIM_2;
+    ADC_SAR_TR0_REG = ADC_SAR_CAP_TRIM_2;
 
     /* Enable clock for SAR ADC*/
-    ADC_Elbow_SAR_CLK_REG |= ADC_Elbow_SAR_MX_CLK_EN;
+    ADC_SAR_CLK_REG |= ADC_SAR_MX_CLK_EN;
 
     CyDelayUs(10u); /* The block is ready to use 10 us after the enable signal is set high. */
 
-    #if(ADC_Elbow_IRQ_REMOVE == 0u)
+    #if(ADC_IRQ_REMOVE == 0u)
         /* Clear a pending interrupt */
-        CyIntClearPending(ADC_Elbow_INTC_NUMBER);
-    #endif   /* End ADC_Elbow_IRQ_REMOVE */
+        CyIntClearPending(ADC_INTC_NUMBER);
+    #endif   /* End ADC_IRQ_REMOVE */
 
     CyExitCriticalSection(enableInterrupts);
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_Stop
+* Function Name: ADC_Stop
 ********************************************************************************
 *
 * Summary:
@@ -245,23 +245,23 @@ void ADC_Elbow_Enable(void)
 *  None.
 *
 *******************************************************************************/
-void ADC_Elbow_Stop(void)
+void ADC_Stop(void)
 {
     uint8 enableInterrupts;
     enableInterrupts = CyEnterCriticalSection();
 
     /* Stop all conversions */
-    ADC_Elbow_SAR_CSR0_REG &= (uint8)~ADC_Elbow_SAR_SOF_START_CONV;
+    ADC_SAR_CSR0_REG &= (uint8)~ADC_SAR_SOF_START_CONV;
     /* Disable the SAR ADC block in Active Power Mode */
-    ADC_Elbow_PWRMGR_SAR_REG &= (uint8)~ADC_Elbow_ACT_PWR_SAR_EN;
+    ADC_PWRMGR_SAR_REG &= (uint8)~ADC_ACT_PWR_SAR_EN;
     /* Disable the SAR ADC in Standby Power Mode */
-    ADC_Elbow_STBY_PWRMGR_SAR_REG &= (uint8)~ADC_Elbow_STBY_PWR_SAR_EN;
+    ADC_STBY_PWRMGR_SAR_REG &= (uint8)~ADC_STBY_PWR_SAR_EN;
 
     /* This is only valid if there is an internal clock */
-    #if(ADC_Elbow_DEFAULT_INTERNAL_CLK)
-        ADC_Elbow_PWRMGR_CLK_REG &= (uint8)~ADC_Elbow_ACT_PWR_CLK_EN;
-        ADC_Elbow_STBY_PWRMGR_CLK_REG &= (uint8)~ADC_Elbow_STBY_PWR_CLK_EN;
-    #endif /* End ADC_Elbow_DEFAULT_INTERNAL_CLK */
+    #if(ADC_DEFAULT_INTERNAL_CLK)
+        ADC_PWRMGR_CLK_REG &= (uint8)~ADC_ACT_PWR_CLK_EN;
+        ADC_STBY_PWRMGR_CLK_REG &= (uint8)~ADC_STBY_PWR_CLK_EN;
+    #endif /* End ADC_DEFAULT_INTERNAL_CLK */
 
     CyExitCriticalSection(enableInterrupts);
 
@@ -269,7 +269,7 @@ void ADC_Elbow_Stop(void)
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_SetPower
+* Function Name: ADC_SetPower
 ********************************************************************************
 *
 * Summary:
@@ -287,22 +287,22 @@ void ADC_Elbow_Stop(void)
 *  None.
 *
 *******************************************************************************/
-void ADC_Elbow_SetPower(uint8 power)
+void ADC_SetPower(uint8 power)
 {
     uint8 tmpReg;
 
     /* mask off invalid power settings */
-    power &= ADC_Elbow_SAR_API_POWER_MASK;
+    power &= ADC_SAR_API_POWER_MASK;
 
     /* Set Power parameter  */
-    tmpReg = ADC_Elbow_SAR_CSR0_REG & (uint8)~ADC_Elbow_SAR_POWER_MASK;
-    tmpReg |= (uint8)(power << ADC_Elbow_SAR_POWER_SHIFT);
-    ADC_Elbow_SAR_CSR0_REG = tmpReg;
+    tmpReg = ADC_SAR_CSR0_REG & (uint8)~ADC_SAR_POWER_MASK;
+    tmpReg |= (uint8)(power << ADC_SAR_POWER_SHIFT);
+    ADC_SAR_CSR0_REG = tmpReg;
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_SetResolution
+* Function Name: ADC_SetResolution
 ********************************************************************************
 *
 * Summary:
@@ -337,47 +337,47 @@ void ADC_Elbow_SetPower(uint8 power)
 *  input range, and voltage reference.
 *
 *******************************************************************************/
-void ADC_Elbow_SetResolution(uint8 resolution)
+void ADC_SetResolution(uint8 resolution)
 {
     uint8 tmpReg;
 
     /* Set SAR ADC resolution and sample width: 18 conversion cycles at 12bits + 1 gap */
     switch (resolution)
     {
-        case (uint8)ADC_Elbow__BITS_12:
-            tmpReg = ADC_Elbow_SAR_RESOLUTION_12BIT | ADC_Elbow_SAR_SAMPLE_WIDTH;
+        case (uint8)ADC__BITS_12:
+            tmpReg = ADC_SAR_RESOLUTION_12BIT | ADC_SAR_SAMPLE_WIDTH;
             break;
-        case (uint8)ADC_Elbow__BITS_10:
-            tmpReg = ADC_Elbow_SAR_RESOLUTION_10BIT | ADC_Elbow_SAR_SAMPLE_WIDTH;
+        case (uint8)ADC__BITS_10:
+            tmpReg = ADC_SAR_RESOLUTION_10BIT | ADC_SAR_SAMPLE_WIDTH;
             break;
-        case (uint8)ADC_Elbow__BITS_8:
-            tmpReg = ADC_Elbow_SAR_RESOLUTION_8BIT | ADC_Elbow_SAR_SAMPLE_WIDTH;
+        case (uint8)ADC__BITS_8:
+            tmpReg = ADC_SAR_RESOLUTION_8BIT | ADC_SAR_SAMPLE_WIDTH;
             break;
         default:
-            tmpReg = ADC_Elbow_SAR_RESOLUTION_12BIT | ADC_Elbow_SAR_SAMPLE_WIDTH;
+            tmpReg = ADC_SAR_RESOLUTION_12BIT | ADC_SAR_SAMPLE_WIDTH;
             /* Halt CPU in debug mode if resolution is out of valid range */
             CYASSERT(0u != 0u);
             break;
     }
-    ADC_Elbow_SAR_CSR2_REG = tmpReg;
+    ADC_SAR_CSR2_REG = tmpReg;
 
      /* Calculate gain for convert counts to volts */
-    ADC_Elbow_CalcGain(resolution);
+    ADC_CalcGain(resolution);
 }
 
 
-#if(ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__HARDWARE_TRIGGER)
+#if(ADC_DEFAULT_CONV_MODE != ADC__HARDWARE_TRIGGER)
 
 
     /*******************************************************************************
-    * Function Name: ADC_Elbow_StartConvert
+    * Function Name: ADC_StartConvert
     ********************************************************************************
     *
     * Summary:
     *  Forces the ADC to initiate a conversion. In free-running mode, the ADC runs
     *  continuously. In software trigger mode, the function also acts as a software
     *  version of the SOC and every conversion must be triggered by
-    *  ADC_Elbow_StartConvert(). This function is not available when the
+    *  ADC_StartConvert(). This function is not available when the
     *  Hardware Trigger sample mode is selected.
     *
     * Parameters:
@@ -398,19 +398,19 @@ void ADC_Elbow_SetResolution(uint8 resolution)
     *  StartConvert if external source used for SOF.
     *
     *******************************************************************************/
-    void ADC_Elbow_StartConvert(void)
+    void ADC_StartConvert(void)
     {
-        #if(ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__FREE_RUNNING)  /* If software triggered mode */
-            ADC_Elbow_SAR_CSR0_REG &= (uint8)~ADC_Elbow_SAR_MX_SOF_UDB;   /* source: SOF bit */
-        #endif /* End ADC_Elbow_DEFAULT_CONV_MODE */
+        #if(ADC_DEFAULT_CONV_MODE != ADC__FREE_RUNNING)  /* If software triggered mode */
+            ADC_SAR_CSR0_REG &= (uint8)~ADC_SAR_MX_SOF_UDB;   /* source: SOF bit */
+        #endif /* End ADC_DEFAULT_CONV_MODE */
 
         /* Start the conversion */
-        ADC_Elbow_SAR_CSR0_REG |= ADC_Elbow_SAR_SOF_START_CONV;
+        ADC_SAR_CSR0_REG |= ADC_SAR_SOF_START_CONV;
     }
 
 
     /*******************************************************************************
-    * Function Name: ADC_Elbow_StopConvert
+    * Function Name: ADC_StopConvert
     ********************************************************************************
     *
     * Summary:
@@ -432,23 +432,23 @@ void ADC_Elbow_SetResolution(uint8 resolution)
     *  SOC to low level and switches the SOC source to hardware SOC input.
     *
     *******************************************************************************/
-    void ADC_Elbow_StopConvert(void)
+    void ADC_StopConvert(void)
     {
         /* Stop all conversions */
-        ADC_Elbow_SAR_CSR0_REG &= (uint8)~ADC_Elbow_SAR_SOF_START_CONV;
+        ADC_SAR_CSR0_REG &= (uint8)~ADC_SAR_SOF_START_CONV;
 
-        #if(ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__FREE_RUNNING)  /* If software triggered mode */
+        #if(ADC_DEFAULT_CONV_MODE != ADC__FREE_RUNNING)  /* If software triggered mode */
             /* Return source to UDB for hardware SOF signal */
-            ADC_Elbow_SAR_CSR0_REG |= ADC_Elbow_SAR_MX_SOF_UDB;    /* source: UDB */
-        #endif /* End ADC_Elbow_DEFAULT_CONV_MODE */
+            ADC_SAR_CSR0_REG |= ADC_SAR_MX_SOF_UDB;    /* source: UDB */
+        #endif /* End ADC_DEFAULT_CONV_MODE */
 
     }
 
-#endif /* End ADC_Elbow_DEFAULT_CONV_MODE != ADC_Elbow__HARDWARE_TRIGGER */
+#endif /* End ADC_DEFAULT_CONV_MODE != ADC__HARDWARE_TRIGGER */
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_IsEndConversion
+* Function Name: ADC_IsEndConversion
 ********************************************************************************
 *
 * Summary:
@@ -458,10 +458,10 @@ void ADC_Elbow_SetResolution(uint8 resolution)
 *
 * Parameters:
 *  retMode:  Check conversion return mode.
-*   ADC_Elbow_RETURN_STATUS: Immediately returns the status. If the
+*   ADC_RETURN_STATUS: Immediately returns the status. If the
 *     value returned is zero, the conversion is not complete, and this function
 *     should be retried until a nonzero result is returned.
-*   ADC_Elbow_WAIT_FOR_RESULT: Does not return a result until the ADC
+*   ADC_WAIT_FOR_RESULT: Does not return a result until the ADC
 *     conversion is complete.
 *
 * Return:
@@ -472,21 +472,21 @@ void ADC_Elbow_SetResolution(uint8 resolution)
 *  This function reads the end of conversion status, which is cleared on read.
 *
 *******************************************************************************/
-uint8 ADC_Elbow_IsEndConversion(uint8 retMode)
+uint8 ADC_IsEndConversion(uint8 retMode)
 {
     uint8 status;
 
     do
     {
-        status = ADC_Elbow_SAR_CSR1_REG & ADC_Elbow_SAR_EOF_1;
-    } while ((status != ADC_Elbow_SAR_EOF_1) && (retMode == ADC_Elbow_WAIT_FOR_RESULT));
+        status = ADC_SAR_CSR1_REG & ADC_SAR_EOF_1;
+    } while ((status != ADC_SAR_EOF_1) && (retMode == ADC_WAIT_FOR_RESULT));
     /* If convertion complete, wait until EOF bit released */
-    if(status == ADC_Elbow_SAR_EOF_1)
+    if(status == ADC_SAR_EOF_1)
     {
         /* wait one ADC clock to let the EOC status bit release */
         CyDelayUs(1u);
         /* Do the unconditional read operation of the CSR1 register to make sure the EOC bit has been cleared */
-        CY_GET_REG8(ADC_Elbow_SAR_CSR1_PTR);
+        CY_GET_REG8(ADC_SAR_CSR1_PTR);
     }
 
     return(status);
@@ -494,13 +494,13 @@ uint8 ADC_Elbow_IsEndConversion(uint8 retMode)
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_GetResult8
+* Function Name: ADC_GetResult8
 ********************************************************************************
 *
 * Summary:
 *  Returns the result of an 8-bit conversion. If the resolution is set greater
 *  than 8 bits, the function returns the LSB of the result.
-*  ADC_Elbow_IsEndConversion() should be called to verify that the data
+*  ADC_IsEndConversion() should be called to verify that the data
 *   sample is ready.
 *
 * Parameters:
@@ -510,27 +510,27 @@ uint8 ADC_Elbow_IsEndConversion(uint8 retMode)
 *  The LSB of the last ADC conversion.
 *
 * Global Variables:
-*  ADC_Elbow_shift - used to convert the ADC counts to the 2s
+*  ADC_shift - used to convert the ADC counts to the 2s
 *  compliment form.
 *
 * Side Effects:
 *  Converts the ADC counts to the 2s complement form.
 *
 *******************************************************************************/
-int8 ADC_Elbow_GetResult8( void )
+int8 ADC_GetResult8( void )
 {
-    return( (int8)ADC_Elbow_SAR_WRK0_REG - (int8)ADC_Elbow_shift);
+    return( (int8)ADC_SAR_WRK0_REG - (int8)ADC_shift);
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_GetResult16
+* Function Name: ADC_GetResult16
 ********************************************************************************
 *
 * Summary:
 *  Returns a 16-bit result for a conversion with a result that has a resolution
 *  of 8 to 12 bits.
-*  ADC_Elbow_IsEndConversion() should be called to verify that the data
+*  ADC_IsEndConversion() should be called to verify that the data
 *   sample is ready
 *
 * Parameters:
@@ -540,30 +540,30 @@ int8 ADC_Elbow_GetResult8( void )
 *  The 16-bit result of the last ADC conversion
 *
 * Global Variables:
-*  ADC_Elbow_shift - used to convert the ADC counts to the 2s
+*  ADC_shift - used to convert the ADC counts to the 2s
 *  compliment form.
 *
 * Side Effects:
 *  Converts the ADC counts to the 2s complement form.
 *
 *******************************************************************************/
-int16 ADC_Elbow_GetResult16( void )
+int16 ADC_GetResult16( void )
 {
     uint16 res;
 
-    res = CY_GET_REG16(ADC_Elbow_SAR_WRK_PTR);
+    res = CY_GET_REG16(ADC_SAR_WRK_PTR);
 
-    return( (int16)res - ADC_Elbow_shift );
+    return( (int16)res - ADC_shift );
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_SetOffset
+* Function Name: ADC_SetOffset
 ********************************************************************************
 *
 * Summary:
-*  Sets the ADC offset, which is used by ADC_Elbow_CountsTo_Volts(),
-*  ADC_Elbow_CountsTo_mVolts(), and ADC_Elbow_CountsTo_uVolts()
+*  Sets the ADC offset, which is used by ADC_CountsTo_Volts(),
+*  ADC_CountsTo_mVolts(), and ADC_CountsTo_uVolts()
 *  to subtract the offset from the given reading before calculating the voltage
 *  conversion.
 *
@@ -575,21 +575,21 @@ int16 ADC_Elbow_GetResult16( void )
 *  None.
 *
 * Global Variables:
-*  The ADC_Elbow_offset variable modified. This variable is used for
+*  The ADC_offset variable modified. This variable is used for
 *  offset calibration purpose.
-*  Affects the ADC_Elbow_CountsTo_Volts,
-*  ADC_Elbow_CountsTo_mVolts, ADC_Elbow_CountsTo_uVolts functions
+*  Affects the ADC_CountsTo_Volts,
+*  ADC_CountsTo_mVolts, ADC_CountsTo_uVolts functions
 *  by subtracting the given offset.
 *
 *******************************************************************************/
-void ADC_Elbow_SetOffset(int16 offset)
+void ADC_SetOffset(int16 offset)
 {
-    ADC_Elbow_offset = offset;
+    ADC_offset = offset;
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_CalcGain
+* Function Name: ADC_CalcGain
 ********************************************************************************
 *
 * Summary:
@@ -602,74 +602,74 @@ void ADC_Elbow_SetOffset(int16 offset)
 *  None.
 *
 * Global Variables:
-*  ADC_Elbow_shift variable initialized. This variable is used to
+*  ADC_shift variable initialized. This variable is used to
 *  convert the ADC counts to the 2s compliment form.
-*  ADC_Elbow_countsPer10Volt variable initialized. This variable is used
+*  ADC_countsPer10Volt variable initialized. This variable is used
 *  for gain calibration purpose.
 *
 *******************************************************************************/
-static void ADC_Elbow_CalcGain( uint8 resolution )
+static void ADC_CalcGain( uint8 resolution )
 {
     int32 counts;
-    #if(!((ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSS_TO_VREF) || \
-         (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDDA) || \
-         (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDAC)) )
+    #if(!((ADC_DEFAULT_RANGE == ADC__VSS_TO_VREF) || \
+         (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDDA) || \
+         (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC)) )
         uint16 diff_zero;
-    #endif /* End ADC_Elbow_DEFAULT_RANGE */
+    #endif /* End ADC_DEFAULT_RANGE */
 
     switch (resolution)
     {
-        case (uint8)ADC_Elbow__BITS_12:
-            counts = (int32)ADC_Elbow_SAR_WRK_MAX_12BIT;
-            #if(!((ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSS_TO_VREF) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDDA) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDAC)) )
-                diff_zero = ADC_Elbow_SAR_DIFF_SHIFT;
-            #endif /* End ADC_Elbow_DEFAULT_RANGE */
+        case (uint8)ADC__BITS_12:
+            counts = (int32)ADC_SAR_WRK_MAX_12BIT;
+            #if(!((ADC_DEFAULT_RANGE == ADC__VSS_TO_VREF) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDDA) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC)) )
+                diff_zero = ADC_SAR_DIFF_SHIFT;
+            #endif /* End ADC_DEFAULT_RANGE */
             break;
-        case (uint8)ADC_Elbow__BITS_10:
-            counts = (int32)ADC_Elbow_SAR_WRK_MAX_10BIT;
-            #if(!((ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSS_TO_VREF) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDDA) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDAC)) )
-                diff_zero = ADC_Elbow_SAR_DIFF_SHIFT >> 2u;
-            #endif /* End ADC_Elbow_DEFAULT_RANGE */
+        case (uint8)ADC__BITS_10:
+            counts = (int32)ADC_SAR_WRK_MAX_10BIT;
+            #if(!((ADC_DEFAULT_RANGE == ADC__VSS_TO_VREF) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDDA) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC)) )
+                diff_zero = ADC_SAR_DIFF_SHIFT >> 2u;
+            #endif /* End ADC_DEFAULT_RANGE */
             break;
-        case (uint8)ADC_Elbow__BITS_8:
-            counts = (int32)ADC_Elbow_SAR_WRK_MAX_8BIT;
-            #if(!((ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSS_TO_VREF) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDDA) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDAC)) )
-                diff_zero = ADC_Elbow_SAR_DIFF_SHIFT >> 4u;
-            #endif /* End ADC_Elbow_DEFAULT_RANGE */
+        case (uint8)ADC__BITS_8:
+            counts = (int32)ADC_SAR_WRK_MAX_8BIT;
+            #if(!((ADC_DEFAULT_RANGE == ADC__VSS_TO_VREF) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDDA) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC)) )
+                diff_zero = ADC_SAR_DIFF_SHIFT >> 4u;
+            #endif /* End ADC_DEFAULT_RANGE */
             break;
         default: /* Halt CPU in debug mode if resolution is out of valid range */
             counts = 0;
-            #if(!((ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSS_TO_VREF) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDDA) || \
-                 (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDAC)) )
+            #if(!((ADC_DEFAULT_RANGE == ADC__VSS_TO_VREF) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDDA) || \
+                 (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC)) )
                 diff_zero = 0u;
-            #endif /* End ADC_Elbow_DEFAULT_RANGE */
+            #endif /* End ADC_DEFAULT_RANGE */
             CYASSERT(0u != 0u);
             break;
     }
-    ADC_Elbow_countsPerVolt = 0; /* Clear obsolete variable */
+    ADC_countsPerVolt = 0; /* Clear obsolete variable */
     /* Calculate gain in counts per 10 volts with rounding */
-    ADC_Elbow_countsPer10Volt = (((counts * ADC_Elbow_10MV_COUNTS) +
-                        ADC_Elbow_DEFAULT_REF_VOLTAGE_MV) / (ADC_Elbow_DEFAULT_REF_VOLTAGE_MV * 2));
+    ADC_countsPer10Volt = (((counts * ADC_10MV_COUNTS) +
+                        ADC_DEFAULT_REF_VOLTAGE_MV) / (ADC_DEFAULT_REF_VOLTAGE_MV * 2));
 
-    #if( (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSS_TO_VREF) || \
-         (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDDA) || \
-         (ADC_Elbow_DEFAULT_RANGE == ADC_Elbow__VSSA_TO_VDAC) )
-        ADC_Elbow_shift = 0;
+    #if( (ADC_DEFAULT_RANGE == ADC__VSS_TO_VREF) || \
+         (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDDA) || \
+         (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC) )
+        ADC_shift = 0;
     #else
-        ADC_Elbow_shift = diff_zero;
-    #endif /* End ADC_Elbow_DEFAULT_RANGE */
+        ADC_shift = diff_zero;
+    #endif /* End ADC_DEFAULT_RANGE */
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_SetGain
+* Function Name: ADC_SetGain
 ********************************************************************************
 *
 * Summary:
@@ -685,18 +685,18 @@ static void ADC_Elbow_CalcGain( uint8 resolution )
 *  None.
 *
 * Global Variables:
-*  ADC_Elbow_countsPer10Volt variable modified. This variable is used
+*  ADC_countsPer10Volt variable modified. This variable is used
 *  for gain calibration purpose.
 *
 *******************************************************************************/
-void ADC_Elbow_SetGain(int16 adcGain)
+void ADC_SetGain(int16 adcGain)
 {
-    ADC_Elbow_countsPer10Volt = (int32)adcGain * 10;
+    ADC_countsPer10Volt = (int32)adcGain * 10;
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_SetScaledGain
+* Function Name: ADC_SetScaledGain
 ********************************************************************************
 *
 * Summary:
@@ -712,18 +712,18 @@ void ADC_Elbow_SetGain(int16 adcGain)
 *  None.
 *
 * Global Variables:
-*  ADC_Elbow_countsPer10Volt variable modified. This variable is used
+*  ADC_countsPer10Volt variable modified. This variable is used
 *  for gain calibration purpose.
 *
 *******************************************************************************/
-void ADC_Elbow_SetScaledGain(int32 adcGain)
+void ADC_SetScaledGain(int32 adcGain)
 {
-    ADC_Elbow_countsPer10Volt = adcGain;
+    ADC_countsPer10Volt = adcGain;
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_CountsTo_mVolts
+* Function Name: ADC_CountsTo_mVolts
 ********************************************************************************
 *
 * Summary:
@@ -736,28 +736,28 @@ void ADC_Elbow_SetScaledGain(int32 adcGain)
 *  int16 Result in mVolts
 *
 * Global Variables:
-*  ADC_Elbow_offset variable used.
-*  ADC_Elbow_countsPer10Volt variable used.
+*  ADC_offset variable used.
+*  ADC_countsPer10Volt variable used.
 *
 *******************************************************************************/
-int16 ADC_Elbow_CountsTo_mVolts(int16 adcCounts)
+int16 ADC_CountsTo_mVolts(int16 adcCounts)
 {
     int16 mVolts;
     int32 countsPer10Volt;
 
-    if(ADC_Elbow_countsPerVolt != 0)
+    if(ADC_countsPerVolt != 0)
     {   /* Support obsolete method */
-        countsPer10Volt = (int32)ADC_Elbow_countsPerVolt * 10;
+        countsPer10Volt = (int32)ADC_countsPerVolt * 10;
     }
     else
     {
-        countsPer10Volt = ADC_Elbow_countsPer10Volt;
+        countsPer10Volt = ADC_countsPer10Volt;
     }
 
     /* Subtract ADC offset */
-    adcCounts -= ADC_Elbow_offset;
+    adcCounts -= ADC_offset;
     /* Convert to millivolts with rounding */
-    mVolts = (int16)( (( (int32)adcCounts * ADC_Elbow_10MV_COUNTS ) + ( (adcCounts > 0) ?
+    mVolts = (int16)( (( (int32)adcCounts * ADC_10MV_COUNTS ) + ( (adcCounts > 0) ?
                        (countsPer10Volt / 2) : (-(countsPer10Volt / 2)) )) / countsPer10Volt);
 
     return( mVolts );
@@ -765,7 +765,7 @@ int16 ADC_Elbow_CountsTo_mVolts(int16 adcCounts)
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_CountsTo_uVolts
+* Function Name: ADC_CountsTo_uVolts
 ********************************************************************************
 *
 * Summary:
@@ -778,38 +778,38 @@ int16 ADC_Elbow_CountsTo_mVolts(int16 adcCounts)
 *  int32 Result in micro Volts
 *
 * Global Variables:
-*  ADC_Elbow_offset variable used.
-*  ADC_Elbow_countsPer10Volt used to convert ADC counts to uVolts.
+*  ADC_offset variable used.
+*  ADC_countsPer10Volt used to convert ADC counts to uVolts.
 *
 *******************************************************************************/
-int32 ADC_Elbow_CountsTo_uVolts(int16 adcCounts)
+int32 ADC_CountsTo_uVolts(int16 adcCounts)
 {
 
     int64 uVolts;
     int32 countsPer10Volt;
 
-    if(ADC_Elbow_countsPerVolt != 0)
+    if(ADC_countsPerVolt != 0)
     {   /* Support obsolete method */
-        countsPer10Volt = (int32)ADC_Elbow_countsPerVolt * 10;
+        countsPer10Volt = (int32)ADC_countsPerVolt * 10;
     }
     else
     {
-        countsPer10Volt = ADC_Elbow_countsPer10Volt;
+        countsPer10Volt = ADC_countsPer10Volt;
     }
 
     /* Subtract ADC offset */
-    adcCounts -= ADC_Elbow_offset;
+    adcCounts -= ADC_offset;
     /* To convert adcCounts to microVolts it is required to be multiplied
     *  on 10 million and later divide on gain in counts per 10V.
     */
-    uVolts = (( (int64)adcCounts * ADC_Elbow_10UV_COUNTS ) / countsPer10Volt);
+    uVolts = (( (int64)adcCounts * ADC_10UV_COUNTS ) / countsPer10Volt);
 
     return( uVolts );
 }
 
 
 /*******************************************************************************
-* Function Name: ADC_Elbow_CountsTo_Volts
+* Function Name: ADC_CountsTo_Volts
 ********************************************************************************
 *
 * Summary:
@@ -822,28 +822,28 @@ int32 ADC_Elbow_CountsTo_uVolts(int16 adcCounts)
 *  float Result in Volts
 *
 * Global Variables:
-*  ADC_Elbow_offset variable used.
-*  ADC_Elbow_countsPer10Volt used to convert ADC counts to Volts.
+*  ADC_offset variable used.
+*  ADC_countsPer10Volt used to convert ADC counts to Volts.
 *
 *******************************************************************************/
-float32 ADC_Elbow_CountsTo_Volts(int16 adcCounts)
+float32 ADC_CountsTo_Volts(int16 adcCounts)
 {
     float32 volts;
     int32 countsPer10Volt;
 
-    if(ADC_Elbow_countsPerVolt != 0)
+    if(ADC_countsPerVolt != 0)
     {   /* Support obsolete method */
-        countsPer10Volt = (int32)ADC_Elbow_countsPerVolt * 10;
+        countsPer10Volt = (int32)ADC_countsPerVolt * 10;
     }
     else
     {
-        countsPer10Volt = ADC_Elbow_countsPer10Volt;
+        countsPer10Volt = ADC_countsPer10Volt;
     }
 
     /* Subtract ADC offset */
-    adcCounts -= ADC_Elbow_offset;
+    adcCounts -= ADC_offset;
 
-    volts = ((float32)adcCounts * ADC_Elbow_10V_COUNTS) / (float32)countsPer10Volt;
+    volts = ((float32)adcCounts * ADC_10V_COUNTS) / (float32)countsPer10Volt;
 
     return( volts );
 }

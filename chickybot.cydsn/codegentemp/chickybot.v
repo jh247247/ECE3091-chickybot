@@ -1,6 +1,6 @@
 // ======================================================================
 // chickybot.v generated from TopDesign.cysch
-// 09/16/2015 at 23:13
+// 09/21/2015 at 22:02
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1391,7 +1391,7 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_vref_v1_60\cy_vref_v1_60.v"
 `endif
 
-// ADC_SAR_v3_0(ADC_Clock=1, ADC_Clock_Frequency=1600000, ADC_Input_Range=1, ADC_Power=0, ADC_Reference=0, ADC_Resolution=12, ADC_SampleMode=0, Enable_next_out=false, Ref_Voltage=2.5, Ref_Voltage_mV=2500, rm_int=false, Sample_Precharge=4, Sample_Rate=100000, Sample_Rate_def=631579, CY_COMPONENT_NAME=ADC_SAR_v3_0, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC_Elbow, CY_INSTANCE_SHORT_NAME=ADC_Elbow, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.2 SP1, INSTANCE_NAME=ADC_Elbow, )
+// ADC_SAR_v3_0(ADC_Clock=1, ADC_Clock_Frequency=1600000, ADC_Input_Range=1, ADC_Power=0, ADC_Reference=0, ADC_Resolution=12, ADC_SampleMode=0, Enable_next_out=false, Ref_Voltage=2.5, Ref_Voltage_mV=2500, rm_int=false, Sample_Precharge=4, Sample_Rate=100000, Sample_Rate_def=631579, CY_COMPONENT_NAME=ADC_SAR_v3_0, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC, CY_INSTANCE_SHORT_NAME=ADC, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.2 SP1, INSTANCE_NAME=ADC, )
 module ADC_SAR_v3_0_7 (
     vplus,
     vminus,
@@ -1542,6 +1542,19 @@ module ADC_SAR_v3_0_7 (
 
 endmodule
 
+// Component: AMux_v1_80
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "$CYPRESS_DIR\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMux_v1_80"
+`include "$CYPRESS_DIR\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMux_v1_80\AMux_v1_80.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMux_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMux_v1_80\AMux_v1_80.v"
+`endif
+
 // top
 module top ;
 
@@ -1552,15 +1565,11 @@ module top ;
           wire  Net_1455;
           wire  Net_1454;
     electrical  Net_1453;
+    electrical  Net_1440;
           wire  Net_1408;
           wire  Net_1407;
           wire  Net_1404;
           wire  Net_1403;
-    electrical  Net_1440;
-          wire  Net_1224;
-          wire  Net_1223;
-          wire  Net_1222;
-          wire  Net_1221;
           wire  Net_583;
           wire  Net_946;
           wire  Net_945;
@@ -1590,9 +1599,12 @@ module top ;
           wire  Net_23;
           wire  Net_22;
           wire  Net_21;
+    electrical  Net_1486;
+    electrical  Net_1485;
+    electrical  Net_1484;
           wire  Net_1406;
-          wire  Net_12;
           wire  Net_10;
+          wire  Net_12;
           wire  Net_216;
 
 	wire [0:0] tmpOE__LedRed_net;
@@ -2746,7 +2758,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -2777,7 +2789,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		ElbowPos
 		 (.oe(tmpOE__ElbowPos_net),
-		  .y({Net_1221}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__ElbowPos_net[0:0]}),
 		  .io({tmpIO_0__ElbowPos_net[0:0]}),
 		  .siovref(tmpSIOVREF__ElbowPos_net),
@@ -2819,7 +2831,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -2850,7 +2862,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		ElbowNeg
 		 (.oe(tmpOE__ElbowNeg_net),
-		  .y({Net_1222}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__ElbowNeg_net[0:0]}),
 		  .io({tmpIO_0__ElbowNeg_net[0:0]}),
 		  .siovref(tmpSIOVREF__ElbowNeg_net),
@@ -2892,7 +2904,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -2923,7 +2935,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		ShoulderPos
 		 (.oe(tmpOE__ShoulderPos_net),
-		  .y({Net_1223}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__ShoulderPos_net[0:0]}),
 		  .io({tmpIO_0__ShoulderPos_net[0:0]}),
 		  .siovref(tmpSIOVREF__ShoulderPos_net),
@@ -2965,7 +2977,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -2996,7 +3008,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		ShoulderNeg
 		 (.oe(tmpOE__ShoulderNeg_net),
-		  .y({Net_1224}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__ShoulderNeg_net[0:0]}),
 		  .io({tmpIO_0__ShoulderNeg_net[0:0]}),
 		  .siovref(tmpSIOVREF__ShoulderNeg_net),
@@ -3009,12 +3021,6 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__ShoulderNeg_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
-
-    assign Net_1224 = 1'h0;
-
-    assign Net_1223 = 1'h0;
-
-    assign Net_1222 = 1'h0;
 
 	wire [0:0] tmpOE__ElbowPot_net;
 	wire [0:0] tmpFB_0__ElbowPot_net;
@@ -3077,7 +3083,7 @@ module top ;
 		 (.oe(tmpOE__ElbowPot_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__ElbowPot_net[0:0]}),
-		  .analog({Net_1440}),
+		  .analog({Net_1484}),
 		  .io({tmpIO_0__ElbowPot_net[0:0]}),
 		  .siovref(tmpSIOVREF__ElbowPot_net),
 		  .interrupt({tmpINTERRUPT_0__ElbowPot_net[0:0]}),
@@ -3113,8 +3119,6 @@ module top ;
 		IsrUsTimer
 		 (.int_signal(Net_1403));
 
-
-    assign Net_1221 = 1'h0;
 
 	wire [0:0] tmpOE__UsEcho_net;
 	wire [0:0] tmpIO_0__UsEcho_net;
@@ -3188,7 +3192,7 @@ module top ;
 
 	assign tmpOE__UsEcho_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
-    ADC_SAR_v3_0_7 ADC_Elbow (
+    ADC_SAR_v3_0_7 ADC (
         .vplus(Net_1440),
         .vminus(Net_1453),
         .soc(1'b0),
@@ -3208,6 +3212,173 @@ module top ;
 		ClockUsTimer
 		 (.clock_out(Net_10));
 
+
+	wire [0:0] tmpOE__ShoulderPot_net;
+	wire [0:0] tmpFB_0__ShoulderPot_net;
+	wire [0:0] tmpIO_0__ShoulderPot_net;
+	wire [0:0] tmpINTERRUPT_0__ShoulderPot_net;
+	electrical [0:0] tmpSIOVREF__ShoulderPot_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("e64398f5-e05d-42f2-95ea-004bc633a821"),
+		  .drive_mode(3'b000),
+		  .ibuf_enabled(1'b0),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("A"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		ShoulderPot
+		 (.oe(tmpOE__ShoulderPot_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__ShoulderPot_net[0:0]}),
+		  .analog({Net_1485}),
+		  .io({tmpIO_0__ShoulderPot_net[0:0]}),
+		  .siovref(tmpSIOVREF__ShoulderPot_net),
+		  .interrupt({tmpINTERRUPT_0__ShoulderPot_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__ShoulderPot_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+	wire [0:0] tmpOE__PhotoDiode1_net;
+	wire [0:0] tmpFB_0__PhotoDiode1_net;
+	wire [0:0] tmpIO_0__PhotoDiode1_net;
+	wire [0:0] tmpINTERRUPT_0__PhotoDiode1_net;
+	electrical [0:0] tmpSIOVREF__PhotoDiode1_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("506a5c7d-ca19-4637-9b64-6d8c49207aca"),
+		  .drive_mode(3'b000),
+		  .ibuf_enabled(1'b0),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("A"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		PhotoDiode1
+		 (.oe(tmpOE__PhotoDiode1_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__PhotoDiode1_net[0:0]}),
+		  .analog({Net_1486}),
+		  .io({tmpIO_0__PhotoDiode1_net[0:0]}),
+		  .siovref(tmpSIOVREF__PhotoDiode1_net),
+		  .interrupt({tmpINTERRUPT_0__PhotoDiode1_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__PhotoDiode1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+    // -- AMux AMux start -- ***
+    // -- Mux A --
+    
+    cy_psoc3_amux_v1_0 AMux(
+        .muxin({
+            Net_1486,
+            Net_1485,
+            Net_1484
+            }),
+        .vout(Net_1440)
+        );
+    
+    defparam AMux.muxin_width = 3;
+    defparam AMux.init_mux_sel = 3'h0;
+    defparam AMux.one_active = 1;
+    defparam AMux.connect_mode = 1;
+    
+    // -- AMux AMux end --
 
 
 
