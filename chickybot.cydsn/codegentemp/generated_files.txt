@@ -124,6 +124,14 @@
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\PhotoDiode1.h" value="NONE;PhotoDiode1" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\AMux.c" value="ARM_C_FILE;AMux" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\AMux.h" value="NONE;AMux" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\MicroSwitch_aliases.h" value="NONE;MicroSwitch" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\MicroSwitch.c" value="ARM_C_FILE;MicroSwitch" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\MicroSwitch.h" value="NONE;MicroSwitch" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\IsrMicroSwitch.c" value="ARM_C_FILE;IsrMicroSwitch" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\IsrMicroSwitch.h" value="NONE;IsrMicroSwitch" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\Fan_aliases.h" value="NONE;Fan" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\Fan.c" value="ARM_C_FILE;Fan" />
+  <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\Fan.h" value="NONE;Fan" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\CsBtns_PWM.c" value="ARM_C_FILE;CsBtns_PWM" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\CsBtns_PWM.h" value="NONE;CsBtns_PWM" />
   <file name="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\codegentemp\CsBtns_PWM_PM.c" value="ARM_C_FILE;CsBtns_PWM" />

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
   30:.\Generated_Source\PSoC5/ADC.c **** 
   31:.\Generated_Source\PSoC5/ADC.c **** 
   32:.\Generated_Source\PSoC5/ADC.c **** /***************************************
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 2
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 2
 
 
   33:.\Generated_Source\PSoC5/ADC.c **** * Global data allocation
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
   87:.\Generated_Source\PSoC5/ADC.c **** /*******************************************************************************
   88:.\Generated_Source\PSoC5/ADC.c **** * Function Name: ADC_Init
   89:.\Generated_Source\PSoC5/ADC.c **** ********************************************************************************
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 3
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 3
 
 
   90:.\Generated_Source\PSoC5/ADC.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  144:.\Generated_Source\PSoC5/ADC.c **** {
  145:.\Generated_Source\PSoC5/ADC.c ****     uint8 tmpReg;
  146:.\Generated_Source\PSoC5/ADC.c ****     uint8 enableInterrupts;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 4
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 4
 
 
  147:.\Generated_Source\PSoC5/ADC.c ****     enableInterrupts = CyEnterCriticalSection();
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  201:.\Generated_Source\PSoC5/ADC.c ****     #else /* for <500ksps */
  202:.\Generated_Source\PSoC5/ADC.c ****         ADC_SAR_CSR5_REG &= (uint8)~ADC_SAR_SEL_CSEL_DFT_CHAR;
  203:.\Generated_Source\PSoC5/ADC.c ****     #endif /* ADC_HIGH_POWER_PULSE == 0u */
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 5
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 5
 
 
  204:.\Generated_Source\PSoC5/ADC.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  258:.\Generated_Source\PSoC5/ADC.c ****     ADC_STBY_PWRMGR_SAR_REG &= (uint8)~ADC_STBY_PWR_SAR_EN;
  259:.\Generated_Source\PSoC5/ADC.c **** 
  260:.\Generated_Source\PSoC5/ADC.c ****     /* This is only valid if there is an internal clock */
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 6
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 6
 
 
  261:.\Generated_Source\PSoC5/ADC.c ****     #if(ADC_DEFAULT_INTERNAL_CLK)
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  315:.\Generated_Source\PSoC5/ADC.c **** *  8  ->    RES8
  316:.\Generated_Source\PSoC5/ADC.c **** *
  317:.\Generated_Source\PSoC5/ADC.c **** * Return:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 7
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 7
 
 
  318:.\Generated_Source\PSoC5/ADC.c **** *  None.
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  372:.\Generated_Source\PSoC5/ADC.c ****     /*******************************************************************************
  373:.\Generated_Source\PSoC5/ADC.c ****     * Function Name: ADC_StartConvert
  374:.\Generated_Source\PSoC5/ADC.c ****     ********************************************************************************
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 8
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 8
 
 
  375:.\Generated_Source\PSoC5/ADC.c ****     *
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  429:.\Generated_Source\PSoC5/ADC.c ****     *
  430:.\Generated_Source\PSoC5/ADC.c ****     * Side Effects:
  431:.\Generated_Source\PSoC5/ADC.c ****     *  In Software Trigger sample mode, this function sets a software version of the
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 9
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 9
 
 
  432:.\Generated_Source\PSoC5/ADC.c ****     *  SOC to low level and switches the SOC source to hardware SOC input.
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  486:.\Generated_Source\PSoC5/ADC.c ****         /* wait one ADC clock to let the EOC status bit release */
  487:.\Generated_Source\PSoC5/ADC.c ****         CyDelayUs(1u);
  488:.\Generated_Source\PSoC5/ADC.c ****         /* Do the unconditional read operation of the CSR1 register to make sure the EOC bit has be
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 10
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 10
 
 
  489:.\Generated_Source\PSoC5/ADC.c ****         CY_GET_REG8(ADC_SAR_CSR1_PTR);
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  543:.\Generated_Source\PSoC5/ADC.c **** *  ADC_shift - used to convert the ADC counts to the 2s
  544:.\Generated_Source\PSoC5/ADC.c **** *  compliment form.
  545:.\Generated_Source\PSoC5/ADC.c **** *
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 11
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 11
 
 
  546:.\Generated_Source\PSoC5/ADC.c **** * Side Effects:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  600:.\Generated_Source\PSoC5/ADC.c **** *
  601:.\Generated_Source\PSoC5/ADC.c **** * Return:
  602:.\Generated_Source\PSoC5/ADC.c **** *  None.
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 12
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 12
 
 
  603:.\Generated_Source\PSoC5/ADC.c **** *
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  634:.\Generated_Source\PSoC5/ADC.c ****                  (ADC_DEFAULT_RANGE == ADC__VSSA_TO_VDAC)) )
  635:.\Generated_Source\PSoC5/ADC.c ****                 diff_zero = ADC_SAR_DIFF_SHIFT >> 2u;
  636:.\Generated_Source\PSoC5/ADC.c ****             #endif /* End ADC_DEFAULT_RANGE */
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 13
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 13
 
 
  637:.\Generated_Source\PSoC5/ADC.c ****             break;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
   78              		.loc 1 659 0
   79 003c 0649     		ldr	r1, .L8+4
   80 003e 81FB0201 		smull	r0, r1, r1, r2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 14
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 14
 
 
   81 0042 D217     		asrs	r2, r2, #31
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  153:.\Generated_Source\PSoC5/ADC.c ****     ADC_STBY_PWRMGR_SAR_REG |= ADC_STBY_PWR_SAR_EN;
  126              		.loc 1 153 0
  127 0012 1033     		adds	r3, r3, #16
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 15
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 15
 
 
  128 0014 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  172 0062 0C3B     		subs	r3, r3, #12
  173 0064 1A70     		strb	r2, [r3]
  221:.\Generated_Source\PSoC5/ADC.c ****     ADC_SAR_CLK_REG |= ADC_SAR_MX_CLK_EN;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 16
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 16
 
 
  174              		.loc 1 221 0
@@ -915,7 +915,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  184              	.LVL14:
  227:.\Generated_Source\PSoC5/ADC.c ****         CyIntClearPending(ADC_INTC_NUMBER);
  185              		.loc 1 227 0
- 186 007a 0822     		movs	r2, #8
+ 186 007a 1022     		movs	r2, #16
  187 007c 034B     		ldr	r3, .L11+4
  188 007e 1A60     		str	r2, [r3]
  230:.\Generated_Source\PSoC5/ADC.c ****     CyExitCriticalSection(enableInterrupts);
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  222              		.loc 1 254 0
  223 0006 0F4B     		ldr	r3, .L14
  224 0008 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 17
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 17
 
 
  225 000a 02F0FE02 		and	r2, r2, #254
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  295:.\Generated_Source\PSoC5/ADC.c ****     power &= ADC_SAR_API_POWER_MASK;
  273              		.loc 1 295 0
  274 0000 00F00300 		and	r0, r0, #3
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 18
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 18
 
 
  275              	.LVL20:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  323 0014 07E0     		b	.L21
  324              	.L23:
  325              	.LVL24:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 19
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 19
 
 
  354:.\Generated_Source\PSoC5/ADC.c ****             tmpReg = ADC_SAR_RESOLUTION_8BIT | ADC_SAR_SAMPLE_WIDTH;
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  372              		@ frame_needed = 0, uses_anonymous_args = 0
  373 0000 08B5     		push	{r3, lr}
  374              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 20
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 20
 
 
  375              		.cfi_offset 3, -8
@@ -1150,13 +1150,13 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  380              	.LVL31:
  116:.\Generated_Source\PSoC5/ADC.c ****         CyIntSetPriority(ADC_INTC_NUMBER, ADC_INTC_PRIOR_NUMBER);
  381              		.loc 1 116 0
- 382 0008 0320     		movs	r0, #3
+ 382 0008 0420     		movs	r0, #4
  383 000a 0721     		movs	r1, #7
  384 000c FFF7FEFF 		bl	CyIntSetPriority
  385              	.LVL32:
  117:.\Generated_Source\PSoC5/ADC.c ****         (void)CyIntSetVector(ADC_INTC_NUMBER, &ADC_ISR);
  386              		.loc 1 117 0
- 387 0010 0320     		movs	r0, #3
+ 387 0010 0420     		movs	r0, #4
  388 0012 0749     		ldr	r1, .L29
  389 0014 FFF7FEFF 		bl	CyIntSetVector
  390              	.LVL33:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  422              		.loc 1 75 0
  423              		.cfi_startproc
  424              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 21
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 21
 
 
  425              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  473              		.align	2
  474              	.L36:
  475 000c 00590040 		.word	1073764608
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 22
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 22
 
 
  476              		.cfi_endproc
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  525              		.loc 1 481 0 is_stmt 0 discriminator 1
  526 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  527              	.LVL38:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 23
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 23
 
 
  482:.\Generated_Source\PSoC5/ADC.c ****     } while ((status != ADC_SAR_EOF_1) && (retMode == ADC_WAIT_FOR_RESULT));
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  574              		.loc 1 523 0
  575 000a 40B2     		sxtb	r0, r0
  576 000c 7047     		bx	lr
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 24
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 24
 
 
  577              	.L50:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  626              		.loc 1 586 0
  627              		.cfi_startproc
  628              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 25
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 25
 
 
  629              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  653              		@ args = 0, pretend = 0, frame = 0
  654              		@ frame_needed = 0, uses_anonymous_args = 0
  655              		@ link register save eliminated.
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 26
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 26
 
 
  656              	.LVL44:
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  683              		@ link register save eliminated.
  684              	.LVL46:
  721:.\Generated_Source\PSoC5/ADC.c ****     ADC_countsPer10Volt = adcGain;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 27
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 27
 
 
  685              		.loc 1 721 0
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  712 0002 1B88     		ldrh	r3, [r3]
  713 0004 9BB2     		uxth	r3, r3
  714 0006 33B1     		cbz	r3, .L64
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 28
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 28
 
 
  749:.\Generated_Source\PSoC5/ADC.c ****     {   /* Support obsolete method */
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  755              		.loc 1 761 0
  756 0040 92FBF3F0 		sdiv	r0, r2, r3
  757              	.LVL53:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 29
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 29
 
 
  762:.\Generated_Source\PSoC5/ADC.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  787              		.cfi_offset 3, -16
  788              		.cfi_offset 4, -12
  789              		.cfi_offset 5, -8
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 30
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 30
 
 
  790              		.cfi_offset 14, -4
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  825              	.LVL61:
  806:.\Generated_Source\PSoC5/ADC.c **** 
  807:.\Generated_Source\PSoC5/ADC.c ****     return( uVolts );
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 31
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 31
 
 
  808:.\Generated_Source\PSoC5/ADC.c **** }
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  857              		.cfi_offset 4, -12
  858              		.cfi_offset 5, -8
  859              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 32
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 32
 
 
  831:.\Generated_Source\PSoC5/ADC.c ****     float32 volts;
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  898 0038 2046     		mov	r0, r4
  899 003a FFF7FEFF 		bl	__aeabi_fdiv
  900              	.LVL71:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 33
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 33
 
 
  847:.\Generated_Source\PSoC5/ADC.c **** 
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  952 0033 03       		.uleb128 0x3
  953 0034 01       		.byte	0x1
  954 0035 06       		.byte	0x6
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 34
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 34
 
 
  955 0036 FA000000 		.4byte	.LASF1
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1009 009c B6       		.byte	0xb6
  1010 009d 56000000 		.4byte	0x56
  1011 00a1 06       		.uleb128 0x6
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 35
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 35
 
 
  1012 00a2 39020000 		.4byte	.LASF14
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1066 011a F1030000 		.4byte	.LASF24
  1067 011e 02       		.byte	0x2
  1068 011f 7001     		.2byte	0x170
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 36
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 36
 
 
  1069 0121 72000000 		.4byte	0x72
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1123 019f 06000000 		.4byte	.LVL8
  1124 01a3 89050000 		.4byte	0x589
  1125 01a7 11       		.uleb128 0x11
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 37
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 37
 
 
  1126 01a8 7A000000 		.4byte	.LVL14
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1180 021e 2201     		.2byte	0x122
  1181 0220 80000000 		.4byte	0x80
  1182 0224 BA000000 		.4byte	.LLST5
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 38
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 38
 
 
  1183 0228 0B       		.uleb128 0xb
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1237 029e 3C000000 		.4byte	.LFE1-.LFB1
  1238 02a2 01       		.uleb128 0x1
  1239 02a3 9C       		.byte	0x9c
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 39
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 39
 
 
  1240 02a4 F6020000 		.4byte	0x2f6
@@ -2305,7 +2305,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1261 02ce 01       		.uleb128 0x1
  1262 02cf 50       		.byte	0x50
  1263 02d0 01       		.uleb128 0x1
- 1264 02d1 33       		.byte	0x33
+ 1264 02d1 34       		.byte	0x34
  1265 02d2 00       		.byte	0
  1266 02d3 11       		.uleb128 0x11
  1267 02d4 18000000 		.4byte	.LVL33
@@ -2315,7 +2315,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1271 02e1 01       		.uleb128 0x1
  1272 02e2 50       		.byte	0x50
  1273 02e3 01       		.uleb128 0x1
- 1274 02e4 33       		.byte	0x33
+ 1274 02e4 34       		.byte	0x34
  1275 02e5 00       		.byte	0
  1276 02e6 0C       		.uleb128 0xc
  1277 02e7 28000000 		.4byte	.LVL34
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1294 0307 1E030000 		.4byte	0x31e
  1295 030b 10       		.uleb128 0x10
  1296 030c 0C000000 		.4byte	.LVL35
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 40
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 40
 
 
  1297 0310 93020000 		.4byte	0x293
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1351 038d 17030000 		.4byte	.LASF69
  1352 0391 01       		.byte	0x1
  1353 0392 0802     		.2byte	0x208
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 41
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 41
 
 
  1354 0394 A1000000 		.4byte	0xa1
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1408 0418 00       		.byte	0
  1409 0419 12       		.uleb128 0x12
  1410 041a DA030000 		.4byte	.LASF46
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 42
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 42
 
 
  1411 041e 01       		.byte	0x1
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1465 04a3 0A       		.uleb128 0xa
  1466 04a4 05040000 		.4byte	.LASF48
  1467 04a8 01       		.byte	0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 43
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 43
 
 
  1468 04a9 1103     		.2byte	0x311
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1522 052b B1030000 		.4byte	.LASF55
  1523 052f 01       		.byte	0x1
  1524 0530 24       		.byte	0x24
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 44
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 44
 
 
  1525 0531 3B050000 		.4byte	0x53b
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1579 05a6 0F000000 		.4byte	.LASF61
  1580 05aa 03       		.byte	0x3
  1581 05ab 7F       		.byte	0x7f
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 45
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 45
 
 
  1582 05ac B6050000 		.4byte	0x5b6
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1636 0013 02       		.uleb128 0x2
  1637 0014 24       		.uleb128 0x24
  1638 0015 00       		.byte	0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 46
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 46
 
 
  1639 0016 0B       		.uleb128 0xb
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1693 004c 0B       		.uleb128 0xb
  1694 004d 3B       		.uleb128 0x3b
  1695 004e 05       		.uleb128 0x5
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 47
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 47
 
 
  1696 004f 49       		.uleb128 0x49
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1750 0086 3A       		.uleb128 0x3a
  1751 0087 0B       		.uleb128 0xb
  1752 0088 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 48
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 48
 
 
  1753 0089 05       		.uleb128 0x5
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1807 00c5 0E       		.uleb128 0xe
  1808 00c6 3A       		.uleb128 0x3a
  1809 00c7 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 49
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 49
 
 
  1810 00c8 3B       		.uleb128 0x3b
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1864 0103 2E       		.uleb128 0x2e
  1865 0104 00       		.byte	0
  1866 0105 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 50
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 50
 
 
  1867 0106 19       		.uleb128 0x19
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1921 013e 0B       		.uleb128 0xb
  1922 013f 3B       		.uleb128 0x3b
  1923 0140 05       		.uleb128 0x5
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 51
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 51
 
 
  1924 0141 27       		.uleb128 0x27
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  1978 0178 05       		.uleb128 0x5
  1979 0179 27       		.uleb128 0x27
  1980 017a 19       		.uleb128 0x19
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 52
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 52
 
 
  1981 017b 49       		.uleb128 0x49
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2035 01b2 19       		.uleb128 0x19
  2036 01b3 02       		.uleb128 0x2
  2037 01b4 18       		.uleb128 0x18
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 53
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 53
 
 
  2038 01b5 00       		.byte	0
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2092 01eb 3A       		.uleb128 0x3a
  2093 01ec 0B       		.uleb128 0xb
  2094 01ed 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 54
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 54
 
 
  2095 01ee 0B       		.uleb128 0xb
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2149 0063 00000000 		.4byte	0
  2150              	.LLST2:
  2151 0067 38000000 		.4byte	.LVL10
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 55
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 55
 
 
  2152 006b 3C000000 		.4byte	.LVL11
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2206 00f6 00000000 		.4byte	.LVL23
  2207 00fa 1C000000 		.4byte	.LVL26
  2208 00fe 0100     		.2byte	0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 56
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 56
 
 
  2209 0100 50       		.byte	0x50
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2263              	.LLST10:
  2264 017e 06000000 		.4byte	.LVL38
  2265 0182 17000000 		.4byte	.LVL40-1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 57
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 57
 
 
  2266 0186 0500     		.2byte	0x5
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2320 0208 0600     		.2byte	0x6
  2321 020a 72       		.byte	0x72
  2322 020b 00       		.sleb128 0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 58
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 58
 
 
  2323 020c 73       		.byte	0x73
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2377 0291 00000000 		.4byte	0
  2378              	.LLST19:
  2379 0295 16000000 		.4byte	.LVL63
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 59
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 59
 
 
  2380 0299 18000000 		.4byte	.LVL64
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2434 00a4 00000000 		.4byte	0
  2435              		.section	.debug_ranges,"",%progbits
  2436              	.Ldebug_ranges0:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 60
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 60
 
 
  2437 0000 00000000 		.4byte	.LFB12
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2483      69746963 
  2483      616C5365 
  2483      6374696F 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 61
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 61
 
 
  2484              	.LASF65:
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2505 010d 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC.c\000"
  2505      6E657261 
  2505      7465645F 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 62
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 62
 
 
  2505      536F7572 
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2531      74536574 
  2531      56656374 
  2531      6F7200
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 63
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 63
 
 
  2532              	.LASF54:
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2556              	.LASF49:
  2557 025b 6D566F6C 		.ascii	"mVolts\000"
  2557      747300
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 64
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 64
 
 
  2558              	.LASF23:
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2579 0354 696E7436 		.ascii	"int64\000"
  2579      3400
  2580              	.LASF63:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 65
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 65
 
 
  2581 035a 4379496E 		.ascii	"CyIntSetPriority\000"
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 1
  2606              	.LASF10:
  2607 03ec 63686172 		.ascii	"char\000"
  2607      00
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\cc7T69zL.s 			page 66
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccxEyKqf.s 			page 66
 
 
  2608              	.LASF24:

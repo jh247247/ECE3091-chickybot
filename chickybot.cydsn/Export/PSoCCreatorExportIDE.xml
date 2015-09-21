@@ -219,6 +219,14 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\MicroSwitch_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\MicroSwitch.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\MicroSwitch.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrMicroSwitch.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrMicroSwitch.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan.h</File>
         </Files>
       </Folder>
       <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">

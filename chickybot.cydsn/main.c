@@ -14,7 +14,8 @@ void Btn0Pressed() {
 
 void Btn1Pressed() {
     LedBlue_Write(!LedBlue_Read());
-    elbowDownStep();
+//    elbowDownStep();
+    Fan_Write(!Fan_Read());
 }
 
 void displayPlanOnLcd() {
@@ -32,6 +33,10 @@ void getPlan() {
     Lcd_PosPrintString(1, 0, "returned");
 }
 
+void MicroSwitchTrigger() {
+    LedRed_Write(!LedRed_Read());
+}
+
 
 
 int main()
@@ -41,7 +46,7 @@ int main()
     IsrBtn0Pressed_StartEx(Btn0Pressed);
     IsrBtn1Pressed_StartEx(Btn1Pressed);
     IsrUsTimer_StartEx(UsSensorTrigger);
-//    IsrADC_Elbow_EOC_StartEx(ADC_Elbow_EOC);
+    IsrMicroSwitch_StartEx(MicroSwitchTrigger);
 
     // Starts
     CsBtns_Start();

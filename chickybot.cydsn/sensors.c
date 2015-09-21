@@ -10,7 +10,7 @@ void UsSensorTrigger() {
     rc = UsTimer_ReadCapture();
     dist = (38000 - rc) * 10 / 58;
     
-    LedYellow_Write(!LedYellow_Read());
+//    LedYellow_Write(!LedYellow_Read());
     
 //    CyDelay(500);
     
