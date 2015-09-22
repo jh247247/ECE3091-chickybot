@@ -31,7 +31,7 @@ Clock: ADC_theACLK(routed)          | N/A                   | Target: 1.60 MHz  
 Clock: ClockCamera                  | N/A                   | Target: 24.00 MHz   | 
 Clock: ClockCamera(routed)          | N/A                   | Target: 24.00 MHz   | 
 Clock: ClockCsBtns                  | N/A                   | Target: 12.00 MHz   | 
-Clock: ClockCsBtns(fixed-function)  | Frequency: 27.42 MHz  | Target: 12.00 MHz   | 
+Clock: ClockCsBtns(fixed-function)  | Frequency: 27.40 MHz  | Target: 12.00 MHz   | 
 Clock: ClockLcdBacklight            | N/A                   | Target: 0.01 MHz    | 
 Clock: ClockLcdBacklight(routed)    | N/A                   | Target: 0.01 MHz    | 
 Clock: ClockUsPWM                   | Frequency: 63.43 MHz  | Target: 6.00 MHz    | 
@@ -43,7 +43,7 @@ Clock: CyIMO                        | N/A                   | Target: 3.00 MHz  
 Clock: CyMASTER_CLK                 | N/A                   | Target: 24.00 MHz   | 
 Clock: CyPLL_OUT                    | N/A                   | Target: 24.00 MHz   | 
 Clock: \Camera:PCLK(0)_PAD\         | N/A                   | Target: 100.00 MHz  | 
-Clock: \CsBtns:PWM:PWMHW\/tc        | Frequency: 27.42 MHz  | Target: 6.00 MHz    | 
+Clock: \CsBtns:PWM:PWMHW\/tc        | Frequency: 27.40 MHz  | Target: 6.00 MHz    | 
 
  =====================================================================
                     End of Clock Frequency Summary
@@ -56,7 +56,7 @@ Clock: \CsBtns:PWM:PWMHW\/tc        | Frequency: 27.42 MHz  | Target: 6.00 MHz  
 
 Launch Clock                 Capture Clock          Constraint(R-R)  Slack(R-R)  Constraint(R-F)  Slack(R-F)  Constraint(F-F)  Slack(F-F)  Constraint(F-R)  Slack(F-R)  
 ---------------------------  ---------------------  ---------------  ----------  ---------------  ----------  ---------------  ----------  ---------------  ----------  
-ClockCsBtns(fixed-function)  \CsBtns:PWM:PWMHW\/tc  83333.3          46859       N/A              N/A         N/A              N/A         N/A              N/A         
+ClockCsBtns(fixed-function)  \CsBtns:PWM:PWMHW\/tc  83333.3          46840       N/A              N/A         N/A              N/A         N/A              N/A         
 ClockUsPWM                   ClockUsPWM             166667           150902      N/A              N/A         N/A              N/A         N/A              N/A         
 ClockUsTimer                 ClockUsTimer           1e+006           980156      N/A              N/A         N/A              N/A         N/A              N/A         
 CyBUS_CLK                    ClockUsTimer           41666.7          24506       N/A              N/A         N/A              N/A         N/A              N/A         
@@ -77,17 +77,17 @@ All values are in Picoseconds
 
 Port Name                  Setup to Clk  Clock Name:Phase         
 -------------------------  ------------  -----------------------  
-\Camera:D(0)_PAD\          4537          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(1)_PAD\          3819          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(2)_PAD\          3565          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(3)_PAD\          4058          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(4)_PAD\          3062          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(5)_PAD\          2467          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(6)_PAD\          2714          \Camera:PCLK(0)_PAD\:R   
-\Camera:D(7)_PAD\          919           \Camera:PCLK(0)_PAD\:R   
-\Camera:HREF(0)_PAD\       -27           \Camera:PCLK(0)_PAD\:R   
-\CsBtns:Button(0)_PAD\:in  9111          \CsBtns:PWM:PWMHW\/tc:R  
-\CsBtns:Button(1)_PAD\:in  9368          \CsBtns:PWM:PWMHW\/tc:R  
+\Camera:D(0)_PAD\          3318          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(1)_PAD\          3232          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(2)_PAD\          2841          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(3)_PAD\          3452          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(4)_PAD\          3306          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(5)_PAD\          1758          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(6)_PAD\          2144          \Camera:PCLK(0)_PAD\:R   
+\Camera:D(7)_PAD\          303           \Camera:PCLK(0)_PAD\:R   
+\Camera:HREF(0)_PAD\       -643          \Camera:PCLK(0)_PAD\:R   
+\CsBtns:Button(0)_PAD\:in  9126          \CsBtns:PWM:PWMHW\/tc:R  
+\CsBtns:Button(1)_PAD\:in  9386          \CsBtns:PWM:PWMHW\/tc:R  
 
 
                        3.2::Clock to Out
@@ -95,17 +95,17 @@ Port Name                  Setup to Clk  Clock Name:Phase
 
 Port Name                   Clock to Out  Clock Name:Phase               
 --------------------------  ------------  -----------------------------  
-LcdDB4(0)_PAD               25131         CyBUS_CLK:R                    
-LcdDB5(0)_PAD               25098         CyBUS_CLK:R                    
+LcdDB4(0)_PAD               25160         CyBUS_CLK:R                    
+LcdDB5(0)_PAD               23822         CyBUS_CLK:R                    
 LcdDB6(0)_PAD               24978         CyBUS_CLK:R                    
 LcdDB7(0)_PAD               24558         CyBUS_CLK:R                    
 LcdE(0)_PAD                 23998         CyBUS_CLK:R                    
 LcdRS(0)_PAD                24724         CyBUS_CLK:R                    
 LcdV0(0)_PAD                19516         ClockLcdBacklight(routed):R    
 LcdV0(0)_PAD                19516         ClockLcdBacklight(routed):F    
-UsTrig(0)_PAD               23002         ClockUsPWM:R                   
+UsTrig(0)_PAD               23210         ClockUsPWM:R                   
 \Camera:SIOC(0)_PAD\:out    21578         CyBUS_CLK(fixed-function):R    
-\Camera:SIOD(0)_PAD\:out    21876         CyBUS_CLK(fixed-function):R    
+\Camera:SIOD(0)_PAD\:out    21878         CyBUS_CLK(fixed-function):R    
 \Camera:XCLK(0)_PAD\        24132         ClockCamera(routed):R          
 \Camera:XCLK(0)_PAD\        24132         ClockCamera(routed):F          
 \CsBtns:Button(0)_PAD\:out  25559         ClockCsBtns(fixed-function):R  
@@ -127,27 +127,27 @@ Port Name (Source)  Port Name (Destination)  Delay
 4.1::Critical Path Report for ClockCsBtns(fixed-function)
 *********************************************************
 Clock: ClockCsBtns(fixed-function)
-Frequency: 27.42 MHz | Target: 12.00 MHz
+Frequency: 27.40 MHz | Target: 12.00 MHz
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \CsBtns:PWM:PWMHW\/cmp
 Path End       : Net_23/main_0
 Capture Clock  : Net_23/clock_0
-Path slack     : 46859p
+Path slack     : 46840p
 
 Capture Clock Arrival Time                                                           0
-+ Clock path delay                                                                7807
++ Clock path delay                                                                7803
 + Cycle adjust (ClockCsBtns(fixed-function):R#2 vs. \CsBtns:PWM:PWMHW\/tc:R#2)   83333
 - Setup time                                                                     -3510
 ------------------------------------------------------------------------------   ----- 
-End-of-path required time (ps)                                                   87630
+End-of-path required time (ps)                                                   87627
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       40772
++ Data path delay                       40787
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           40772
+End-of-path arrival time (ps)           40787
  
 Launch Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -158,12 +158,12 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 Data path
 pin name                      model name   delay     AT  slack  edge  Fanout
 ----------------------------  -----------  -----  -----  -----  ----  ------
-\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46859  RISE       1
-\CsBtns:Button(1)\/pin_input  iocell40     10450  11450  46859  RISE       1
-\CsBtns:Button(1)\/pad_out    iocell40     15656  27106  46859  RISE       1
-\CsBtns:Button(1)\/pad_in     iocell40         0  27106  46859  RISE       1
-\CsBtns:Button(1)\/fb         iocell40      7673  34779  46859  RISE       1
-Net_23/main_0                 macrocell2    5993  40772  46859  RISE       1
+\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46840  RISE       1
+\CsBtns:Button(1)\/pin_input  iocell42     10450  11450  46840  RISE       1
+\CsBtns:Button(1)\/pad_out    iocell42     15656  27106  46840  RISE       1
+\CsBtns:Button(1)\/pad_in     iocell42         0  27106  46840  RISE       1
+\CsBtns:Button(1)\/fb         iocell42      7673  34779  46840  RISE       1
+Net_23/main_0                 macrocell2    6007  40787  46840  RISE       1
 
 Capture Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -173,7 +173,7 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 \CsBtns:PWM:PWMHW\/tc                                         timercell        1000   1000  
 \CsBtns:PWM:PWMHW\/tc (TOTAL_ADJUSTMENTS)                     timercell           0   1000  RISE       1
 --\CsBtns:PWM:PWMHW\/tc (Clock Phase Adjustment Delay)        timercell           0    N/A  
-Net_23/clock_0                                                macrocell2       6807   7807  RISE       1
+Net_23/clock_0                                                macrocell2       6803   7803  RISE       1
 
 
 ===================================================================== 
@@ -304,12 +304,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                  model name   delay     AT  slack  edge  Fanout
 ----------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                              iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                              iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2  macrocell8    5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q       macrocell8    3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:capt_int_temp\/main_2   macrocell9    3205  13651  24506  RISE       1
@@ -325,27 +325,27 @@ ClockBlock/dclk_glb_4                                      clockblockcell      0
 4.5::Critical Path Report for \CsBtns:PWM:PWMHW\/tc
 ***************************************************
 Clock: \CsBtns:PWM:PWMHW\/tc
-Frequency: 27.42 MHz | Target: 6.00 MHz
+Frequency: 27.40 MHz | Target: 6.00 MHz
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \CsBtns:PWM:PWMHW\/cmp
 Path End       : Net_23/main_0
 Capture Clock  : Net_23/clock_0
-Path slack     : 46859p
+Path slack     : 46840p
 
 Capture Clock Arrival Time                                                           0
-+ Clock path delay                                                                7807
++ Clock path delay                                                                7803
 + Cycle adjust (ClockCsBtns(fixed-function):R#2 vs. \CsBtns:PWM:PWMHW\/tc:R#2)   83333
 - Setup time                                                                     -3510
 ------------------------------------------------------------------------------   ----- 
-End-of-path required time (ps)                                                   87630
+End-of-path required time (ps)                                                   87627
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       40772
++ Data path delay                       40787
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           40772
+End-of-path arrival time (ps)           40787
  
 Launch Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -356,12 +356,12 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 Data path
 pin name                      model name   delay     AT  slack  edge  Fanout
 ----------------------------  -----------  -----  -----  -----  ----  ------
-\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46859  RISE       1
-\CsBtns:Button(1)\/pin_input  iocell40     10450  11450  46859  RISE       1
-\CsBtns:Button(1)\/pad_out    iocell40     15656  27106  46859  RISE       1
-\CsBtns:Button(1)\/pad_in     iocell40         0  27106  46859  RISE       1
-\CsBtns:Button(1)\/fb         iocell40      7673  34779  46859  RISE       1
-Net_23/main_0                 macrocell2    5993  40772  46859  RISE       1
+\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46840  RISE       1
+\CsBtns:Button(1)\/pin_input  iocell42     10450  11450  46840  RISE       1
+\CsBtns:Button(1)\/pad_out    iocell42     15656  27106  46840  RISE       1
+\CsBtns:Button(1)\/pad_in     iocell42         0  27106  46840  RISE       1
+\CsBtns:Button(1)\/fb         iocell42      7673  34779  46840  RISE       1
+Net_23/main_0                 macrocell2    6007  40787  46840  RISE       1
 
 Capture Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -371,7 +371,7 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 \CsBtns:PWM:PWMHW\/tc                                         timercell        1000   1000  
 \CsBtns:PWM:PWMHW\/tc (TOTAL_ADJUSTMENTS)                     timercell           0   1000  RISE       1
 --\CsBtns:PWM:PWMHW\/tc (Clock Phase Adjustment Delay)        timercell           0    N/A  
-Net_23/clock_0                                                macrocell2       6807   7807  RISE       1
+Net_23/clock_0                                                macrocell2       6803   7803  RISE       1
 
 
 
@@ -411,12 +411,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                  model name   delay     AT  slack  edge  Fanout
 ----------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                              iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                              iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2  macrocell8    5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q       macrocell8    3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:capt_int_temp\/main_2   macrocell9    3205  13651  24506  RISE       1
@@ -436,20 +436,20 @@ ClockBlock/dclk_glb_4                                      clockblockcell      0
 Path Begin     : \CsBtns:PWM:PWMHW\/cmp
 Path End       : Net_23/main_0
 Capture Clock  : Net_23/clock_0
-Path slack     : 46859p
+Path slack     : 46840p
 
 Capture Clock Arrival Time                                                           0
-+ Clock path delay                                                                7807
++ Clock path delay                                                                7803
 + Cycle adjust (ClockCsBtns(fixed-function):R#2 vs. \CsBtns:PWM:PWMHW\/tc:R#2)   83333
 - Setup time                                                                     -3510
 ------------------------------------------------------------------------------   ----- 
-End-of-path required time (ps)                                                   87630
+End-of-path required time (ps)                                                   87627
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       40772
++ Data path delay                       40787
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           40772
+End-of-path arrival time (ps)           40787
  
 Launch Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -460,12 +460,12 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 Data path
 pin name                      model name   delay     AT  slack  edge  Fanout
 ----------------------------  -----------  -----  -----  -----  ----  ------
-\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46859  RISE       1
-\CsBtns:Button(1)\/pin_input  iocell40     10450  11450  46859  RISE       1
-\CsBtns:Button(1)\/pad_out    iocell40     15656  27106  46859  RISE       1
-\CsBtns:Button(1)\/pad_in     iocell40         0  27106  46859  RISE       1
-\CsBtns:Button(1)\/fb         iocell40      7673  34779  46859  RISE       1
-Net_23/main_0                 macrocell2    5993  40772  46859  RISE       1
+\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46840  RISE       1
+\CsBtns:Button(1)\/pin_input  iocell42     10450  11450  46840  RISE       1
+\CsBtns:Button(1)\/pad_out    iocell42     15656  27106  46840  RISE       1
+\CsBtns:Button(1)\/pad_in     iocell42         0  27106  46840  RISE       1
+\CsBtns:Button(1)\/fb         iocell42      7673  34779  46840  RISE       1
+Net_23/main_0                 macrocell2    6007  40787  46840  RISE       1
 
 Capture Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -475,7 +475,7 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 \CsBtns:PWM:PWMHW\/tc                                         timercell        1000   1000  
 \CsBtns:PWM:PWMHW\/tc (TOTAL_ADJUSTMENTS)                     timercell           0   1000  RISE       1
 --\CsBtns:PWM:PWMHW\/tc (Clock Phase Adjustment Delay)        timercell           0    N/A  
-Net_23/clock_0                                                macrocell2       6807   7807  RISE       1
+Net_23/clock_0                                                macrocell2       6803   7803  RISE       1
 
 
 5.3::Critical Path Report for (ClockUsPWM:R vs. ClockUsPWM:R)
@@ -603,12 +603,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                  model name   delay     AT  slack  edge  Fanout
 ----------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                              iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                              iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2  macrocell8    5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q       macrocell8    3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:capt_int_temp\/main_2   macrocell9    3205  13651  24506  RISE       1
@@ -645,12 +645,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                    model name   delay     AT  slack  edge  Fanout
 ------------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                                iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                                iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2    macrocell8    5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q         macrocell8    3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:int_capt_count_0\/main_2  macrocell11   3205  13651  24506  RISE       1
@@ -687,12 +687,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                    model name   delay     AT  slack  edge  Fanout
 ------------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                                iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                                iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2    macrocell8    5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q         macrocell8    3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:int_capt_count_1\/main_2  macrocell12   3201  13647  24510  RISE       1
@@ -729,12 +729,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                    model name     delay     AT  slack  edge  Fanout
 ------------------------------------------  -------------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                                iocell23        2030   2030  24506  RISE       1
+UsEcho(0)/fb                                iocell25        2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2    macrocell8      5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q         macrocell8      3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:sT16:timerdp:u0\/f0_load  datapathcell4   3215  13661  24876  RISE       1
@@ -771,12 +771,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                    model name     delay     AT  slack  edge  Fanout
 ------------------------------------------  -------------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                                iocell23        2030   2030  24506  RISE       1
+UsEcho(0)/fb                                iocell25        2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/main_2    macrocell8      5066   7096  24506  RISE       1
 \UsTimer:TimerUDB:capt_fifo_load\/q         macrocell8      3350  10446  24506  RISE       1
 \UsTimer:TimerUDB:sT16:timerdp:u1\/f0_load  datapathcell5   3213  13659  24877  RISE       1
@@ -813,12 +813,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT  slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                                  iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                                  iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:trig_fall_detected\/main_2  macrocell14   5836   7866  30290  RISE       1
 
 Capture Clock Path
@@ -853,12 +853,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                model name   delay     AT  slack  edge  Fanout
 --------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                            iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                            iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:capture_last\/main_0  macrocell10   5066   7096  31061  RISE       1
 
 Capture Clock Path
@@ -893,12 +893,12 @@ Launch Clock Path
 pin name                                                    model name      delay     AT  edge  Fanout
 ----------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/clk_bus_glb                                      clockblockcell      0      0  RISE       1
-UsEcho(0)/in_clock                                          iocell23            0      0  RISE       1
+UsEcho(0)/in_clock                                          iocell25            0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT  slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  -----  ----  ------
-UsEcho(0)/fb                                  iocell23      2030   2030  24506  RISE       1
+UsEcho(0)/fb                                  iocell25      2030   2030  24506  RISE       1
 \UsTimer:TimerUDB:trig_rise_detected\/main_2  macrocell16   5066   7096  31061  RISE       1
 
 Capture Clock Path
@@ -914,20 +914,20 @@ ClockBlock/dclk_glb_4                                      clockblockcell      0
 Path Begin     : \CsBtns:PWM:PWMHW\/cmp
 Path End       : Net_23/main_0
 Capture Clock  : Net_23/clock_0
-Path slack     : 46859p
+Path slack     : 46840p
 
 Capture Clock Arrival Time                                                           0
-+ Clock path delay                                                                7807
++ Clock path delay                                                                7803
 + Cycle adjust (ClockCsBtns(fixed-function):R#2 vs. \CsBtns:PWM:PWMHW\/tc:R#2)   83333
 - Setup time                                                                     -3510
 ------------------------------------------------------------------------------   ----- 
-End-of-path required time (ps)                                                   87630
+End-of-path required time (ps)                                                   87627
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       40772
++ Data path delay                       40787
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           40772
+End-of-path arrival time (ps)           40787
  
 Launch Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -938,12 +938,12 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 Data path
 pin name                      model name   delay     AT  slack  edge  Fanout
 ----------------------------  -----------  -----  -----  -----  ----  ------
-\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46859  RISE       1
-\CsBtns:Button(1)\/pin_input  iocell40     10450  11450  46859  RISE       1
-\CsBtns:Button(1)\/pad_out    iocell40     15656  27106  46859  RISE       1
-\CsBtns:Button(1)\/pad_in     iocell40         0  27106  46859  RISE       1
-\CsBtns:Button(1)\/fb         iocell40      7673  34779  46859  RISE       1
-Net_23/main_0                 macrocell2    5993  40772  46859  RISE       1
+\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46840  RISE       1
+\CsBtns:Button(1)\/pin_input  iocell42     10450  11450  46840  RISE       1
+\CsBtns:Button(1)\/pad_out    iocell42     15656  27106  46840  RISE       1
+\CsBtns:Button(1)\/pad_in     iocell42         0  27106  46840  RISE       1
+\CsBtns:Button(1)\/fb         iocell42      7673  34779  46840  RISE       1
+Net_23/main_0                 macrocell2    6007  40787  46840  RISE       1
 
 Capture Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -953,7 +953,7 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 \CsBtns:PWM:PWMHW\/tc                                         timercell        1000   1000  
 \CsBtns:PWM:PWMHW\/tc (TOTAL_ADJUSTMENTS)                     timercell           0   1000  RISE       1
 --\CsBtns:PWM:PWMHW\/tc (Clock Phase Adjustment Delay)        timercell           0    N/A  
-Net_23/clock_0                                                macrocell2       6807   7807  RISE       1
+Net_23/clock_0                                                macrocell2       6803   7803  RISE       1
 
 
 
@@ -962,20 +962,20 @@ Net_23/clock_0                                                macrocell2       6
 Path Begin     : \CsBtns:PWM:PWMHW\/cmp
 Path End       : Net_22/main_0
 Capture Clock  : Net_22/clock_0
-Path slack     : 48662p
+Path slack     : 48648p
 
 Capture Clock Arrival Time                                                           0
-+ Clock path delay                                                                7807
++ Clock path delay                                                                7803
 + Cycle adjust (ClockCsBtns(fixed-function):R#2 vs. \CsBtns:PWM:PWMHW\/tc:R#2)   83333
 - Setup time                                                                     -3510
 ------------------------------------------------------------------------------   ----- 
-End-of-path required time (ps)                                                   87630
+End-of-path required time (ps)                                                   87627
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       38968
++ Data path delay                       38979
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           38968
+End-of-path arrival time (ps)           38979
  
 Launch Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -986,12 +986,12 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 Data path
 pin name                      model name   delay     AT  slack  edge  Fanout
 ----------------------------  -----------  -----  -----  -----  ----  ------
-\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46859  RISE       1
-\CsBtns:Button(0)\/pin_input  iocell39      9775  10775  48662  RISE       1
-\CsBtns:Button(0)\/pad_out    iocell39     14784  25559  48662  RISE       1
-\CsBtns:Button(0)\/pad_in     iocell39         0  25559  48662  RISE       1
-\CsBtns:Button(0)\/fb         iocell39      6792  32351  48662  RISE       1
-Net_22/main_0                 macrocell1    6617  38968  48662  RISE       1
+\CsBtns:PWM:PWMHW\/cmp        timercell     1000   1000  46840  RISE       1
+\CsBtns:Button(0)\/pin_input  iocell41      9775  10775  48648  RISE       1
+\CsBtns:Button(0)\/pad_out    iocell41     14784  25559  48648  RISE       1
+\CsBtns:Button(0)\/pad_in     iocell41         0  25559  48648  RISE       1
+\CsBtns:Button(0)\/fb         iocell41      6792  32351  48648  RISE       1
+Net_22/main_0                 macrocell1    6628  38979  48648  RISE       1
 
 Capture Clock Path
 pin name                                                      model name      delay     AT  edge  Fanout
@@ -1001,7 +1001,7 @@ ClockBlock/dclk_glb_ff_1                                      clockblockcell    
 \CsBtns:PWM:PWMHW\/tc                                         timercell        1000   1000  
 \CsBtns:PWM:PWMHW\/tc (TOTAL_ADJUSTMENTS)                     timercell           0   1000  RISE       1
 --\CsBtns:PWM:PWMHW\/tc (Clock Phase Adjustment Delay)        timercell           0    N/A  
-Net_22/clock_0                                                macrocell1       6807   7807  RISE       1
+Net_22/clock_0                                                macrocell1       6803   7803  RISE       1
 
 
 

@@ -1,5 +1,5 @@
 -- Project:   chickybot
--- Generated: 09/21/2015 23:03:04
+-- Generated: 09/22/2015 16:43:19
 -- PSoC Creator  3.2 SP1
 
 ENTITY chickybot IS
@@ -21,6 +21,8 @@ ENTITY chickybot IS
         MicroSwitch(0)_PAD : IN std_ulogic;
         PWDN(0)_PAD : OUT std_ulogic;
         RESET(0)_PAD : OUT std_ulogic;
+        RotateCCW(0)_PAD : OUT std_ulogic;
+        RotateCW(0)_PAD : OUT std_ulogic;
         ShoulderNeg(0)_PAD : OUT std_ulogic;
         ShoulderPos(0)_PAD : OUT std_ulogic;
         UsEcho(0)_PAD : IN std_ulogic;
@@ -97,9 +99,9 @@ ARCHITECTURE __DEFAULT__ OF chickybot IS
     SIGNAL Net_217_local : bit;
     SIGNAL Net_21_local : bit;
     SIGNAL Net_22 : bit;
-    ATTRIBUTE placement_force OF Net_22 : SIGNAL IS "U(0,3,A)0";
+    ATTRIBUTE placement_force OF Net_22 : SIGNAL IS "U(1,3,A)0";
     SIGNAL Net_23 : bit;
-    ATTRIBUTE placement_force OF Net_23 : SIGNAL IS "U(0,3,A)1";
+    ATTRIBUTE placement_force OF Net_23 : SIGNAL IS "U(1,3,A)1";
     SIGNAL Net_39 : bit;
     SIGNAL Net_40 : bit;
     SIGNAL Net_41 : bit;
@@ -117,6 +119,8 @@ ARCHITECTURE __DEFAULT__ OF chickybot IS
     SIGNAL PWDN(0)__PA : bit;
     SIGNAL PhotoDiode1(0)__PA : bit;
     SIGNAL RESET(0)__PA : bit;
+    SIGNAL RotateCCW(0)__PA : bit;
+    SIGNAL RotateCW(0)__PA : bit;
     SIGNAL ShoulderNeg(0)__PA : bit;
     SIGNAL ShoulderPos(0)__PA : bit;
     SIGNAL ShoulderPot(0)__PA : bit;
@@ -267,9 +271,9 @@ ARCHITECTURE __DEFAULT__ OF chickybot IS
     SIGNAL \UsTimer:TimerUDB:sT16:timerdp:u1.cmsbo__sig\ : bit;
     ATTRIBUTE Location OF ClockBlock : LABEL IS "F(Clock,0)";
     ATTRIBUTE lib_model OF ElbowNeg(0) : LABEL IS "iocell1";
-    ATTRIBUTE Location OF ElbowNeg(0) : LABEL IS "P3[4]";
+    ATTRIBUTE Location OF ElbowNeg(0) : LABEL IS "P12[1]";
     ATTRIBUTE lib_model OF ElbowPos(0) : LABEL IS "iocell2";
-    ATTRIBUTE Location OF ElbowPos(0) : LABEL IS "P3[5]";
+    ATTRIBUTE Location OF ElbowPos(0) : LABEL IS "P0[0]";
     ATTRIBUTE lib_model OF ElbowPot(0) : LABEL IS "iocell3";
     ATTRIBUTE Location OF ElbowPot(0) : LABEL IS "P5[3]";
     ATTRIBUTE lib_model OF Fan(0) : LABEL IS "iocell4";
@@ -303,9 +307,9 @@ ARCHITECTURE __DEFAULT__ OF chickybot IS
     ATTRIBUTE lib_model OF MicroSwitch(0) : LABEL IS "iocell16";
     ATTRIBUTE Location OF MicroSwitch(0) : LABEL IS "P12[6]";
     ATTRIBUTE lib_model OF Net_22 : LABEL IS "macrocell1";
-    ATTRIBUTE Location OF Net_22 : LABEL IS "U(0,3)";
+    ATTRIBUTE Location OF Net_22 : LABEL IS "U(1,3)";
     ATTRIBUTE lib_model OF Net_23 : LABEL IS "macrocell2";
-    ATTRIBUTE Location OF Net_23 : LABEL IS "U(0,3)";
+    ATTRIBUTE Location OF Net_23 : LABEL IS "U(1,3)";
     ATTRIBUTE lib_model OF Net_657 : LABEL IS "macrocell3";
     ATTRIBUTE Location OF Net_657 : LABEL IS "U(3,3)";
     ATTRIBUTE lib_model OF PWDN(0) : LABEL IS "iocell17";
@@ -314,55 +318,59 @@ ARCHITECTURE __DEFAULT__ OF chickybot IS
     ATTRIBUTE Location OF PhotoDiode1(0) : LABEL IS "P5[0]";
     ATTRIBUTE lib_model OF RESET(0) : LABEL IS "iocell19";
     ATTRIBUTE Location OF RESET(0) : LABEL IS "P2[3]";
-    ATTRIBUTE lib_model OF ShoulderNeg(0) : LABEL IS "iocell20";
-    ATTRIBUTE Location OF ShoulderNeg(0) : LABEL IS "P0[2]";
-    ATTRIBUTE lib_model OF ShoulderPos(0) : LABEL IS "iocell21";
-    ATTRIBUTE Location OF ShoulderPos(0) : LABEL IS "P0[3]";
-    ATTRIBUTE lib_model OF ShoulderPot(0) : LABEL IS "iocell22";
+    ATTRIBUTE lib_model OF RotateCCW(0) : LABEL IS "iocell20";
+    ATTRIBUTE Location OF RotateCCW(0) : LABEL IS "P12[0]";
+    ATTRIBUTE lib_model OF RotateCW(0) : LABEL IS "iocell21";
+    ATTRIBUTE Location OF RotateCW(0) : LABEL IS "P3[7]";
+    ATTRIBUTE lib_model OF ShoulderNeg(0) : LABEL IS "iocell22";
+    ATTRIBUTE Location OF ShoulderNeg(0) : LABEL IS "P3[4]";
+    ATTRIBUTE lib_model OF ShoulderPos(0) : LABEL IS "iocell23";
+    ATTRIBUTE Location OF ShoulderPos(0) : LABEL IS "P3[5]";
+    ATTRIBUTE lib_model OF ShoulderPot(0) : LABEL IS "iocell24";
     ATTRIBUTE Location OF ShoulderPot(0) : LABEL IS "P1[0]";
-    ATTRIBUTE lib_model OF UsEcho(0) : LABEL IS "iocell23";
+    ATTRIBUTE lib_model OF UsEcho(0) : LABEL IS "iocell25";
     ATTRIBUTE Location OF UsEcho(0) : LABEL IS "P0[1]";
-    ATTRIBUTE lib_model OF UsTrig(0) : LABEL IS "iocell24";
-    ATTRIBUTE Location OF UsTrig(0) : LABEL IS "P0[0]";
+    ATTRIBUTE lib_model OF UsTrig(0) : LABEL IS "iocell26";
+    ATTRIBUTE Location OF UsTrig(0) : LABEL IS "P0[2]";
     ATTRIBUTE Location OF \ADC:ADC_SAR\ : LABEL IS "F(SAR,0)";
     ATTRIBUTE Location OF \ADC:IRQ\ : LABEL IS "[IntrHod=(0)][IntrId=(4)]";
-    ATTRIBUTE lib_model OF \Camera:D(0)\ : LABEL IS "iocell25";
+    ATTRIBUTE lib_model OF \Camera:D(0)\ : LABEL IS "iocell27";
     ATTRIBUTE Location OF \Camera:D(0)\ : LABEL IS "P4[7]";
-    ATTRIBUTE lib_model OF \Camera:D(1)\ : LABEL IS "iocell26";
+    ATTRIBUTE lib_model OF \Camera:D(1)\ : LABEL IS "iocell28";
     ATTRIBUTE Location OF \Camera:D(1)\ : LABEL IS "P4[5]";
-    ATTRIBUTE lib_model OF \Camera:D(2)\ : LABEL IS "iocell27";
+    ATTRIBUTE lib_model OF \Camera:D(2)\ : LABEL IS "iocell29";
     ATTRIBUTE Location OF \Camera:D(2)\ : LABEL IS "P4[4]";
-    ATTRIBUTE lib_model OF \Camera:D(3)\ : LABEL IS "iocell28";
+    ATTRIBUTE lib_model OF \Camera:D(3)\ : LABEL IS "iocell30";
     ATTRIBUTE Location OF \Camera:D(3)\ : LABEL IS "P4[6]";
-    ATTRIBUTE lib_model OF \Camera:D(4)\ : LABEL IS "iocell29";
+    ATTRIBUTE lib_model OF \Camera:D(4)\ : LABEL IS "iocell31";
     ATTRIBUTE Location OF \Camera:D(4)\ : LABEL IS "P6[0]";
-    ATTRIBUTE lib_model OF \Camera:D(5)\ : LABEL IS "iocell30";
+    ATTRIBUTE lib_model OF \Camera:D(5)\ : LABEL IS "iocell32";
     ATTRIBUTE Location OF \Camera:D(5)\ : LABEL IS "P6[2]";
-    ATTRIBUTE lib_model OF \Camera:D(6)\ : LABEL IS "iocell31";
+    ATTRIBUTE lib_model OF \Camera:D(6)\ : LABEL IS "iocell33";
     ATTRIBUTE Location OF \Camera:D(6)\ : LABEL IS "P6[3]";
-    ATTRIBUTE lib_model OF \Camera:D(7)\ : LABEL IS "iocell32";
+    ATTRIBUTE lib_model OF \Camera:D(7)\ : LABEL IS "iocell34";
     ATTRIBUTE Location OF \Camera:D(7)\ : LABEL IS "P15[5]";
     ATTRIBUTE lib_model OF \Camera:DMA\ : LABEL IS "drqcell1";
     ATTRIBUTE Location OF \Camera:DMA\ : LABEL IS "[DrqHod=(0)][DrqId=(0)]";
     ATTRIBUTE lib_model OF \Camera:FIFO:dp\ : LABEL IS "datapathcell1";
-    ATTRIBUTE Location OF \Camera:FIFO:dp\ : LABEL IS "U(1,3)";
-    ATTRIBUTE lib_model OF \Camera:HREF(0)\ : LABEL IS "iocell33";
+    ATTRIBUTE Location OF \Camera:FIFO:dp\ : LABEL IS "U(0,3)";
+    ATTRIBUTE lib_model OF \Camera:HREF(0)\ : LABEL IS "iocell35";
     ATTRIBUTE Location OF \Camera:HREF(0)\ : LABEL IS "P2[0]";
     ATTRIBUTE Location OF \Camera:I2C:I2C_FF\ : LABEL IS "F(I2C,0)";
     ATTRIBUTE Location OF \Camera:I2C:I2C_IRQ\ : LABEL IS "[IntrHod=(0)][IntrId=(15)]";
-    ATTRIBUTE lib_model OF \Camera:PCLK(0)\ : LABEL IS "iocell34";
+    ATTRIBUTE lib_model OF \Camera:PCLK(0)\ : LABEL IS "iocell36";
     ATTRIBUTE Location OF \Camera:PCLK(0)\ : LABEL IS "P6[1]";
-    ATTRIBUTE lib_model OF \Camera:SIOC(0)\ : LABEL IS "iocell35";
+    ATTRIBUTE lib_model OF \Camera:SIOC(0)\ : LABEL IS "iocell37";
     ATTRIBUTE Location OF \Camera:SIOC(0)\ : LABEL IS "P2[4]";
-    ATTRIBUTE lib_model OF \Camera:SIOD(0)\ : LABEL IS "iocell36";
+    ATTRIBUTE lib_model OF \Camera:SIOD(0)\ : LABEL IS "iocell38";
     ATTRIBUTE Location OF \Camera:SIOD(0)\ : LABEL IS "P2[5]";
-    ATTRIBUTE lib_model OF \Camera:VSYNC(0)\ : LABEL IS "iocell37";
+    ATTRIBUTE lib_model OF \Camera:VSYNC(0)\ : LABEL IS "iocell39";
     ATTRIBUTE Location OF \Camera:VSYNC(0)\ : LABEL IS "P2[2]";
-    ATTRIBUTE lib_model OF \Camera:XCLK(0)\ : LABEL IS "iocell38";
+    ATTRIBUTE lib_model OF \Camera:XCLK(0)\ : LABEL IS "iocell40";
     ATTRIBUTE Location OF \Camera:XCLK(0)\ : LABEL IS "P15[4]";
-    ATTRIBUTE lib_model OF \CsBtns:Button(0)\ : LABEL IS "iocell39";
+    ATTRIBUTE lib_model OF \CsBtns:Button(0)\ : LABEL IS "iocell41";
     ATTRIBUTE Location OF \CsBtns:Button(0)\ : LABEL IS "P5[7]";
-    ATTRIBUTE lib_model OF \CsBtns:Button(1)\ : LABEL IS "iocell40";
+    ATTRIBUTE lib_model OF \CsBtns:Button(1)\ : LABEL IS "iocell42";
     ATTRIBUTE Location OF \CsBtns:Button(1)\ : LABEL IS "P6[4]";
     ATTRIBUTE Location OF \CsBtns:PWM:PWMHW\ : LABEL IS "F(Timer,0)";
     ATTRIBUTE lib_model OF \Lcd:Cntl_Port:Sync:ctrl_reg\ : LABEL IS "controlcell1";
@@ -2542,6 +2550,184 @@ BEGIN
             pa_out => RESET(0)__PA,
             oe => open,
             pad_in => RESET(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    RotateCCW:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "54f9983f-2b6e-4ceb-9f3b-6cd764a3fb91",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    RotateCCW(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "RotateCCW",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+        PORT MAP(
+            pa_out => RotateCCW(0)__PA,
+            oe => open,
+            pad_in => RotateCCW(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    RotateCW:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "fbc6b70f-30cd-48d2-a4b7-caf9fc5ca853",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    RotateCW(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "RotateCW",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+        PORT MAP(
+            pa_out => RotateCW(0)__PA,
+            oe => open,
+            pad_in => RotateCW(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',

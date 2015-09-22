@@ -227,6 +227,12 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCCW_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCCW.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCCW.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCW_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCW.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCW.h</File>
         </Files>
       </Folder>
       <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">

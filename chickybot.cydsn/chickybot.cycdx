@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="ShoulderPos" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="ElbowNeg" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="ShoulderNeg" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ShoulderPos" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ElbowPot" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="IsrUsTimer" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="UsTimer" BASE="0x0" SIZE="0x0" desc="" visible="true">
     <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
@@ -52,10 +53,7 @@
       </field>
     </register>
   </block>
-  <block name="ElbowPot" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="ElbowPos" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="UsTrig" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ElbowNeg" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="UsPWM" BASE="0x0" SIZE="0x0" desc="" visible="true">
     <block name="vmIRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="vmCompare" BASE="0x0" SIZE="0x0" desc="" visible="true" />
@@ -130,16 +128,18 @@
       </field>
     </register>
   </block>
-  <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="ClockUsPWM" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="MicroSwitch" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="AMux" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="IsrMicroSwitch" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="Fan" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="PhotoDiode1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ElbowPos" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="UsEcho" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="IsrUsTimer" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="Fan" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="IsrMicroSwitch" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="RotateCCW" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="RotateCW" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="MicroSwitch" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ClockUsTimer" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="ADC" BASE="0x0" SIZE="0x0" desc="SAR ADC" visible="true">
     <block name="ZeroTerminal_8" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="ZeroTerminal_7" BASE="0x0" SIZE="0x0" desc="" visible="true" />
@@ -180,7 +180,8 @@
     <register name="SAR_WRK" address="0x40005BA0" bitWidth="16" desc="SAR working register" />
   </block>
   <block name="ShoulderPot" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="ClockUsTimer" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="AMux" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="PhotoDiode1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="Lcd" BASE="0x0" SIZE="0x0" desc="" visible="true">
     <block name="Lcd_Cntl_Port" BASE="0x0" SIZE="0x0" desc="" visible="true">
       <register name="Lcd_Cntl_Port_CONTROL_REG" address="0x40006475" bitWidth="8" desc="" />
@@ -259,6 +260,8 @@
   <block name="LedGreen" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="LedYellow" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="LedBlue" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="IsrBtn1Pressed" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ClockCamera" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="Camera" BASE="0x0" SIZE="0x0" desc="" visible="true">
     <block name="VSYNC" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
@@ -356,14 +359,13 @@
     <block name="FIFO" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="DMA" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   </block>
-  <block name="ClockLcdBacklight" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="ClockCamera" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="PWDN" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="RESET" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="LcdV0" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="LcdRS" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="IsrBtn1Pressed" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="UsTrig" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="PWDN" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="ClockLcdBacklight" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="ClockCsBtns" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-  <block name="LcdDB7" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="LcdRS" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="LcdDB6" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="LcdV0" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+  <block name="LcdDB7" BASE="0x0" SIZE="0x0" desc="" visible="true" />
 </blockRegMap>
