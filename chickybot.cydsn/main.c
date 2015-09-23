@@ -10,11 +10,15 @@ uint8 * plan;
 void Btn0Pressed() {
     LedGreen_Write(!LedGreen_Read());
     rotateStepCCW(100);
+//    elbowUpStep();
+//    shoulderUpStep();
 }
 
 void Btn1Pressed() {
     LedBlue_Write(!LedBlue_Read());
     rotateStepCW(100);
+//    elbowDownStep();
+//    shoulderDownStep();
 }
 
 void displayPlanOnLcd() {
@@ -80,22 +84,21 @@ int main()
 //        Lcd_Position(0,0);
 //        Lcd_PrintString("Hello world!");
         
-        
-        
-        displayShoulderPos();
-        int16 shoulderPos = getShoulderPos();
-        
         Lcd_ClearDisplay();
-//        Lcd_Position(0,0);
-//        Lcd_PrintDecUint16(ADC_CountsTo_mVolts(shoulderPos));
-//        Lcd_Position(0,8);
-//        Lcd_PrintString("mV");
+        
+        int16 elbowPos = getElbowPos();
+        Lcd_Position(0,0);
+        Lcd_PrintDecUint16(elbowPos);
+        Lcd_Position(0,7);
+        Lcd_PrintString("Elbow");
+        
+        int16 shoulderPos = getShoulderPos();
         Lcd_Position(1,0);
         Lcd_PrintDecUint16(shoulderPos);
-        Lcd_Position(1,8);
-        Lcd_PrintString("/ 4095");
+        Lcd_Position(1,7);
+        Lcd_PrintString("Shoulder");
         
-        shoulderGoToPos(2220);
+//        elbowGoToPos(ELBOW_90_DEG);
         
 //        ElbowPos_Write(0);
 //        ElbowNeg_Write(1);
@@ -110,7 +113,7 @@ int main()
 //        ShoulderNeg_Write(1);
 //        elbowGoToPos(ELBOW_30_DEG);
         
-        CyDelay(300);
+        CyDelay(500);
 //        UsTimer_EnableTrigger();
     }
 }

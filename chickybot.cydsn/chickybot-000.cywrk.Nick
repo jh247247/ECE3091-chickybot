@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="chickybot-000\chickybot\Source Files">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="chickybot-000\chickybot\Generated_Source\PSoC5\ADC_IRQ\ADC_IRQ.h">
 <ExpandedNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
@@ -474,6 +474,7 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\MicroSwitch.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\motion.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\PhotoDiode1.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\prelim.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\PWDN.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\RESET.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\RotateCCW.lst</v>
@@ -600,8 +601,8 @@
 <name v=".\main.c" />
 <name v=".\sensors.c" />
 <name v=".\sensors.h" />
-<name v=".\motion.h" />
 <name v=".\motion.c" />
+<name v=".\motion.h" />
 <name v=".\main.h" />
 <name v=".\prelim.c" />
 </OpenDocs>

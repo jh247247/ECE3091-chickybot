@@ -23,3 +23,8 @@ void rotateStepCW(uint16);
 
 uint8 fanOn();
 uint8 fanOff();
+
+int16 elbowAngleToPotPos(uint8);
+int16 shoulderAngleToPotPos(uint8);
+uint8 elbowPotPosToAngle(int16);
+uint8 shoulderPotPosToAngle(int16);

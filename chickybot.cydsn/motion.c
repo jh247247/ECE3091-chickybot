@@ -2,9 +2,13 @@
 #include "main.h"
 #include "motion.h"
 
-#define POS_BUFFER 10
-#define POS_BUFFER_BIG 30
-#define STEP_SIZE 60
+#define POS_BUFFER_ELBOW 5
+#define POS_BUFFER_BIG_ELBOW 10
+#define STEP_SIZE_ELBOW 60
+
+#define POS_BUFFER_SHOULDER 10
+#define POS_BUFFER_BIG_SHOULDER 20
+#define STEP_SIZE_SHOULDER 60
 
 int16 getElbowPos() {
     AMux_Select(AMUX_ELBOW);
@@ -45,14 +49,14 @@ void elbowStop() {
 uint8 elbowGoToPos(int16 goalPos) {
     int16 currPos = getElbowPos();
     
-    if ((currPos > goalPos - POS_BUFFER_BIG) && (currPos < goalPos + POS_BUFFER_BIG)) {
+    if ((currPos > goalPos - POS_BUFFER_BIG_ELBOW) && (currPos < goalPos + POS_BUFFER_BIG_ELBOW)) {
         return 1;
     }
     
     while (1) {
         int16 currPos = getElbowPos();
         
-        if ((currPos > goalPos - POS_BUFFER) && (currPos < goalPos + POS_BUFFER)) {
+        if ((currPos > goalPos - POS_BUFFER_ELBOW) && (currPos < goalPos + POS_BUFFER_ELBOW)) {
             elbowStop();
             return 0;
         }
@@ -67,7 +71,7 @@ uint8 elbowGoToPos(int16 goalPos) {
 
 void elbowUpStep() {
     int16 currPos = getElbowPos();
-    int16 newPos = currPos - STEP_SIZE;
+    int16 newPos = currPos - STEP_SIZE_ELBOW;
     
     Lcd_ClearDisplay();
     Lcd_Position(0,0);
@@ -81,7 +85,7 @@ void elbowUpStep() {
 }
 void elbowDownStep() {
     int16 currPos = getElbowPos();
-    int16 newPos = currPos + STEP_SIZE;
+    int16 newPos = currPos + STEP_SIZE_ELBOW;
     
     Lcd_ClearDisplay();
     Lcd_Position(0,0);
@@ -96,7 +100,7 @@ void elbowDownStep() {
 
 void shoulderUpStep() {
     int16 currPos = getShoulderPos();
-    int16 newPos = currPos - STEP_SIZE;
+    int16 newPos = currPos - STEP_SIZE_SHOULDER;
     
     Lcd_ClearDisplay();
     Lcd_Position(0,0);
@@ -110,7 +114,7 @@ void shoulderUpStep() {
 }
 void shoulderDownStep() {
     int16 currPos = getShoulderPos();
-    int16 newPos = currPos + STEP_SIZE;
+    int16 newPos = currPos + STEP_SIZE_SHOULDER;
     
     Lcd_ClearDisplay();
     Lcd_Position(0,0);
@@ -139,14 +143,14 @@ void shoulderStop() {
 uint8 shoulderGoToPos(int16 goalPos) {
     int16 currPos = getShoulderPos();
     
-    if ((currPos > goalPos - POS_BUFFER_BIG) && (currPos < goalPos + POS_BUFFER_BIG)) {
+    if ((currPos > goalPos - POS_BUFFER_BIG_SHOULDER) && (currPos < goalPos + POS_BUFFER_BIG_SHOULDER)) {
         return 1;
     }
     
     while (1) {
         int16 currPos = getShoulderPos();
         
-        if ((currPos > goalPos - POS_BUFFER) && (currPos < goalPos + POS_BUFFER)) {
+        if ((currPos > goalPos - POS_BUFFER_SHOULDER) && (currPos < goalPos + POS_BUFFER_SHOULDER)) {
             shoulderStop();
             return 0;
         }
@@ -185,4 +189,17 @@ void rotateStepCW(uint16 timeToMove) {
 uint16 * getPosCoords() {
     uint16 * coords[2] = {0, 0};
     return *(coords);
+}
+
+int16 elbowAngleToPotPos(uint8 angle) {
+    return (int16) (-11.067 * ((float) angle) + 2385);
+}
+int16 shoulderAngleToPotPos(uint8 angle) { // Need more datapoints to confirm formula
+    return (int16) (-3.333 * ((float) angle) + 2400);
+}
+uint8 elbowPotPosToAngle(int16 potPos) {
+    return (uint8) (0.09035 * (2385 - potPos));
+}
+uint8 shoulderPotPosToAngle(int16 potPos) { // Need more datapoints to confirm formula
+    return (uint8) (0.3 * (2400 - potPos));;
 }
