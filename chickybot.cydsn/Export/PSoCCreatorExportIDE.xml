@@ -39,12 +39,6 @@
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\cv.c</File>
           <File BuildType="BUILD" Toolchain="">.\cv.h</File>
-          <File BuildType="BUILD" Toolchain="">.\sensors.c</File>
-          <File BuildType="BUILD" Toolchain="">.\sensors.h</File>
-          <File BuildType="BUILD" Toolchain="">.\motion.c</File>
-          <File BuildType="BUILD" Toolchain="">.\motion.h</File>
-          <File BuildType="BUILD" Toolchain="">.\main.h</File>
-          <File BuildType="BUILD" Toolchain="">.\prelim.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\Generated_Source\PSoC5">
@@ -171,69 +165,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Camera_I2C_SLAVE.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Camera_I2C_MASTER.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Camera_I2C_PVT.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsEcho_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsEcho.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsEcho.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrUsTimer.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrUsTimer.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTrig_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTrig.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTrig.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTimer.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTimer.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsTimer_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsPWM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsPWM.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UsPWM_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsPWM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsPWM.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPos_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPos.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPos.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowNeg_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowNeg.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowNeg.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPos_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPos.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPos.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderNeg.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsTimer.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ClockUsTimer.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ElbowPot.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PhotoDiode1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PhotoDiode1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PhotoDiode1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\AMux.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\AMux.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_theACLK.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ShoulderPot.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\MicroSwitch_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\MicroSwitch.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\MicroSwitch.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrMicroSwitch.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IsrMicroSwitch.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fan.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCCW_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCCW.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCCW.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCW_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCW.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\RotateCW.h</File>
         </Files>
       </Folder>
       <Folder BuildType="BUILD" Path="C:\Users\Nick\Dropbox\Uni Docs\y4s2\ECE3091 - Engineering Design\PSoc Creator\eng_design_2015\ECE3091-chickybot\chickybot.cydsn\CapSense_Simple\API">
