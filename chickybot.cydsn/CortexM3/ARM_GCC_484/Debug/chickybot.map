@@ -4,10 +4,14 @@ Archive member included because of file (symbol)
                               .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o (cyfitter_cfg)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
                               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o) (CyDelayCycles)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+                              .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o (CyDmacConfigure)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
                               .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o (CyHalt)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
                               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o) (CyPmReadStatus)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (LedRed_Write)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
                               .\CortexM3\ARM_GCC_484\Debug\main.o (LedGreen_Write)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
@@ -20,10 +24,84 @@ Archive member included because of file (symbol)
                               .\CortexM3\ARM_GCC_484\Debug\main.o (IsrBtn1Pressed_StartEx)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
                               .\CortexM3\ARM_GCC_484\Debug\main.o (CsBtns_PWM_Start)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+                              .\CortexM3\ARM_GCC_484\Debug\cv.o (Camera_SyncFrame)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o) (Camera_DMA_DmaInitialize)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o) (Camera_VSYNC_Read)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o) (Camera_SIOD_SetDriveMode)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o) (Camera_SIOC_SetDriveMode)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o) (Camera_I2C_Start)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o) (Camera_I2C_ISR)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o) (Camera_I2C_backup)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o) (Camera_I2C_mstrStatus)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (IsrUsTimer_StartEx)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                              .\CortexM3\ARM_GCC_484\Debug\sensors.o (UsTimer_ReadStatusRegister)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (UsPWM_Start)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (ElbowPos_Write)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (ElbowNeg_Write)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (ShoulderPos_Write)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (ShoulderNeg_Write)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (ADC_Start)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o) (ADC_ISR)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (AMux_Start)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o) (ADC_theACLK_SetModeRegister)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+                              .\CortexM3\ARM_GCC_484\Debug\prelim.o (MicroSwitch_Read)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (IsrMicroSwitch_StartEx)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+                              .\CortexM3\ARM_GCC_484\Debug\prelim.o (Fan_Write)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (RotateCCW_Write)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+                              .\CortexM3\ARM_GCC_484\Debug\main.o (RotateCW_Write)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
                               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o) (CyFlash_SetWaitCycles)
 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
                               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o) (CySpcStart)
+.\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o) (Camera_qcif)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
+                              .\CortexM3\ARM_GCC_484\Debug\prelim.o (__aeabi_dsub)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (__aeabi_dmul)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (__aeabi_d2iz)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (__aeabi_d2uiz)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                              .\CortexM3\ARM_GCC_484\Debug\motion.o (__aeabi_ui2f)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o) (__aeabi_fmul)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+                              .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o) (__aeabi_ldivmod)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__aeabi_ldiv0)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o) (__divdi3)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o) (__udivdi3)
 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
                               .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o (__errno)
 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
@@ -32,14 +110,51 @@ c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.
                               c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o) (_global_impure_ptr)
 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
                               c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (__libc_init_array)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+                              .\CortexM3\ARM_GCC_484\Debug\cv.o (malloc)
 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
                               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o) (memcpy)
 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
                               c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (memset)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o) (_free_r)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o) (_malloc_r)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o) (_sbrk_r)
+c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+                              c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o) (errno)
 
 Allocating common symbols
 Common symbol       size              file
 
+rc                  0x4               .\CortexM3\ARM_GCC_484\Debug\sensors.o
+Camera_I2C_mstrWrBufSize
+                    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+Camera_I2C_mstrRdBufIndex
+                    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+errno               0x4               c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ADC_countsPer10Volt
+                    0x4               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+Camera_I2C_mstrRdBufSize
+                    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+Camera_I2C_mstrControl
+                    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+dist                0x4               .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ADC_shift           0x2               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ADC_countsPerVolt   0x2               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+Camera_I2C_state    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+plan                0x4               .\CortexM3\ARM_GCC_484\Debug\main.o
+Camera_I2C_mstrWrBufPtr
+                    0x4               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ADC_offset          0x2               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+Camera_I2C_mstrWrBufIndex
+                    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+Camera_I2C_mstrRdBufPtr
+                    0x4               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+Camera_framebuffer  0xc600            .\CortexM3\ARM_GCC_484\Debug\main.o
+Camera_I2C_mstrStatus
+                    0x1               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
 dieTemperature      0x2               .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
 
 Discarded input sections
@@ -56,6 +171,85 @@ Discarded input sections
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\main.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\main.o
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .text.displayPlanOnLcd
+                0x00000000       0x34 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .text.getPlan  0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\main.o
+ COMMON         0x00000000     0xc604 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .text.takePhoto
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .text.parsePhoto
+                0x00000000      0x56c .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .text.readPlanWithCamera
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .text.getDist  0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .text.drawDistToLcd
+                0x00000000       0x34 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .text.getColour
+                0x00000000      0x10c .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .rodata.str1.4
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.displayElbowPos
+                0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.displayShoulderPos
+                0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowUp  0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowDown
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowStop
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowGoToPos
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowUpStep
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowDownStep
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderUp
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderDown
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderStop
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderGoToPos
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderUpStep
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderDownStep
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.rotateToHome
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.getPosCoords
+                0x00000000        0x4 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowAngleToPotPos
+                0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderAngleToPotPos
+                0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.elbowPotPosToAngle
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text.shoulderPotPosToAngle
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .rodata.str1.4
+                0x00000000        0x4 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .data          0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .text.angleToDistanceElbow
+                0x00000000       0x48 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .text.angleToDistanceShoulder
+                0x00000000       0x48 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .text.distanceToAngleElbow
+                0x00000000       0x80 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .text.distanceToAngleShoulder
+                0x00000000       0xa0 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .text.prelim   0x00000000       0xe8 .\CortexM3\ARM_GCC_484\Debug\prelim.o
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
@@ -71,9 +265,57 @@ Discarded input sections
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.SetAnalogRoutingPumps
-                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmacError
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmacClearError
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmacErrorAddress
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChAlloc
+                0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChFree
+                0x00000000       0x2c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChEnable
+                0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChDisable
+                0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaClearPendingDrq
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChPriority
+                0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChSetExtendedAddress
+                0x00000000       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChSetInitialTd
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChSetRequest
+                0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChGetRequest
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChStatus
+                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChSetConfiguration
+                0x00000000       0x44 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdAllocate
+                0x00000000       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdFree
+                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdFreeCount
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdSetConfiguration
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdGetConfiguration
+                0x00000000       0x4c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdSetAddress
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaTdGetAddress
+                0x00000000       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .text.CyDmaChRoundRobin
+                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .bss           0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyUSB_PowerOnCheck
@@ -140,7 +382,6 @@ Discarded input sections
                 0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyXTAL_SetWdVoltage
                 0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .text.CyHalt   0x00000000        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyPLL_OUT_SetPQ
                 0x00000000       0x5c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyPLL_OUT_SetSource
@@ -189,12 +430,8 @@ Discarded input sections
                 0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyIntGetSysVector
                 0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .text.CyIntSetVector
-                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyIntGetVector
                 0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .text.CyIntSetPriority
-                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyIntGetPriority
                 0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .text.CyIntGetState
@@ -267,6 +504,13 @@ Discarded input sections
  .text.CyPmFtwSetInterval
                 0x00000000       0x5c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
  .rodata        0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .text.LedRed_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .text.LedRed_ReadDataReg
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
@@ -293,8 +537,6 @@ Discarded input sections
                 0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .text.Lcd_PrintInt16
                 0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .text.Lcd_PrintNumber
-                0x00000000       0x8c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .rodata        0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
@@ -348,6 +590,325 @@ Discarded input sections
                 0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
  .text.CsBtns_PWM_ReadPeriod
                 0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .bss           0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.DMA_Start
+                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_WriteReg
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_ReadReg
+                0x00000000       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_SyncFrame
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_Start
+                0x00000000       0xc4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_GetFrame
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_Stream
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text.Camera_StopStreaming
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .data          0x00000000        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .text.Camera_DMA_DmaInitialize
+                0x00000000       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .text.Camera_DMA_DmaRelease
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .text.Camera_VSYNC_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .text.Camera_VSYNC_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .text.Camera_VSYNC_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .text.Camera_VSYNC_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .text.Camera_SIOD_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .text.Camera_SIOD_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .text.Camera_SIOD_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .text.Camera_SIOD_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .text.Camera_SIOC_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .text.Camera_SIOC_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .text.Camera_SIOC_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .text.Camera_SIOC_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .bss           0x00000000        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .text.Camera_I2C_Init
+                0x00000000       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .text.Camera_I2C_Enable
+                0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .text.Camera_I2C_Start
+                0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .text.Camera_I2C_Stop
+                0x00000000       0xb4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ COMMON         0x00000000        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .text.Camera_I2C_ISR
+                0x00000000      0x2c8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .data          0x00000000        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .text.Camera_I2C_SaveConfig
+                0x00000000       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .text.Camera_I2C_Sleep
+                0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .text.Camera_I2C_RestoreConfig
+                0x00000000       0x60 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .text.Camera_I2C_Wakeup
+                0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterWriteBuf
+                0x00000000       0xc8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterReadBuf
+                0x00000000       0xcc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterSendStart
+                0x00000000       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterSendRestart
+                0x00000000       0x6c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterSendStop
+                0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterWriteByte
+                0x00000000       0x58 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterReadByte
+                0x00000000       0x58 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterStatus
+                0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterClearStatus
+                0x00000000       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterGetReadBufSize
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterGetWriteBufSize
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterClearReadBuf
+                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text.Camera_I2C_MasterClearWriteBuf
+                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ COMMON         0x00000000       0x11 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_Interrupt
+                0x00000000        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_GetVector
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_GetPriority
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_GetState
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_Start
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_Stop
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_SetPending
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text.IsrUsTimer_ClearPending
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text.UsTimer_Stop
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text.UsTimer_SoftwareCapture
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text.UsTimer_ReadControlRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text.UsTimer_WriteControlRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text.UsTimer_ReadPeriod
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text.UsTimer_ReadCounter
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text.UsPWM_Stop
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text.UsPWM_ReadCounter
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text.UsPWM_ReadControlRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text.UsPWM_WriteControlRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text.UsPWM_ReadCompare
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text.UsPWM_ReadPeriod
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .text.ElbowPos_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .text.ElbowPos_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .text.ElbowPos_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .text.ElbowPos_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .text.ElbowNeg_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .text.ElbowNeg_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .text.ElbowNeg_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .text.ElbowNeg_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .text.ShoulderPos_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .text.ShoulderPos_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .text.ShoulderPos_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .text.ShoulderPos_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .text.ShoulderNeg_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .text.ShoulderNeg_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .text.ShoulderNeg_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .text.ShoulderNeg_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_Stop
+                0x00000000       0x48 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_SetPower
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_StopConvert
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_GetResult8
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_SetOffset
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_SetGain
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_SetScaledGain
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_CountsTo_mVolts
+                0x00000000       0x54 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_CountsTo_uVolts
+                0x00000000       0x48 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_CountsTo_Volts
+                0x00000000       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .text.AMux_DisconnectAll
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_Start
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_Stop
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_StopBlock
+                0x00000000       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_StandbyPower
+                0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_GetDividerRegister
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_ClearModeRegister
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_GetModeRegister
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_GetSourceRegister
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_SetDividerRegister
+                0x00000000       0xe4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text.ADC_theACLK_SetSourceRegister
+                0x00000000       0x5c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .text.MicroSwitch_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .text.MicroSwitch_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .text.MicroSwitch_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .text.MicroSwitch_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_Interrupt
+                0x00000000        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_GetVector
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_GetPriority
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_GetState
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_Start
+                0x00000000       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_Stop
+                0x00000000       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_SetPending
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text.IsrMicroSwitch_ClearPending
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .text.Fan_Write
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .text.Fan_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .text.Fan_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .text.Fan_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .text.RotateCCW_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .text.RotateCCW_Read
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .text.RotateCCW_ReadDataReg
+                0x00000000       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .text.RotateCW_SetDriveMode
+                0x00000000       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .text.RotateCW_Read
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .text.RotateCW_ReadDataReg
+                0x00000000        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
  .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
  .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
  .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
@@ -405,6 +966,47 @@ Discarded input sections
                 0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
  .text.CySpcGetAlgorithm
                 0x00000000       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .text          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+ .data          0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+ .bss           0x00000000        0x0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+ .rodata        0x00000000       0xb8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+ .text          0x00000000      0x370 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
+ .text          0x00000000      0x424 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
+ .text          0x00000000       0x50 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
+ .text          0x00000000       0x40 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+ .text          0x00000000      0x21c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .text          0x00000000      0x2a0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .text          0x00000000       0x38 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .text          0x00000000       0x60 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+ .text          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000      0x2a0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .text          0x00000000      0x290 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
  .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
  .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
  .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
@@ -427,12 +1029,42 @@ Discarded input sections
  .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
  .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
  .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+ .text.malloc   0x00000000       0x10 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+ .text.free     0x00000000       0x10 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
  .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
  .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
  .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
  .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
  .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
  .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+ .text._free_r  0x00000000       0x88 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .text._malloc_r
+                0x00000000       0xa8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .bss.__malloc_sbrk_start
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .bss.__malloc_free_list
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+ .text._sbrk_r  0x00000000       0x20 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ .text.cleanup_glue
+                0x00000000       0x1a c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ .text._reclaim_reent
+                0x00000000       0xbc c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ COMMON         0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
  .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
  .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
  .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
@@ -454,6 +1086,10 @@ LOAD c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm
 LOAD c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
 START GROUP
 LOAD .\CortexM3\ARM_GCC_484\Debug\main.o
+LOAD .\CortexM3\ARM_GCC_484\Debug\cv.o
+LOAD .\CortexM3\ARM_GCC_484\Debug\sensors.o
+LOAD .\CortexM3\ARM_GCC_484\Debug\motion.o
+LOAD .\CortexM3\ARM_GCC_484\Debug\prelim.o
 LOAD .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
 LOAD .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
 LOAD .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
@@ -485,7 +1121,7 @@ END GROUP
                 0x00000001                CY_APPL_NUM = 0x1
                 0x00000001                CY_APPL_MAX = 0x1
                 0x00000040                CY_METADATA_SIZE = 0x40
-                0x1fff8140                PROVIDE (__cy_heap_start, _end)
+                0x1fff8160                PROVIDE (__cy_heap_start, _end)
                 0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
                 0x20008000                PROVIDE (__cy_stack, (ORIGIN (ram) + 0x10000))
                 0x20007800                PROVIDE (__cy_heap_end, (__cy_stack - 0x800))
@@ -502,7 +1138,7 @@ END GROUP
                 0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
                 0x000004e0                PROVIDE (CY_ECC_OFFSET, ecc_offset)
 
-.text           0x00002700      0x82e
+.text           0x00002700     0x10a2
  CREATE_OBJECT_SYMBOLS
                 0x00002700                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -520,139 +1156,320 @@ END GROUP
  *(.text .text.* .gnu.linkonce.t.*)
  .text          0x00002718       0x54 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
  .text.Btn0Pressed
-                0x0000276c       0x14 .\CortexM3\ARM_GCC_484\Debug\main.o
+                0x0000276c       0x1c .\CortexM3\ARM_GCC_484\Debug\main.o
                 0x0000276c                Btn0Pressed
  .text.Btn1Pressed
-                0x00002780       0x14 .\CortexM3\ARM_GCC_484\Debug\main.o
-                0x00002780                Btn1Pressed
- .text.main     0x00002794       0x44 .\CortexM3\ARM_GCC_484\Debug\main.o
-                0x00002794                main
+                0x00002788       0x1c .\CortexM3\ARM_GCC_484\Debug\main.o
+                0x00002788                Btn1Pressed
+ .text.MicroSwitchTrigger
+                0x000027a4       0x20 .\CortexM3\ARM_GCC_484\Debug\main.o
+                0x000027a4                MicroSwitchTrigger
+ .text.main     0x000027c4       0xb4 .\CortexM3\ARM_GCC_484\Debug\main.o
+                0x000027c4                main
+ .text.UsSensorTrigger
+                0x00002878       0x54 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+                0x00002878                UsSensorTrigger
+ .text.getElbowPos
+                0x000028cc       0x14 .\CortexM3\ARM_GCC_484\Debug\motion.o
+                0x000028cc                getElbowPos
+ .text.getShoulderPos
+                0x000028e0       0x14 .\CortexM3\ARM_GCC_484\Debug\motion.o
+                0x000028e0                getShoulderPos
+ .text.rotateStepCCW
+                0x000028f4       0x24 .\CortexM3\ARM_GCC_484\Debug\motion.o
+                0x000028f4                rotateStepCCW
+ .text.rotateStepCW
+                0x00002918       0x24 .\CortexM3\ARM_GCC_484\Debug\motion.o
+                0x00002918                rotateStepCW
  .text.IntDefaultHandler
-                0x000027d8        0x4 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x000027d8                IntDefaultHandler
- .text.Start_c  0x000027dc       0x4c .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x000027dc                Start_c
+                0x0000293c        0x4 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x0000293c                IntDefaultHandler
+ .text.Start_c  0x00002940       0x4c .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00002940                Start_c
  .text.initialize_psoc
-                0x00002828       0x70 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x00002828                initialize_psoc
+                0x0000298c       0x74 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x0000298c                initialize_psoc
  .text.CyClockStartupError
-                0x00002898        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002a00        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.cfg_write_bytes32
-                0x0000289c       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002a04       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.AnalogSetDefault
-                0x000028d0       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002a38       0x74 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.CYMEMZERO
-                0x000028f8        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002aac        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.CYCONFIGCPYCODE
-                0x00002904        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002ab8        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.CYCONFIGCPY
-                0x0000290c        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002ac0        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.ClockSetup
-                0x00002914       0xcc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002ac8       0xf4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .text.AMux_Set
+                0x00002bbc       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002bbc                AMux_Set
+ .text.AMux_Unset
+                0x00002bd8       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002bd8                AMux_Unset
  .text.cyfitter_cfg
-                0x000029e0      0x108 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
-                0x000029e0                cyfitter_cfg
- .text          0x00002ae8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
-                0x00002ae8                CyDelayCycles
-                0x00002afc                CyEnterCriticalSection
-                0x00002b04                CyExitCriticalSection
- .text.CyDelay  0x00002b10       0x2c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
-                0x00002b10                CyDelay
+                0x00002bf4      0x148 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002bf4                cyfitter_cfg
+ *fill*         0x00002d3c        0x4 
+ .text          0x00002d40       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+                0x00002d40                CyDelayCycles
+                0x00002d54                CyEnterCriticalSection
+                0x00002d5c                CyExitCriticalSection
+ .text.CyDmacConfigure
+                0x00002d68       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+                0x00002d68                CyDmacConfigure
+ .text.CyHalt   0x00002d9c        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x00002d9c                CyHalt
+ .text.CyDelay  0x00002da0       0x2c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x00002da0                CyDelay
  .text.CyDelayUs
-                0x00002b3c       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
-                0x00002b3c                CyDelayUs
+                0x00002dcc       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x00002dcc                CyDelayUs
+ .text.CyIntSetVector
+                0x00002de0       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x00002de0                CyIntSetVector
+ .text.CyIntSetPriority
+                0x00002e08       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x00002e08                CyIntSetPriority
+ .text.LedRed_Write
+                0x00002e38       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+                0x00002e38                LedRed_Write
+ .text.LedRed_Read
+                0x00002e50        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+                0x00002e50                LedRed_Read
  .text.LedGreen_Write
-                0x00002b50       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
-                0x00002b50                LedGreen_Write
+                0x00002e5c       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+                0x00002e5c                LedGreen_Write
  .text.LedGreen_Read
-                0x00002b68       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
-                0x00002b68                LedGreen_Read
+                0x00002e74       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+                0x00002e74                LedGreen_Read
  .text.LedBlue_Write
-                0x00002b78       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
-                0x00002b78                LedBlue_Write
+                0x00002e84       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+                0x00002e84                LedBlue_Write
  .text.LedBlue_Read
-                0x00002b90       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
-                0x00002b90                LedBlue_Read
+                0x00002e9c       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+                0x00002e9c                LedBlue_Read
  .text.Lcd_WrCntrlNib
-                0x00002ba0       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002eac       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .text.Lcd_WrDatNib
-                0x00002bd4       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002ee0       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .text.Lcd_WriteData
-                0x00002c10       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002c10                Lcd_WriteData
+                0x00002f1c       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002f1c                Lcd_WriteData
  .text.Lcd_PrintString
-                0x00002c30       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002c30                Lcd_PrintString
+                0x00002f3c       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002f3c                Lcd_PrintString
  .text.Lcd_WriteControl
-                0x00002c4c       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002c4c                Lcd_WriteControl
+                0x00002f58       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002f58                Lcd_WriteControl
  .text.Lcd_Init
-                0x00002c70       0x6c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002c70                Lcd_Init
+                0x00002f7c       0x6c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002f7c                Lcd_Init
  .text.Lcd_Enable
-                0x00002cdc       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002cdc                Lcd_Enable
+                0x00002fe8       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002fe8                Lcd_Enable
  .text.Lcd_Start
-                0x00002cf0       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002cf0                Lcd_Start
+                0x00002ffc       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00002ffc                Lcd_Start
  .text.Lcd_Position
-                0x00002d0c       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x00002d0c                Lcd_Position
+                0x00003018       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00003018                Lcd_Position
+ .text.Lcd_PrintNumber
+                0x00003054       0x8c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00003054                Lcd_PrintNumber
  .text.IsrBtn0Pressed_SetVector
-                0x00002d48        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
-                0x00002d48                IsrBtn0Pressed_SetVector
+                0x000030e0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x000030e0                IsrBtn0Pressed_SetVector
  .text.IsrBtn0Pressed_SetPriority
-                0x00002d54       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
-                0x00002d54                IsrBtn0Pressed_SetPriority
+                0x000030ec       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x000030ec                IsrBtn0Pressed_SetPriority
  .text.IsrBtn0Pressed_Enable
-                0x00002d64        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
-                0x00002d64                IsrBtn0Pressed_Enable
+                0x000030fc        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x000030fc                IsrBtn0Pressed_Enable
  .text.IsrBtn0Pressed_Disable
-                0x00002d70        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
-                0x00002d70                IsrBtn0Pressed_Disable
+                0x00003108        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x00003108                IsrBtn0Pressed_Disable
  .text.IsrBtn0Pressed_StartEx
-                0x00002d7c       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
-                0x00002d7c                IsrBtn0Pressed_StartEx
+                0x00003114       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x00003114                IsrBtn0Pressed_StartEx
  .text.IsrBtn1Pressed_SetVector
-                0x00002d98        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
-                0x00002d98                IsrBtn1Pressed_SetVector
+                0x00003130        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x00003130                IsrBtn1Pressed_SetVector
  .text.IsrBtn1Pressed_SetPriority
-                0x00002da4       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
-                0x00002da4                IsrBtn1Pressed_SetPriority
+                0x0000313c       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x0000313c                IsrBtn1Pressed_SetPriority
  .text.IsrBtn1Pressed_Enable
-                0x00002db4        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
-                0x00002db4                IsrBtn1Pressed_Enable
+                0x0000314c        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x0000314c                IsrBtn1Pressed_Enable
  .text.IsrBtn1Pressed_Disable
-                0x00002dc0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
-                0x00002dc0                IsrBtn1Pressed_Disable
+                0x00003158        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x00003158                IsrBtn1Pressed_Disable
  .text.IsrBtn1Pressed_StartEx
-                0x00002dcc       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
-                0x00002dcc                IsrBtn1Pressed_StartEx
+                0x00003164       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x00003164                IsrBtn1Pressed_StartEx
  .text.CsBtns_PWM_Enable
-                0x00002de8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x00002de8                CsBtns_PWM_Enable
+                0x00003180       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x00003180                CsBtns_PWM_Enable
  .text.CsBtns_PWM_WritePeriod
-                0x00002e10        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x00002e10                CsBtns_PWM_WritePeriod
+                0x000031a8        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x000031a8                CsBtns_PWM_WritePeriod
  .text.CsBtns_PWM_WriteCompare
-                0x00002e1c        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x00002e1c                CsBtns_PWM_WriteCompare
+                0x000031b4        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x000031b4                CsBtns_PWM_WriteCompare
  .text.CsBtns_PWM_SetInterruptMode
-                0x00002e28        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x00002e28                CsBtns_PWM_SetInterruptMode
+                0x000031c0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x000031c0                CsBtns_PWM_SetInterruptMode
  .text.CsBtns_PWM_Init
-                0x00002e34       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x00002e34                CsBtns_PWM_Init
+                0x000031cc       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x000031cc                CsBtns_PWM_Init
  .text.CsBtns_PWM_Start
-                0x00002ea4       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x00002ea4                CsBtns_PWM_Start
+                0x0000323c       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x0000323c                CsBtns_PWM_Start
+ .text.IsrUsTimer_SetVector
+                0x00003258        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                0x00003258                IsrUsTimer_SetVector
+ .text.IsrUsTimer_SetPriority
+                0x00003264       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                0x00003264                IsrUsTimer_SetPriority
+ .text.IsrUsTimer_Enable
+                0x00003274        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                0x00003274                IsrUsTimer_Enable
+ .text.IsrUsTimer_Disable
+                0x00003280        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                0x00003280                IsrUsTimer_Disable
+ .text.IsrUsTimer_StartEx
+                0x0000328c       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                0x0000328c                IsrUsTimer_StartEx
+ .text.UsTimer_Enable
+                0x000032a8       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032a8                UsTimer_Enable
+ .text.UsTimer_SetInterruptMode
+                0x000032b8        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032b8                UsTimer_SetInterruptMode
+ .text.UsTimer_ReadStatusRegister
+                0x000032c4        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032c4                UsTimer_ReadStatusRegister
+ .text.UsTimer_WritePeriod
+                0x000032d0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032d0                UsTimer_WritePeriod
+ .text.UsTimer_ReadCapture
+                0x000032dc        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032dc                UsTimer_ReadCapture
+ .text.UsTimer_WriteCounter
+                0x000032e8        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032e8                UsTimer_WriteCounter
+ .text.UsTimer_EnableTrigger
+                0x000032f4       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x000032f4                UsTimer_EnableTrigger
+ .text.UsTimer_DisableTrigger
+                0x00003304       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x00003304                UsTimer_DisableTrigger
+ .text.UsTimer_SetInterruptCount
+                0x00003314       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x00003314                UsTimer_SetInterruptCount
+ .text.UsTimer_ClearFIFO
+                0x00003330       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x00003330                UsTimer_ClearFIFO
+ .text.UsTimer_Init
+                0x00003344       0x40 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x00003344                UsTimer_Init
+ .text.UsTimer_Start
+                0x00003384       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x00003384                UsTimer_Start
+ .text.UsPWM_Enable
+                0x000033a0       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033a0                UsPWM_Enable
+ .text.UsPWM_WriteCounter
+                0x000033b0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033b0                UsPWM_WriteCounter
+ .text.UsPWM_WritePeriod
+                0x000033bc        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033bc                UsPWM_WritePeriod
+ .text.UsPWM_WriteCompare
+                0x000033c8        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033c8                UsPWM_WriteCompare
+ .text.UsPWM_SetInterruptMode
+                0x000033d4        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033d4                UsPWM_SetInterruptMode
+ .text.UsPWM_ReadStatusRegister
+                0x000033e0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033e0                UsPWM_ReadStatusRegister
+ .text.UsPWM_ReadCapture
+                0x000033ec        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033ec                UsPWM_ReadCapture
+ .text.UsPWM_ClearFIFO
+                0x000033f8       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x000033f8                UsPWM_ClearFIFO
+ .text.UsPWM_Init
+                0x0000340c       0x64 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x0000340c                UsPWM_Init
+ .text.UsPWM_Start
+                0x00003470       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x00003470                UsPWM_Start
+ .text.ADC_CalcGain
+                0x0000348c       0x64 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .text.ADC_Enable
+                0x000034f0       0x90 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x000034f0                ADC_Enable
+ .text.ADC_SetResolution
+                0x00003580       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x00003580                ADC_SetResolution
+ .text.ADC_Init
+                0x000035b8       0x3c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x000035b8                ADC_Init
+ .text.ADC_Start
+                0x000035f4       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x000035f4                ADC_Start
+ .text.ADC_StartConvert
+                0x00003610       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x00003610                ADC_StartConvert
+ .text.ADC_IsEndConversion
+                0x00003620       0x24 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x00003620                ADC_IsEndConversion
+ .text.ADC_GetResult16
+                0x00003644       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x00003644                ADC_GetResult16
+ .text.ADC_ISR  0x0000365c        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+                0x0000365c                ADC_ISR
+ .text.AMux_Start
+                0x00003660       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+                0x00003660                AMux_Start
+ .text.AMux_FastSelect
+                0x00003680       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+                0x00003680                AMux_FastSelect
+ .text.ADC_theACLK_SetModeRegister
+                0x000036a0       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+                0x000036a0                ADC_theACLK_SetModeRegister
+ .text.IsrMicroSwitch_SetVector
+                0x000036b4        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                0x000036b4                IsrMicroSwitch_SetVector
+ .text.IsrMicroSwitch_SetPriority
+                0x000036c0       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                0x000036c0                IsrMicroSwitch_SetPriority
+ .text.IsrMicroSwitch_Enable
+                0x000036d0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                0x000036d0                IsrMicroSwitch_Enable
+ .text.IsrMicroSwitch_Disable
+                0x000036dc        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                0x000036dc                IsrMicroSwitch_Disable
+ .text.IsrMicroSwitch_StartEx
+                0x000036e8       0x1c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                0x000036e8                IsrMicroSwitch_StartEx
+ .text.RotateCCW_Write
+                0x00003704       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+                0x00003704                RotateCCW_Write
+ .text.RotateCW_Write
+                0x0000371c       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+                0x0000371c                RotateCW_Write
  .text.__libc_init_array
-                0x00002ec0       0x4c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
-                0x00002ec0                __libc_init_array
- .text.memcpy   0x00002f0c       0x12 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
-                0x00002f0c                memcpy
- .text.memset   0x00002f1e       0x10 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
-                0x00002f1e                memset
+                0x00003734       0x4c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+                0x00003734                __libc_init_array
+ .text.memcpy   0x00003780       0x12 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+                0x00003780                memcpy
+ .text.memset   0x00003792       0x10 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+                0x00003792                memset
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -665,77 +1482,78 @@ END GROUP
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00002f30        0x0
+.v4_bx          0x000037a4        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00002f30        0x0
+.iplt           0x000037a4        0x0
  .iplt          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00002f30        0x4
+.eh_frame       0x000037a4        0x4
  *(.eh_frame)
- .eh_frame      0x00002f30        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .eh_frame      0x00002f30        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
-                0x00002f34                PROVIDE (__exidx_start, .)
+ .eh_frame      0x000037a4        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .eh_frame      0x000037a4        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+                0x000037a8                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00002f34                __exidx_end = .
+                0x000037a8                __exidx_end = .
 
-.rodata         0x00002f34      0x214
+.rodata         0x000037a8      0x5e0
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.4
-                0x00002f34       0x10 .\CortexM3\ARM_GCC_484\Debug\main.o
- .rodata        0x00002f44      0x1cc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
-                0x00003110                . = ALIGN (0x4)
+                0x000037a8       0x20 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .rodata        0x000037c8      0x58c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x000037c8                AMux__addrTable
+                0x000037d4                AMux__maskTable
+                0x00003d54                . = ALIGN (0x4)
  *(.init)
- .init          0x00003110        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
-                0x00003110                _init
- .init          0x00003114        0x8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
-                0x0000311c                . = ALIGN (0x4)
-                0x0000311c                __preinit_array_start = .
+ .init          0x00003d54        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+                0x00003d54                _init
+ .init          0x00003d58        0x8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x00003d60                . = ALIGN (0x4)
+                0x00003d60                __preinit_array_start = .
  *(.preinit_array)
-                0x0000311c                __preinit_array_end = .
-                0x0000311c                . = ALIGN (0x4)
-                0x0000311c                __init_array_start = .
+                0x00003d60                __preinit_array_end = .
+                0x00003d60                . = ALIGN (0x4)
+                0x00003d60                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x0000311c        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .init_array    0x00003120        0x4 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x00003124                __init_array_end = .
-                0x00003124                . = ALIGN (0x4)
+ .init_array    0x00003d60        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .init_array    0x00003d64        0x4 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00003d68                __init_array_end = .
+                0x00003d68                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00003124        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
-                0x00003124                _fini
- .fini          0x00003128        0x8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
-                0x00003130                . = ALIGN (0x4)
-                0x00003130                __fini_array_start = .
+ .fini          0x00003d68        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+                0x00003d68                _fini
+ .fini          0x00003d6c        0x8 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x00003d74                . = ALIGN (0x4)
+                0x00003d74                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00003130        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .fini_array    0x00003d74        0x4 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00003134                __fini_array_end = .
-                0x00003134                . = ALIGN (0x4)
+                0x00003d78                __fini_array_end = .
+                0x00003d78                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00003134                . = ALIGN (0x4)
+                0x00003d78                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00003134                . = ALIGN (0x4)
-                0x00003134                __cy_regions = .
-                0x00003134        0x4 LONG 0x3148 __cy_region_init_ram
-                0x00003138        0x4 LONG 0x1fff8108 __cy_region_start_data
-                0x0000313c        0x4 LONG 0x18 __cy_region_init_size_ram
-                0x00003140        0x4 LONG 0x20 __cy_region_zero_size_ram
-                0x00003144                __cy_regions_end = .
-                0x00003148                . = ALIGN (0x8)
- *fill*         0x00003144        0x4 
-                0x00003148                _etext = .
+                0x00003d78                . = ALIGN (0x4)
+                0x00003d78                __cy_regions = .
+                0x00003d78        0x4 LONG 0x3d88 __cy_region_init_ram
+                0x00003d7c        0x4 LONG 0x1fff8108 __cy_region_start_data
+                0x00003d80        0x4 LONG 0x20 __cy_region_init_size_ram
+                0x00003d84        0x4 LONG 0x38 __cy_region_zero_size_ram
+                0x00003d88                __cy_regions_end = .
+                0x00003d88                . = ALIGN (0x8)
+                0x00003d88                _etext = .
 
 .ramvectors     0x1fff8000      0x100
                 0x1fff8000                __cy_region_start_ram = .
@@ -749,7 +1567,7 @@ END GROUP
  .noinit        0x1fff8104        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
                 0x1fff8104                CyResetStatus
 
-.data           0x1fff8108       0x18 load address 0x00003148
+.data           0x1fff8108       0x20 load address 0x00003d88
                 0x1fff8108                __cy_region_start_data = .
  *(.jcr)
  .jcr           0x1fff8108        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
@@ -758,46 +1576,63 @@ END GROUP
  *(.got)
  *(.shdata)
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x1fff810c       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
-                0x1fff810c                cydelay_32k_ms
-                0x1fff8110                cydelay_freq_khz
-                0x1fff8114                cydelay_freq_mhz
-                0x1fff8118                cydelay_freq_hz
-                0x1fff8120                . = ALIGN (0x8)
- *fill*         0x1fff811c        0x4 
+ .data          0x1fff810c        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .data          0x1fff8114       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x1fff8114                cydelay_32k_ms
+                0x1fff8118                cydelay_freq_khz
+                0x1fff811c                cydelay_freq_mhz
+                0x1fff8120                cydelay_freq_hz
+ .data          0x1fff8124        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+                0x1fff8128                . = ALIGN (0x8)
+ *fill*         0x1fff8125        0x3 
  *(.ram)
-                0x1fff8120                _edata = .
+                0x1fff8128                _edata = .
 
-.igot.plt       0x1fff8120        0x0 load address 0x00003160
+.igot.plt       0x1fff8128        0x0 load address 0x00003da8
  .igot.plt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
 
-.bss            0x1fff8120       0x20 load address 0x00003160
-                0x1fff8120                PROVIDE (__bss_start__, .)
+.bss            0x1fff8128       0x38 load address 0x00003da8
+                0x1fff8128                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x1fff8120       0x1c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .bss           0x1fff813c        0x2 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
-                0x1fff813c                Lcd_enableState
-                0x1fff813d                Lcd_initVar
- .bss           0x1fff813e        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
-                0x1fff813e                CsBtns_PWM_initVar
+ .bss           0x1fff8128       0x1c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .bss           0x1fff8144        0x2 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x1fff8144                Lcd_enableState
+                0x1fff8145                Lcd_initVar
+ .bss           0x1fff8146        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x1fff8146                CsBtns_PWM_initVar
+ .bss           0x1fff8147        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                0x1fff8147                UsTimer_initVar
+ .bss           0x1fff8148        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                0x1fff8148                UsPWM_initVar
+ .bss           0x1fff8149        0x1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x1fff8149                ADC_initVar
  *(COMMON)
-                0x1fff8140                . = ALIGN (0x8)
- *fill*         0x1fff813f        0x1 
+ *fill*         0x1fff814a        0x2 
+ COMMON         0x1fff814c        0x8 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+                0x1fff814c                rc
+                0x1fff8150                dist
+ COMMON         0x1fff8154        0xa .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                0x1fff8154                ADC_countsPer10Volt
+                0x1fff8158                ADC_shift
+                0x1fff815a                ADC_countsPerVolt
+                0x1fff815c                ADC_offset
+                0x1fff8160                . = ALIGN (0x8)
+ *fill*         0x1fff815e        0x2 
  *(.ram.b)
-                0x1fff8140                _end = .
-                0x1fff8140                __end = .
-                0x1fff8140                PROVIDE (end, .)
-                0x1fff8140                PROVIDE (__bss_end__, .)
-                0x00003148                __cy_region_init_ram = LOADADDR (.data)
-                0x00000018                __cy_region_init_size_ram = (_edata - ADDR (.data))
-                0x00000020                __cy_region_zero_size_ram = (_end - _edata)
+                0x1fff8160                _end = .
+                0x1fff8160                __end = .
+                0x1fff8160                PROVIDE (end, .)
+                0x1fff8160                PROVIDE (__bss_end__, .)
+                0x00003d88                __cy_region_init_ram = LOADADDR (.data)
+                0x00000020                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x00000038                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x1fff8140       0x80 load address 0x00003160
-                0x1fff8140                . = _end
-                0x1fff81c0                . = (. + 0x80)
- *fill*         0x1fff8140       0x80 
-                0x1fff81c0                __cy_heap_limit = .
+.heap           0x1fff8160       0x80 load address 0x00003da8
+                0x1fff8160                . = _end
+                0x1fff81e0                . = (. + 0x80)
+ *fill*         0x1fff8160       0x80 
+                0x1fff81e0                __cy_heap_limit = .
 
 .stack          0x20007800      0x800
                 0x20007800                __cy_stack_limit = .
@@ -867,206 +1702,563 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x7c8
+.debug_aranges  0x00000000     0x1238
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x30 .\CortexM3\ARM_GCC_484\Debug\main.o
+                0x00000000       0x48 .\CortexM3\ARM_GCC_484\Debug\main.o
  .debug_aranges
-                0x00000030       0x18 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
+                0x00000048       0x30 .\CortexM3\ARM_GCC_484\Debug\cv.o
  .debug_aranges
-                0x00000048       0x48 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00000078       0x38 .\CortexM3\ARM_GCC_484\Debug\sensors.o
  .debug_aranges
-                0x00000090       0x18 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
+                0x000000b0       0xd8 .\CortexM3\ARM_GCC_484\Debug\motion.o
  .debug_aranges
-                0x000000a8       0x60 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00000188       0x40 .\CortexM3\ARM_GCC_484\Debug\prelim.o
  .debug_aranges
-                0x00000108       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+                0x000001c8       0x18 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
  .debug_aranges
-                0x00000128      0x298 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x000001e0       0x48 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
  .debug_aranges
-                0x000003c0       0x98 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+                0x00000228       0x18 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
  .debug_aranges
-                0x00000458       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+                0x00000240       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .debug_aranges
-                0x00000490       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+                0x000002b0       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
  .debug_aranges
-                0x000004c8       0x90 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x000002d0       0xd8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
  .debug_aranges
-                0x00000558       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x000003a8      0x298 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .debug_aranges
-                0x000005d8       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x00000640       0x98 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
  .debug_aranges
-                0x00000658       0x78 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x000006d8       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
  .debug_aranges
-                0x000006d0       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+                0x00000710       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
  .debug_aranges
-                0x00000750       0x78 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+                0x00000748       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_aranges
+                0x00000780       0x90 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_aranges
+                0x00000810       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_aranges
+                0x00000890       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_aranges
+                0x00000910       0x78 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_aranges
+                0x00000988       0x58 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_aranges
+                0x000009e0       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_aranges
+                0x00000a08       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_aranges
+                0x00000a40       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_aranges
+                0x00000a78       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_aranges
+                0x00000ab0       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_aranges
+                0x00000ae8       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_aranges
+                0x00000b08       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_aranges
+                0x00000b40       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_aranges
+                0x00000bc0       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_aranges
+                0x00000c40       0xa8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_aranges
+                0x00000ce8       0x98 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_aranges
+                0x00000d80       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_aranges
+                0x00000db8       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_aranges
+                0x00000df0       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_aranges
+                0x00000e28       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_aranges
+                0x00000e60       0xa8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_aranges
+                0x00000f08       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .debug_aranges
+                0x00000f28       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_aranges
+                0x00000f58       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_aranges
+                0x00000fc8       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_aranges
+                0x00001000       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_aranges
+                0x00001080       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_aranges
+                0x000010b8       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_aranges
+                0x000010f0       0x38 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_aranges
+                0x00001128       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_aranges
+                0x000011a8       0x78 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_aranges
+                0x00001220       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x48cf
+.debug_info     0x00000000     0xa992
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x272 .\CortexM3\ARM_GCC_484\Debug\main.o
- .debug_info    0x00000272       0xb1 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
- .debug_info    0x00000323      0x39f .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
- .debug_info    0x000006c2      0x164 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
- .debug_info    0x00000826      0x671 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
- .debug_info    0x00000e97       0xd0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
- .debug_info    0x00000f67     0x1373 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .debug_info    0x000022da      0xa56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
- .debug_info    0x00002d30      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
- .debug_info    0x00002e50      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
- .debug_info    0x00002f70      0x69e .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .debug_info    0x0000360e      0x2c7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
- .debug_info    0x000038d5      0x2c7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
- .debug_info    0x00003b9c      0x275 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
- .debug_info    0x00003e11      0x5e4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
- .debug_info    0x000043f5      0x4da .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_info    0x00000000      0x616 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .debug_info    0x00000616      0x31c .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .debug_info    0x00000932      0x5e8 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .debug_info    0x00000f1a      0xb73 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .debug_info    0x00001a8d      0x5f6 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .debug_info    0x00002083       0xb1 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
+ .debug_info    0x00002134      0x3af .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_info    0x000024e3      0x164 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
+ .debug_info    0x00002647      0x80c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .debug_info    0x00002e53       0xd0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+ .debug_info    0x00002f23      0x93f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .debug_info    0x00003862     0x1373 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_info    0x00004bd5      0xa56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_info    0x0000562b      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .debug_info    0x0000574b      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_info    0x0000586b      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_info    0x0000598b      0x69e .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_info    0x00006029      0x2c7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_info    0x000062f0      0x2c7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_info    0x000065b7      0x275 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_info    0x0000682c      0x687 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_info    0x00006eb3      0x1fb .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_info    0x000070ae      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_info    0x000071ce      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_info    0x000072ee      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_info    0x0000740e      0x2d6 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_info    0x000076e4      0x17d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_info    0x00007861      0x1fb .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_info    0x00007a5c      0x3fe .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_info    0x00007e5a      0x2c7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_info    0x00008121      0x350 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_info    0x00008471      0x34a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_info    0x000087bb      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_info    0x000088db      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_info    0x000089fb      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_info    0x00008b1b      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_info    0x00008c3b      0x5f4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_info    0x0000922f       0x92 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .debug_info    0x000092c1      0x14d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_info    0x0000940e      0x283 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_info    0x00009691      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_info    0x000097b1      0x2c7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_info    0x00009a78      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_info    0x00009b98      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_info    0x00009cb8      0x120 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_info    0x00009dd8      0x5e4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_info    0x0000a3bc      0x4da .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_info    0x0000a896       0xfc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
 
-.debug_abbrev   0x00000000     0x14c6
+.debug_abbrev   0x00000000     0x362c
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x123 .\CortexM3\ARM_GCC_484\Debug\main.o
- .debug_abbrev  0x00000123       0x5d .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
- .debug_abbrev  0x00000180      0x20d .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
- .debug_abbrev  0x0000038d       0x77 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
- .debug_abbrev  0x00000404      0x1d2 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
- .debug_abbrev  0x000005d6       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
- .debug_abbrev  0x000005ea      0x296 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .debug_abbrev  0x00000880      0x1fa .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
- .debug_abbrev  0x00000a7a       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
- .debug_abbrev  0x00000b17       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
- .debug_abbrev  0x00000bb4      0x17e .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .debug_abbrev  0x00000d32      0x157 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
- .debug_abbrev  0x00000e89      0x157 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
- .debug_abbrev  0x00000fe0      0x13a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
- .debug_abbrev  0x0000111a      0x1de .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
- .debug_abbrev  0x000012f8      0x1ce .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_abbrev  0x00000000      0x176 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .debug_abbrev  0x00000176      0x15b .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .debug_abbrev  0x000002d1      0x154 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .debug_abbrev  0x00000425      0x1be .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .debug_abbrev  0x000005e3      0x1b1 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .debug_abbrev  0x00000794       0x5d .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
+ .debug_abbrev  0x000007f1      0x20d .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_abbrev  0x000009fe       0x77 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
+ .debug_abbrev  0x00000a75      0x231 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .debug_abbrev  0x00000ca6       0x14 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00000cba      0x1cc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .debug_abbrev  0x00000e86      0x296 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_abbrev  0x0000111c      0x1fa .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_abbrev  0x00001316       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .debug_abbrev  0x000013b3       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_abbrev  0x00001450       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_abbrev  0x000014ed      0x17e .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_abbrev  0x0000166b      0x157 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_abbrev  0x000017c2      0x157 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_abbrev  0x00001919      0x13a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_abbrev  0x00001a53      0x1f2 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_abbrev  0x00001c45       0xf8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_abbrev  0x00001d3d       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_abbrev  0x00001dda       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_abbrev  0x00001e77       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_abbrev  0x00001f14      0x15c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_abbrev  0x00002070       0xca .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_abbrev  0x0000213a      0x12b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_abbrev  0x00002265      0x149 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_abbrev  0x000023ae      0x157 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_abbrev  0x00002505      0x161 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_abbrev  0x00002666      0x15a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_abbrev  0x000027c0       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_abbrev  0x0000285d       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_abbrev  0x000028fa       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_abbrev  0x00002997       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_abbrev  0x00002a34      0x1f8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_abbrev  0x00002c2c       0x42 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .debug_abbrev  0x00002c6e       0xcb .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_abbrev  0x00002d39      0x137 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_abbrev  0x00002e70       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_abbrev  0x00002f0d      0x157 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_abbrev  0x00003064       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_abbrev  0x00003101       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_abbrev  0x0000319e       0x9d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_abbrev  0x0000323b      0x1de .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_abbrev  0x00003419      0x1ce .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_abbrev  0x000035e7       0x45 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
 
-.debug_line     0x00000000     0x1db7
+.debug_line     0x00000000     0x47f7
  *(.debug_line)
- .debug_line    0x00000000      0x200 .\CortexM3\ARM_GCC_484\Debug\main.o
- .debug_line    0x00000200       0x53 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
- .debug_line    0x00000253      0x237 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
- .debug_line    0x0000048a       0x55 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
- .debug_line    0x000004df      0x1f5 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
- .debug_line    0x000006d4       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
- .debug_line    0x0000073c      0x818 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .debug_line    0x00000f54      0x366 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
- .debug_line    0x000012ba       0x97 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
- .debug_line    0x00001351       0x96 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
- .debug_line    0x000013e7      0x1a4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .debug_line    0x0000158b      0x154 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
- .debug_line    0x000016df      0x154 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
- .debug_line    0x00001833      0x13a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
- .debug_line    0x0000196d      0x228 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
- .debug_line    0x00001b95      0x222 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_line    0x00000000      0x327 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .debug_line    0x00000327      0x376 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .debug_line    0x0000069d      0x1f5 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .debug_line    0x00000892      0x3f0 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .debug_line    0x00000c82      0x23d .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .debug_line    0x00000ebf       0x53 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
+ .debug_line    0x00000f12      0x242 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_line    0x00001154       0x55 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
+ .debug_line    0x000011a9      0x232 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .debug_line    0x000013db       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+ .debug_line    0x00001443      0x2de .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .debug_line    0x00001721      0x818 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_line    0x00001f39      0x366 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_line    0x0000229f       0x95 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .debug_line    0x00002334       0x97 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_line    0x000023cb       0x96 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_line    0x00002461      0x1a4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_line    0x00002605      0x154 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_line    0x00002759      0x154 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_line    0x000028ad      0x13a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_line    0x000029e7      0x2d0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_line    0x00002cb7       0xa0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_line    0x00002d57       0x9b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_line    0x00002df2       0x9a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_line    0x00002e8c       0x9a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_line    0x00002f26       0xf0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_line    0x00003016      0x124 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_line    0x0000313a       0xcb .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_line    0x00003205      0x217 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_line    0x0000341c      0x150 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_line    0x0000356c      0x1ad .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_line    0x00003719      0x18e .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_line    0x000038a7       0x97 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_line    0x0000393e       0x97 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_line    0x000039d5       0x9a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_line    0x00003a6f       0x9a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_line    0x00003b09      0x213 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_line    0x00003d1c       0x52 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .debug_line    0x00003d6e       0xaa .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_line    0x00003e18      0x19b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_line    0x00003fb3       0x9a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_line    0x0000404d      0x154 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_line    0x000041a1       0x92 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_line    0x00004233       0x98 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_line    0x000042cb       0x97 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_line    0x00004362      0x228 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_line    0x0000458a      0x222 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_line    0x000047ac       0x4b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
 
-.debug_frame    0x00000000     0x1404
+.debug_frame    0x00000000     0x2b98
  *(.debug_frame)
- .debug_frame   0x00000000       0x64 .\CortexM3\ARM_GCC_484\Debug\main.o
- .debug_frame   0x00000064       0xac .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
- .debug_frame   0x00000110       0xfc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
- .debug_frame   0x0000020c      0x730 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .debug_frame   0x0000093c      0x1fc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
- .debug_frame   0x00000b38       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
- .debug_frame   0x00000b88       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
- .debug_frame   0x00000bd8      0x1c0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .debug_frame   0x00000d98      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
- .debug_frame   0x00000e9c      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
- .debug_frame   0x00000fa0       0xe8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
- .debug_frame   0x00001088      0x17c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
- .debug_frame   0x00001204      0x144 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
- .debug_frame   0x00001348       0x20 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .debug_frame   0x00001368       0x28 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .debug_frame   0x00001390       0x2c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
- .debug_frame   0x000013bc       0x28 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
- .debug_frame   0x000013e4       0x20 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .debug_frame   0x00000000       0xc8 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .debug_frame   0x000000c8       0x7c .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .debug_frame   0x00000144       0x74 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .debug_frame   0x000001b8      0x2bc .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .debug_frame   0x00000474       0xe8 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .debug_frame   0x0000055c       0xac .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_frame   0x00000608      0x128 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .debug_frame   0x00000730      0x1d0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .debug_frame   0x00000900      0x730 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_frame   0x00001030      0x1fc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_frame   0x0000122c       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .debug_frame   0x0000127c       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_frame   0x000012cc       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_frame   0x0000131c      0x1c0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_frame   0x000014dc      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_frame   0x000015e0      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_frame   0x000016e4       0xe8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_frame   0x000017cc      0x10c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_frame   0x000018d8       0x54 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_frame   0x0000192c       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_frame   0x0000197c       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_frame   0x000019cc       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_frame   0x00001a1c       0x90 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_frame   0x00001aac       0x30 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_frame   0x00001adc       0x74 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_frame   0x00001b50       0xf8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_frame   0x00001c48      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_frame   0x00001d4c      0x154 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_frame   0x00001ea0      0x134 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_frame   0x00001fd4       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_frame   0x00002024       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_frame   0x00002074       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_frame   0x000020c4       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_frame   0x00002114      0x1a4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_frame   0x000022b8       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .debug_frame   0x000022d8       0x64 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_frame   0x0000233c       0xe0 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_frame   0x0000241c       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_frame   0x0000246c      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_frame   0x00002570       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_frame   0x000025c0       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_frame   0x00002610       0x50 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_frame   0x00002660      0x17c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_frame   0x000027dc      0x144 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_frame   0x00002920       0x58 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+ .debug_frame   0x00002978       0x34 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .debug_frame   0x000029ac       0x34 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+ .debug_frame   0x000029e0       0x20 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .debug_frame   0x00002a00       0x28 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .debug_frame   0x00002a28       0x2c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .debug_frame   0x00002a54       0x30 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+ .debug_frame   0x00002a84       0x28 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00002aac       0x20 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .debug_frame   0x00002acc       0x2c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+ .debug_frame   0x00002af8       0x2c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00002b24       0x2c c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+ .debug_frame   0x00002b50       0x48 c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
 
-.debug_str      0x00000000     0x1a0c
+.debug_str      0x00000000     0x3648
  *(.debug_str)
- .debug_str     0x00000000      0x265 .\CortexM3\ARM_GCC_484\Debug\main.o
-                                0x2a6 (size before relaxing)
- .debug_str     0x00000265       0x37 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
+ .debug_str     0x00000000      0x3b3 .\CortexM3\ARM_GCC_484\Debug\main.o
+                                0x418 (size before relaxing)
+ .debug_str     0x000003b3       0xd4 .\CortexM3\ARM_GCC_484\Debug\cv.o
+                                0x2d6 (size before relaxing)
+ .debug_str     0x00000487      0x113 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+                                0x359 (size before relaxing)
+ .debug_str     0x0000059a      0x1be .\CortexM3\ARM_GCC_484\Debug\motion.o
+                                0x47a (size before relaxing)
+ .debug_str     0x00000758       0xf5 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+                                0x376 (size before relaxing)
+ .debug_str     0x0000084d       0x37 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
                                 0x1d8 (size before relaxing)
- .debug_str     0x0000029c      0x158 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                                0x32c (size before relaxing)
- .debug_str     0x000003f4       0x84 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
+ .debug_str     0x00000884      0x161 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                                0x33c (size before relaxing)
+ .debug_str     0x000009e5       0x84 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
                                 0x225 (size before relaxing)
- .debug_str     0x00000478      0x1e1 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
-                                0x3cb (size before relaxing)
- .debug_str     0x00000659      0x836 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_str     0x00000a69      0x23a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                                0x43a (size before relaxing)
+ .debug_str     0x00000ca3      0x377 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+                                0x56c (size before relaxing)
+ .debug_str     0x0000101a      0x7d6 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
                                 0xa51 (size before relaxing)
- .debug_str     0x00000e8f      0x35b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_str     0x000017f0      0x35b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
                                 0x749 (size before relaxing)
- .debug_str     0x000011ea       0x5a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_str     0x00001b4b       0x54 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+                                0x215 (size before relaxing)
+ .debug_str     0x00001b9f       0x4f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
                                 0x21f (size before relaxing)
- .debug_str     0x00001244       0x4c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_str     0x00001bee       0x4c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
                                 0x21a (size before relaxing)
- .debug_str     0x00001290      0x12b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_str     0x00001c3a      0x104 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
                                 0x333 (size before relaxing)
- .debug_str     0x000013bb      0x14f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_str     0x00001d3e      0x14f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
                                 0x346 (size before relaxing)
- .debug_str     0x0000150a      0x14f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_str     0x00001e8d      0x14f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
                                 0x346 (size before relaxing)
- .debug_str     0x00001659      0x171 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_str     0x00001fdc      0x16a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
                                 0x335 (size before relaxing)
- .debug_str     0x000017ca      0x194 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_str     0x00002146      0x190 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+                                0x448 (size before relaxing)
+ .debug_str     0x000022d6       0x90 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+                                0x2ab (size before relaxing)
+ .debug_str     0x00002366       0x6e .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+                                0x233 (size before relaxing)
+ .debug_str     0x000023d4       0x62 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+                                0x22e (size before relaxing)
+ .debug_str     0x00002436       0x62 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+                                0x22e (size before relaxing)
+ .debug_str     0x00002498      0x11c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+                                0x364 (size before relaxing)
+ .debug_str     0x000025b4       0xb9 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+                                0x2ce (size before relaxing)
+ .debug_str     0x0000266d       0x7b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+                                0x2de (size before relaxing)
+ .debug_str     0x000026e8      0x16a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+                                0x467 (size before relaxing)
+ .debug_str     0x00002852      0x11b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+                                0x30e (size before relaxing)
+ .debug_str     0x0000296d      0x119 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+                                0x3d7 (size before relaxing)
+ .debug_str     0x00002a86      0x15b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+                                0x380 (size before relaxing)
+ .debug_str     0x00002be1       0x5d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+                                0x21f (size before relaxing)
+ .debug_str     0x00002c3e       0x5d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+                                0x21f (size before relaxing)
+ .debug_str     0x00002c9b       0x69 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+                                0x22e (size before relaxing)
+ .debug_str     0x00002d04       0x69 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+                                0x22e (size before relaxing)
+ .debug_str     0x00002d6d      0x19b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+                                0x456 (size before relaxing)
+ .debug_str     0x00002f08       0x2b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+                                0x1bd (size before relaxing)
+ .debug_str     0x00002f33       0x49 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+                                0x218 (size before relaxing)
+ .debug_str     0x00002f7c      0x178 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+                                0x34c (size before relaxing)
+ .debug_str     0x000030f4       0x6a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+                                0x22e (size before relaxing)
+ .debug_str     0x0000315e      0x14f .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+                                0x346 (size before relaxing)
+ .debug_str     0x000032ad       0x49 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+                                0x206 (size before relaxing)
+ .debug_str     0x000032f6       0x61 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+                                0x224 (size before relaxing)
+ .debug_str     0x00003357       0x5d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+                                0x21f (size before relaxing)
+ .debug_str     0x000033b4      0x18d .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
                                 0x3b9 (size before relaxing)
- .debug_str     0x0000195e       0xae .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_str     0x00003541       0xae .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
                                 0x345 (size before relaxing)
+ .debug_str     0x000035ef       0x59 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+                                0x196 (size before relaxing)
 
-.debug_loc      0x00000000     0x1d78
+.debug_loc      0x00000000     0x47db
  *(.debug_loc)
- .debug_loc     0x00000000      0x14f .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
- .debug_loc     0x0000014f      0x26b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
- .debug_loc     0x000003ba      0xa53 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .debug_loc     0x00000e0d      0x22a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
- .debug_loc     0x00001037       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
- .debug_loc     0x0000108c       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
- .debug_loc     0x000010e1      0x36b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .debug_loc     0x0000144c       0x56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
- .debug_loc     0x000014a2       0x56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
- .debug_loc     0x000014f8       0x13 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
- .debug_loc     0x0000150b      0x2f7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
- .debug_loc     0x00001802      0x576 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_loc     0x00000000       0x5b .\CortexM3\ARM_GCC_484\Debug\main.o
+ .debug_loc     0x0000005b      0x904 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .debug_loc     0x0000095f       0x3f .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .debug_loc     0x0000099e      0x25a .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .debug_loc     0x00000bf8      0x1ef .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .debug_loc     0x00000de7      0x14f .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_loc     0x00000f36      0x2ad .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .debug_loc     0x000011e3      0xb6b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .debug_loc     0x00001d4e      0xa53 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_loc     0x000027a1      0x22a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_loc     0x000029cb       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .debug_loc     0x00002a20       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_loc     0x00002a75       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_loc     0x00002aca      0x36b .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_loc     0x00002e35       0x56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_loc     0x00002e8b       0x56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_loc     0x00002ee1       0x13 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_loc     0x00002ef4      0x10a .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_loc     0x00002ffe       0x84 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_loc     0x00003082       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_loc     0x000030d7       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_loc     0x0000312c       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_loc     0x00003181       0x39 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_loc     0x000031ba       0x29 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_loc     0x000031e3       0x13 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_loc     0x000031f6      0x566 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_loc     0x0000375c       0x56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_loc     0x000037b2       0x31 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_loc     0x000037e3       0x26 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_loc     0x00003809       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_loc     0x0000385e       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_loc     0x000038b3       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_loc     0x00003908       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_loc     0x0000395d      0x2b3 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_loc     0x00003c10       0x58 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_loc     0x00003c68      0x15c .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_loc     0x00003dc4       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_loc     0x00003e19       0x56 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_loc     0x00003e6f       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_loc     0x00003ec4       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_loc     0x00003f19       0x55 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_loc     0x00003f6e      0x2f7 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_loc     0x00004265      0x576 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
 
 .debug_macinfo
  *(.debug_macinfo)
 
-.debug_ranges   0x00000000      0x6d8
+.debug_ranges   0x00000000      0xf40
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x20 .\CortexM3\ARM_GCC_484\Debug\main.o
- .debug_ranges  0x00000020       0x50 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
- .debug_ranges  0x00000070       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
- .debug_ranges  0x000000d8      0x288 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
- .debug_ranges  0x00000360       0x88 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
- .debug_ranges  0x000003e8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
- .debug_ranges  0x00000410       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
- .debug_ranges  0x00000438       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
- .debug_ranges  0x000004b8       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
- .debug_ranges  0x00000528       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
- .debug_ranges  0x00000598       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
- .debug_ranges  0x00000600       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
- .debug_ranges  0x00000670       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .debug_ranges  0x00000000       0x38 .\CortexM3\ARM_GCC_484\Debug\main.o
+ .debug_ranges  0x00000038       0x20 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .debug_ranges  0x00000058       0x28 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .debug_ranges  0x00000080       0xc8 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .debug_ranges  0x00000148       0x30 .\CortexM3\ARM_GCC_484\Debug\prelim.o
+ .debug_ranges  0x00000178       0x50 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_ranges  0x000001c8       0x78 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .debug_ranges  0x00000240       0xc8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
+ .debug_ranges  0x00000308      0x288 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+ .debug_ranges  0x00000590       0x88 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .debug_ranges  0x00000618       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
+ .debug_ranges  0x00000640       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+ .debug_ranges  0x00000668       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+ .debug_ranges  0x00000690       0x80 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+ .debug_ranges  0x00000710       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+ .debug_ranges  0x00000780       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+ .debug_ranges  0x000007f0       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .debug_ranges  0x00000858       0x48 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .debug_ranges  0x000008a0       0x18 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .debug_ranges  0x000008b8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .debug_ranges  0x000008e0       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .debug_ranges  0x00000908       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .debug_ranges  0x00000930       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .debug_ranges  0x00000958       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .debug_ranges  0x00000968       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .debug_ranges  0x00000990       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .debug_ranges  0x00000a00       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .debug_ranges  0x00000a70       0x98 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .debug_ranges  0x00000b08       0x88 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .debug_ranges  0x00000b90       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .debug_ranges  0x00000bb8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .debug_ranges  0x00000be0       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .debug_ranges  0x00000c08       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .debug_ranges  0x00000c30       0x98 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .debug_ranges  0x00000cc8       0x10 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .debug_ranges  0x00000cd8       0x20 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .debug_ranges  0x00000cf8       0x60 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .debug_ranges  0x00000d58       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .debug_ranges  0x00000d80       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .debug_ranges  0x00000df0       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .debug_ranges  0x00000e18       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .debug_ranges  0x00000e40       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .debug_ranges  0x00000e68       0x70 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .debug_ranges  0x00000ed8       0x68 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 .\CortexM3\ARM_GCC_484\Debug\main.o
                                  0x71 (size before relaxing)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\cv.o
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\sensors.o
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\motion.o
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\prelim.o
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
  .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .comment       0x00000000       0x71 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
 
 .debug_weaknames
  *(.debug_weaknames)
@@ -1095,51 +2287,147 @@ END GROUP
  .ARM.attributes
                 0x00000065       0x33 .\CortexM3\ARM_GCC_484\Debug\main.o
  .ARM.attributes
-                0x00000098       0x33 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
+                0x00000098       0x33 .\CortexM3\ARM_GCC_484\Debug\cv.o
  .ARM.attributes
-                0x000000cb       0x33 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x000000cb       0x33 .\CortexM3\ARM_GCC_484\Debug\sensors.o
  .ARM.attributes
-                0x000000fe       0x33 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
+                0x000000fe       0x33 .\CortexM3\ARM_GCC_484\Debug\motion.o
  .ARM.attributes
-                0x00000131       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00000131       0x33 .\CortexM3\ARM_GCC_484\Debug\prelim.o
  .ARM.attributes
-                0x00000164       0x21 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
+                0x00000164       0x33 .\CortexM3\ARM_GCC_484\Debug\cymetadata.o
  .ARM.attributes
-                0x00000185       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
+                0x00000197       0x33 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
  .ARM.attributes
-                0x000001b8       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
+                0x000001ca       0x33 .\CortexM3\ARM_GCC_484\Debug\cybootloader.o
  .ARM.attributes
-                0x000001eb       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
+                0x000001fd       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .ARM.attributes
-                0x0000021e       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
+                0x00000230       0x21 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
  .ARM.attributes
-                0x00000251       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
+                0x00000251       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyDmac.o)
  .ARM.attributes
-                0x00000284       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
+                0x00000284       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyLib.o)
  .ARM.attributes
-                0x000002b7       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
+                0x000002b7       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyPm.o)
  .ARM.attributes
-                0x000002ea       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
+                0x000002ea       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedRed.o)
  .ARM.attributes
-                0x0000031d       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+                0x0000031d       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedGreen.o)
  .ARM.attributes
-                0x00000350       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+                0x00000350       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(LedBlue.o)
  .ARM.attributes
-                0x00000383       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+                0x00000383       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Lcd.o)
  .ARM.attributes
-                0x000003b0       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+                0x000003b6       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn0Pressed.o)
  .ARM.attributes
-                0x000003dd       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+                0x000003e9       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrBtn1Pressed.o)
  .ARM.attributes
-                0x0000040a       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+                0x0000041c       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CsBtns_PWM.o)
  .ARM.attributes
-                0x00000437       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+                0x0000044f       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera.o)
  .ARM.attributes
-                0x00000464       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+                0x00000482       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_DMA_dma.o)
  .ARM.attributes
-                0x00000491       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+                0x000004b5       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_VSYNC.o)
  .ARM.attributes
-                0x000004be       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x000004e8       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOD.o)
+ .ARM.attributes
+                0x0000051b       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_SIOC.o)
+ .ARM.attributes
+                0x0000054e       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C.o)
+ .ARM.attributes
+                0x00000581       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_INT.o)
+ .ARM.attributes
+                0x000005b4       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_PM.o)
+ .ARM.attributes
+                0x000005e7       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_I2C_MASTER.o)
+ .ARM.attributes
+                0x0000061a       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrUsTimer.o)
+ .ARM.attributes
+                0x0000064d       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsTimer.o)
+ .ARM.attributes
+                0x00000680       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(UsPWM.o)
+ .ARM.attributes
+                0x000006b3       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowPos.o)
+ .ARM.attributes
+                0x000006e6       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ElbowNeg.o)
+ .ARM.attributes
+                0x00000719       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderPos.o)
+ .ARM.attributes
+                0x0000074c       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ShoulderNeg.o)
+ .ARM.attributes
+                0x0000077f       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC.o)
+ .ARM.attributes
+                0x000007b2       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_INT.o)
+ .ARM.attributes
+                0x000007e5       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(AMux.o)
+ .ARM.attributes
+                0x00000818       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(ADC_theACLK.o)
+ .ARM.attributes
+                0x0000084b       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(MicroSwitch.o)
+ .ARM.attributes
+                0x0000087e       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(IsrMicroSwitch.o)
+ .ARM.attributes
+                0x000008b1       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Fan.o)
+ .ARM.attributes
+                0x000008e4       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCCW.o)
+ .ARM.attributes
+                0x00000917       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(RotateCW.o)
+ .ARM.attributes
+                0x0000094a       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyFlash.o)
+ .ARM.attributes
+                0x0000097d       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CySpc.o)
+ .ARM.attributes
+                0x000009b0       0x33 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(Camera_settings.o)
+ .ARM.attributes
+                0x000009e3       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x00000a00       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x00000a1d       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x00000a3a       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_fixunsdfsi.o)
+ .ARM.attributes
+                0x00000a57       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x00000a74       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x00000a91       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+ .ARM.attributes
+                0x00000aae       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+ .ARM.attributes
+                0x00000adb       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000af8       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.attributes
+                0x00000b25       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
+ .ARM.attributes
+                0x00000b52       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .ARM.attributes
+                0x00000b7f       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .ARM.attributes
+                0x00000bac       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000bd9       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000c06       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-malloc.o)
+ .ARM.attributes
+                0x00000c33       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x00000c60       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .ARM.attributes
+                0x00000c8d       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-freer.o)
+ .ARM.attributes
+                0x00000cba       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-nano-mallocr.o)
+ .ARM.attributes
+                0x00000ce7       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x00000d14       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-reent.o)
+ .ARM.attributes
+                0x00000d41       0x2d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+ .ARM.attributes
+                0x00000d6e       0x1d c:/program files (x86)/cypress/psoc creator/3.2/psoc creator/import/gnu/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
 
 /DISCARD/
  *(.note.GNU-stack)
