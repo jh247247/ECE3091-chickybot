@@ -432,7 +432,13 @@
 <v>chickybot-000\chickybot\PSoC 5 Architecture TRM</v>
 <v>chickybot-000\chickybot\CY8C54LP Family Datasheet</v>
 <v>chickybot-000\chickybot\System Reference Guides</v>
+<v>chickybot-000\chickybot\System Reference Guides\cy_boot_v5_10</v>
 <v>chickybot-000\chickybot\Project Datasheet</v>
+<v>chickybot-000\chickybot\Bootloadable_v1_30</v>
+<v>chickybot-000\chickybot\CharLCDmp_v1_2</v>
+<v>chickybot-000\chickybot\cy_clock_v2_20</v>
+<v>chickybot-000\chickybot\cy_isr_v1_70</v>
+<v>chickybot-000\chickybot\cy_pins_v2_10</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>chickybot-000</v>
@@ -440,7 +446,13 @@
 <v>chickybot-000\chickybot\PSoC 5 Architecture TRM</v>
 <v>chickybot-000\chickybot\CY8C54LP Family Datasheet</v>
 <v>chickybot-000\chickybot\System Reference Guides</v>
+<v>chickybot-000\chickybot\System Reference Guides\cy_boot_v5_10</v>
 <v>chickybot-000\chickybot\Project Datasheet</v>
+<v>chickybot-000\chickybot\Bootloadable_v1_30</v>
+<v>chickybot-000\chickybot\CharLCDmp_v1_2</v>
+<v>chickybot-000\chickybot\cy_clock_v2_20</v>
+<v>chickybot-000\chickybot\cy_isr_v1_70</v>
+<v>chickybot-000\chickybot\cy_pins_v2_10</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>

@@ -7,10 +7,10 @@
 //each pixel pair has 4 components: U, Y0, V, Y1
 //uint8 Camera_framebuffer[144][88][4];
 
-int takePhoto() {
+uint8 takePhoto() {
     Camera_SyncFrame();
-	Camera_GetFrame(); // Start frame capture
-    Camera_SyncFrame(); // Wait until frame is fully captued
+	Camera_GetFrame(); // Start frame capture // Crashes here
+//    Camera_SyncFrame(); // Wait until frame is fully captued
     
     return 0;
 }
@@ -141,7 +141,6 @@ uint8 * parsePhoto() {
     }
 //    uint8 boxWidth = maxWidth;
     
-    
     // Start at centre, head toward top-left
     uint8 hPos = halfHeight;
     uint8 wPos = halfWidth;
@@ -172,7 +171,6 @@ uint8 * parsePhoto() {
     }
     // NOTE: In imgAll, R=3, G=2, B=5, 0=ignore
     const uint8 cRED = 3, cGREEN = 2, cBLUE = 5;
-    
     
     // Vars for main parse
     uint8 j = hPos;
@@ -337,7 +335,8 @@ uint8 * readPlanWithCamera() {
 //    int * plan = (int *) malloc(sizeof(int) * ROWS);
     
     takePhoto();
-    return parsePhoto();
+    return 0;
+//    return parsePhoto();
     
 //    plan[0] = 1;
 //    plan[1] = 2;

@@ -31,7 +31,7 @@ void getPlan() {
 
 int main()
 {
-    CyDelay(500); // TODO: Necessary to wait for Camera to start up?
+    CyDelay(1000); // TODO: Necessary to wait for Camera to start up?
     
     // Interrupts
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -43,16 +43,16 @@ int main()
     Lcd_Start();
 //    Camera_Start();
     
-    CyDelay(500); // TODO: Necessary to wait for Camera to start up?
+    CyDelay(1000); // TODO: Necessary to wait for Camera to start up?
     
-//    getPlan();
-//    displayPlanOnLcd();
+    getPlan();
+    displayPlanOnLcd();
     
     
     for(;;)
     {
-        Lcd_Position(0,0);
-        Lcd_PrintString("Hello world!");
+//        Lcd_Position(0,0);
+//        Lcd_PrintString("Hello world!");
         
         CyDelay(500);
     }

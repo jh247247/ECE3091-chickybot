@@ -23,3 +23,6 @@ enum Colour {
 };
 
 uint8 * readPlanWithCamera();
+
+uint8 takePhoto();
+uint8 * parsePhoto();

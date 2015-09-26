@@ -1,123 +1,101 @@
-#include <LiquidCrystal.h>
-#include <avr/interrupt.h>
-#include <avr/power.h>
-#include <avr/sleep.h>
 #include <avr/io.h>
+#include <avr/interrupt.h>
+#include "Ultrasonic.h"
+#include <LiquidCrystal.h>
+
+#define PIN_LED 13
+#define PIN_TRIG 6
+#define PIN_ECHO 5
+#define PIN_MOTOR_ELBOW_POS 2
+#define PIN_MOTOR_ELBOW_NEG 3
+#define PIN_FAN 4
+#define BUFFER_ELBOW 5
 
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
-const int BUFFER = 5;
-const int START_POS = 784;
-const int END_POS = 860;
 
-long endTime = 300000;
+Ultrasonic ultrasonic(PIN_TRIG, PIN_ECHO);
+long heightUS;
 
-int PIN_MOTOR_POS = 2;
-int PIN_MOTOR_NEG = 3;
-int PIN_FAN = 4;
+int currPosElbow;
+int goalPosElbow;
 
-void setup() {
-  pinMode(13, OUTPUT);
-  pinMode(PIN_MOTOR_POS, OUTPUT);
-  pinMode(PIN_MOTOR_NEG, OUTPUT);
-  pinMode(PIN_FAN, OUTPUT);
+
+void setup()
+{
+  Serial.begin(9600);
   
+  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_MOTOR_ELBOW_POS, OUTPUT);
+  pinMode(PIN_MOTOR_ELBOW_NEG, OUTPUT);
+  pinMode(PIN_FAN, OUTPUT);
+
   lcd.begin(16, 2);
   lcd.print("Hello world!");
+  
+  // Init Timer1
+  cli();
+  TCCR1A = 0;
+  TCCR1B = 0;
+  /* 0.1 s timer
+   * 1 / (16e6/1024) = 6.4e-5
+   * (0.1 s / 6.4e-5) - 1 = 1562
+   */
+  OCR1A = 1562;
+  TCCR1B |= (1 << WGM12);
+  TCCR1B |= (1 << CS10);
+  TCCR1B |= (1 << CS12);
+  TIMSK1 |= (1 << OCIE1A);
+  sei();
+
+  goalPosElbow = 512;
 }
+ 
+void loop()
+{
+  // Update LCD
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("US: ");
+  lcd.print(heightUS);
+  lcd.print(" cm");
+  lcd.setCursor(0,1);
+  lcd.print("E: ");
+  lcd.print(currPosElbow);
 
-void loop() {
-  int i;
-  for (i = 0; i < 1000; i++) {
-    lcd.clear();
-    lcd.print("Down");
-    goToPos(END_POS);
-
-    digitalWrite(PIN_FAN, HIGH);
-   
-    delay(1000);
+  delay(400);
+}
+ 
+ISR(TIMER1_COMPA_vect)
+{
+  // Update sensors
+  digitalWrite(PIN_LED, !digitalRead(PIN_LED));
+  heightUS = ultrasonic.Ranging(CM);
   
-    lcd.clear();
-    lcd.print("Up");
-    goToPos(START_POS);
-
-    digitalWrite(PIN_FAN, LOW);
+  currPosElbow = analogRead(A0);
   
-    delay(1000);
-
-//    int currPos = analogRead(A0);
-//    lcd.clear();
-//    lcd.setCursor(0,1);
-//    lcd.print(currPos);
-//    delay(500);
-
-    if (millis() > endTime) {
-      sleepNow();
-    }
+  // Update motors
+  if ((currPosElbow > goalPosElbow - BUFFER_ELBOW) && (currPosElbow < goalPosElbow + BUFFER_ELBOW)) {
+    stopMotorElbow();
   }
-//  lcd.clear();
-//  lcd.setCursor(0,1);
-//  int currPos = analogRead(A0);
-//  lcd.print(currPos);
-//  delay(500);
-}
-
-int goToPos(int goalPos) {
-  while (1) {
-    int currPos = analogRead(A0);
-    lcd.clear();
-    lcd.setCursor(0,1);
-    lcd.print(currPos);
-//    delay(100);
-    
-    if ((currPos > goalPos - BUFFER) && (currPos < goalPos + BUFFER)) {
-      stopMotor();
-      return 0;
-    }
-    else if (currPos < goalPos) {
-      goDown();
-    }
-    else if (currPos > goalPos) {
-      goUp();
-    }
+  else if (currPosElbow < goalPosElbow) {
+    goDownElbow();
+  }
+  else if (currPosElbow > goalPosElbow) {
+    goUpElbow();
   }
 }
 
-void stopMotor() {
-  digitalWrite(2, LOW);
-  digitalWrite(3, LOW);
+void stopMotorElbow() {
+  digitalWrite(PIN_MOTOR_ELBOW_POS, LOW);
+  digitalWrite(PIN_MOTOR_ELBOW_NEG, LOW);
 }
 
-void goUp() {
-  digitalWrite(2, LOW);
-  digitalWrite(3, HIGH);
+void goUpElbow() {
+  digitalWrite(PIN_MOTOR_ELBOW_POS, LOW);
+  digitalWrite(PIN_MOTOR_ELBOW_NEG, HIGH);
 }
 
-void goDown() {
-  digitalWrite(2, HIGH);
-  digitalWrite(3, LOW);
+void goDownElbow() {
+  digitalWrite(PIN_MOTOR_ELBOW_POS, HIGH);
+  digitalWrite(PIN_MOTOR_ELBOW_NEG, LOW);
 }
-
-void sleepNow(void)
-{
-    digitalWrite(13, HIGH);
-    // Set pin 2 as interrupt and attach handler:
-    attachInterrupt(0, pinInterrupt, LOW);
-    delay(100);
-    //
-    // Choose our preferred sleep mode:
-    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-    //
-    // Set sleep enable (SE) bit:
-    sleep_enable();
-    //
-    // Put the device to sleep:
-    sleep_mode();
-    //
-    // Upon waking up, sketch continues from this point.
-    sleep_disable();
-}
-void pinInterrupt(void)
-{
-    detachInterrupt(0);
-}
-
