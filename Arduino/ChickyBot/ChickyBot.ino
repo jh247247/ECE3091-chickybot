@@ -3,6 +3,7 @@
 #include "Ultrasonic.h"
 #include "LiquidCrystal.h"
 #include "Motion.h"
+#include "Sensors.h"
 
 
 #define PIN_LED 13

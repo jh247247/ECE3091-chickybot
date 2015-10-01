@@ -1,4 +1,0 @@
-Motion	KEYWORD1
-goUpElbow	KEYWORD2
-goDownElbow	KEYWORD2
-stopMotorElbow	KEYWORD2
