@@ -1,7 +1,9 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "Ultrasonic.h"
-#include <LiquidCrystal.h>
+#include "LiquidCrystal.h"
+#include "Motion.h"
+
 
 #define PIN_LED 13
 #define PIN_TRIG 6
@@ -16,6 +18,8 @@ LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 Ultrasonic ultrasonic(PIN_TRIG, PIN_ECHO);
 long heightUS;
 
+Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG);
+
 int currPosElbow;
 int goalPosElbow;
 
@@ -25,8 +29,6 @@ void setup()
   Serial.begin(9600);
   
   pinMode(PIN_LED, OUTPUT);
-  pinMode(PIN_MOTOR_ELBOW_POS, OUTPUT);
-  pinMode(PIN_MOTOR_ELBOW_NEG, OUTPUT);
   pinMode(PIN_FAN, OUTPUT);
 
   lcd.begin(16, 2);
@@ -75,27 +77,13 @@ ISR(TIMER1_COMPA_vect)
   
   // Update motors
   if ((currPosElbow > goalPosElbow - BUFFER_ELBOW) && (currPosElbow < goalPosElbow + BUFFER_ELBOW)) {
-    stopMotorElbow();
+    motion.stopMotorElbow();
   }
   else if (currPosElbow < goalPosElbow) {
-    goDownElbow();
+    motion.goDownElbow();
   }
   else if (currPosElbow > goalPosElbow) {
-    goUpElbow();
+    motion.goUpElbow();
   }
 }
 
-void stopMotorElbow() {
-  digitalWrite(PIN_MOTOR_ELBOW_POS, LOW);
-  digitalWrite(PIN_MOTOR_ELBOW_NEG, LOW);
-}
-
-void goUpElbow() {
-  digitalWrite(PIN_MOTOR_ELBOW_POS, LOW);
-  digitalWrite(PIN_MOTOR_ELBOW_NEG, HIGH);
-}
-
-void goDownElbow() {
-  digitalWrite(PIN_MOTOR_ELBOW_POS, HIGH);
-  digitalWrite(PIN_MOTOR_ELBOW_NEG, LOW);
-}
