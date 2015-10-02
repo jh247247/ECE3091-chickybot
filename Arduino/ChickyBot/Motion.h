@@ -8,12 +8,12 @@ class Motion
 {
   public:
     Motion(int pinElbowPos, int pinElbowNeg);
-    void goUpElbow();
-    void goDownElbow();
-	void stopMotorElbow();
+    void goUpElbow(int speed);
+    void goDownElbow(int speed);
+	  void stopMotorElbow();
   private:
     int _pinElbowPos;
-	int _pinElbowNeg;
+	  int _pinElbowNeg;
 };
 
 

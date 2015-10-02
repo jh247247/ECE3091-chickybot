@@ -12,7 +12,9 @@
 #define PIN_MOTOR_ELBOW_POS 2
 #define PIN_MOTOR_ELBOW_NEG 3
 #define PIN_FAN 4
-#define BUFFER_ELBOW 5
+#define BUFFER_ELBOW 10
+
+#define PIN_MOTOR_ELBOW_POT A0
 
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 
@@ -50,7 +52,7 @@ void setup()
   TIMSK1 |= (1 << OCIE1A);
   sei();
 
-  goalPosElbow = 512;
+  goalPosElbow = 750;
 }
  
 void loop()
@@ -58,10 +60,10 @@ void loop()
   // Update LCD
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("US: ");
-  lcd.print(heightUS);
-  lcd.print(" cm");
-  lcd.setCursor(0,1);
+//  lcd.print("US: ");
+//  lcd.print(heightUS);
+//  lcd.print(" cm");
+//  lcd.setCursor(0,1);
   lcd.print("E: ");
   lcd.print(currPosElbow);
 
@@ -72,19 +74,19 @@ ISR(TIMER1_COMPA_vect)
 {
   // Update sensors
   digitalWrite(PIN_LED, !digitalRead(PIN_LED));
-  heightUS = ultrasonic.Ranging(CM);
+//  heightUS = ultrasonic.Ranging(CM);
   
-  currPosElbow = analogRead(A0);
+  currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   
   // Update motors
   if ((currPosElbow > goalPosElbow - BUFFER_ELBOW) && (currPosElbow < goalPosElbow + BUFFER_ELBOW)) {
     motion.stopMotorElbow();
   }
   else if (currPosElbow < goalPosElbow) {
-    motion.goDownElbow();
+    motion.goDownElbow(255);
   }
   else if (currPosElbow > goalPosElbow) {
-    motion.goUpElbow();
+    motion.goUpElbow(255);
   }
 }
 

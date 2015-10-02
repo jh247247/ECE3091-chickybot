@@ -9,16 +9,16 @@ Motion::Motion(int pinElbowPos, int pinElbowNeg)
   _pinElbowNeg = pinElbowNeg;
 }
 
-void Motion::goUpElbow()
-{
-  digitalWrite(_pinElbowPos, LOW);
-  digitalWrite(_pinElbowNeg, HIGH);
-}
-
-void Motion::goDownElbow()
+void Motion::goUpElbow(int speed)
 {
   digitalWrite(_pinElbowPos, HIGH);
   digitalWrite(_pinElbowNeg, LOW);
+}
+
+void Motion::goDownElbow(int speed)
+{
+  digitalWrite(_pinElbowPos, LOW);
+  digitalWrite(_pinElbowNeg, HIGH);
 }
 
 void Motion::stopMotorElbow()

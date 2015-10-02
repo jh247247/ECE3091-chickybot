@@ -11,8 +11,8 @@ class Sensors
     int getHeadColour();
   private:
     int _pinPhotoDiode;
-	int _pinLedRed;
-	int _pinLedGreen;
+	  int _pinLedRed;
+	  int _pinLedGreen;
 };
 
 
