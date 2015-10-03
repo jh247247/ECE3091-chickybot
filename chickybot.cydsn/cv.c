@@ -9,22 +9,28 @@
 
 uint8 takePhoto() {
     Camera_SyncFrame();
-	Camera_GetFrame(); // Start frame capture // Crashes here
-//    Camera_SyncFrame(); // Wait until frame is fully captued
+	Camera_GetFrame(); // Start frame capture
+    Camera_SyncFrame(); // Wait until frame is fully captued
     
     return 0;
 }
 
 uint8 * parsePhoto() {
-//    Lcd_PosPrintString(0, 0, "here");
-    uint8 * plan = (uint8 *) malloc(sizeof(uint8) * ROWS);    
+    
+    // Init plan
+    uint8 * plan = (uint8 *) malloc(sizeof(uint8) * ROWS);
+    
+    uint8 r;
+    for (r = 0; r < ROWS; r++) {
+        plan[r] = NONE;
+    }
+        
     
     // YUV -> RGB
-//    R = Y+V
-//    G = Y-U-V
-//    B = Y+U
+    //    R = Y+V
+    //    G = Y-U-V
+    //    B = Y+U
     uint8 h, w;
-    //  0, 1, 2;
     uint8 u, v, y;
     
     for (h = 0; h < IMG_H; h++) {
@@ -52,6 +58,7 @@ uint8 * parsePhoto() {
         }
     }
     
+    
     // Thresholding
     for (h = 0; h < IMG_H; h++) {
         for (w = 0; w < IMG_W; w++) {
@@ -75,6 +82,7 @@ uint8 * parsePhoto() {
         }
     }
     
+    
     // Find box dims
     
     // Note: Use imgG_Bin to find bounds
@@ -87,21 +95,22 @@ uint8 * parsePhoto() {
     uint8 halfWidth = IMG_W / 2;
     uint8 i = 0;
     
+    // Find max height
     while (1) {
         if (i > IMG_H)
             break;
         
         if (Camera_framebuffer[i][halfWidth][1] == 0) {
-            currentHeight += 1;
+            currentHeight++;
             i++;
         }
         else if (Camera_framebuffer[i+1][halfWidth][1] == 0) {
             currentHeight += 2;
-            i += 1;
+            i += 2;
         }
         else if (Camera_framebuffer[i+2][halfWidth][1] == 0) {
             currentHeight += 3;
-            i += 2;
+            i += 3;
         }
         else {
             if (currentHeight > maxHeight)
@@ -111,35 +120,50 @@ uint8 * parsePhoto() {
             i++;
         }
     }
-    uint8 boxHeight = maxHeight / ROWS;
-//    Lcd_PrintDecUint16(maxHeight);
     
+    // Find max width
     i = 0;
     while (1) {
         if (i > IMG_H)
             break;
         
         if (Camera_framebuffer[halfHeight][i][1] == 0) {
-            currentWidth += 1;
+            currentWidth++;
             i++;
         }
         else if (Camera_framebuffer[halfHeight][i+1][1] == 0) {
             currentWidth += 2;
-            i += 1;
+            i += 2;
         }
         else if (Camera_framebuffer[halfHeight][i+2][1] == 0) {
             currentWidth += 3;
-            i += 2;
+            i += 3;
         }
         else {
             if (currentWidth > maxWidth)
-                maxHeight = currentWidth;
+                maxWidth = currentWidth;
             
             currentWidth = 0;
             i++;
         }
     }
-//    uint8 boxWidth = maxWidth;
+    
+    // Debug output
+    Lcd_ClearDisplay();
+    Lcd_Position(0,0);
+    Lcd_PrintNumber(maxHeight);
+    Lcd_PosPrintString(0,5,"x");
+    Lcd_Position(0,7);
+    Lcd_PrintNumber(maxWidth);
+    
+    if (maxWidth > maxHeight) {
+        Lcd_ClearDisplay();
+        Lcd_Position(0,0);
+        Lcd_PrintString("W>H Check orient");
+        
+        return plan;
+    }
+    
     
     // Start at centre, head toward top-left
     uint8 hPos = halfHeight;
@@ -163,6 +187,15 @@ uint8 * parsePhoto() {
             break;
     }
     
+    // Err msg if cannot find plan
+    if (hPos == 255) {
+        Lcd_ClearDisplay();
+        Lcd_Position(0,0);
+        Lcd_PrintString("Cannot find plan.");
+        
+        return plan;
+    }
+    
     // Create single array
     for (h = 0; h < IMG_H; h++) {
         for (w = 0; w < IMG_W; w++) {
@@ -172,18 +205,20 @@ uint8 * parsePhoto() {
     // NOTE: In imgAll, R=3, G=2, B=5, 0=ignore
     const uint8 cRED = 3, cGREEN = 2, cBLUE = 5;
     
+    
     // Vars for main parse
     uint8 j = hPos;
     uint8 maxLength = 0;
-    uint8 rowUpTo = 1;
+    uint8 rowUpTo = 0;
     uint8 mode = 0;
-    uint8 numBoxes = 0;
     
     // Main parse
     while (1) {
         // Loop condition
         j++;
         if (j > hPos + maxHeight)
+            break;
+        if (rowUpTo >= ROWS)
             break;
         
         // Switch on colour mode
@@ -194,35 +229,20 @@ uint8 * parsePhoto() {
                 }
                 else if (Camera_framebuffer[j+1][halfWidth][3] == cRED) {
                     maxLength += 2;
-                    i++;
+                    j++;
                 }
                 else if (Camera_framebuffer[j+2][halfWidth][3] == cRED) {
                     maxLength += 3;
-                    i += 2;
+                    j += 2;
                 }
                 else {
                     if (maxLength > MIN_BOX_HEIGHT) {
-                        numBoxes = maxLength / boxHeight;
-                        
-                        if (numBoxes == 2) {
-                            plan[rowUpTo] = RED;
-                            plan[rowUpTo+1] = RED;
-                            rowUpTo += 2;
-                        }
-                        else if (numBoxes == 3) {
-                            plan[rowUpTo] = RED;
-                            plan[rowUpTo+1] = RED;
-                            plan[rowUpTo+2] = RED;
-                            rowUpTo += 3;
-                        }
-                        else {
-                            plan[rowUpTo] = RED;
-                            rowUpTo++;
-                        }
+                        plan[rowUpTo] = RED;
+                        rowUpTo++;
                     }
                     
                     maxLength = 0;
-                    if (Camera_framebuffer[i][halfWidth][3] == cGREEN)
+                    if (Camera_framebuffer[j][halfWidth][3] == cGREEN)
                         mode = GREEN;
                     else
                         mode = BLUE;
@@ -236,35 +256,20 @@ uint8 * parsePhoto() {
                 }
                 else if (Camera_framebuffer[j+1][halfWidth][3] == cGREEN) {
                     maxLength += 2;
-                    i++;
+                    j++;
                 }
                 else if (Camera_framebuffer[j+2][halfWidth][3] == cGREEN) {
                     maxLength += 3;
-                    i += 2;
+                    j += 2;
                 }
                 else {
                     if (maxLength > MIN_BOX_HEIGHT) {
-                        numBoxes = maxLength / boxHeight;
-                        
-                        if (numBoxes == 2) {
-                            plan[rowUpTo] = GREEN;
-                            plan[rowUpTo+1] = GREEN;
-                            rowUpTo += 2;
-                        }
-                        else if (numBoxes == 3) {
-                            plan[rowUpTo] = GREEN;
-                            plan[rowUpTo+1] = GREEN;
-                            plan[rowUpTo+2] = GREEN;
-                            rowUpTo += 3;
-                        }
-                        else {
-                            plan[rowUpTo] = GREEN;
-                            rowUpTo++;
-                        }
+                        plan[rowUpTo] = GREEN;
+                        rowUpTo++;
                     }
                     
                     maxLength = 0;
-                    if (Camera_framebuffer[i][halfWidth][3] == cRED)
+                    if (Camera_framebuffer[j][halfWidth][3] == cRED)
                         mode = RED;
                     else
                         mode = BLUE;
@@ -278,35 +283,20 @@ uint8 * parsePhoto() {
                 }
                 else if (Camera_framebuffer[j+1][halfWidth][3] == cBLUE) {
                     maxLength += 2;
-                    i++;
+                    j++;
                 }
                 else if (Camera_framebuffer[j+2][halfWidth][3] == cBLUE) {
                     maxLength += 3;
-                    i += 2;
+                    j += 2;
                 }
                 else {
                     if (maxLength > MIN_BOX_HEIGHT) {
-                        numBoxes = maxLength / boxHeight;
-                        
-                        if (numBoxes == 2) {
-                            plan[rowUpTo] = BLUE;
-                            plan[rowUpTo+1] = BLUE;
-                            rowUpTo += 2;
-                        }
-                        else if (numBoxes == 3) {
-                            plan[rowUpTo] = BLUE;
-                            plan[rowUpTo+1] = BLUE;
-                            plan[rowUpTo+2] = BLUE;
-                            rowUpTo += 3;
-                        }
-                        else {
-                            plan[rowUpTo] = BLUE;
-                            rowUpTo++;
-                        }
+                        plan[rowUpTo] = BLUE;
+                        rowUpTo++;
                     }
                     
                     maxLength = 0;
-                    if (Camera_framebuffer[i][halfWidth][3] == cRED)
+                    if (Camera_framebuffer[j][halfWidth][3] == cRED)
                         mode = RED;
                     else
                         mode = GREEN;
@@ -315,9 +305,9 @@ uint8 * parsePhoto() {
                 break;
                 
             default: // Initial
-                if (Camera_framebuffer[i][halfWidth][3] == cRED)
+                if (Camera_framebuffer[j][halfWidth][3] == cRED)
                     mode = RED;
-                else if (Camera_framebuffer[i][halfWidth][3] == cGREEN)
+                else if (Camera_framebuffer[j][halfWidth][3] == cGREEN)
                     mode = GREEN;
                 else
                     mode = BLUE;
@@ -327,20 +317,10 @@ uint8 * parsePhoto() {
         }
     }
     
-//    Lcd_PosPrintString(0, 0, "here");
-    return plan; // TODO: Check if returning the right thing
+    return plan;
 }
 
 uint8 * readPlanWithCamera() {
-//    int * plan = (int *) malloc(sizeof(int) * ROWS);
-    
     takePhoto();
-    return 0;
-//    return parsePhoto();
-    
-//    plan[0] = 1;
-//    plan[1] = 2;
-//    plan[2] = 3;
-//    
-//    return plan;
+    return parsePhoto();
 }
