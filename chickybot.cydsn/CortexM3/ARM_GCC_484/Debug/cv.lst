@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
   42 000a FFF7FEFF 		bl	Camera_SyncFrame
   43              	.LVL2:
   14:.\cv.c        ****     
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 2
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 2
 
 
   15:.\cv.c        ****     return 0;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
   86 0012 05E0     		b	.L3
   87              	.LVL5:
   88              	.L4:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 3
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 3
 
 
   89              		.loc 1 25 0 discriminator 2
@@ -151,7 +151,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
   37:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
   38:.\cv.c        ****             u = Camera_framebuffer[h][w][0];
  103              		.loc 1 38 0 is_stmt 1
- 104 002a B148     		ldr	r0, .L80
+ 104 002a B048     		ldr	r0, .L80
  105              	.LVL8:
  106 002c 4FF05808 		mov	r8, #88
   39:.\cv.c        ****             v = Camera_framebuffer[h][w][1];
@@ -165,7 +165,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
   47:.\cv.c        ****             // Grey
   48:.\cv.c        ****             Camera_framebuffer[h][w][3] = (Camera_framebuffer[h][w][0] + Camera_framebuffer[h][w][1
  107              		.loc 1 48 0
- 108 0030 DFF8CCE2 		ldr	lr, .L80+16
+ 108 0030 DFF8C8E2 		ldr	lr, .L80+16
  109 0034 26E0     		b	.L5
  110              	.LVL9:
  111              	.L6:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  116              		.loc 1 39 0 discriminator 2
  117 003c 00EB8203 		add	r3, r0, r2, lsl #2
  118              	.LVL11:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 4
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 4
 
 
  119 0040 5E78     		ldrb	r6, [r3, #1]	@ zero_extendqisi2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  165 0080 5FFA8CFC 		uxtb	ip, ip
  166              	.LVL23:
  167              	.L5:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 5
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 5
 
 
   36:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
@@ -255,9 +255,9 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
   54:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
   55:.\cv.c        ****             Camera_framebuffer[h][w][0] = Camera_framebuffer[h][w][0] - Camera_framebuffer[h][w][3]
  173              		.loc 1 55 0 is_stmt 1
- 174 008e 9848     		ldr	r0, .L80
+ 174 008e 9748     		ldr	r0, .L80
  175 0090 5827     		movs	r7, #88
- 176 0092 1BE0     		b	.L8
+ 176 0092 1AE0     		b	.L8
  177              	.LVL24:
  178              	.L9:
  179              		.loc 1 55 0 is_stmt 0 discriminator 2
@@ -267,52 +267,52 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  183 009e DC78     		ldrb	r4, [r3, #3]	@ zero_extendqisi2
  184 00a0 C4EB0C04 		rsb	r4, r4, ip
  185 00a4 00F82140 		strb	r4, [r0, r1, lsl #2]
-  56:.\cv.c        ****             Camera_framebuffer[h][w][1] = 2*Camera_framebuffer[h][w][1] - Camera_framebuffer[h][w][
+  56:.\cv.c        ****             Camera_framebuffer[h][w][1] = Camera_framebuffer[h][w][1] - Camera_framebuffer[h][w][3]
  186              		.loc 1 56 0 is_stmt 1 discriminator 2
  187 00a8 5C78     		ldrb	r4, [r3, #1]	@ zero_extendqisi2
  188 00aa D978     		ldrb	r1, [r3, #3]	@ zero_extendqisi2
- 189 00ac C1EB4404 		rsb	r4, r1, r4, lsl #1
- 190 00b0 5C70     		strb	r4, [r3, #1]
+ 189 00ac 641A     		subs	r4, r4, r1
+ 190 00ae 5C70     		strb	r4, [r3, #1]
   57:.\cv.c        ****             Camera_framebuffer[h][w][2] = Camera_framebuffer[h][w][2] - Camera_framebuffer[h][w][3]
  191              		.loc 1 57 0 discriminator 2
- 192 00b2 9C78     		ldrb	r4, [r3, #2]	@ zero_extendqisi2
- 193 00b4 611A     		subs	r1, r4, r1
- 194 00b6 9970     		strb	r1, [r3, #2]
+ 192 00b0 9C78     		ldrb	r4, [r3, #2]	@ zero_extendqisi2
+ 193 00b2 611A     		subs	r1, r4, r1
+ 194 00b4 9970     		strb	r1, [r3, #2]
   54:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  195              		.loc 1 54 0 discriminator 2
- 196 00b8 0132     		adds	r2, r2, #1
+ 196 00b6 0132     		adds	r2, r2, #1
  197              	.LVL25:
- 198 00ba D2B2     		uxtb	r2, r2
+ 198 00b8 D2B2     		uxtb	r2, r2
  199              	.LVL26:
- 200 00bc 02E0     		b	.L10
+ 200 00ba 02E0     		b	.L10
  201              	.LVL27:
  202              	.L65:
- 203 00be 7246     		mov	r2, lr
+ 203 00bc 7246     		mov	r2, lr
   55:.\cv.c        ****             Camera_framebuffer[h][w][0] = Camera_framebuffer[h][w][0] - Camera_framebuffer[h][w][3]
  204              		.loc 1 55 0
- 205 00c0 07FB06F5 		mul	r5, r7, r6
+ 205 00be 07FB06F5 		mul	r5, r7, r6
  206              	.L10:
  207              	.LVL28:
   54:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  208              		.loc 1 54 0 discriminator 1
- 209 00c4 572A     		cmp	r2, #87
- 210 00c6 E5D9     		bls	.L9
+ 209 00c2 572A     		cmp	r2, #87
+ 210 00c4 E6D9     		bls	.L9
   53:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 6
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 6
 
 
  211              		.loc 1 53 0
- 212 00c8 0136     		adds	r6, r6, #1
+ 212 00c6 0136     		adds	r6, r6, #1
  213              	.LVL29:
- 214 00ca F6B2     		uxtb	r6, r6
+ 214 00c8 F6B2     		uxtb	r6, r6
  215              	.LVL30:
  216              	.L8:
   53:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
  217              		.loc 1 53 0 is_stmt 0 discriminator 1
- 218 00cc 8F2E     		cmp	r6, #143
- 219 00ce F6D9     		bls	.L65
- 220 00d0 4FF0000E 		mov	lr, #0
- 221 00d4 7646     		mov	r6, lr
+ 218 00ca 8F2E     		cmp	r6, #143
+ 219 00cc F6D9     		bls	.L65
+ 220 00ce 4FF0000E 		mov	lr, #0
+ 221 00d2 7646     		mov	r6, lr
  222              	.LVL31:
   58:.\cv.c        ****         }
   59:.\cv.c        ****     }
@@ -324,124 +324,124 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
   65:.\cv.c        ****             // Red
   66:.\cv.c        ****             if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
  223              		.loc 1 66 0 is_stmt 1
- 224 00d6 864A     		ldr	r2, .L80
- 225 00d8 4FF0580C 		mov	ip, #88
+ 224 00d4 854A     		ldr	r2, .L80
+ 225 00d6 4FF0580C 		mov	ip, #88
   67:.\cv.c        ****                 Camera_framebuffer[h][w][0] = 1;
  226              		.loc 1 67 0
- 227 00dc 0127     		movs	r7, #1
- 228 00de 37E0     		b	.L11
+ 227 00da 0127     		movs	r7, #1
+ 228 00dc 37E0     		b	.L11
  229              	.LVL32:
  230              	.L18:
   66:.\cv.c        ****             if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
  231              		.loc 1 66 0
- 232 00e0 1946     		mov	r1, r3
- 233 00e2 E518     		adds	r5, r4, r3
- 234 00e4 12F82550 		ldrb	r5, [r2, r5, lsl #2]	@ zero_extendqisi2
- 235 00e8 852D     		cmp	r5, #133
- 236 00ea 03D9     		bls	.L12
+ 232 00de 1946     		mov	r1, r3
+ 233 00e0 E518     		adds	r5, r4, r3
+ 234 00e2 12F82550 		ldrb	r5, [r2, r5, lsl #2]	@ zero_extendqisi2
+ 235 00e6 852D     		cmp	r5, #133
+ 236 00e8 03D9     		bls	.L12
  237              	.LVL33:
  238              		.loc 1 67 0
- 239 00ec E518     		adds	r5, r4, r3
- 240 00ee 02F82570 		strb	r7, [r2, r5, lsl #2]
- 241 00f2 02E0     		b	.L13
+ 239 00ea E518     		adds	r5, r4, r3
+ 240 00ec 02F82570 		strb	r7, [r2, r5, lsl #2]
+ 241 00f0 02E0     		b	.L13
  242              	.L12:
   68:.\cv.c        ****             else
   69:.\cv.c        ****                 Camera_framebuffer[h][w][0] = 0;
  243              		.loc 1 69 0
- 244 00f4 E518     		adds	r5, r4, r3
- 245 00f6 02F82560 		strb	r6, [r2, r5, lsl #2]
+ 244 00f2 E518     		adds	r5, r4, r3
+ 245 00f4 02F82560 		strb	r6, [r2, r5, lsl #2]
  246              	.L13:
   70:.\cv.c        ****             
   71:.\cv.c        ****             // Green
   72:.\cv.c        ****             if (Camera_framebuffer[h][w][1] > THRESHOLD_G)
  247              		.loc 1 72 0
- 248 00fa 4518     		adds	r5, r0, r1
- 249 00fc 02EB8505 		add	r5, r2, r5, lsl #2
- 250 0100 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 7
+ 248 00f8 4518     		adds	r5, r0, r1
+ 249 00fa 02EB8505 		add	r5, r2, r5, lsl #2
+ 250 00fe 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 7
 
 
- 251 0102 CC2D     		cmp	r5, #204
- 252 0104 04D9     		bls	.L14
+ 251 0100 CC2D     		cmp	r5, #204
+ 252 0102 04D9     		bls	.L14
   73:.\cv.c        ****                 Camera_framebuffer[h][w][1] = 1;
  253              		.loc 1 73 0
- 254 0106 4518     		adds	r5, r0, r1
- 255 0108 02EB8505 		add	r5, r2, r5, lsl #2
- 256 010c 6F70     		strb	r7, [r5, #1]
- 257 010e 03E0     		b	.L15
+ 254 0104 4518     		adds	r5, r0, r1
+ 255 0106 02EB8505 		add	r5, r2, r5, lsl #2
+ 256 010a 6F70     		strb	r7, [r5, #1]
+ 257 010c 03E0     		b	.L15
  258              	.L14:
   74:.\cv.c        ****             else
   75:.\cv.c        ****                 Camera_framebuffer[h][w][1] = 0;
  259              		.loc 1 75 0
- 260 0110 4518     		adds	r5, r0, r1
- 261 0112 02EB8505 		add	r5, r2, r5, lsl #2
- 262 0116 6E70     		strb	r6, [r5, #1]
+ 260 010e 4518     		adds	r5, r0, r1
+ 261 0110 02EB8505 		add	r5, r2, r5, lsl #2
+ 262 0114 6E70     		strb	r6, [r5, #1]
  263              	.L15:
   76:.\cv.c        ****             
   77:.\cv.c        ****             // Blue
   78:.\cv.c        ****             if (Camera_framebuffer[h][w][2] > THRESHOLD_B)
  264              		.loc 1 78 0
- 265 0118 4518     		adds	r5, r0, r1
- 266 011a 02EB8505 		add	r5, r2, r5, lsl #2
- 267 011e AD78     		ldrb	r5, [r5, #2]	@ zero_extendqisi2
- 268 0120 872D     		cmp	r5, #135
- 269 0122 04D9     		bls	.L16
+ 265 0116 4518     		adds	r5, r0, r1
+ 266 0118 02EB8505 		add	r5, r2, r5, lsl #2
+ 267 011c AD78     		ldrb	r5, [r5, #2]	@ zero_extendqisi2
+ 268 011e 872D     		cmp	r5, #135
+ 269 0120 04D9     		bls	.L16
   79:.\cv.c        ****                 Camera_framebuffer[h][w][2] = 1;
  270              		.loc 1 79 0
- 271 0124 0144     		add	r1, r1, r0
+ 271 0122 0144     		add	r1, r1, r0
  272              	.LVL34:
- 273 0126 02EB8101 		add	r1, r2, r1, lsl #2
- 274 012a 8F70     		strb	r7, [r1, #2]
- 275 012c 03E0     		b	.L17
+ 273 0124 02EB8101 		add	r1, r2, r1, lsl #2
+ 274 0128 8F70     		strb	r7, [r1, #2]
+ 275 012a 03E0     		b	.L17
  276              	.LVL35:
  277              	.L16:
   80:.\cv.c        ****             else
   81:.\cv.c        ****                 Camera_framebuffer[h][w][2] = 0;
  278              		.loc 1 81 0
- 279 012e 0144     		add	r1, r1, r0
+ 279 012c 0144     		add	r1, r1, r0
  280              	.LVL36:
- 281 0130 02EB8101 		add	r1, r2, r1, lsl #2
- 282 0134 8E70     		strb	r6, [r1, #2]
+ 281 012e 02EB8101 		add	r1, r2, r1, lsl #2
+ 282 0132 8E70     		strb	r6, [r1, #2]
  283              	.L17:
   64:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  284              		.loc 1 64 0
- 285 0136 0133     		adds	r3, r3, #1
+ 285 0134 0133     		adds	r3, r3, #1
  286              	.LVL37:
- 287 0138 DBB2     		uxtb	r3, r3
+ 287 0136 DBB2     		uxtb	r3, r3
  288              	.LVL38:
- 289 013a 03E0     		b	.L19
+ 289 0138 03E0     		b	.L19
  290              	.LVL39:
  291              	.L66:
- 292 013c 3346     		mov	r3, r6
+ 292 013a 3346     		mov	r3, r6
   66:.\cv.c        ****             if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
  293              		.loc 1 66 0
- 294 013e 0CFB0EF4 		mul	r4, ip, lr
+ 294 013c 0CFB0EF4 		mul	r4, ip, lr
   72:.\cv.c        ****             if (Camera_framebuffer[h][w][1] > THRESHOLD_G)
  295              		.loc 1 72 0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 8
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 8
 
 
- 296 0142 2046     		mov	r0, r4
+ 296 0140 2046     		mov	r0, r4
  297              	.L19:
  298              	.LVL40:
   64:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  299              		.loc 1 64 0 discriminator 1
- 300 0144 572B     		cmp	r3, #87
- 301 0146 CBD9     		bls	.L18
+ 300 0142 572B     		cmp	r3, #87
+ 301 0144 CBD9     		bls	.L18
   63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
  302              		.loc 1 63 0
- 303 0148 0EF1010E 		add	lr, lr, #1
+ 303 0146 0EF1010E 		add	lr, lr, #1
  304              	.LVL41:
- 305 014c 5FFA8EFE 		uxtb	lr, lr
+ 305 014a 5FFA8EFE 		uxtb	lr, lr
  306              	.LVL42:
  307              	.L11:
   63:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
  308              		.loc 1 63 0 is_stmt 0 discriminator 1
- 309 0150 BEF18F0F 		cmp	lr, #143
- 310 0154 F2D9     		bls	.L66
- 311 0156 0023     		movs	r3, #0
- 312 0158 1A46     		mov	r2, r3
- 313 015a 0193     		str	r3, [sp, #4]
+ 309 014e BEF18F0F 		cmp	lr, #143
+ 310 0152 F2D9     		bls	.L66
+ 311 0154 0023     		movs	r3, #0
+ 312 0156 1A46     		mov	r2, r3
+ 313 0158 0193     		str	r3, [sp, #4]
   82:.\cv.c        ****         }
   83:.\cv.c        ****     }
   84:.\cv.c        ****     
@@ -465,8 +465,8 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  102:.\cv.c        ****         
  103:.\cv.c        ****         if (Camera_framebuffer[i][halfWidth][1] == 0) {
  314              		.loc 1 103 0 is_stmt 1
- 315 015c 6448     		ldr	r0, .L80
- 316 015e 4FF4B071 		mov	r1, #352
+ 315 015a 6448     		ldr	r0, .L80
+ 316 015c 4FF4B071 		mov	r1, #352
  104:.\cv.c        ****             currentHeight++;
  105:.\cv.c        ****             i++;
  106:.\cv.c        ****         }
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  112:.\cv.c        ****             currentHeight += 3;
  113:.\cv.c        ****             i += 3;
  114:.\cv.c        ****         }
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 9
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 9
 
 
  115:.\cv.c        ****         else {
@@ -487,103 +487,103 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  118:.\cv.c        ****             
  119:.\cv.c        ****             currentHeight = 0;
  317              		.loc 1 119 0
- 318 0162 1C46     		mov	r4, r3
- 319 0164 1D46     		mov	r5, r3
+ 318 0160 1C46     		mov	r4, r3
+ 319 0162 1D46     		mov	r5, r3
  320              	.L76:
  321              	.LVL43:
  100:.\cv.c        ****         if (i > IMG_H)
  322              		.loc 1 100 0
- 323 0166 902B     		cmp	r3, #144
- 324 0168 27D8     		bhi	.L67
+ 323 0164 902B     		cmp	r3, #144
+ 324 0166 27D8     		bhi	.L67
  103:.\cv.c        ****         if (Camera_framebuffer[i][halfWidth][1] == 0) {
  325              		.loc 1 103 0
- 326 016a 01FB0307 		mla	r7, r1, r3, r0
- 327 016e 97F8B170 		ldrb	r7, [r7, #177]	@ zero_extendqisi2
- 328 0172 27B9     		cbnz	r7, .L22
+ 326 0168 01FB0307 		mla	r7, r1, r3, r0
+ 327 016c 97F8B170 		ldrb	r7, [r7, #177]	@ zero_extendqisi2
+ 328 0170 27B9     		cbnz	r7, .L22
  104:.\cv.c        ****             currentHeight++;
  329              		.loc 1 104 0
- 330 0174 0132     		adds	r2, r2, #1
+ 330 0172 0132     		adds	r2, r2, #1
  331              	.LVL44:
- 332 0176 D2B2     		uxtb	r2, r2
+ 332 0174 D2B2     		uxtb	r2, r2
  333              	.LVL45:
  105:.\cv.c        ****             i++;
  334              		.loc 1 105 0
- 335 0178 0133     		adds	r3, r3, #1
+ 335 0176 0133     		adds	r3, r3, #1
  336              	.LVL46:
- 337 017a DBB2     		uxtb	r3, r3
+ 337 0178 DBB2     		uxtb	r3, r3
  338              	.LVL47:
- 339 017c F3E7     		b	.L76
+ 339 017a F3E7     		b	.L76
  340              	.L22:
  107:.\cv.c        ****         else if (Camera_framebuffer[i+1][halfWidth][1] == 0) {
  341              		.loc 1 107 0
- 342 017e 03FB0117 		mla	r7, r3, r1, r1
- 343 0182 0744     		add	r7, r7, r0
- 344 0184 97F8B170 		ldrb	r7, [r7, #177]	@ zero_extendqisi2
- 345 0188 27B9     		cbnz	r7, .L24
+ 342 017c 03FB0117 		mla	r7, r3, r1, r1
+ 343 0180 0744     		add	r7, r7, r0
+ 344 0182 97F8B170 		ldrb	r7, [r7, #177]	@ zero_extendqisi2
+ 345 0186 27B9     		cbnz	r7, .L24
  108:.\cv.c        ****             currentHeight += 2;
  346              		.loc 1 108 0
- 347 018a 0232     		adds	r2, r2, #2
+ 347 0188 0232     		adds	r2, r2, #2
  348              	.LVL48:
- 349 018c D2B2     		uxtb	r2, r2
+ 349 018a D2B2     		uxtb	r2, r2
  350              	.LVL49:
  109:.\cv.c        ****             i += 2;
  351              		.loc 1 109 0
- 352 018e 0233     		adds	r3, r3, #2
+ 352 018c 0233     		adds	r3, r3, #2
  353              	.LVL50:
- 354 0190 DBB2     		uxtb	r3, r3
+ 354 018e DBB2     		uxtb	r3, r3
  355              	.LVL51:
- 356 0192 E8E7     		b	.L76
+ 356 0190 E8E7     		b	.L76
  357              	.L24:
  111:.\cv.c        ****         else if (Camera_framebuffer[i+2][halfWidth][1] == 0) {
  358              		.loc 1 111 0
- 359 0194 9E1C     		adds	r6, r3, #2
- 360 0196 01FB0606 		mla	r6, r1, r6, r0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 10
+ 359 0192 9E1C     		adds	r6, r3, #2
+ 360 0194 01FB0606 		mla	r6, r1, r6, r0
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 10
 
 
- 361 019a 96F8B160 		ldrb	r6, [r6, #177]	@ zero_extendqisi2
- 362 019e 26B9     		cbnz	r6, .L25
+ 361 0198 96F8B160 		ldrb	r6, [r6, #177]	@ zero_extendqisi2
+ 362 019c 26B9     		cbnz	r6, .L25
  112:.\cv.c        ****             currentHeight += 3;
  363              		.loc 1 112 0
- 364 01a0 0332     		adds	r2, r2, #3
+ 364 019e 0332     		adds	r2, r2, #3
  365              	.LVL52:
- 366 01a2 D2B2     		uxtb	r2, r2
+ 366 01a0 D2B2     		uxtb	r2, r2
  367              	.LVL53:
  113:.\cv.c        ****             i += 3;
  368              		.loc 1 113 0
- 369 01a4 0333     		adds	r3, r3, #3
+ 369 01a2 0333     		adds	r3, r3, #3
  370              	.LVL54:
- 371 01a6 DBB2     		uxtb	r3, r3
+ 371 01a4 DBB2     		uxtb	r3, r3
  372              	.LVL55:
- 373 01a8 DDE7     		b	.L76
+ 373 01a6 DDE7     		b	.L76
  374              	.L25:
  116:.\cv.c        ****             if (currentHeight > maxHeight)
  375              		.loc 1 116 0
- 376 01aa AA42     		cmp	r2, r5
- 377 01ac 00D8     		bhi	.L26
- 378 01ae 2A46     		mov	r2, r5
+ 376 01a8 AA42     		cmp	r2, r5
+ 377 01aa 00D8     		bhi	.L26
+ 378 01ac 2A46     		mov	r2, r5
  379              	.LVL56:
  380              	.L26:
  120:.\cv.c        ****             i++;
  381              		.loc 1 120 0
- 382 01b0 0133     		adds	r3, r3, #1
+ 382 01ae 0133     		adds	r3, r3, #1
  383              	.LVL57:
- 384 01b2 DBB2     		uxtb	r3, r3
+ 384 01b0 DBB2     		uxtb	r3, r3
  385              	.LVL58:
- 386 01b4 1546     		mov	r5, r2
+ 386 01b2 1546     		mov	r5, r2
  119:.\cv.c        ****             currentHeight = 0;
  387              		.loc 1 119 0
- 388 01b6 2246     		mov	r2, r4
+ 388 01b4 2246     		mov	r2, r4
  389              	.LVL59:
- 390 01b8 D5E7     		b	.L76
+ 390 01b6 D5E7     		b	.L76
  391              	.LVL60:
  392              	.L67:
- 393 01ba 0195     		str	r5, [sp, #4]
- 394 01bc 0023     		movs	r3, #0
+ 393 01b8 0195     		str	r5, [sp, #4]
+ 394 01ba 0023     		movs	r3, #0
  395              	.LVL61:
- 396 01be 1A46     		mov	r2, r3
+ 396 01bc 1A46     		mov	r2, r3
  397              	.LVL62:
- 398 01c0 1C46     		mov	r4, r3
+ 398 01be 1C46     		mov	r4, r3
  121:.\cv.c        ****         }
  122:.\cv.c        ****     }
  123:.\cv.c        ****     
@@ -595,10 +595,10 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  129:.\cv.c        ****         
  130:.\cv.c        ****         if (Camera_framebuffer[halfHeight][i][1] == 0) {
  399              		.loc 1 130 0
- 400 01c2 4B48     		ldr	r0, .L80
- 401 01c4 46F20131 		movw	r1, #25345
+ 400 01c0 4A48     		ldr	r0, .L80
+ 401 01c2 46F20131 		movw	r1, #25345
  131:.\cv.c        ****             currentWidth++;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 11
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 11
 
 
  132:.\cv.c        ****             i++;
@@ -617,94 +617,94 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  145:.\cv.c        ****             
  146:.\cv.c        ****             currentWidth = 0;
  402              		.loc 1 146 0
- 403 01c8 1D46     		mov	r5, r3
+ 403 01c6 1D46     		mov	r5, r3
  404              	.LVL63:
  405              	.L77:
  127:.\cv.c        ****         if (i > IMG_H)
  406              		.loc 1 127 0
- 407 01ca 902B     		cmp	r3, #144
- 408 01cc 24D8     		bhi	.L27
+ 407 01c8 902B     		cmp	r3, #144
+ 408 01ca 24D8     		bhi	.L27
  130:.\cv.c        ****         if (Camera_framebuffer[halfHeight][i][1] == 0) {
  409              		.loc 1 130 0
- 410 01ce 00EB8307 		add	r7, r0, r3, lsl #2
- 411 01d2 7F5C     		ldrb	r7, [r7, r1]	@ zero_extendqisi2
- 412 01d4 27B9     		cbnz	r7, .L28
+ 410 01cc 00EB8307 		add	r7, r0, r3, lsl #2
+ 411 01d0 7F5C     		ldrb	r7, [r7, r1]	@ zero_extendqisi2
+ 412 01d2 27B9     		cbnz	r7, .L28
  131:.\cv.c        ****             currentWidth++;
  413              		.loc 1 131 0
- 414 01d6 0132     		adds	r2, r2, #1
+ 414 01d4 0132     		adds	r2, r2, #1
  415              	.LVL64:
- 416 01d8 D2B2     		uxtb	r2, r2
+ 416 01d6 D2B2     		uxtb	r2, r2
  417              	.LVL65:
  132:.\cv.c        ****             i++;
  418              		.loc 1 132 0
- 419 01da 0133     		adds	r3, r3, #1
+ 419 01d8 0133     		adds	r3, r3, #1
  420              	.LVL66:
- 421 01dc DBB2     		uxtb	r3, r3
+ 421 01da DBB2     		uxtb	r3, r3
  422              	.LVL67:
- 423 01de F4E7     		b	.L77
+ 423 01dc F4E7     		b	.L77
  424              	.L28:
  134:.\cv.c        ****         else if (Camera_framebuffer[halfHeight][i+1][1] == 0) {
  425              		.loc 1 134 0
- 426 01e0 5F1C     		adds	r7, r3, #1
- 427 01e2 00EB8707 		add	r7, r0, r7, lsl #2
- 428 01e6 7F5C     		ldrb	r7, [r7, r1]	@ zero_extendqisi2
- 429 01e8 27B9     		cbnz	r7, .L30
+ 426 01de 5F1C     		adds	r7, r3, #1
+ 427 01e0 00EB8707 		add	r7, r0, r7, lsl #2
+ 428 01e4 7F5C     		ldrb	r7, [r7, r1]	@ zero_extendqisi2
+ 429 01e6 27B9     		cbnz	r7, .L30
  135:.\cv.c        ****             currentWidth += 2;
  430              		.loc 1 135 0
- 431 01ea 0232     		adds	r2, r2, #2
+ 431 01e8 0232     		adds	r2, r2, #2
  432              	.LVL68:
- 433 01ec D2B2     		uxtb	r2, r2
+ 433 01ea D2B2     		uxtb	r2, r2
  434              	.LVL69:
  136:.\cv.c        ****             i += 2;
  435              		.loc 1 136 0
- 436 01ee 0233     		adds	r3, r3, #2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 12
+ 436 01ec 0233     		adds	r3, r3, #2
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 12
 
 
  437              	.LVL70:
- 438 01f0 DBB2     		uxtb	r3, r3
+ 438 01ee DBB2     		uxtb	r3, r3
  439              	.LVL71:
- 440 01f2 EAE7     		b	.L77
+ 440 01f0 EAE7     		b	.L77
  441              	.L30:
  138:.\cv.c        ****         else if (Camera_framebuffer[halfHeight][i+2][1] == 0) {
  442              		.loc 1 138 0
- 443 01f4 9E1C     		adds	r6, r3, #2
- 444 01f6 00EB8606 		add	r6, r0, r6, lsl #2
- 445 01fa 765C     		ldrb	r6, [r6, r1]	@ zero_extendqisi2
- 446 01fc 26B9     		cbnz	r6, .L31
+ 443 01f2 9E1C     		adds	r6, r3, #2
+ 444 01f4 00EB8606 		add	r6, r0, r6, lsl #2
+ 445 01f8 765C     		ldrb	r6, [r6, r1]	@ zero_extendqisi2
+ 446 01fa 26B9     		cbnz	r6, .L31
  139:.\cv.c        ****             currentWidth += 3;
  447              		.loc 1 139 0
- 448 01fe 0332     		adds	r2, r2, #3
+ 448 01fc 0332     		adds	r2, r2, #3
  449              	.LVL72:
- 450 0200 D2B2     		uxtb	r2, r2
+ 450 01fe D2B2     		uxtb	r2, r2
  451              	.LVL73:
  140:.\cv.c        ****             i += 3;
  452              		.loc 1 140 0
- 453 0202 0333     		adds	r3, r3, #3
+ 453 0200 0333     		adds	r3, r3, #3
  454              	.LVL74:
- 455 0204 DBB2     		uxtb	r3, r3
+ 455 0202 DBB2     		uxtb	r3, r3
  456              	.LVL75:
- 457 0206 E0E7     		b	.L77
+ 457 0204 E0E7     		b	.L77
  458              	.L31:
  143:.\cv.c        ****             if (currentWidth > maxWidth)
  459              		.loc 1 143 0
- 460 0208 A242     		cmp	r2, r4
- 461 020a 00D8     		bhi	.L32
- 462 020c 2246     		mov	r2, r4
+ 460 0206 A242     		cmp	r2, r4
+ 461 0208 00D8     		bhi	.L32
+ 462 020a 2246     		mov	r2, r4
  463              	.LVL76:
  464              	.L32:
  147:.\cv.c        ****             i++;
  465              		.loc 1 147 0
- 466 020e 0133     		adds	r3, r3, #1
+ 466 020c 0133     		adds	r3, r3, #1
  467              	.LVL77:
- 468 0210 DBB2     		uxtb	r3, r3
+ 468 020e DBB2     		uxtb	r3, r3
  469              	.LVL78:
- 470 0212 1446     		mov	r4, r2
+ 470 0210 1446     		mov	r4, r2
  146:.\cv.c        ****             currentWidth = 0;
  471              		.loc 1 146 0
- 472 0214 2A46     		mov	r2, r5
+ 472 0212 2A46     		mov	r2, r5
  473              	.LVL79:
- 474 0216 D8E7     		b	.L77
+ 474 0214 D8E7     		b	.L77
  475              	.LVL80:
  476              	.L27:
  148:.\cv.c        ****         }
@@ -713,75 +713,75 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  151:.\cv.c        ****     // Debug output
  152:.\cv.c        ****     Lcd_ClearDisplay();
  477              		.loc 1 152 0
- 478 0218 0120     		movs	r0, #1
- 479 021a FFF7FEFF 		bl	Lcd_WriteControl
+ 478 0216 0120     		movs	r0, #1
+ 479 0218 FFF7FEFF 		bl	Lcd_WriteControl
  480              	.LVL81:
  153:.\cv.c        ****     Lcd_Position(0,0);
  481              		.loc 1 153 0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 13
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 13
 
 
- 482 021e 0020     		movs	r0, #0
- 483 0220 0146     		mov	r1, r0
- 484 0222 FFF7FEFF 		bl	Lcd_Position
+ 482 021c 0020     		movs	r0, #0
+ 483 021e 0146     		mov	r1, r0
+ 484 0220 FFF7FEFF 		bl	Lcd_Position
  485              	.LVL82:
  154:.\cv.c        ****     Lcd_PrintNumber(maxHeight);
  486              		.loc 1 154 0
- 487 0226 0198     		ldr	r0, [sp, #4]
- 488 0228 FFF7FEFF 		bl	Lcd_PrintNumber
+ 487 0224 0198     		ldr	r0, [sp, #4]
+ 488 0226 FFF7FEFF 		bl	Lcd_PrintNumber
  489              	.LVL83:
  155:.\cv.c        ****     Lcd_PosPrintString(0,5,"x");
  490              		.loc 1 155 0
- 491 022c 0020     		movs	r0, #0
- 492 022e 0521     		movs	r1, #5
- 493 0230 FFF7FEFF 		bl	Lcd_Position
+ 491 022a 0020     		movs	r0, #0
+ 492 022c 0521     		movs	r1, #5
+ 493 022e FFF7FEFF 		bl	Lcd_Position
  494              	.LVL84:
- 495 0234 2F48     		ldr	r0, .L80+4
- 496 0236 FFF7FEFF 		bl	Lcd_PrintString
+ 495 0232 2F48     		ldr	r0, .L80+4
+ 496 0234 FFF7FEFF 		bl	Lcd_PrintString
  497              	.LVL85:
  156:.\cv.c        ****     Lcd_Position(0,7);
  498              		.loc 1 156 0
- 499 023a 0020     		movs	r0, #0
- 500 023c 0721     		movs	r1, #7
- 501 023e FFF7FEFF 		bl	Lcd_Position
+ 499 0238 0020     		movs	r0, #0
+ 500 023a 0721     		movs	r1, #7
+ 501 023c FFF7FEFF 		bl	Lcd_Position
  502              	.LVL86:
  157:.\cv.c        ****     Lcd_PrintNumber(maxWidth);
  503              		.loc 1 157 0
- 504 0242 2046     		mov	r0, r4
- 505 0244 FFF7FEFF 		bl	Lcd_PrintNumber
+ 504 0240 2046     		mov	r0, r4
+ 505 0242 FFF7FEFF 		bl	Lcd_PrintNumber
  506              	.LVL87:
  158:.\cv.c        ****     
  159:.\cv.c        ****     if (maxWidth > maxHeight) {
  507              		.loc 1 159 0
- 508 0248 DDF80480 		ldr	r8, [sp, #4]
- 509 024c 4445     		cmp	r4, r8
- 510 024e 0AD9     		bls	.L68
+ 508 0246 DDF80480 		ldr	r8, [sp, #4]
+ 509 024a 4445     		cmp	r4, r8
+ 510 024c 0AD9     		bls	.L68
  160:.\cv.c        ****         Lcd_ClearDisplay();
  511              		.loc 1 160 0
- 512 0250 0120     		movs	r0, #1
- 513 0252 FFF7FEFF 		bl	Lcd_WriteControl
+ 512 024e 0120     		movs	r0, #1
+ 513 0250 FFF7FEFF 		bl	Lcd_WriteControl
  514              	.LVL88:
  161:.\cv.c        ****         Lcd_Position(0,0);
  515              		.loc 1 161 0
- 516 0256 0020     		movs	r0, #0
- 517 0258 0146     		mov	r1, r0
- 518 025a FFF7FEFF 		bl	Lcd_Position
+ 516 0254 0020     		movs	r0, #0
+ 517 0256 0146     		mov	r1, r0
+ 518 0258 FFF7FEFF 		bl	Lcd_Position
  519              	.LVL89:
  162:.\cv.c        ****         Lcd_PrintString("W>H Check orient");
  520              		.loc 1 162 0
- 521 025e 2648     		ldr	r0, .L80+8
- 522 0260 FFF7FEFF 		bl	Lcd_PrintString
+ 521 025c 2548     		ldr	r0, .L80+8
+ 522 025e FFF7FEFF 		bl	Lcd_PrintString
  523              	.LVL90:
  163:.\cv.c        ****         
  164:.\cv.c        ****         return plan;
  524              		.loc 1 164 0
- 525 0264 51E1     		b	.L34
+ 525 0262 50E1     		b	.L34
  526              	.L68:
- 527 0266 2C23     		movs	r3, #44
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 14
+ 527 0264 2C23     		movs	r3, #44
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 14
 
 
- 528 0268 4FF0480B 		mov	fp, #72
+ 528 0266 4FF0480B 		mov	fp, #72
  165:.\cv.c        ****     }
  166:.\cv.c        ****     
  167:.\cv.c        ****     
@@ -791,84 +791,84 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  171:.\cv.c        ****     while (1) {
  172:.\cv.c        ****         if (Camera_framebuffer[hPos-1][wPos-1][1] == 0) {
  529              		.loc 1 172 0
- 530 026c 204C     		ldr	r4, .L80
+ 530 026a 204C     		ldr	r4, .L80
  531              	.LVL91:
- 532 026e 5820     		movs	r0, #88
+ 532 026c 5820     		movs	r0, #88
  533              	.L78:
  534              	.LVL92:
- 535 0270 0BF1FF32 		add	r2, fp, #-1
- 536 0274 591E     		subs	r1, r3, #1
- 537 0276 00FB0215 		mla	r5, r0, r2, r1
- 538 027a 04EB8505 		add	r5, r4, r5, lsl #2
- 539 027e 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
- 540 0280 1DB9     		cbnz	r5, .L35
+ 535 026e 0BF1FF32 		add	r2, fp, #-1
+ 536 0272 591E     		subs	r1, r3, #1
+ 537 0274 00FB0215 		mla	r5, r0, r2, r1
+ 538 0278 04EB8505 		add	r5, r4, r5, lsl #2
+ 539 027c 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
+ 540 027e 1DB9     		cbnz	r5, .L35
  173:.\cv.c        ****             hPos = hPos-1;
  541              		.loc 1 173 0
- 542 0282 5FFA82FB 		uxtb	fp, r2
+ 542 0280 5FFA82FB 		uxtb	fp, r2
  543              	.LVL93:
  174:.\cv.c        ****             wPos = wPos-1;
  544              		.loc 1 174 0
- 545 0286 CBB2     		uxtb	r3, r1
+ 545 0284 CBB2     		uxtb	r3, r1
  546              	.LVL94:
- 547 0288 F2E7     		b	.L78
+ 547 0286 F2E7     		b	.L78
  548              	.LVL95:
  549              	.L35:
  175:.\cv.c        ****         }
  176:.\cv.c        ****         else if (Camera_framebuffer[hPos-1][wPos][1] == 0) {
  550              		.loc 1 176 0
- 551 028a 00FB0235 		mla	r5, r0, r2, r3
- 552 028e 04EB8505 		add	r5, r4, r5, lsl #2
- 553 0292 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
- 554 0294 25B9     		cbnz	r5, .L37
+ 551 0288 00FB0235 		mla	r5, r0, r2, r3
+ 552 028c 04EB8505 		add	r5, r4, r5, lsl #2
+ 553 0290 6D78     		ldrb	r5, [r5, #1]	@ zero_extendqisi2
+ 554 0292 25B9     		cbnz	r5, .L37
  177:.\cv.c        ****             hPos = hPos-1;
  555              		.loc 1 177 0
- 556 0296 0BF1FF3B 		add	fp, fp, #-1
+ 556 0294 0BF1FF3B 		add	fp, fp, #-1
  557              	.LVL96:
- 558 029a 5FFA8BFB 		uxtb	fp, fp
+ 558 0298 5FFA8BFB 		uxtb	fp, fp
  559              	.LVL97:
- 560 029e E7E7     		b	.L78
+ 560 029c E7E7     		b	.L78
  561              	.L37:
  178:.\cv.c        ****         }
  179:.\cv.c        ****         else if (Camera_framebuffer[hPos][wPos-1][1] == 0) {
  562              		.loc 1 179 0
- 563 02a0 00FB0B11 		mla	r1, r0, fp, r1
- 564 02a4 04EB8101 		add	r1, r4, r1, lsl #2
- 565 02a8 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
- 566 02aa 11B9     		cbnz	r1, .L38
+ 563 029e 00FB0B11 		mla	r1, r0, fp, r1
+ 564 02a2 04EB8101 		add	r1, r4, r1, lsl #2
+ 565 02a6 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 566 02a8 11B9     		cbnz	r1, .L38
  180:.\cv.c        ****             wPos = wPos-1;
  567              		.loc 1 180 0
- 568 02ac 013B     		subs	r3, r3, #1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 15
+ 568 02aa 013B     		subs	r3, r3, #1
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 15
 
 
  569              	.LVL98:
- 570 02ae DBB2     		uxtb	r3, r3
+ 570 02ac DBB2     		uxtb	r3, r3
  571              	.LVL99:
- 572 02b0 DEE7     		b	.L78
+ 572 02ae DEE7     		b	.L78
  573              	.L38:
  181:.\cv.c        ****         }
  182:.\cv.c        ****         else if (Camera_framebuffer[hPos-1][wPos+1][1] == 0) {
  574              		.loc 1 182 0
- 575 02b2 5F1C     		adds	r7, r3, #1
- 576 02b4 00FB0272 		mla	r2, r0, r2, r7
- 577 02b8 04EB8202 		add	r2, r4, r2, lsl #2
- 578 02bc 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
- 579 02be 32B9     		cbnz	r2, .L39
+ 575 02b0 5F1C     		adds	r7, r3, #1
+ 576 02b2 00FB0272 		mla	r2, r0, r2, r7
+ 577 02b6 04EB8202 		add	r2, r4, r2, lsl #2
+ 578 02ba 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 579 02bc 32B9     		cbnz	r2, .L39
  183:.\cv.c        ****             hPos = hPos-1;
  580              		.loc 1 183 0
- 581 02c0 0BF1FF3B 		add	fp, fp, #-1
+ 581 02be 0BF1FF3B 		add	fp, fp, #-1
  582              	.LVL100:
- 583 02c4 5FFA8BFB 		uxtb	fp, fp
+ 583 02c2 5FFA8BFB 		uxtb	fp, fp
  584              	.LVL101:
  184:.\cv.c        ****             wPos = wPos+1;
  585              		.loc 1 184 0
- 586 02c8 0133     		adds	r3, r3, #1
+ 586 02c6 0133     		adds	r3, r3, #1
  587              	.LVL102:
- 588 02ca DBB2     		uxtb	r3, r3
+ 588 02c8 DBB2     		uxtb	r3, r3
  589              	.LVL103:
- 590 02cc D0E7     		b	.L78
+ 590 02ca D0E7     		b	.L78
  591              	.L39:
- 592 02ce CDF80CB0 		str	fp, [sp, #12]
+ 592 02cc CDF80CB0 		str	fp, [sp, #12]
  185:.\cv.c        ****         }
  186:.\cv.c        ****         else
  187:.\cv.c        ****             break;
@@ -877,39 +877,39 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  190:.\cv.c        ****     // Err msg if cannot find plan
  191:.\cv.c        ****     if (hPos == 255) {
  593              		.loc 1 191 0
- 594 02d2 BBF1FF0F 		cmp	fp, #255
- 595 02d6 3FD1     		bne	.L69
+ 594 02d0 BBF1FF0F 		cmp	fp, #255
+ 595 02d4 3ED1     		bne	.L69
  192:.\cv.c        ****         Lcd_ClearDisplay();
  596              		.loc 1 192 0
- 597 02d8 0120     		movs	r0, #1
- 598 02da FFF7FEFF 		bl	Lcd_WriteControl
+ 597 02d6 0120     		movs	r0, #1
+ 598 02d8 FFF7FEFF 		bl	Lcd_WriteControl
  599              	.LVL104:
  193:.\cv.c        ****         Lcd_Position(0,0);
  600              		.loc 1 193 0
- 601 02de 0020     		movs	r0, #0
- 602 02e0 0146     		mov	r1, r0
- 603 02e2 FFF7FEFF 		bl	Lcd_Position
+ 601 02dc 0020     		movs	r0, #0
+ 602 02de 0146     		mov	r1, r0
+ 603 02e0 FFF7FEFF 		bl	Lcd_Position
  604              	.LVL105:
  194:.\cv.c        ****         Lcd_PrintString("Cannot find plan.");
  605              		.loc 1 194 0
- 606 02e6 0548     		ldr	r0, .L80+12
- 607 02e8 FFF7FEFF 		bl	Lcd_PrintString
+ 606 02e4 0448     		ldr	r0, .L80+12
+ 607 02e6 FFF7FEFF 		bl	Lcd_PrintString
  608              	.LVL106:
  195:.\cv.c        ****         
  196:.\cv.c        ****         return plan;
  609              		.loc 1 196 0
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 16
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 16
 
 
- 610 02ec 0DE1     		b	.L34
+ 610 02ea 0CE1     		b	.L34
  611              	.L81:
- 612 02ee 00BF     		.align	2
+ 612              		.align	2
  613              	.L80:
- 614 02f0 00000000 		.word	Camera_framebuffer
- 615 02f4 00000000 		.word	.LC0
- 616 02f8 04000000 		.word	.LC1
- 617 02fc 18000000 		.word	.LC2
- 618 0300 56555555 		.word	1431655766
+ 614 02ec 00000000 		.word	Camera_framebuffer
+ 615 02f0 00000000 		.word	.LC0
+ 616 02f4 04000000 		.word	.LC1
+ 617 02f8 18000000 		.word	.LC2
+ 618 02fc 56555555 		.word	1431655766
  619              	.LVL107:
  620              	.L42:
  197:.\cv.c        ****     }
@@ -919,76 +919,76 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  201:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  202:.\cv.c        ****             Camera_framebuffer[h][w][3] = (((2*(!Camera_framebuffer[h][w][1])) + 3*((!Camera_frameb
  621              		.loc 1 202 0
- 622 0304 1D46     		mov	r5, r3
- 623 0306 0CEB0301 		add	r1, ip, r3
- 624 030a 02EB8101 		add	r1, r2, r1, lsl #2
- 625 030e 4878     		ldrb	r0, [r1, #1]	@ zero_extendqisi2
- 626 0310 08B9     		cbnz	r0, .L70
- 627 0312 4646     		mov	r6, r8
- 628 0314 00E0     		b	.L41
+ 622 0300 1D46     		mov	r5, r3
+ 623 0302 0CEB0301 		add	r1, ip, r3
+ 624 0306 02EB8101 		add	r1, r2, r1, lsl #2
+ 625 030a 4878     		ldrb	r0, [r1, #1]	@ zero_extendqisi2
+ 626 030c 08B9     		cbnz	r0, .L70
+ 627 030e 4646     		mov	r6, r8
+ 628 0310 00E0     		b	.L41
  629              	.L70:
- 630 0316 4E46     		mov	r6, r9
+ 630 0312 4E46     		mov	r6, r9
  631              	.L41:
  632              		.loc 1 202 0 is_stmt 0 discriminator 3
- 633 0318 D0F10100 		rsbs	r0, r0, #1
- 634 031c 38BF     		it	cc
- 635 031e 0020     		movcc	r0, #0
- 636 0320 3D44     		add	r5, r5, r7
- 637 0322 02EB8501 		add	r1, r2, r5, lsl #2
- 638 0326 8C78     		ldrb	r4, [r1, #2]	@ zero_extendqisi2
- 639 0328 0440     		ands	r4, r4, r0
- 640 032a 12F82550 		ldrb	r5, [r2, r5, lsl #2]	@ zero_extendqisi2
- 641 032e 06EB4406 		add	r6, r6, r4, lsl #1
- 642 0332 3444     		add	r4, r4, r6
- 643 0334 2840     		ands	r0, r0, r5
- 644 0336 2044     		add	r0, r0, r4
- 645 0338 C870     		strb	r0, [r1, #3]
+ 633 0314 D0F10100 		rsbs	r0, r0, #1
+ 634 0318 38BF     		it	cc
+ 635 031a 0020     		movcc	r0, #0
+ 636 031c 3D44     		add	r5, r5, r7
+ 637 031e 02EB8501 		add	r1, r2, r5, lsl #2
+ 638 0322 8C78     		ldrb	r4, [r1, #2]	@ zero_extendqisi2
+ 639 0324 0440     		ands	r4, r4, r0
+ 640 0326 12F82550 		ldrb	r5, [r2, r5, lsl #2]	@ zero_extendqisi2
+ 641 032a 06EB4406 		add	r6, r6, r4, lsl #1
+ 642 032e 3444     		add	r4, r4, r6
+ 643 0330 2840     		ands	r0, r0, r5
+ 644 0332 2044     		add	r0, r0, r4
+ 645 0334 C870     		strb	r0, [r1, #3]
  201:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  646              		.loc 1 201 0 is_stmt 1 discriminator 3
- 647 033a 0133     		adds	r3, r3, #1
+ 647 0336 0133     		adds	r3, r3, #1
  648              	.LVL108:
- 649 033c DBB2     		uxtb	r3, r3
+ 649 0338 DBB2     		uxtb	r3, r3
  650              	.LVL109:
- 651 033e 04E0     		b	.L43
+ 651 033a 04E0     		b	.L43
  652              	.LVL110:
  653              	.L71:
- 654 0340 0023     		movs	r3, #0
+ 654 033c 0023     		movs	r3, #0
  655              		.loc 1 202 0
- 656 0342 5820     		movs	r0, #88
- 657 0344 00FB0AFC 		mul	ip, r0, r10
- 658 0348 6746     		mov	r7, ip
+ 656 033e 5820     		movs	r0, #88
+ 657 0340 00FB0AFC 		mul	ip, r0, r10
+ 658 0344 6746     		mov	r7, ip
  659              	.L43:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 17
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 17
 
 
  660              	.LVL111:
  201:.\cv.c        ****         for (w = 0; w < IMG_W; w++) {
  661              		.loc 1 201 0 discriminator 1
- 662 034a 572B     		cmp	r3, #87
- 663 034c DAD9     		bls	.L42
+ 662 0346 572B     		cmp	r3, #87
+ 663 0348 DAD9     		bls	.L42
  200:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
  664              		.loc 1 200 0
- 665 034e 0AF1010A 		add	r10, r10, #1
+ 665 034a 0AF1010A 		add	r10, r10, #1
  666              	.LVL112:
- 667 0352 5FFA8AFA 		uxtb	r10, r10
+ 667 034e 5FFA8AFA 		uxtb	r10, r10
  668              	.LVL113:
- 669 0356 05E0     		b	.L40
+ 669 0352 05E0     		b	.L40
  670              	.LVL114:
  671              	.L69:
- 672 0358 4FF0000A 		mov	r10, #0
+ 672 0354 4FF0000A 		mov	r10, #0
  673              		.loc 1 202 0
- 674 035c 6D4A     		ldr	r2, .L82
- 675 035e D146     		mov	r9, r10
- 676 0360 4FF00208 		mov	r8, #2
+ 674 0358 6D4A     		ldr	r2, .L82
+ 675 035a D146     		mov	r9, r10
+ 676 035c 4FF00208 		mov	r8, #2
  677              	.LVL115:
  678              	.L40:
  200:.\cv.c        ****     for (h = 0; h < IMG_H; h++) {
  679              		.loc 1 200 0 discriminator 1
- 680 0364 BAF18F0F 		cmp	r10, #143
- 681 0368 EAD9     		bls	.L71
- 682 036a 0022     		movs	r2, #0
- 683 036c 1546     		mov	r5, r2
- 684 036e 1346     		mov	r3, r2
+ 680 0360 BAF18F0F 		cmp	r10, #143
+ 681 0364 EAD9     		bls	.L71
+ 682 0366 0022     		movs	r2, #0
+ 683 0368 1546     		mov	r5, r2
+ 684 036a 1346     		mov	r3, r2
  203:.\cv.c        ****         }
  204:.\cv.c        ****     }
  205:.\cv.c        ****     // NOTE: In imgAll, R=3, G=2, B=5, 0=ignore
@@ -1007,10 +1007,10 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  218:.\cv.c        ****         j++;
  219:.\cv.c        ****         if (j > hPos + maxHeight)
  685              		.loc 1 219 0
- 686 0370 0399     		ldr	r1, [sp, #12]
- 687 0372 DDF80480 		ldr	r8, [sp, #4]
- 688 0376 4144     		add	r1, r1, r8
- 689 0378 0391     		str	r1, [sp, #12]
+ 686 036c 0399     		ldr	r1, [sp, #12]
+ 687 036e DDF80480 		ldr	r8, [sp, #4]
+ 688 0372 4144     		add	r1, r1, r8
+ 689 0374 0391     		str	r1, [sp, #12]
  220:.\cv.c        ****             break;
  221:.\cv.c        ****         if (rowUpTo >= ROWS)
  222:.\cv.c        ****             break;
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  224:.\cv.c        ****         // Switch on colour mode
  225:.\cv.c        ****         switch (mode) {
  226:.\cv.c        ****             case RED:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 18
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 18
 
 
  227:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cRED) {
@@ -1050,8 +1050,8 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  253:.\cv.c        ****             case GREEN:
  254:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cGREEN) {
  690              		.loc 1 254 0
- 691 037a 664C     		ldr	r4, .L82
- 692 037c 4FF4B071 		mov	r1, #352
+ 691 0376 664C     		ldr	r4, .L82
+ 692 0378 4FF4B071 		mov	r1, #352
  255:.\cv.c        ****                     maxLength++;
  256:.\cv.c        ****                 }
  257:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cGREEN) {
@@ -1072,42 +1072,42 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  272:.\cv.c        ****                     if (Camera_framebuffer[j][halfWidth][3] == cRED)
  273:.\cv.c        ****                         mode = RED;
  693              		.loc 1 273 0
- 694 0380 0127     		movs	r7, #1
+ 694 037c 0127     		movs	r7, #1
  274:.\cv.c        ****                     else
  275:.\cv.c        ****                         mode = BLUE;
  276:.\cv.c        ****                     maxLength++;
  695              		.loc 1 276 0
- 696 0382 0197     		str	r7, [sp, #4]
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 19
+ 696 037e 0197     		str	r7, [sp, #4]
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 19
 
 
  697              	.LVL116:
  275:.\cv.c        ****                         mode = BLUE;
  698              		.loc 1 275 0
- 699 0384 4FF0030C 		mov	ip, #3
+ 699 0380 4FF0030C 		mov	ip, #3
  267:.\cv.c        ****                         plan[rowUpTo] = GREEN;
  700              		.loc 1 267 0
- 701 0388 4FF0020A 		mov	r10, #2
+ 701 0384 4FF0020A 		mov	r10, #2
  702              	.LVL117:
- 703 038c 08E0     		b	.L44
+ 703 0388 08E0     		b	.L44
  704              	.LVL118:
  705              	.L54:
  246:.\cv.c        ****                         mode = GREEN;
  706              		.loc 1 246 0
- 707 038e 5246     		mov	r2, r10
+ 707 038a 5246     		mov	r2, r10
  249:.\cv.c        ****                     maxLength++;
  708              		.loc 1 249 0
- 709 0390 3B46     		mov	r3, r7
- 710 0392 04E0     		b	.L50
+ 709 038c 3B46     		mov	r3, r7
+ 710 038e 04E0     		b	.L50
  711              	.LVL119:
  712              	.L72:
  275:.\cv.c        ****                         mode = BLUE;
  713              		.loc 1 275 0
- 714 0394 6246     		mov	r2, ip
+ 714 0390 6246     		mov	r2, ip
  715              	.LVL120:
  716              		.loc 1 276 0
- 717 0396 3B46     		mov	r3, r7
- 718 0398 01E0     		b	.L50
+ 717 0392 3B46     		mov	r3, r7
+ 718 0394 01E0     		b	.L50
  719              	.L73:
  277:.\cv.c        ****                 }
  278:.\cv.c        ****                 break;
@@ -1136,309 +1136,309 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  301:.\cv.c        ****                     else
  302:.\cv.c        ****                         mode = GREEN;
  720              		.loc 1 302 0
- 721 039a 5246     		mov	r2, r10
+ 721 0396 5246     		mov	r2, r10
  303:.\cv.c        ****                     maxLength++;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 20
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 20
 
 
  722              		.loc 1 303 0
- 723 039c 3B46     		mov	r3, r7
+ 723 0398 3B46     		mov	r3, r7
  724              	.LVL121:
  725              	.L50:
- 726 039e 8346     		mov	fp, r0
+ 726 039a 8346     		mov	fp, r0
  727              	.L44:
  728              	.LVL122:
  218:.\cv.c        ****         j++;
  729              		.loc 1 218 0
- 730 03a0 0BF10100 		add	r0, fp, #1
- 731 03a4 C0B2     		uxtb	r0, r0
+ 730 039c 0BF10100 		add	r0, fp, #1
+ 731 03a0 C0B2     		uxtb	r0, r0
  732              	.LVL123:
  219:.\cv.c        ****         if (j > hPos + maxHeight)
  733              		.loc 1 219 0
- 734 03a6 DDF80C80 		ldr	r8, [sp, #12]
- 735 03aa 4045     		cmp	r0, r8
- 736 03ac 00F3AD80 		bgt	.L34
+ 734 03a2 DDF80C80 		ldr	r8, [sp, #12]
+ 735 03a6 4045     		cmp	r0, r8
+ 736 03a8 00F3AD80 		bgt	.L34
  221:.\cv.c        ****         if (rowUpTo >= ROWS)
  737              		.loc 1 221 0
- 738 03b0 022D     		cmp	r5, #2
- 739 03b2 00F2AA80 		bhi	.L34
+ 738 03ac 022D     		cmp	r5, #2
+ 739 03ae 00F2AA80 		bhi	.L34
  225:.\cv.c        ****         switch (mode) {
  740              		.loc 1 225 0
- 741 03b6 022A     		cmp	r2, #2
- 742 03b8 34D0     		beq	.L46
- 743 03ba 032A     		cmp	r2, #3
- 744 03bc 63D0     		beq	.L47
- 745 03be 012A     		cmp	r2, #1
- 746 03c0 40F09380 		bne	.L79
+ 741 03b2 022A     		cmp	r2, #2
+ 742 03b4 34D0     		beq	.L46
+ 743 03b6 032A     		cmp	r2, #3
+ 744 03b8 63D0     		beq	.L47
+ 745 03ba 012A     		cmp	r2, #1
+ 746 03bc 40F09380 		bne	.L79
  227:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cRED) {
  747              		.loc 1 227 0
- 748 03c4 01FB0048 		mla	r8, r1, r0, r4
- 749 03c8 98F8B380 		ldrb	r8, [r8, #179]	@ zero_extendqisi2
- 750 03cc B8F1030F 		cmp	r8, #3
- 751 03d0 02D1     		bne	.L49
+ 748 03c0 01FB0048 		mla	r8, r1, r0, r4
+ 749 03c4 98F8B380 		ldrb	r8, [r8, #179]	@ zero_extendqisi2
+ 750 03c8 B8F1030F 		cmp	r8, #3
+ 751 03cc 02D1     		bne	.L49
  228:.\cv.c        ****                     maxLength++;
  752              		.loc 1 228 0
- 753 03d2 0133     		adds	r3, r3, #1
+ 753 03ce 0133     		adds	r3, r3, #1
  754              	.LVL124:
- 755 03d4 DBB2     		uxtb	r3, r3
+ 755 03d0 DBB2     		uxtb	r3, r3
  756              	.LVL125:
- 757 03d6 E2E7     		b	.L50
+ 757 03d2 E2E7     		b	.L50
  758              	.L49:
  230:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cRED) {
  759              		.loc 1 230 0
- 760 03d8 00FB0119 		mla	r9, r0, r1, r1
- 761 03dc A144     		add	r9, r9, r4
- 762 03de 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
- 763 03e2 B9F1030F 		cmp	r9, #3
- 764 03e6 04D1     		bne	.L51
+ 760 03d4 00FB0119 		mla	r9, r0, r1, r1
+ 761 03d8 A144     		add	r9, r9, r4
+ 762 03da 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
+ 763 03de B9F1030F 		cmp	r9, #3
+ 764 03e2 04D1     		bne	.L51
  231:.\cv.c        ****                     maxLength += 2;
  765              		.loc 1 231 0
- 766 03e8 0233     		adds	r3, r3, #2
+ 766 03e4 0233     		adds	r3, r3, #2
  767              	.LVL126:
- 768 03ea DBB2     		uxtb	r3, r3
+ 768 03e6 DBB2     		uxtb	r3, r3
  769              	.LVL127:
  232:.\cv.c        ****                     j++;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 21
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 21
 
 
  770              		.loc 1 232 0
- 771 03ec 0130     		adds	r0, r0, #1
+ 771 03e8 0130     		adds	r0, r0, #1
  772              	.LVL128:
- 773 03ee C0B2     		uxtb	r0, r0
+ 773 03ea C0B2     		uxtb	r0, r0
  774              	.LVL129:
- 775 03f0 D5E7     		b	.L50
+ 775 03ec D5E7     		b	.L50
  776              	.LVL130:
  777              	.L51:
  234:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cRED) {
  778              		.loc 1 234 0
- 779 03f2 861C     		adds	r6, r0, #2
- 780 03f4 01FB0646 		mla	r6, r1, r6, r4
- 781 03f8 96F8B360 		ldrb	r6, [r6, #179]	@ zero_extendqisi2
- 782 03fc 032E     		cmp	r6, #3
- 783 03fe 05D1     		bne	.L52
+ 779 03ee 861C     		adds	r6, r0, #2
+ 780 03f0 01FB0646 		mla	r6, r1, r6, r4
+ 781 03f4 96F8B360 		ldrb	r6, [r6, #179]	@ zero_extendqisi2
+ 782 03f8 032E     		cmp	r6, #3
+ 783 03fa 05D1     		bne	.L52
  235:.\cv.c        ****                     maxLength += 3;
  784              		.loc 1 235 0
- 785 0400 0333     		adds	r3, r3, #3
+ 785 03fc 0333     		adds	r3, r3, #3
  786              	.LVL131:
- 787 0402 DBB2     		uxtb	r3, r3
+ 787 03fe DBB2     		uxtb	r3, r3
  788              	.LVL132:
  236:.\cv.c        ****                     j += 2;
  789              		.loc 1 236 0
- 790 0404 0BF10300 		add	r0, fp, #3
- 791 0408 C0B2     		uxtb	r0, r0
+ 790 0400 0BF10300 		add	r0, fp, #3
+ 791 0404 C0B2     		uxtb	r0, r0
  792              	.LVL133:
- 793 040a C8E7     		b	.L50
+ 793 0406 C8E7     		b	.L50
  794              	.L52:
  239:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
  795              		.loc 1 239 0
- 796 040c 052B     		cmp	r3, #5
- 797 040e 03D9     		bls	.L53
+ 796 0408 052B     		cmp	r3, #5
+ 797 040a 03D9     		bls	.L53
  240:.\cv.c        ****                         plan[rowUpTo] = RED;
  798              		.loc 1 240 0
- 799 0410 029A     		ldr	r2, [sp, #8]
+ 799 040c 029A     		ldr	r2, [sp, #8]
  800              	.LVL134:
- 801 0412 5755     		strb	r7, [r2, r5]
+ 801 040e 5755     		strb	r7, [r2, r5]
  241:.\cv.c        ****                         rowUpTo++;
  802              		.loc 1 241 0
- 803 0414 0135     		adds	r5, r5, #1
+ 803 0410 0135     		adds	r5, r5, #1
  804              	.LVL135:
- 805 0416 EDB2     		uxtb	r5, r5
+ 805 0412 EDB2     		uxtb	r5, r5
  806              	.LVL136:
  807              	.L53:
  245:.\cv.c        ****                     if (Camera_framebuffer[j][halfWidth][3] == cGREEN)
  808              		.loc 1 245 0
- 809 0418 B8F1020F 		cmp	r8, #2
- 810 041c B7D0     		beq	.L54
+ 809 0414 B8F1020F 		cmp	r8, #2
+ 810 0418 B7D0     		beq	.L54
  248:.\cv.c        ****                         mode = BLUE;
  811              		.loc 1 248 0
- 812 041e 6246     		mov	r2, ip
+ 812 041a 6246     		mov	r2, ip
  249:.\cv.c        ****                     maxLength++;
  813              		.loc 1 249 0
- 814 0420 3B46     		mov	r3, r7
- 815 0422 BCE7     		b	.L50
+ 814 041c 3B46     		mov	r3, r7
+ 815 041e BCE7     		b	.L50
  816              	.LVL137:
  817              	.L46:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 22
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 22
 
 
  254:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cGREEN) {
  818              		.loc 1 254 0
- 819 0424 01FB0048 		mla	r8, r1, r0, r4
- 820 0428 98F8B380 		ldrb	r8, [r8, #179]	@ zero_extendqisi2
- 821 042c B8F1020F 		cmp	r8, #2
- 822 0430 02D1     		bne	.L55
+ 819 0420 01FB0048 		mla	r8, r1, r0, r4
+ 820 0424 98F8B380 		ldrb	r8, [r8, #179]	@ zero_extendqisi2
+ 821 0428 B8F1020F 		cmp	r8, #2
+ 822 042c 02D1     		bne	.L55
  255:.\cv.c        ****                     maxLength++;
  823              		.loc 1 255 0
- 824 0432 0133     		adds	r3, r3, #1
+ 824 042e 0133     		adds	r3, r3, #1
  825              	.LVL138:
- 826 0434 DBB2     		uxtb	r3, r3
+ 826 0430 DBB2     		uxtb	r3, r3
  827              	.LVL139:
- 828 0436 B2E7     		b	.L50
+ 828 0432 B2E7     		b	.L50
  829              	.L55:
  257:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cGREEN) {
  830              		.loc 1 257 0
- 831 0438 00FB0119 		mla	r9, r0, r1, r1
- 832 043c A144     		add	r9, r9, r4
- 833 043e 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
- 834 0442 B9F1020F 		cmp	r9, #2
- 835 0446 04D1     		bne	.L56
+ 831 0434 00FB0119 		mla	r9, r0, r1, r1
+ 832 0438 A144     		add	r9, r9, r4
+ 833 043a 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
+ 834 043e B9F1020F 		cmp	r9, #2
+ 835 0442 04D1     		bne	.L56
  258:.\cv.c        ****                     maxLength += 2;
  836              		.loc 1 258 0
- 837 0448 0233     		adds	r3, r3, #2
+ 837 0444 0233     		adds	r3, r3, #2
  838              	.LVL140:
- 839 044a DBB2     		uxtb	r3, r3
+ 839 0446 DBB2     		uxtb	r3, r3
  840              	.LVL141:
  259:.\cv.c        ****                     j++;
  841              		.loc 1 259 0
- 842 044c 0130     		adds	r0, r0, #1
+ 842 0448 0130     		adds	r0, r0, #1
  843              	.LVL142:
- 844 044e C0B2     		uxtb	r0, r0
+ 844 044a C0B2     		uxtb	r0, r0
  845              	.LVL143:
- 846 0450 A5E7     		b	.L50
+ 846 044c A5E7     		b	.L50
  847              	.LVL144:
  848              	.L56:
  261:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cGREEN) {
  849              		.loc 1 261 0
- 850 0452 861C     		adds	r6, r0, #2
- 851 0454 01FB0646 		mla	r6, r1, r6, r4
- 852 0458 96F8B360 		ldrb	r6, [r6, #179]	@ zero_extendqisi2
- 853 045c 022E     		cmp	r6, #2
- 854 045e 05D1     		bne	.L57
+ 850 044e 861C     		adds	r6, r0, #2
+ 851 0450 01FB0646 		mla	r6, r1, r6, r4
+ 852 0454 96F8B360 		ldrb	r6, [r6, #179]	@ zero_extendqisi2
+ 853 0458 022E     		cmp	r6, #2
+ 854 045a 05D1     		bne	.L57
  262:.\cv.c        ****                     maxLength += 3;
  855              		.loc 1 262 0
- 856 0460 0333     		adds	r3, r3, #3
+ 856 045c 0333     		adds	r3, r3, #3
  857              	.LVL145:
- 858 0462 DBB2     		uxtb	r3, r3
+ 858 045e DBB2     		uxtb	r3, r3
  859              	.LVL146:
  263:.\cv.c        ****                     j += 2;
  860              		.loc 1 263 0
- 861 0464 0BF10300 		add	r0, fp, #3
- 862 0468 C0B2     		uxtb	r0, r0
+ 861 0460 0BF10300 		add	r0, fp, #3
+ 862 0464 C0B2     		uxtb	r0, r0
  863              	.LVL147:
- 864 046a 98E7     		b	.L50
+ 864 0466 98E7     		b	.L50
  865              	.L57:
  266:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 23
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 23
 
 
  866              		.loc 1 266 0
- 867 046c 052B     		cmp	r3, #5
- 868 046e 04D9     		bls	.L58
+ 867 0468 052B     		cmp	r3, #5
+ 868 046a 04D9     		bls	.L58
  267:.\cv.c        ****                         plan[rowUpTo] = GREEN;
  869              		.loc 1 267 0
- 870 0470 029B     		ldr	r3, [sp, #8]
+ 870 046c 029B     		ldr	r3, [sp, #8]
  871              	.LVL148:
- 872 0472 03F805A0 		strb	r10, [r3, r5]
+ 872 046e 03F805A0 		strb	r10, [r3, r5]
  268:.\cv.c        ****                         rowUpTo++;
  873              		.loc 1 268 0
- 874 0476 0135     		adds	r5, r5, #1
+ 874 0472 0135     		adds	r5, r5, #1
  875              	.LVL149:
- 876 0478 EDB2     		uxtb	r5, r5
+ 876 0474 EDB2     		uxtb	r5, r5
  877              	.LVL150:
  878              	.L58:
  272:.\cv.c        ****                     if (Camera_framebuffer[j][halfWidth][3] == cRED)
  879              		.loc 1 272 0
- 880 047a B8F1030F 		cmp	r8, #3
- 881 047e 89D1     		bne	.L72
+ 880 0476 B8F1030F 		cmp	r8, #3
+ 881 047a 89D1     		bne	.L72
  273:.\cv.c        ****                         mode = RED;
  882              		.loc 1 273 0
- 883 0480 3A46     		mov	r2, r7
+ 883 047c 3A46     		mov	r2, r7
  884              	.LVL151:
  276:.\cv.c        ****                     maxLength++;
  885              		.loc 1 276 0
- 886 0482 019B     		ldr	r3, [sp, #4]
- 887 0484 8BE7     		b	.L50
+ 886 047e 019B     		ldr	r3, [sp, #4]
+ 887 0480 8BE7     		b	.L50
  888              	.LVL152:
  889              	.L47:
  281:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cBLUE) {
  890              		.loc 1 281 0
- 891 0486 01FB0048 		mla	r8, r1, r0, r4
- 892 048a 98F8B380 		ldrb	r8, [r8, #179]	@ zero_extendqisi2
- 893 048e B8F1050F 		cmp	r8, #5
- 894 0492 02D1     		bne	.L59
+ 891 0482 01FB0048 		mla	r8, r1, r0, r4
+ 892 0486 98F8B380 		ldrb	r8, [r8, #179]	@ zero_extendqisi2
+ 893 048a B8F1050F 		cmp	r8, #5
+ 894 048e 02D1     		bne	.L59
  282:.\cv.c        ****                     maxLength++;
  895              		.loc 1 282 0
- 896 0494 0133     		adds	r3, r3, #1
+ 896 0490 0133     		adds	r3, r3, #1
  897              	.LVL153:
- 898 0496 DBB2     		uxtb	r3, r3
+ 898 0492 DBB2     		uxtb	r3, r3
  899              	.LVL154:
- 900 0498 81E7     		b	.L50
+ 900 0494 81E7     		b	.L50
  901              	.L59:
  284:.\cv.c        ****                 else if (Camera_framebuffer[j+1][halfWidth][3] == cBLUE) {
  902              		.loc 1 284 0
- 903 049a 00FB0119 		mla	r9, r0, r1, r1
- 904 049e A144     		add	r9, r9, r4
- 905 04a0 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
- 906 04a4 B9F1050F 		cmp	r9, #5
- 907 04a8 04D1     		bne	.L60
+ 903 0496 00FB0119 		mla	r9, r0, r1, r1
+ 904 049a A144     		add	r9, r9, r4
+ 905 049c 99F8B390 		ldrb	r9, [r9, #179]	@ zero_extendqisi2
+ 906 04a0 B9F1050F 		cmp	r9, #5
+ 907 04a4 04D1     		bne	.L60
  285:.\cv.c        ****                     maxLength += 2;
  908              		.loc 1 285 0
- 909 04aa 0233     		adds	r3, r3, #2
+ 909 04a6 0233     		adds	r3, r3, #2
  910              	.LVL155:
- 911 04ac DBB2     		uxtb	r3, r3
+ 911 04a8 DBB2     		uxtb	r3, r3
  912              	.LVL156:
  286:.\cv.c        ****                     j++;
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 24
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 24
 
 
  913              		.loc 1 286 0
- 914 04ae 0130     		adds	r0, r0, #1
+ 914 04aa 0130     		adds	r0, r0, #1
  915              	.LVL157:
- 916 04b0 C0B2     		uxtb	r0, r0
+ 916 04ac C0B2     		uxtb	r0, r0
  917              	.LVL158:
- 918 04b2 74E7     		b	.L50
+ 918 04ae 74E7     		b	.L50
  919              	.LVL159:
  920              	.L60:
  288:.\cv.c        ****                 else if (Camera_framebuffer[j+2][halfWidth][3] == cBLUE) {
  921              		.loc 1 288 0
- 922 04b4 861C     		adds	r6, r0, #2
- 923 04b6 01FB0646 		mla	r6, r1, r6, r4
- 924 04ba 96F8B360 		ldrb	r6, [r6, #179]	@ zero_extendqisi2
- 925 04be 052E     		cmp	r6, #5
- 926 04c0 05D1     		bne	.L61
+ 922 04b0 861C     		adds	r6, r0, #2
+ 923 04b2 01FB0646 		mla	r6, r1, r6, r4
+ 924 04b6 96F8B360 		ldrb	r6, [r6, #179]	@ zero_extendqisi2
+ 925 04ba 052E     		cmp	r6, #5
+ 926 04bc 05D1     		bne	.L61
  289:.\cv.c        ****                     maxLength += 3;
  927              		.loc 1 289 0
- 928 04c2 0333     		adds	r3, r3, #3
+ 928 04be 0333     		adds	r3, r3, #3
  929              	.LVL160:
- 930 04c4 DBB2     		uxtb	r3, r3
+ 930 04c0 DBB2     		uxtb	r3, r3
  931              	.LVL161:
  290:.\cv.c        ****                     j += 2;
  932              		.loc 1 290 0
- 933 04c6 0BF10300 		add	r0, fp, #3
- 934 04ca C0B2     		uxtb	r0, r0
+ 933 04c2 0BF10300 		add	r0, fp, #3
+ 934 04c6 C0B2     		uxtb	r0, r0
  935              	.LVL162:
- 936 04cc 67E7     		b	.L50
+ 936 04c8 67E7     		b	.L50
  937              	.L61:
  293:.\cv.c        ****                     if (maxLength > MIN_BOX_HEIGHT) {
  938              		.loc 1 293 0
- 939 04ce 052B     		cmp	r3, #5
- 940 04d0 04D9     		bls	.L62
+ 939 04ca 052B     		cmp	r3, #5
+ 940 04cc 04D9     		bls	.L62
  294:.\cv.c        ****                         plan[rowUpTo] = BLUE;
  941              		.loc 1 294 0
- 942 04d2 029A     		ldr	r2, [sp, #8]
+ 942 04ce 029A     		ldr	r2, [sp, #8]
  943              	.LVL163:
- 944 04d4 02F805C0 		strb	ip, [r2, r5]
+ 944 04d0 02F805C0 		strb	ip, [r2, r5]
  295:.\cv.c        ****                         rowUpTo++;
  945              		.loc 1 295 0
- 946 04d8 0135     		adds	r5, r5, #1
+ 946 04d4 0135     		adds	r5, r5, #1
  947              	.LVL164:
- 948 04da EDB2     		uxtb	r5, r5
+ 948 04d6 EDB2     		uxtb	r5, r5
  949              	.LVL165:
  950              	.L62:
  299:.\cv.c        ****                     if (Camera_framebuffer[j][halfWidth][3] == cRED)
  951              		.loc 1 299 0
- 952 04dc B8F1030F 		cmp	r8, #3
- 953 04e0 7FF45BAF 		bne	.L73
+ 952 04d8 B8F1030F 		cmp	r8, #3
+ 953 04dc 7FF45BAF 		bne	.L73
  300:.\cv.c        ****                         mode = RED;
  954              		.loc 1 300 0
- 955 04e4 3A46     		mov	r2, r7
+ 955 04e0 3A46     		mov	r2, r7
  956              		.loc 1 303 0
- 957 04e6 019B     		ldr	r3, [sp, #4]
- 958 04e8 59E7     		b	.L50
+ 957 04e2 019B     		ldr	r3, [sp, #4]
+ 958 04e4 59E7     		b	.L50
  959              	.LVL166:
  960              	.L79:
  304:.\cv.c        ****                 }
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 25
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 25
 
 
  305:.\cv.c        ****                 break;
@@ -1446,42 +1446,42 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  307:.\cv.c        ****             default: // Initial
  308:.\cv.c        ****                 if (Camera_framebuffer[j][halfWidth][3] == cRED)
  961              		.loc 1 308 0
- 962 04ea 01FB0046 		mla	r6, r1, r0, r4
- 963 04ee 96F8B320 		ldrb	r2, [r6, #179]	@ zero_extendqisi2
+ 962 04e6 01FB0046 		mla	r6, r1, r0, r4
+ 963 04ea 96F8B320 		ldrb	r2, [r6, #179]	@ zero_extendqisi2
  964              	.LVL167:
- 965 04f2 032A     		cmp	r2, #3
- 966 04f4 03D0     		beq	.L74
+ 965 04ee 032A     		cmp	r2, #3
+ 966 04f0 03D0     		beq	.L74
  309:.\cv.c        ****                     mode = RED;
  310:.\cv.c        ****                 else if (Camera_framebuffer[j][halfWidth][3] == cGREEN)
  967              		.loc 1 310 0
- 968 04f6 022A     		cmp	r2, #2
- 969 04f8 03D1     		bne	.L75
+ 968 04f2 022A     		cmp	r2, #2
+ 969 04f4 03D1     		bne	.L75
  311:.\cv.c        ****                     mode = GREEN;
  970              		.loc 1 311 0
- 971 04fa 5246     		mov	r2, r10
- 972 04fc 02E0     		b	.L63
+ 971 04f6 5246     		mov	r2, r10
+ 972 04f8 02E0     		b	.L63
  973              	.L74:
  309:.\cv.c        ****                     mode = RED;
  974              		.loc 1 309 0
- 975 04fe 3A46     		mov	r2, r7
- 976 0500 00E0     		b	.L63
+ 975 04fa 3A46     		mov	r2, r7
+ 976 04fc 00E0     		b	.L63
  977              	.L75:
  312:.\cv.c        ****                 else
  313:.\cv.c        ****                     mode = BLUE;
  978              		.loc 1 313 0
- 979 0502 6246     		mov	r2, ip
+ 979 04fe 6246     		mov	r2, ip
  980              	.L63:
  981              	.LVL168:
  314:.\cv.c        ****                 
  315:.\cv.c        ****                 maxLength++;
  982              		.loc 1 315 0
- 983 0504 0133     		adds	r3, r3, #1
+ 983 0500 0133     		adds	r3, r3, #1
  984              	.LVL169:
- 985 0506 DBB2     		uxtb	r3, r3
+ 985 0502 DBB2     		uxtb	r3, r3
  986              	.LVL170:
  316:.\cv.c        ****                 break;
  987              		.loc 1 316 0
- 988 0508 49E7     		b	.L50
+ 988 0504 49E7     		b	.L50
  989              	.LVL171:
  990              	.L34:
  317:.\cv.c        ****         }
@@ -1490,18 +1490,18 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  320:.\cv.c        ****     return plan;
  321:.\cv.c        **** }
  991              		.loc 1 321 0
- 992 050a 0298     		ldr	r0, [sp, #8]
- 993 050c 05B0     		add	sp, sp, #20
+ 992 0506 0298     		ldr	r0, [sp, #8]
+ 993 0508 05B0     		add	sp, sp, #20
  994              		@ sp needed
- 995 050e BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 995 050a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
  996              	.LVL172:
  997              	.L83:
- 998 0512 00BF     		.align	2
+ 998 050e 00BF     		.align	2
  999              	.L82:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 26
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 26
 
 
- 1000 0514 00000000 		.word	Camera_framebuffer
+ 1000 0510 00000000 		.word	Camera_framebuffer
  1001              		.cfi_endproc
  1002              	.LFE64:
  1003              		.size	parsePhoto, .-parsePhoto
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1041      2E00
  1042 002a 0000     		.text
  1043              	.Letext0:
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 27
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 27
 
 
  1044              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1098 005c 05       		.byte	0x5
  1099 005d 00000000 		.4byte	.LASF6
  1100 0061 02       		.uleb128 0x2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 28
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 28
 
 
  1101 0062 08       		.byte	0x8
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1155 00cb 06       		.uleb128 0x6
  1156 00cc D6000000 		.4byte	.LASF51
  1157 00d0 01       		.byte	0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 29
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 29
 
 
  1158 00d1 09       		.byte	0x9
@@ -1723,7 +1723,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1197 012b 12       		.byte	0x12
  1198 012c AB030000 		.4byte	0x3ab
  1199 0130 00000000 		.4byte	.LFB64
- 1200 0134 18050000 		.4byte	.LFE64-.LFB64
+ 1200 0134 14050000 		.4byte	.LFE64-.LFB64
  1201 0138 01       		.uleb128 0x1
  1202 0139 9C       		.byte	0x9c
  1203 013a AB030000 		.4byte	0x3ab
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1212 0150 01       		.byte	0x1
  1213 0151 17       		.byte	0x17
  1214 0152 81000000 		.4byte	0x81
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 30
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 30
 
 
  1215 0156 2B000000 		.4byte	.LLST1
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1269 01d3 15030000 		.4byte	.LLST10
  1270 01d7 0D       		.uleb128 0xd
  1271 01d8 A9000000 		.4byte	.LASF29
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 31
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 31
 
 
  1272 01dc 01       		.byte	0x1
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1326 0256 8D000000 		.4byte	.LASF37
  1327 025a 01       		.byte	0x1
  1328 025b D4       		.byte	0xd4
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 32
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 32
 
 
  1329 025c 81000000 		.4byte	0x81
@@ -1880,7 +1880,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1345 0284 33       		.byte	0x33
  1346 0285 00       		.byte	0
  1347 0286 0E       		.uleb128 0xe
- 1348 0287 1E020000 		.4byte	.LVL81
+ 1348 0287 1C020000 		.4byte	.LVL81
  1349 028b 50040000 		.4byte	0x450
  1350 028f 99020000 		.4byte	0x299
  1351 0293 0F       		.uleb128 0xf
@@ -1890,7 +1890,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1355 0297 31       		.byte	0x31
  1356 0298 00       		.byte	0
  1357 0299 0E       		.uleb128 0xe
- 1358 029a 26020000 		.4byte	.LVL82
+ 1358 029a 24020000 		.4byte	.LVL82
  1359 029e 61040000 		.4byte	0x461
  1360 02a2 B3020000 		.4byte	0x2b3
  1361 02a6 0F       		.uleb128 0xf
@@ -1907,7 +1907,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1372 02b1 00       		.sleb128 0
  1373 02b2 00       		.byte	0
  1374 02b3 0E       		.uleb128 0xe
- 1375 02b4 2C020000 		.4byte	.LVL83
+ 1375 02b4 2A020000 		.4byte	.LVL83
  1376 02b8 77040000 		.4byte	0x477
  1377 02bc C9020000 		.4byte	0x2c9
  1378 02c0 0F       		.uleb128 0xf
@@ -1918,12 +1918,12 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1383 02c5 4C       		.sleb128 -52
  1384 02c6 94       		.byte	0x94
  1385 02c7 02       		.byte	0x2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 33
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 33
 
 
  1386 02c8 00       		.byte	0
  1387 02c9 0E       		.uleb128 0xe
- 1388 02ca 34020000 		.4byte	.LVL84
+ 1388 02ca 32020000 		.4byte	.LVL84
  1389 02ce 61040000 		.4byte	0x461
  1390 02d2 E2020000 		.4byte	0x2e2
  1391 02d6 0F       		.uleb128 0xf
@@ -1939,7 +1939,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1401 02e0 00       		.sleb128 0
  1402 02e1 00       		.byte	0
  1403 02e2 0E       		.uleb128 0xe
- 1404 02e3 3A020000 		.4byte	.LVL85
+ 1404 02e3 38020000 		.4byte	.LVL85
  1405 02e7 88040000 		.4byte	0x488
  1406 02eb F9020000 		.4byte	0x2f9
  1407 02ef 0F       		.uleb128 0xf
@@ -1950,7 +1950,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1412 02f4 00000000 		.4byte	.LC0
  1413 02f8 00       		.byte	0
  1414 02f9 0E       		.uleb128 0xe
- 1415 02fa 42020000 		.4byte	.LVL86
+ 1415 02fa 40020000 		.4byte	.LVL86
  1416 02fe 61040000 		.4byte	0x461
  1417 0302 12030000 		.4byte	0x312
  1418 0306 0F       		.uleb128 0xf
@@ -1966,7 +1966,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1428 0310 00       		.sleb128 0
  1429 0311 00       		.byte	0
  1430 0312 0E       		.uleb128 0xe
- 1431 0313 48020000 		.4byte	.LVL87
+ 1431 0313 46020000 		.4byte	.LVL87
  1432 0317 77040000 		.4byte	0x477
  1433 031b 26030000 		.4byte	0x326
  1434 031f 0F       		.uleb128 0xf
@@ -1977,8 +1977,8 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1439 0324 00       		.sleb128 0
  1440 0325 00       		.byte	0
  1441 0326 0E       		.uleb128 0xe
- 1442 0327 56020000 		.4byte	.LVL88
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 34
+ 1442 0327 54020000 		.4byte	.LVL88
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 34
 
 
  1443 032b 50040000 		.4byte	0x450
@@ -1990,7 +1990,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1449 0337 31       		.byte	0x31
  1450 0338 00       		.byte	0
  1451 0339 0E       		.uleb128 0xe
- 1452 033a 5E020000 		.4byte	.LVL89
+ 1452 033a 5C020000 		.4byte	.LVL89
  1453 033e 61040000 		.4byte	0x461
  1454 0342 53030000 		.4byte	0x353
  1455 0346 0F       		.uleb128 0xf
@@ -2007,7 +2007,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1466 0351 00       		.sleb128 0
  1467 0352 00       		.byte	0
  1468 0353 0E       		.uleb128 0xe
- 1469 0354 64020000 		.4byte	.LVL90
+ 1469 0354 62020000 		.4byte	.LVL90
  1470 0358 88040000 		.4byte	0x488
  1471 035c 6A030000 		.4byte	0x36a
  1472 0360 0F       		.uleb128 0xf
@@ -2018,7 +2018,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1477 0365 04000000 		.4byte	.LC1
  1478 0369 00       		.byte	0
  1479 036a 0E       		.uleb128 0xe
- 1480 036b DE020000 		.4byte	.LVL104
+ 1480 036b DC020000 		.4byte	.LVL104
  1481 036f 50040000 		.4byte	0x450
  1482 0373 7D030000 		.4byte	0x37d
  1483 0377 0F       		.uleb128 0xf
@@ -2028,7 +2028,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1487 037b 31       		.byte	0x31
  1488 037c 00       		.byte	0
  1489 037d 0E       		.uleb128 0xe
- 1490 037e E6020000 		.4byte	.LVL105
+ 1490 037e E4020000 		.4byte	.LVL105
  1491 0382 61040000 		.4byte	0x461
  1492 0386 97030000 		.4byte	0x397
  1493 038a 0F       		.uleb128 0xf
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1497 038e 79       		.byte	0x79
  1498 038f 00       		.sleb128 0
  1499 0390 0F       		.uleb128 0xf
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 35
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 35
 
 
  1500 0391 01       		.uleb128 0x1
@@ -2048,7 +2048,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1504 0395 00       		.sleb128 0
  1505 0396 00       		.byte	0
  1506 0397 10       		.uleb128 0x10
- 1507 0398 EC020000 		.4byte	.LVL106
+ 1507 0398 EA020000 		.4byte	.LVL106
  1508 039c 88040000 		.4byte	0x488
  1509 03a0 0F       		.uleb128 0xf
  1510 03a1 01       		.uleb128 0x1
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1554 0408 57       		.byte	0x57
  1555 0409 17       		.uleb128 0x17
  1556 040a C2000000 		.4byte	0xc2
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 36
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 36
 
 
  1557 040e 03       		.byte	0x3
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1611 047d 62       		.byte	0x62
  1612 047e 88040000 		.4byte	0x488
  1613 0482 1C       		.uleb128 0x1c
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 37
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 37
 
 
  1614 0483 8C000000 		.4byte	0x8c
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1668 0024 0B       		.uleb128 0xb
  1669 0025 3B       		.uleb128 0x3b
  1670 0026 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 38
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 38
 
 
  1671 0027 49       		.uleb128 0x49
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1725 005d 00       		.byte	0
  1726 005e 09       		.uleb128 0x9
  1727 005f 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 39
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 39
 
 
  1728 0060 01       		.byte	0x1
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1782 0099 3B       		.uleb128 0x3b
  1783 009a 0B       		.uleb128 0xb
  1784 009b 49       		.uleb128 0x49
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 40
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 40
 
 
  1785 009c 13       		.uleb128 0x13
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1839 00d9 00       		.byte	0
  1840 00da 00       		.byte	0
  1841 00db 12       		.uleb128 0x12
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 41
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 41
 
 
  1842 00dc 26       		.uleb128 0x26
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1896 0113 00       		.byte	0
  1897 0114 16       		.uleb128 0x16
  1898 0115 01       		.uleb128 0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 42
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 42
 
 
  1899 0116 01       		.byte	0x1
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  1953 014c 00       		.byte	0
  1954 014d 1B       		.uleb128 0x1b
  1955 014e 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 43
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 43
 
 
  1956 014f 01       		.byte	0x1
@@ -2575,15 +2575,15 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2007 0008 0100     		.2byte	0x1
  2008 000a 50       		.byte	0x50
  2009 000b 2C000000 		.4byte	.LVL8
- 2010 000f 12050000 		.4byte	.LVL172
+ 2010 000f 0E050000 		.4byte	.LVL172
  2011 0013 0200     		.2byte	0x2
  2012 0015 91       		.byte	0x91
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 44
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 44
 
 
  2013 0016 50       		.sleb128 -48
- 2014 0017 12050000 		.4byte	.LVL172
- 2015 001b 18050000 		.4byte	.LFE64
+ 2014 0017 0E050000 		.4byte	.LVL172
+ 2015 001b 14050000 		.4byte	.LFE64
  2016 001f 0200     		.2byte	0x2
  2017 0021 7D       		.byte	0x7d
  2018 0022 50       		.sleb128 -48
@@ -2627,52 +2627,52 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2056 0082 0100     		.2byte	0x1
  2057 0084 5C       		.byte	0x5c
  2058 0085 94000000 		.4byte	.LVL24
- 2059 0089 CA000000 		.4byte	.LVL29
+ 2059 0089 C8000000 		.4byte	.LVL29
  2060 008d 0100     		.2byte	0x1
  2061 008f 56       		.byte	0x56
- 2062 0090 CA000000 		.4byte	.LVL29
- 2063 0094 CC000000 		.4byte	.LVL30
+ 2062 0090 C8000000 		.4byte	.LVL29
+ 2063 0094 CA000000 		.4byte	.LVL30
  2064 0098 0300     		.2byte	0x3
  2065 009a 76       		.byte	0x76
  2066 009b 7F       		.sleb128 -1
  2067 009c 9F       		.byte	0x9f
- 2068 009d CC000000 		.4byte	.LVL30
- 2069 00a1 D6000000 		.4byte	.LVL31
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 45
+ 2068 009d CA000000 		.4byte	.LVL30
+ 2069 00a1 D4000000 		.4byte	.LVL31
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 45
 
 
  2070 00a5 0100     		.2byte	0x1
  2071 00a7 56       		.byte	0x56
- 2072 00a8 E0000000 		.4byte	.LVL32
- 2073 00ac 4C010000 		.4byte	.LVL41
+ 2072 00a8 DE000000 		.4byte	.LVL32
+ 2073 00ac 4A010000 		.4byte	.LVL41
  2074 00b0 0100     		.2byte	0x1
  2075 00b2 5E       		.byte	0x5e
- 2076 00b3 4C010000 		.4byte	.LVL41
- 2077 00b7 50010000 		.4byte	.LVL42
+ 2076 00b3 4A010000 		.4byte	.LVL41
+ 2077 00b7 4E010000 		.4byte	.LVL42
  2078 00bb 0300     		.2byte	0x3
  2079 00bd 7E       		.byte	0x7e
  2080 00be 7F       		.sleb128 -1
  2081 00bf 9F       		.byte	0x9f
- 2082 00c0 50010000 		.4byte	.LVL42
- 2083 00c4 1D020000 		.4byte	.LVL81-1
+ 2082 00c0 4E010000 		.4byte	.LVL42
+ 2083 00c4 1B020000 		.4byte	.LVL81-1
  2084 00c8 0100     		.2byte	0x1
  2085 00ca 5E       		.byte	0x5e
- 2086 00cb 04030000 		.4byte	.LVL107
- 2087 00cf 52030000 		.4byte	.LVL112
+ 2086 00cb 00030000 		.4byte	.LVL107
+ 2087 00cf 4E030000 		.4byte	.LVL112
  2088 00d3 0100     		.2byte	0x1
  2089 00d5 5A       		.byte	0x5a
- 2090 00d6 52030000 		.4byte	.LVL112
- 2091 00da 56030000 		.4byte	.LVL113
+ 2090 00d6 4E030000 		.4byte	.LVL112
+ 2091 00da 52030000 		.4byte	.LVL113
  2092 00de 0300     		.2byte	0x3
  2093 00e0 7A       		.byte	0x7a
  2094 00e1 7F       		.sleb128 -1
  2095 00e2 9F       		.byte	0x9f
- 2096 00e3 56030000 		.4byte	.LVL113
- 2097 00e7 58030000 		.4byte	.LVL114
+ 2096 00e3 52030000 		.4byte	.LVL113
+ 2097 00e7 54030000 		.4byte	.LVL114
  2098 00eb 0100     		.2byte	0x1
  2099 00ed 5A       		.byte	0x5a
- 2100 00ee 64030000 		.4byte	.LVL115
- 2101 00f2 8C030000 		.4byte	.LVL117
+ 2100 00ee 60030000 		.4byte	.LVL115
+ 2101 00f2 88030000 		.4byte	.LVL117
  2102 00f6 0100     		.2byte	0x1
  2103 00f8 5A       		.byte	0x5a
  2104 00f9 00000000 		.4byte	0
@@ -2697,79 +2697,79 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2123 012c 0100     		.2byte	0x1
  2124 012e 51       		.byte	0x51
  2125 012f 94000000 		.4byte	.LVL24
- 2126 0133 BA000000 		.4byte	.LVL25
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 46
+ 2126 0133 B8000000 		.4byte	.LVL25
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 46
 
 
  2127 0137 0100     		.2byte	0x1
  2128 0139 52       		.byte	0x52
- 2129 013a BA000000 		.4byte	.LVL25
- 2130 013e BC000000 		.4byte	.LVL26
+ 2129 013a B8000000 		.4byte	.LVL25
+ 2130 013e BA000000 		.4byte	.LVL26
  2131 0142 0300     		.2byte	0x3
  2132 0144 72       		.byte	0x72
  2133 0145 7F       		.sleb128 -1
  2134 0146 9F       		.byte	0x9f
- 2135 0147 BC000000 		.4byte	.LVL26
- 2136 014b BE000000 		.4byte	.LVL27
+ 2135 0147 BA000000 		.4byte	.LVL26
+ 2136 014b BC000000 		.4byte	.LVL27
  2137 014f 0100     		.2byte	0x1
  2138 0151 52       		.byte	0x52
- 2139 0152 C4000000 		.4byte	.LVL28
- 2140 0156 CC000000 		.4byte	.LVL30
+ 2139 0152 C2000000 		.4byte	.LVL28
+ 2140 0156 CA000000 		.4byte	.LVL30
  2141 015a 0100     		.2byte	0x1
  2142 015c 52       		.byte	0x52
- 2143 015d E0000000 		.4byte	.LVL32
- 2144 0161 EC000000 		.4byte	.LVL33
+ 2143 015d DE000000 		.4byte	.LVL32
+ 2144 0161 EA000000 		.4byte	.LVL33
  2145 0165 0100     		.2byte	0x1
  2146 0167 53       		.byte	0x53
- 2147 0168 EC000000 		.4byte	.LVL33
- 2148 016c 26010000 		.4byte	.LVL34
+ 2147 0168 EA000000 		.4byte	.LVL33
+ 2148 016c 24010000 		.4byte	.LVL34
  2149 0170 0100     		.2byte	0x1
  2150 0172 51       		.byte	0x51
- 2151 0173 26010000 		.4byte	.LVL34
- 2152 0177 2E010000 		.4byte	.LVL35
+ 2151 0173 24010000 		.4byte	.LVL34
+ 2152 0177 2C010000 		.4byte	.LVL35
  2153 017b 0100     		.2byte	0x1
  2154 017d 53       		.byte	0x53
- 2155 017e 2E010000 		.4byte	.LVL35
- 2156 0182 30010000 		.4byte	.LVL36
+ 2155 017e 2C010000 		.4byte	.LVL35
+ 2156 0182 2E010000 		.4byte	.LVL36
  2157 0186 0100     		.2byte	0x1
  2158 0188 51       		.byte	0x51
- 2159 0189 30010000 		.4byte	.LVL36
- 2160 018d 38010000 		.4byte	.LVL37
+ 2159 0189 2E010000 		.4byte	.LVL36
+ 2160 018d 36010000 		.4byte	.LVL37
  2161 0191 0100     		.2byte	0x1
  2162 0193 53       		.byte	0x53
- 2163 0194 38010000 		.4byte	.LVL37
- 2164 0198 3A010000 		.4byte	.LVL38
+ 2163 0194 36010000 		.4byte	.LVL37
+ 2164 0198 38010000 		.4byte	.LVL38
  2165 019c 0300     		.2byte	0x3
  2166 019e 73       		.byte	0x73
  2167 019f 7F       		.sleb128 -1
  2168 01a0 9F       		.byte	0x9f
- 2169 01a1 3A010000 		.4byte	.LVL38
- 2170 01a5 3C010000 		.4byte	.LVL39
+ 2169 01a1 38010000 		.4byte	.LVL38
+ 2170 01a5 3A010000 		.4byte	.LVL39
  2171 01a9 0100     		.2byte	0x1
  2172 01ab 53       		.byte	0x53
- 2173 01ac 44010000 		.4byte	.LVL40
- 2174 01b0 50010000 		.4byte	.LVL42
+ 2173 01ac 42010000 		.4byte	.LVL40
+ 2174 01b0 4E010000 		.4byte	.LVL42
  2175 01b4 0100     		.2byte	0x1
  2176 01b6 53       		.byte	0x53
- 2177 01b7 04030000 		.4byte	.LVL107
- 2178 01bb 3C030000 		.4byte	.LVL108
+ 2177 01b7 00030000 		.4byte	.LVL107
+ 2178 01bb 38030000 		.4byte	.LVL108
  2179 01bf 0100     		.2byte	0x1
  2180 01c1 53       		.byte	0x53
- 2181 01c2 3C030000 		.4byte	.LVL108
- 2182 01c6 3E030000 		.4byte	.LVL109
+ 2181 01c2 38030000 		.4byte	.LVL108
+ 2182 01c6 3A030000 		.4byte	.LVL109
  2183 01ca 0300     		.2byte	0x3
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 47
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 47
 
 
  2184 01cc 73       		.byte	0x73
  2185 01cd 7F       		.sleb128 -1
  2186 01ce 9F       		.byte	0x9f
- 2187 01cf 3E030000 		.4byte	.LVL109
- 2188 01d3 40030000 		.4byte	.LVL110
+ 2187 01cf 3A030000 		.4byte	.LVL109
+ 2188 01d3 3C030000 		.4byte	.LVL110
  2189 01d7 0100     		.2byte	0x1
  2190 01d9 53       		.byte	0x53
- 2191 01da 4A030000 		.4byte	.LVL111
- 2192 01de 58030000 		.4byte	.LVL114
+ 2191 01da 46030000 		.4byte	.LVL111
+ 2192 01de 54030000 		.4byte	.LVL114
  2193 01e2 0100     		.2byte	0x1
  2194 01e4 53       		.byte	0x53
  2195 01e5 00000000 		.4byte	0
@@ -2813,612 +2813,612 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2233 023d 00000000 		.4byte	0
  2234 0241 00000000 		.4byte	0
  2235              	.LLST7:
- 2236 0245 66010000 		.4byte	.LVL43
- 2237 0249 B0010000 		.4byte	.LVL56
+ 2236 0245 64010000 		.4byte	.LVL43
+ 2237 0249 AE010000 		.4byte	.LVL56
  2238 024d 0100     		.2byte	0x1
  2239 024f 55       		.byte	0x55
- 2240 0250 B0010000 		.4byte	.LVL56
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 48
+ 2240 0250 AE010000 		.4byte	.LVL56
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 48
 
 
- 2241 0254 B8010000 		.4byte	.LVL59
+ 2241 0254 B6010000 		.4byte	.LVL59
  2242 0258 0100     		.2byte	0x1
  2243 025a 52       		.byte	0x52
- 2244 025b B8010000 		.4byte	.LVL59
- 2245 025f CA010000 		.4byte	.LVL63
+ 2244 025b B6010000 		.4byte	.LVL59
+ 2245 025f C8010000 		.4byte	.LVL63
  2246 0263 0100     		.2byte	0x1
  2247 0265 55       		.byte	0x55
- 2248 0266 CA010000 		.4byte	.LVL63
- 2249 026a 84030000 		.4byte	.LVL116
+ 2248 0266 C8010000 		.4byte	.LVL63
+ 2249 026a 80030000 		.4byte	.LVL116
  2250 026e 0200     		.2byte	0x2
  2251 0270 91       		.byte	0x91
  2252 0271 4C       		.sleb128 -52
  2253 0272 00000000 		.4byte	0
  2254 0276 00000000 		.4byte	0
  2255              	.LLST8:
- 2256 027a 66010000 		.4byte	.LVL43
- 2257 027e 76010000 		.4byte	.LVL44
+ 2256 027a 64010000 		.4byte	.LVL43
+ 2257 027e 74010000 		.4byte	.LVL44
  2258 0282 0100     		.2byte	0x1
  2259 0284 52       		.byte	0x52
- 2260 0285 76010000 		.4byte	.LVL44
- 2261 0289 78010000 		.4byte	.LVL45
+ 2260 0285 74010000 		.4byte	.LVL44
+ 2261 0289 76010000 		.4byte	.LVL45
  2262 028d 0300     		.2byte	0x3
  2263 028f 72       		.byte	0x72
  2264 0290 7F       		.sleb128 -1
  2265 0291 9F       		.byte	0x9f
- 2266 0292 78010000 		.4byte	.LVL45
- 2267 0296 8C010000 		.4byte	.LVL48
+ 2266 0292 76010000 		.4byte	.LVL45
+ 2267 0296 8A010000 		.4byte	.LVL48
  2268 029a 0100     		.2byte	0x1
  2269 029c 52       		.byte	0x52
- 2270 029d 8C010000 		.4byte	.LVL48
- 2271 02a1 8E010000 		.4byte	.LVL49
+ 2270 029d 8A010000 		.4byte	.LVL48
+ 2271 02a1 8C010000 		.4byte	.LVL49
  2272 02a5 0300     		.2byte	0x3
  2273 02a7 72       		.byte	0x72
  2274 02a8 7E       		.sleb128 -2
  2275 02a9 9F       		.byte	0x9f
- 2276 02aa 8E010000 		.4byte	.LVL49
- 2277 02ae A2010000 		.4byte	.LVL52
+ 2276 02aa 8C010000 		.4byte	.LVL49
+ 2277 02ae A0010000 		.4byte	.LVL52
  2278 02b2 0100     		.2byte	0x1
  2279 02b4 52       		.byte	0x52
- 2280 02b5 A2010000 		.4byte	.LVL52
- 2281 02b9 A4010000 		.4byte	.LVL53
+ 2280 02b5 A0010000 		.4byte	.LVL52
+ 2281 02b9 A2010000 		.4byte	.LVL53
  2282 02bd 0300     		.2byte	0x3
  2283 02bf 72       		.byte	0x72
  2284 02c0 7D       		.sleb128 -3
  2285 02c1 9F       		.byte	0x9f
- 2286 02c2 A4010000 		.4byte	.LVL53
- 2287 02c6 B0010000 		.4byte	.LVL56
+ 2286 02c2 A2010000 		.4byte	.LVL53
+ 2287 02c6 AE010000 		.4byte	.LVL56
  2288 02ca 0100     		.2byte	0x1
  2289 02cc 52       		.byte	0x52
- 2290 02cd B0010000 		.4byte	.LVL56
- 2291 02d1 BA010000 		.4byte	.LVL60
+ 2290 02cd AE010000 		.4byte	.LVL56
+ 2291 02d1 B8010000 		.4byte	.LVL60
  2292 02d5 0200     		.2byte	0x2
  2293 02d7 30       		.byte	0x30
  2294 02d8 9F       		.byte	0x9f
- 2295 02d9 BA010000 		.4byte	.LVL60
- 2296 02dd C0010000 		.4byte	.LVL62
+ 2295 02d9 B8010000 		.4byte	.LVL60
+ 2296 02dd BE010000 		.4byte	.LVL62
  2297 02e1 0100     		.2byte	0x1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 49
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 49
 
 
  2298 02e3 52       		.byte	0x52
  2299 02e4 00000000 		.4byte	0
  2300 02e8 00000000 		.4byte	0
  2301              	.LLST9:
- 2302 02ec CA010000 		.4byte	.LVL63
- 2303 02f0 0E020000 		.4byte	.LVL76
+ 2302 02ec C8010000 		.4byte	.LVL63
+ 2303 02f0 0C020000 		.4byte	.LVL76
  2304 02f4 0100     		.2byte	0x1
  2305 02f6 54       		.byte	0x54
- 2306 02f7 0E020000 		.4byte	.LVL76
- 2307 02fb 16020000 		.4byte	.LVL79
+ 2306 02f7 0C020000 		.4byte	.LVL76
+ 2307 02fb 14020000 		.4byte	.LVL79
  2308 02ff 0100     		.2byte	0x1
  2309 0301 52       		.byte	0x52
- 2310 0302 16020000 		.4byte	.LVL79
- 2311 0306 6E020000 		.4byte	.LVL91
+ 2310 0302 14020000 		.4byte	.LVL79
+ 2311 0306 6C020000 		.4byte	.LVL91
  2312 030a 0100     		.2byte	0x1
  2313 030c 54       		.byte	0x54
  2314 030d 00000000 		.4byte	0
  2315 0311 00000000 		.4byte	0
  2316              	.LLST10:
- 2317 0315 CA010000 		.4byte	.LVL63
- 2318 0319 D8010000 		.4byte	.LVL64
+ 2317 0315 C8010000 		.4byte	.LVL63
+ 2318 0319 D6010000 		.4byte	.LVL64
  2319 031d 0100     		.2byte	0x1
  2320 031f 52       		.byte	0x52
- 2321 0320 D8010000 		.4byte	.LVL64
- 2322 0324 DA010000 		.4byte	.LVL65
+ 2321 0320 D6010000 		.4byte	.LVL64
+ 2322 0324 D8010000 		.4byte	.LVL65
  2323 0328 0300     		.2byte	0x3
  2324 032a 72       		.byte	0x72
  2325 032b 7F       		.sleb128 -1
  2326 032c 9F       		.byte	0x9f
- 2327 032d DA010000 		.4byte	.LVL65
- 2328 0331 EC010000 		.4byte	.LVL68
+ 2327 032d D8010000 		.4byte	.LVL65
+ 2328 0331 EA010000 		.4byte	.LVL68
  2329 0335 0100     		.2byte	0x1
  2330 0337 52       		.byte	0x52
- 2331 0338 EC010000 		.4byte	.LVL68
- 2332 033c EE010000 		.4byte	.LVL69
+ 2331 0338 EA010000 		.4byte	.LVL68
+ 2332 033c EC010000 		.4byte	.LVL69
  2333 0340 0300     		.2byte	0x3
  2334 0342 72       		.byte	0x72
  2335 0343 7E       		.sleb128 -2
  2336 0344 9F       		.byte	0x9f
- 2337 0345 EE010000 		.4byte	.LVL69
- 2338 0349 00020000 		.4byte	.LVL72
+ 2337 0345 EC010000 		.4byte	.LVL69
+ 2338 0349 FE010000 		.4byte	.LVL72
  2339 034d 0100     		.2byte	0x1
  2340 034f 52       		.byte	0x52
- 2341 0350 00020000 		.4byte	.LVL72
- 2342 0354 02020000 		.4byte	.LVL73
+ 2341 0350 FE010000 		.4byte	.LVL72
+ 2342 0354 00020000 		.4byte	.LVL73
  2343 0358 0300     		.2byte	0x3
  2344 035a 72       		.byte	0x72
  2345 035b 7D       		.sleb128 -3
  2346 035c 9F       		.byte	0x9f
- 2347 035d 02020000 		.4byte	.LVL73
- 2348 0361 0E020000 		.4byte	.LVL76
+ 2347 035d 00020000 		.4byte	.LVL73
+ 2348 0361 0C020000 		.4byte	.LVL76
  2349 0365 0100     		.2byte	0x1
  2350 0367 52       		.byte	0x52
- 2351 0368 0E020000 		.4byte	.LVL76
- 2352 036c 18020000 		.4byte	.LVL80
+ 2351 0368 0C020000 		.4byte	.LVL76
+ 2352 036c 16020000 		.4byte	.LVL80
  2353 0370 0200     		.2byte	0x2
  2354 0372 30       		.byte	0x30
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 50
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 50
 
 
  2355 0373 9F       		.byte	0x9f
- 2356 0374 18020000 		.4byte	.LVL80
- 2357 0378 1D020000 		.4byte	.LVL81-1
+ 2356 0374 16020000 		.4byte	.LVL80
+ 2357 0378 1B020000 		.4byte	.LVL81-1
  2358 037c 0100     		.2byte	0x1
  2359 037e 52       		.byte	0x52
  2360 037f 00000000 		.4byte	0
  2361 0383 00000000 		.4byte	0
  2362              	.LLST11:
- 2363 0387 66010000 		.4byte	.LVL43
- 2364 038b 7A010000 		.4byte	.LVL46
+ 2363 0387 64010000 		.4byte	.LVL43
+ 2364 038b 78010000 		.4byte	.LVL46
  2365 038f 0100     		.2byte	0x1
  2366 0391 53       		.byte	0x53
- 2367 0392 7A010000 		.4byte	.LVL46
- 2368 0396 7C010000 		.4byte	.LVL47
+ 2367 0392 78010000 		.4byte	.LVL46
+ 2368 0396 7A010000 		.4byte	.LVL47
  2369 039a 0300     		.2byte	0x3
  2370 039c 73       		.byte	0x73
  2371 039d 7F       		.sleb128 -1
  2372 039e 9F       		.byte	0x9f
- 2373 039f 7C010000 		.4byte	.LVL47
- 2374 03a3 90010000 		.4byte	.LVL50
+ 2373 039f 7A010000 		.4byte	.LVL47
+ 2374 03a3 8E010000 		.4byte	.LVL50
  2375 03a7 0100     		.2byte	0x1
  2376 03a9 53       		.byte	0x53
- 2377 03aa 90010000 		.4byte	.LVL50
- 2378 03ae 92010000 		.4byte	.LVL51
+ 2377 03aa 8E010000 		.4byte	.LVL50
+ 2378 03ae 90010000 		.4byte	.LVL51
  2379 03b2 0300     		.2byte	0x3
  2380 03b4 73       		.byte	0x73
  2381 03b5 7E       		.sleb128 -2
  2382 03b6 9F       		.byte	0x9f
- 2383 03b7 92010000 		.4byte	.LVL51
- 2384 03bb A6010000 		.4byte	.LVL54
+ 2383 03b7 90010000 		.4byte	.LVL51
+ 2384 03bb A4010000 		.4byte	.LVL54
  2385 03bf 0100     		.2byte	0x1
  2386 03c1 53       		.byte	0x53
- 2387 03c2 A6010000 		.4byte	.LVL54
- 2388 03c6 A8010000 		.4byte	.LVL55
+ 2387 03c2 A4010000 		.4byte	.LVL54
+ 2388 03c6 A6010000 		.4byte	.LVL55
  2389 03ca 0300     		.2byte	0x3
  2390 03cc 73       		.byte	0x73
  2391 03cd 7D       		.sleb128 -3
  2392 03ce 9F       		.byte	0x9f
- 2393 03cf A8010000 		.4byte	.LVL55
- 2394 03d3 B2010000 		.4byte	.LVL57
+ 2393 03cf A6010000 		.4byte	.LVL55
+ 2394 03d3 B0010000 		.4byte	.LVL57
  2395 03d7 0100     		.2byte	0x1
  2396 03d9 53       		.byte	0x53
- 2397 03da B2010000 		.4byte	.LVL57
- 2398 03de B4010000 		.4byte	.LVL58
+ 2397 03da B0010000 		.4byte	.LVL57
+ 2398 03de B2010000 		.4byte	.LVL58
  2399 03e2 0300     		.2byte	0x3
  2400 03e4 73       		.byte	0x73
  2401 03e5 7F       		.sleb128 -1
  2402 03e6 9F       		.byte	0x9f
- 2403 03e7 B4010000 		.4byte	.LVL58
- 2404 03eb BE010000 		.4byte	.LVL61
+ 2403 03e7 B2010000 		.4byte	.LVL58
+ 2404 03eb BC010000 		.4byte	.LVL61
  2405 03ef 0100     		.2byte	0x1
  2406 03f1 53       		.byte	0x53
- 2407 03f2 CA010000 		.4byte	.LVL63
- 2408 03f6 DC010000 		.4byte	.LVL66
+ 2407 03f2 C8010000 		.4byte	.LVL63
+ 2408 03f6 DA010000 		.4byte	.LVL66
  2409 03fa 0100     		.2byte	0x1
  2410 03fc 53       		.byte	0x53
- 2411 03fd DC010000 		.4byte	.LVL66
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 51
+ 2411 03fd DA010000 		.4byte	.LVL66
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 51
 
 
- 2412 0401 DE010000 		.4byte	.LVL67
+ 2412 0401 DC010000 		.4byte	.LVL67
  2413 0405 0300     		.2byte	0x3
  2414 0407 73       		.byte	0x73
  2415 0408 7F       		.sleb128 -1
  2416 0409 9F       		.byte	0x9f
- 2417 040a DE010000 		.4byte	.LVL67
- 2418 040e F0010000 		.4byte	.LVL70
+ 2417 040a DC010000 		.4byte	.LVL67
+ 2418 040e EE010000 		.4byte	.LVL70
  2419 0412 0100     		.2byte	0x1
  2420 0414 53       		.byte	0x53
- 2421 0415 F0010000 		.4byte	.LVL70
- 2422 0419 F2010000 		.4byte	.LVL71
+ 2421 0415 EE010000 		.4byte	.LVL70
+ 2422 0419 F0010000 		.4byte	.LVL71
  2423 041d 0300     		.2byte	0x3
  2424 041f 73       		.byte	0x73
  2425 0420 7E       		.sleb128 -2
  2426 0421 9F       		.byte	0x9f
- 2427 0422 F2010000 		.4byte	.LVL71
- 2428 0426 04020000 		.4byte	.LVL74
+ 2427 0422 F0010000 		.4byte	.LVL71
+ 2428 0426 02020000 		.4byte	.LVL74
  2429 042a 0100     		.2byte	0x1
  2430 042c 53       		.byte	0x53
- 2431 042d 04020000 		.4byte	.LVL74
- 2432 0431 06020000 		.4byte	.LVL75
+ 2431 042d 02020000 		.4byte	.LVL74
+ 2432 0431 04020000 		.4byte	.LVL75
  2433 0435 0300     		.2byte	0x3
  2434 0437 73       		.byte	0x73
  2435 0438 7D       		.sleb128 -3
  2436 0439 9F       		.byte	0x9f
- 2437 043a 06020000 		.4byte	.LVL75
- 2438 043e 10020000 		.4byte	.LVL77
+ 2437 043a 04020000 		.4byte	.LVL75
+ 2438 043e 0E020000 		.4byte	.LVL77
  2439 0442 0100     		.2byte	0x1
  2440 0444 53       		.byte	0x53
- 2441 0445 10020000 		.4byte	.LVL77
- 2442 0449 12020000 		.4byte	.LVL78
+ 2441 0445 0E020000 		.4byte	.LVL77
+ 2442 0449 10020000 		.4byte	.LVL78
  2443 044d 0300     		.2byte	0x3
  2444 044f 73       		.byte	0x73
  2445 0450 7F       		.sleb128 -1
  2446 0451 9F       		.byte	0x9f
- 2447 0452 12020000 		.4byte	.LVL78
- 2448 0456 1D020000 		.4byte	.LVL81-1
+ 2447 0452 10020000 		.4byte	.LVL78
+ 2448 0456 1B020000 		.4byte	.LVL81-1
  2449 045a 0100     		.2byte	0x1
  2450 045c 53       		.byte	0x53
  2451 045d 00000000 		.4byte	0
  2452 0461 00000000 		.4byte	0
  2453              	.LLST12:
- 2454 0465 70020000 		.4byte	.LVL92
- 2455 0469 86020000 		.4byte	.LVL93
+ 2454 0465 6E020000 		.4byte	.LVL92
+ 2455 0469 84020000 		.4byte	.LVL93
  2456 046d 0100     		.2byte	0x1
  2457 046f 5B       		.byte	0x5b
- 2458 0470 86020000 		.4byte	.LVL93
- 2459 0474 8A020000 		.4byte	.LVL95
+ 2458 0470 84020000 		.4byte	.LVL93
+ 2459 0474 88020000 		.4byte	.LVL95
  2460 0478 0100     		.2byte	0x1
  2461 047a 52       		.byte	0x52
- 2462 047b 8A020000 		.4byte	.LVL95
- 2463 047f 9A020000 		.4byte	.LVL96
+ 2462 047b 88020000 		.4byte	.LVL95
+ 2463 047f 98020000 		.4byte	.LVL96
  2464 0483 0100     		.2byte	0x1
  2465 0485 5B       		.byte	0x5b
- 2466 0486 9A020000 		.4byte	.LVL96
- 2467 048a 9E020000 		.4byte	.LVL97
+ 2466 0486 98020000 		.4byte	.LVL96
+ 2467 048a 9C020000 		.4byte	.LVL97
  2468 048e 0300     		.2byte	0x3
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 52
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 52
 
 
  2469 0490 7B       		.byte	0x7b
  2470 0491 01       		.sleb128 1
  2471 0492 9F       		.byte	0x9f
- 2472 0493 9E020000 		.4byte	.LVL97
- 2473 0497 C4020000 		.4byte	.LVL100
+ 2472 0493 9C020000 		.4byte	.LVL97
+ 2473 0497 C2020000 		.4byte	.LVL100
  2474 049b 0100     		.2byte	0x1
  2475 049d 5B       		.byte	0x5b
- 2476 049e C4020000 		.4byte	.LVL100
- 2477 04a2 C8020000 		.4byte	.LVL101
+ 2476 049e C2020000 		.4byte	.LVL100
+ 2477 04a2 C6020000 		.4byte	.LVL101
  2478 04a6 0300     		.2byte	0x3
  2479 04a8 7B       		.byte	0x7b
  2480 04a9 01       		.sleb128 1
  2481 04aa 9F       		.byte	0x9f
- 2482 04ab C8020000 		.4byte	.LVL101
- 2483 04af 8E030000 		.4byte	.LVL118
+ 2482 04ab C6020000 		.4byte	.LVL101
+ 2483 04af 8A030000 		.4byte	.LVL118
  2484 04b3 0100     		.2byte	0x1
  2485 04b5 5B       		.byte	0x5b
  2486 04b6 00000000 		.4byte	0
  2487 04ba 00000000 		.4byte	0
  2488              	.LLST13:
- 2489 04be 70020000 		.4byte	.LVL92
- 2490 04c2 88020000 		.4byte	.LVL94
+ 2489 04be 6E020000 		.4byte	.LVL92
+ 2490 04c2 86020000 		.4byte	.LVL94
  2491 04c6 0100     		.2byte	0x1
  2492 04c8 53       		.byte	0x53
- 2493 04c9 88020000 		.4byte	.LVL94
- 2494 04cd 8A020000 		.4byte	.LVL95
+ 2493 04c9 86020000 		.4byte	.LVL94
+ 2494 04cd 88020000 		.4byte	.LVL95
  2495 04d1 0100     		.2byte	0x1
  2496 04d3 51       		.byte	0x51
- 2497 04d4 8A020000 		.4byte	.LVL95
- 2498 04d8 AE020000 		.4byte	.LVL98
+ 2497 04d4 88020000 		.4byte	.LVL95
+ 2498 04d8 AC020000 		.4byte	.LVL98
  2499 04dc 0100     		.2byte	0x1
  2500 04de 53       		.byte	0x53
- 2501 04df AE020000 		.4byte	.LVL98
- 2502 04e3 B0020000 		.4byte	.LVL99
+ 2501 04df AC020000 		.4byte	.LVL98
+ 2502 04e3 AE020000 		.4byte	.LVL99
  2503 04e7 0300     		.2byte	0x3
  2504 04e9 73       		.byte	0x73
  2505 04ea 01       		.sleb128 1
  2506 04eb 9F       		.byte	0x9f
- 2507 04ec B0020000 		.4byte	.LVL99
- 2508 04f0 CA020000 		.4byte	.LVL102
+ 2507 04ec AE020000 		.4byte	.LVL99
+ 2508 04f0 C8020000 		.4byte	.LVL102
  2509 04f4 0100     		.2byte	0x1
  2510 04f6 53       		.byte	0x53
- 2511 04f7 CA020000 		.4byte	.LVL102
- 2512 04fb CC020000 		.4byte	.LVL103
+ 2511 04f7 C8020000 		.4byte	.LVL102
+ 2512 04fb CA020000 		.4byte	.LVL103
  2513 04ff 0300     		.2byte	0x3
  2514 0501 73       		.byte	0x73
  2515 0502 7F       		.sleb128 -1
  2516 0503 9F       		.byte	0x9f
- 2517 0504 CC020000 		.4byte	.LVL103
- 2518 0508 DD020000 		.4byte	.LVL104-1
+ 2517 0504 CA020000 		.4byte	.LVL103
+ 2518 0508 DB020000 		.4byte	.LVL104-1
  2519 050c 0100     		.2byte	0x1
  2520 050e 53       		.byte	0x53
- 2521 050f DD020000 		.4byte	.LVL104-1
- 2522 0513 04030000 		.4byte	.LVL107
+ 2521 050f DB020000 		.4byte	.LVL104-1
+ 2522 0513 00030000 		.4byte	.LVL107
  2523 0517 0300     		.2byte	0x3
  2524 0519 77       		.byte	0x77
  2525 051a 7F       		.sleb128 -1
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 53
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 53
 
 
  2526 051b 9F       		.byte	0x9f
- 2527 051c 58030000 		.4byte	.LVL114
- 2528 0520 64030000 		.4byte	.LVL115
+ 2527 051c 54030000 		.4byte	.LVL114
+ 2528 0520 60030000 		.4byte	.LVL115
  2529 0524 0100     		.2byte	0x1
  2530 0526 53       		.byte	0x53
  2531 0527 00000000 		.4byte	0
  2532 052b 00000000 		.4byte	0
  2533              	.LLST14:
- 2534 052f 8E030000 		.4byte	.LVL118
- 2535 0533 9E030000 		.4byte	.LVL121
+ 2534 052f 8A030000 		.4byte	.LVL118
+ 2535 0533 9A030000 		.4byte	.LVL121
  2536 0537 0100     		.2byte	0x1
  2537 0539 50       		.byte	0x50
- 2538 053a A0030000 		.4byte	.LVL122
- 2539 053e A6030000 		.4byte	.LVL123
+ 2538 053a 9C030000 		.4byte	.LVL122
+ 2539 053e A2030000 		.4byte	.LVL123
  2540 0542 0100     		.2byte	0x1
  2541 0544 5B       		.byte	0x5b
- 2542 0545 A6030000 		.4byte	.LVL123
- 2543 0549 EE030000 		.4byte	.LVL128
+ 2542 0545 A2030000 		.4byte	.LVL123
+ 2543 0549 EA030000 		.4byte	.LVL128
  2544 054d 0100     		.2byte	0x1
  2545 054f 50       		.byte	0x50
- 2546 0550 EE030000 		.4byte	.LVL128
- 2547 0554 F0030000 		.4byte	.LVL129
+ 2546 0550 EA030000 		.4byte	.LVL128
+ 2547 0554 EC030000 		.4byte	.LVL129
  2548 0558 0300     		.2byte	0x3
  2549 055a 70       		.byte	0x70
  2550 055b 7F       		.sleb128 -1
  2551 055c 9F       		.byte	0x9f
- 2552 055d F0030000 		.4byte	.LVL129
- 2553 0561 F2030000 		.4byte	.LVL130
+ 2552 055d EC030000 		.4byte	.LVL129
+ 2553 0561 EE030000 		.4byte	.LVL130
  2554 0565 0100     		.2byte	0x1
  2555 0567 50       		.byte	0x50
- 2556 0568 F2030000 		.4byte	.LVL130
- 2557 056c 0A040000 		.4byte	.LVL133
+ 2556 0568 EE030000 		.4byte	.LVL130
+ 2557 056c 06040000 		.4byte	.LVL133
  2558 0570 0300     		.2byte	0x3
  2559 0572 7B       		.byte	0x7b
  2560 0573 01       		.sleb128 1
  2561 0574 9F       		.byte	0x9f
- 2562 0575 0A040000 		.4byte	.LVL133
- 2563 0579 4E040000 		.4byte	.LVL142
+ 2562 0575 06040000 		.4byte	.LVL133
+ 2563 0579 4A040000 		.4byte	.LVL142
  2564 057d 0100     		.2byte	0x1
  2565 057f 50       		.byte	0x50
- 2566 0580 4E040000 		.4byte	.LVL142
- 2567 0584 50040000 		.4byte	.LVL143
+ 2566 0580 4A040000 		.4byte	.LVL142
+ 2567 0584 4C040000 		.4byte	.LVL143
  2568 0588 0300     		.2byte	0x3
  2569 058a 70       		.byte	0x70
  2570 058b 7F       		.sleb128 -1
  2571 058c 9F       		.byte	0x9f
- 2572 058d 50040000 		.4byte	.LVL143
- 2573 0591 52040000 		.4byte	.LVL144
+ 2572 058d 4C040000 		.4byte	.LVL143
+ 2573 0591 4E040000 		.4byte	.LVL144
  2574 0595 0100     		.2byte	0x1
  2575 0597 50       		.byte	0x50
- 2576 0598 52040000 		.4byte	.LVL144
- 2577 059c 6A040000 		.4byte	.LVL147
+ 2576 0598 4E040000 		.4byte	.LVL144
+ 2577 059c 66040000 		.4byte	.LVL147
  2578 05a0 0300     		.2byte	0x3
  2579 05a2 7B       		.byte	0x7b
  2580 05a3 01       		.sleb128 1
  2581 05a4 9F       		.byte	0x9f
- 2582 05a5 6A040000 		.4byte	.LVL147
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 54
+ 2582 05a5 66040000 		.4byte	.LVL147
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 54
 
 
- 2583 05a9 B0040000 		.4byte	.LVL157
+ 2583 05a9 AC040000 		.4byte	.LVL157
  2584 05ad 0100     		.2byte	0x1
  2585 05af 50       		.byte	0x50
- 2586 05b0 B0040000 		.4byte	.LVL157
- 2587 05b4 B2040000 		.4byte	.LVL158
+ 2586 05b0 AC040000 		.4byte	.LVL157
+ 2587 05b4 AE040000 		.4byte	.LVL158
  2588 05b8 0300     		.2byte	0x3
  2589 05ba 70       		.byte	0x70
  2590 05bb 7F       		.sleb128 -1
  2591 05bc 9F       		.byte	0x9f
- 2592 05bd B2040000 		.4byte	.LVL158
- 2593 05c1 B4040000 		.4byte	.LVL159
+ 2592 05bd AE040000 		.4byte	.LVL158
+ 2593 05c1 B0040000 		.4byte	.LVL159
  2594 05c5 0100     		.2byte	0x1
  2595 05c7 50       		.byte	0x50
- 2596 05c8 B4040000 		.4byte	.LVL159
- 2597 05cc CC040000 		.4byte	.LVL162
+ 2596 05c8 B0040000 		.4byte	.LVL159
+ 2597 05cc C8040000 		.4byte	.LVL162
  2598 05d0 0300     		.2byte	0x3
  2599 05d2 7B       		.byte	0x7b
  2600 05d3 01       		.sleb128 1
  2601 05d4 9F       		.byte	0x9f
- 2602 05d5 CC040000 		.4byte	.LVL162
- 2603 05d9 0A050000 		.4byte	.LVL171
+ 2602 05d5 C8040000 		.4byte	.LVL162
+ 2603 05d9 06050000 		.4byte	.LVL171
  2604 05dd 0100     		.2byte	0x1
  2605 05df 50       		.byte	0x50
  2606 05e0 00000000 		.4byte	0
  2607 05e4 00000000 		.4byte	0
  2608              	.LLST15:
- 2609 05e8 8E030000 		.4byte	.LVL118
- 2610 05ec 9E030000 		.4byte	.LVL121
+ 2609 05e8 8A030000 		.4byte	.LVL118
+ 2610 05ec 9A030000 		.4byte	.LVL121
  2611 05f0 0200     		.2byte	0x2
  2612 05f2 30       		.byte	0x30
  2613 05f3 9F       		.byte	0x9f
- 2614 05f4 A0030000 		.4byte	.LVL122
- 2615 05f8 D4030000 		.4byte	.LVL124
+ 2614 05f4 9C030000 		.4byte	.LVL122
+ 2615 05f8 D0030000 		.4byte	.LVL124
  2616 05fc 0100     		.2byte	0x1
  2617 05fe 53       		.byte	0x53
- 2618 05ff D4030000 		.4byte	.LVL124
- 2619 0603 D6030000 		.4byte	.LVL125
+ 2618 05ff D0030000 		.4byte	.LVL124
+ 2619 0603 D2030000 		.4byte	.LVL125
  2620 0607 0300     		.2byte	0x3
  2621 0609 73       		.byte	0x73
  2622 060a 7F       		.sleb128 -1
  2623 060b 9F       		.byte	0x9f
- 2624 060c D6030000 		.4byte	.LVL125
- 2625 0610 EA030000 		.4byte	.LVL126
+ 2624 060c D2030000 		.4byte	.LVL125
+ 2625 0610 E6030000 		.4byte	.LVL126
  2626 0614 0100     		.2byte	0x1
  2627 0616 53       		.byte	0x53
- 2628 0617 EA030000 		.4byte	.LVL126
- 2629 061b EC030000 		.4byte	.LVL127
+ 2628 0617 E6030000 		.4byte	.LVL126
+ 2629 061b E8030000 		.4byte	.LVL127
  2630 061f 0300     		.2byte	0x3
  2631 0621 73       		.byte	0x73
  2632 0622 7E       		.sleb128 -2
  2633 0623 9F       		.byte	0x9f
- 2634 0624 EC030000 		.4byte	.LVL127
- 2635 0628 02040000 		.4byte	.LVL131
+ 2634 0624 E8030000 		.4byte	.LVL127
+ 2635 0628 FE030000 		.4byte	.LVL131
  2636 062c 0100     		.2byte	0x1
  2637 062e 53       		.byte	0x53
- 2638 062f 02040000 		.4byte	.LVL131
- 2639 0633 04040000 		.4byte	.LVL132
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 55
+ 2638 062f FE030000 		.4byte	.LVL131
+ 2639 0633 00040000 		.4byte	.LVL132
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 55
 
 
  2640 0637 0300     		.2byte	0x3
  2641 0639 73       		.byte	0x73
  2642 063a 7D       		.sleb128 -3
  2643 063b 9F       		.byte	0x9f
- 2644 063c 04040000 		.4byte	.LVL132
- 2645 0640 18040000 		.4byte	.LVL136
+ 2644 063c 00040000 		.4byte	.LVL132
+ 2645 0640 14040000 		.4byte	.LVL136
  2646 0644 0100     		.2byte	0x1
  2647 0646 53       		.byte	0x53
- 2648 0647 18040000 		.4byte	.LVL136
- 2649 064b 24040000 		.4byte	.LVL137
+ 2648 0647 14040000 		.4byte	.LVL136
+ 2649 064b 20040000 		.4byte	.LVL137
  2650 064f 0200     		.2byte	0x2
  2651 0651 30       		.byte	0x30
  2652 0652 9F       		.byte	0x9f
- 2653 0653 24040000 		.4byte	.LVL137
- 2654 0657 34040000 		.4byte	.LVL138
+ 2653 0653 20040000 		.4byte	.LVL137
+ 2654 0657 30040000 		.4byte	.LVL138
  2655 065b 0100     		.2byte	0x1
  2656 065d 53       		.byte	0x53
- 2657 065e 34040000 		.4byte	.LVL138
- 2658 0662 36040000 		.4byte	.LVL139
+ 2657 065e 30040000 		.4byte	.LVL138
+ 2658 0662 32040000 		.4byte	.LVL139
  2659 0666 0300     		.2byte	0x3
  2660 0668 73       		.byte	0x73
  2661 0669 7F       		.sleb128 -1
  2662 066a 9F       		.byte	0x9f
- 2663 066b 36040000 		.4byte	.LVL139
- 2664 066f 4A040000 		.4byte	.LVL140
+ 2663 066b 32040000 		.4byte	.LVL139
+ 2664 066f 46040000 		.4byte	.LVL140
  2665 0673 0100     		.2byte	0x1
  2666 0675 53       		.byte	0x53
- 2667 0676 4A040000 		.4byte	.LVL140
- 2668 067a 4C040000 		.4byte	.LVL141
+ 2667 0676 46040000 		.4byte	.LVL140
+ 2668 067a 48040000 		.4byte	.LVL141
  2669 067e 0300     		.2byte	0x3
  2670 0680 73       		.byte	0x73
  2671 0681 7E       		.sleb128 -2
  2672 0682 9F       		.byte	0x9f
- 2673 0683 4C040000 		.4byte	.LVL141
- 2674 0687 62040000 		.4byte	.LVL145
+ 2673 0683 48040000 		.4byte	.LVL141
+ 2674 0687 5E040000 		.4byte	.LVL145
  2675 068b 0100     		.2byte	0x1
  2676 068d 53       		.byte	0x53
- 2677 068e 62040000 		.4byte	.LVL145
- 2678 0692 64040000 		.4byte	.LVL146
+ 2677 068e 5E040000 		.4byte	.LVL145
+ 2678 0692 60040000 		.4byte	.LVL146
  2679 0696 0300     		.2byte	0x3
  2680 0698 73       		.byte	0x73
  2681 0699 7D       		.sleb128 -3
  2682 069a 9F       		.byte	0x9f
- 2683 069b 64040000 		.4byte	.LVL146
- 2684 069f 72040000 		.4byte	.LVL148
+ 2683 069b 60040000 		.4byte	.LVL146
+ 2684 069f 6E040000 		.4byte	.LVL148
  2685 06a3 0100     		.2byte	0x1
  2686 06a5 53       		.byte	0x53
- 2687 06a6 7A040000 		.4byte	.LVL150
- 2688 06aa 86040000 		.4byte	.LVL152
+ 2687 06a6 76040000 		.4byte	.LVL150
+ 2688 06aa 82040000 		.4byte	.LVL152
  2689 06ae 0200     		.2byte	0x2
  2690 06b0 30       		.byte	0x30
  2691 06b1 9F       		.byte	0x9f
- 2692 06b2 86040000 		.4byte	.LVL152
- 2693 06b6 96040000 		.4byte	.LVL153
+ 2692 06b2 82040000 		.4byte	.LVL152
+ 2693 06b6 92040000 		.4byte	.LVL153
  2694 06ba 0100     		.2byte	0x1
  2695 06bc 53       		.byte	0x53
- 2696 06bd 96040000 		.4byte	.LVL153
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 56
+ 2696 06bd 92040000 		.4byte	.LVL153
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 56
 
 
- 2697 06c1 98040000 		.4byte	.LVL154
+ 2697 06c1 94040000 		.4byte	.LVL154
  2698 06c5 0300     		.2byte	0x3
  2699 06c7 73       		.byte	0x73
  2700 06c8 7F       		.sleb128 -1
  2701 06c9 9F       		.byte	0x9f
- 2702 06ca 98040000 		.4byte	.LVL154
- 2703 06ce AC040000 		.4byte	.LVL155
+ 2702 06ca 94040000 		.4byte	.LVL154
+ 2703 06ce A8040000 		.4byte	.LVL155
  2704 06d2 0100     		.2byte	0x1
  2705 06d4 53       		.byte	0x53
- 2706 06d5 AC040000 		.4byte	.LVL155
- 2707 06d9 AE040000 		.4byte	.LVL156
+ 2706 06d5 A8040000 		.4byte	.LVL155
+ 2707 06d9 AA040000 		.4byte	.LVL156
  2708 06dd 0300     		.2byte	0x3
  2709 06df 73       		.byte	0x73
  2710 06e0 7E       		.sleb128 -2
  2711 06e1 9F       		.byte	0x9f
- 2712 06e2 AE040000 		.4byte	.LVL156
- 2713 06e6 C4040000 		.4byte	.LVL160
+ 2712 06e2 AA040000 		.4byte	.LVL156
+ 2713 06e6 C0040000 		.4byte	.LVL160
  2714 06ea 0100     		.2byte	0x1
  2715 06ec 53       		.byte	0x53
- 2716 06ed C4040000 		.4byte	.LVL160
- 2717 06f1 C6040000 		.4byte	.LVL161
+ 2716 06ed C0040000 		.4byte	.LVL160
+ 2717 06f1 C2040000 		.4byte	.LVL161
  2718 06f5 0300     		.2byte	0x3
  2719 06f7 73       		.byte	0x73
  2720 06f8 7D       		.sleb128 -3
  2721 06f9 9F       		.byte	0x9f
- 2722 06fa C6040000 		.4byte	.LVL161
- 2723 06fe DC040000 		.4byte	.LVL165
+ 2722 06fa C2040000 		.4byte	.LVL161
+ 2723 06fe D8040000 		.4byte	.LVL165
  2724 0702 0100     		.2byte	0x1
  2725 0704 53       		.byte	0x53
- 2726 0705 DC040000 		.4byte	.LVL165
- 2727 0709 EA040000 		.4byte	.LVL166
+ 2726 0705 D8040000 		.4byte	.LVL165
+ 2727 0709 E6040000 		.4byte	.LVL166
  2728 070d 0200     		.2byte	0x2
  2729 070f 30       		.byte	0x30
  2730 0710 9F       		.byte	0x9f
- 2731 0711 EA040000 		.4byte	.LVL166
- 2732 0715 06050000 		.4byte	.LVL169
+ 2731 0711 E6040000 		.4byte	.LVL166
+ 2732 0715 02050000 		.4byte	.LVL169
  2733 0719 0100     		.2byte	0x1
  2734 071b 53       		.byte	0x53
- 2735 071c 06050000 		.4byte	.LVL169
- 2736 0720 08050000 		.4byte	.LVL170
+ 2735 071c 02050000 		.4byte	.LVL169
+ 2736 0720 04050000 		.4byte	.LVL170
  2737 0724 0300     		.2byte	0x3
  2738 0726 73       		.byte	0x73
  2739 0727 7F       		.sleb128 -1
  2740 0728 9F       		.byte	0x9f
- 2741 0729 08050000 		.4byte	.LVL170
- 2742 072d 0A050000 		.4byte	.LVL171
+ 2741 0729 04050000 		.4byte	.LVL170
+ 2742 072d 06050000 		.4byte	.LVL171
  2743 0731 0100     		.2byte	0x1
  2744 0733 53       		.byte	0x53
  2745 0734 00000000 		.4byte	0
  2746 0738 00000000 		.4byte	0
  2747              	.LLST16:
- 2748 073c 8E030000 		.4byte	.LVL118
- 2749 0740 9E030000 		.4byte	.LVL121
+ 2748 073c 8A030000 		.4byte	.LVL118
+ 2749 0740 9A030000 		.4byte	.LVL121
  2750 0744 0100     		.2byte	0x1
  2751 0746 55       		.byte	0x55
- 2752 0747 A0030000 		.4byte	.LVL122
- 2753 074b 16040000 		.4byte	.LVL135
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 57
+ 2752 0747 9C030000 		.4byte	.LVL122
+ 2753 074b 12040000 		.4byte	.LVL135
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 57
 
 
  2754 074f 0100     		.2byte	0x1
  2755 0751 55       		.byte	0x55
- 2756 0752 16040000 		.4byte	.LVL135
- 2757 0756 18040000 		.4byte	.LVL136
+ 2756 0752 12040000 		.4byte	.LVL135
+ 2757 0756 14040000 		.4byte	.LVL136
  2758 075a 0300     		.2byte	0x3
  2759 075c 75       		.byte	0x75
  2760 075d 7F       		.sleb128 -1
  2761 075e 9F       		.byte	0x9f
- 2762 075f 18040000 		.4byte	.LVL136
- 2763 0763 78040000 		.4byte	.LVL149
+ 2762 075f 14040000 		.4byte	.LVL136
+ 2763 0763 74040000 		.4byte	.LVL149
  2764 0767 0100     		.2byte	0x1
  2765 0769 55       		.byte	0x55
- 2766 076a 78040000 		.4byte	.LVL149
- 2767 076e 7A040000 		.4byte	.LVL150
+ 2766 076a 74040000 		.4byte	.LVL149
+ 2767 076e 76040000 		.4byte	.LVL150
  2768 0772 0300     		.2byte	0x3
  2769 0774 75       		.byte	0x75
  2770 0775 7F       		.sleb128 -1
  2771 0776 9F       		.byte	0x9f
- 2772 0777 7A040000 		.4byte	.LVL150
- 2773 077b DA040000 		.4byte	.LVL164
+ 2772 0777 76040000 		.4byte	.LVL150
+ 2773 077b D6040000 		.4byte	.LVL164
  2774 077f 0100     		.2byte	0x1
  2775 0781 55       		.byte	0x55
- 2776 0782 DA040000 		.4byte	.LVL164
- 2777 0786 DC040000 		.4byte	.LVL165
+ 2776 0782 D6040000 		.4byte	.LVL164
+ 2777 0786 D8040000 		.4byte	.LVL165
  2778 078a 0300     		.2byte	0x3
  2779 078c 75       		.byte	0x75
  2780 078d 7F       		.sleb128 -1
  2781 078e 9F       		.byte	0x9f
- 2782 078f DC040000 		.4byte	.LVL165
- 2783 0793 0A050000 		.4byte	.LVL171
+ 2782 078f D8040000 		.4byte	.LVL165
+ 2783 0793 06050000 		.4byte	.LVL171
  2784 0797 0100     		.2byte	0x1
  2785 0799 55       		.byte	0x55
  2786 079a 00000000 		.4byte	0
  2787 079e 00000000 		.4byte	0
  2788              	.LLST17:
- 2789 07a2 94030000 		.4byte	.LVL119
- 2790 07a6 96030000 		.4byte	.LVL120
+ 2789 07a2 90030000 		.4byte	.LVL119
+ 2790 07a6 92030000 		.4byte	.LVL120
  2791 07aa 0100     		.2byte	0x1
  2792 07ac 52       		.byte	0x52
- 2793 07ad A0030000 		.4byte	.LVL122
- 2794 07b1 12040000 		.4byte	.LVL134
+ 2793 07ad 9C030000 		.4byte	.LVL122
+ 2794 07b1 0E040000 		.4byte	.LVL134
  2795 07b5 0100     		.2byte	0x1
  2796 07b7 52       		.byte	0x52
- 2797 07b8 24040000 		.4byte	.LVL137
- 2798 07bc 82040000 		.4byte	.LVL151
+ 2797 07b8 20040000 		.4byte	.LVL137
+ 2798 07bc 7E040000 		.4byte	.LVL151
  2799 07c0 0100     		.2byte	0x1
  2800 07c2 52       		.byte	0x52
- 2801 07c3 86040000 		.4byte	.LVL152
- 2802 07c7 D4040000 		.4byte	.LVL163
+ 2801 07c3 82040000 		.4byte	.LVL152
+ 2802 07c7 D0040000 		.4byte	.LVL163
  2803 07cb 0100     		.2byte	0x1
  2804 07cd 52       		.byte	0x52
- 2805 07ce EA040000 		.4byte	.LVL166
- 2806 07d2 F2040000 		.4byte	.LVL167
+ 2805 07ce E6040000 		.4byte	.LVL166
+ 2806 07d2 EE040000 		.4byte	.LVL167
  2807 07d6 0100     		.2byte	0x1
  2808 07d8 52       		.byte	0x52
- 2809 07d9 04050000 		.4byte	.LVL168
- 2810 07dd 0A050000 		.4byte	.LVL171
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 58
+ 2809 07d9 00050000 		.4byte	.LVL168
+ 2810 07dd 06050000 		.4byte	.LVL171
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 58
 
 
  2811 07e1 0100     		.2byte	0x1
@@ -3436,7 +3436,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2823 0010 00000000 		.4byte	.LFB63
  2824 0014 12000000 		.4byte	.LFE63-.LFB63
  2825 0018 00000000 		.4byte	.LFB64
- 2826 001c 18050000 		.4byte	.LFE64-.LFB64
+ 2826 001c 14050000 		.4byte	.LFE64-.LFB64
  2827 0020 00000000 		.4byte	.LFB65
  2828 0024 0C000000 		.4byte	.LFE65-.LFB65
  2829 0028 00000000 		.4byte	0
@@ -3446,7 +3446,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2833 0000 00000000 		.4byte	.LFB63
  2834 0004 12000000 		.4byte	.LFE63
  2835 0008 00000000 		.4byte	.LFB64
- 2836 000c 18050000 		.4byte	.LFE64
+ 2836 000c 14050000 		.4byte	.LFE64
  2837 0010 00000000 		.4byte	.LFB65
  2838 0014 0C000000 		.4byte	.LFE65
  2839 0018 00000000 		.4byte	0
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2853 0027 70617273 		.ascii	"parsePhoto\000"
  2853      6550686F 
  2853      746F00
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 59
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 59
 
 
  2854              	.LASF21:
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2881      7400
  2882              	.LASF44:
  2883 00be 4C63645F 		.ascii	"Lcd_WriteControl\000"
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 60
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 60
 
 
  2883      57726974 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2909      4320342E 
  2909      382E3420 
  2909      32303134 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 61
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 61
 
 
  2909      30353236 
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 1
  2935 0227 4C63645F 		.ascii	"Lcd_PrintNumber\000"
  2935      5072696E 
  2935      744E756D 
-ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccmZTuKO.s 			page 62
+ARM GAS  C:\Users\Nick\AppData\Local\Temp\ccpzdpkf.s 			page 62
 
 
  2935      62657200 

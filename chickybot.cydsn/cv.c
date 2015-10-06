@@ -53,7 +53,7 @@ uint8 * parsePhoto() {
     for (h = 0; h < IMG_H; h++) {
         for (w = 0; w < IMG_W; w++) {
             Camera_framebuffer[h][w][0] = Camera_framebuffer[h][w][0] - Camera_framebuffer[h][w][3];
-            Camera_framebuffer[h][w][1] = 2*Camera_framebuffer[h][w][1] - Camera_framebuffer[h][w][3];
+            Camera_framebuffer[h][w][1] = Camera_framebuffer[h][w][1] - Camera_framebuffer[h][w][3];
             Camera_framebuffer[h][w][2] = Camera_framebuffer[h][w][2] - Camera_framebuffer[h][w][3];
         }
     }

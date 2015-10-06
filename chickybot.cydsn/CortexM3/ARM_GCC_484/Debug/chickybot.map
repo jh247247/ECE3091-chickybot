@@ -710,38 +710,39 @@ END GROUP
                 0x00002858       0x14 .\CortexM3\ARM_GCC_484\Debug\cv.o
                 0x00002858                takePhoto
  .text.parsePhoto
-                0x0000286c      0x518 .\CortexM3\ARM_GCC_484\Debug\cv.o
+                0x0000286c      0x514 .\CortexM3\ARM_GCC_484\Debug\cv.o
                 0x0000286c                parsePhoto
  .text.readPlanWithCamera
-                0x00002d84        0xc .\CortexM3\ARM_GCC_484\Debug\cv.o
-                0x00002d84                readPlanWithCamera
+                0x00002d80        0xc .\CortexM3\ARM_GCC_484\Debug\cv.o
+                0x00002d80                readPlanWithCamera
  .text.IntDefaultHandler
-                0x00002d90        0x4 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x00002d90                IntDefaultHandler
- .text._sbrk    0x00002d94       0x30 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x00002d94                _sbrk
- .text.Start_c  0x00002dc4       0x4c .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x00002dc4                Start_c
+                0x00002d8c        0x4 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00002d8c                IntDefaultHandler
+ .text._sbrk    0x00002d90       0x30 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00002d90                _sbrk
+ .text.Start_c  0x00002dc0       0x4c .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00002dc0                Start_c
  .text.initialize_psoc
-                0x00002e10       0x74 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
-                0x00002e10                initialize_psoc
+                0x00002e0c       0x74 .\CortexM3\ARM_GCC_484\Debug\Cm3Start.o
+                0x00002e0c                initialize_psoc
  .text.CyClockStartupError
-                0x00002e84        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002e80        0x4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.cfg_write_bytes32
-                0x00002e88       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002e84       0x34 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.AnalogSetDefault
-                0x00002ebc       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002eb8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.CYMEMZERO
-                0x00002ee4        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002ee0        0xc .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.CYCONFIGCPYCODE
-                0x00002ef0        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002eec        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.CYCONFIGCPY
-                0x00002ef8        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002ef4        0x8 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.ClockSetup
-                0x00002f00       0xd4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002efc       0xd4 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
  .text.cyfitter_cfg
-                0x00002fd4      0x124 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
-                0x00002fd4                cyfitter_cfg
+                0x00002fd0      0x124 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(cyfitter_cfg.o)
+                0x00002fd0                cyfitter_cfg
+ *fill*         0x000030f4        0x4 
  .text          0x000030f8       0x28 .\CortexM3\ARM_GCC_484\Debug\chickybot.a(CyBootAsmGnu.o)
                 0x000030f8                CyDelayCycles
                 0x0000310c                CyEnterCriticalSection
