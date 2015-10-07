@@ -53,8 +53,15 @@ double Motion::posToElbowAngle(double radius, double height)
 }
 double Motion::posToShoulderAngle(double radius, double height)
 {
-  double elbowAngle = posToElbowAngle(radius, height)*(pi/180);
-  return asin((96*sin(elbowAngle))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) + atan(radius/height)*(180/pi);
+  double elbowAngle = posToElbowAngle(radius, height);
+  if (elbowAngle > 45)
+  {
+    return (asin((96*sin(elbowAngle*(pi/180)))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) + atan(radius/height)*(180/pi));
+  }
+  else
+  {
+    return (asin((96*sin(elbowAngle*(pi/180)))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) - atan(radius/height)*(180/pi) + 90);
+  }
 }
 
 int Motion::potElbowToAngle(int currPosElbow)
