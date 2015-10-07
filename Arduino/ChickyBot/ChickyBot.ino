@@ -5,8 +5,7 @@
 #include "Motion.h"
 #include "Sensors.h"
 
-// TODO: Add angle for MIN
-#define ELBOW_MIN_ANGLE 0
+#define ELBOW_MIN_ANGLE 15
 #define ELBOW_MIN 876
 #define ELBOW_MAX_ANGLE 90
 #define ELBOW_MAX 513
@@ -38,6 +37,7 @@ int goal2 = ELBOW_MAX;
 
 int firstMove = 1;
 
+
 void setup()
 {
   Serial.begin(9600);
@@ -66,21 +66,31 @@ void setup()
 }
  
 void loop()
-{
-  // Update LCD
+{// Update LCD
   lcd.clear();
-  lcd.setCursor(0,0);
-//  lcd.print("US: ");
-//  lcd.print(heightUS);
-//  lcd.print(" cm");
-//  lcd.setCursor(0,1);
-  lcd.print("E: ");
-  lcd.print(currPosElbow);
-
-  lcd.setCursor(0,1);
+  
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
-  int angle = motion.potElbowToAngle(currPosElbow);
-  lcd.print(angle);
+  lcd.setCursor(0,0);
+  lcd.print(currPosElbow);
+  
+  int elbowAngle = motion.potElbowToAngle(currPosElbow);
+  lcd.setCursor(0,1);
+  lcd.print(elbowAngle);
+  lcd.print("^");
+  
+  double radius = motion.getRadius(elbowAngle, 90);
+  double height = motion.getHeight(elbowAngle, 90);
+  lcd.setCursor(5,0);
+  lcd.print(radius);
+  lcd.setCursor(5,1);
+  lcd.print(height);
+
+  double calcedElbowAngle = motion.posToElbowAngle(radius, height);
+  double calcedShoulderAngle = motion.posToShoulderAngle(radius, height);
+  lcd.setCursor(11,0);
+  lcd.print(calcedElbowAngle);
+  lcd.setCursor(11,1);
+  lcd.print(calcedShoulderAngle);
 
   delay(400);
 
@@ -117,13 +127,6 @@ ISR(TIMER1_COMPA_vect)
       firstMove = 0;
     }
     else {
-//      if (currPosElbow < goalPosElbow + BUFFER_ELBOW_DECEL) { // Bigger buffer
-//        motion.goDownElbowSpeed(128); // 128
-//      }
-//      else
-//      {
-//        motion.goDownElbowSpeed(128); // 128
-//      }
       motion.goDownElbowSpeed(128); // 128
     }
   }
@@ -133,15 +136,12 @@ ISR(TIMER1_COMPA_vect)
       firstMove = 0;
     }
     else {
-//      if (currPosElbow > goalPosElbow - BUFFER_ELBOW_DECEL) { // Bigger buffer
-//        motion.goUpElbowSpeed(255); // 128
-//      }
-//      else
-//      {
-//        motion.goUpElbowSpeed(255); // 128
-//      }
-      motion.goUpElbowSpeed(255); // 128
+//      motion.goUpElbowSpeed(255); // 128
+      motion.goUpElbow();
     }
+
   }
+
+  
 }
 

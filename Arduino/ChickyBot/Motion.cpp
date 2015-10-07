@@ -17,39 +17,52 @@ void Motion::goUpElbow()
   digitalWrite(_pinElbowPos, HIGH);
   digitalWrite(_pinElbowNeg, LOW);
 }
-
 void Motion::goDownElbow()
 {
   digitalWrite(_pinElbowPos, LOW);
   digitalWrite(_pinElbowNeg, HIGH);
 }
-
 void Motion::goUpElbowSpeed(int speed)
 {
   analogWrite(_pinElbowPos, speed);
   analogWrite(_pinElbowNeg, 0);
 }
-
 void Motion::goDownElbowSpeed(int speed)
 {
   analogWrite(_pinElbowPos, 0);
   analogWrite(_pinElbowNeg, speed);
 }
-
-
 void Motion::stopMotorElbow()
 {
   digitalWrite(_pinElbowPos, LOW);
   digitalWrite(_pinElbowNeg, LOW);
 }
 
-int Motion::posToElbowAngle(double radius, double height)
+double Motion::getRadius(int angleElbow, int angleShoulder)
 {
-  return acos(-(pow(height,2)+pow(radius,2)-pow(0.9,2)-1)/1.8);
+  return 98*cos(angleShoulder*(pi/180))+96*cos((180-angleShoulder-angleElbow)*(pi/180));
+}
+double Motion::getHeight(int angleElbow, int angleShoulder)
+{
+  return 98*sin(angleShoulder*(pi/180))-96*sin((180-angleShoulder-angleElbow)*(pi/180));
+}
+
+double Motion::posToElbowAngle(double radius, double height)
+{
+  return acos((pow(height,2)+pow(radius,2)-18820)/-18816)*(180/pi);
+}
+double Motion::posToShoulderAngle(double radius, double height)
+{
+  double elbowAngle = posToElbowAngle(radius, height)*(pi/180);
+  return asin((96*sin(elbowAngle))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) + atan(radius/height)*(180/pi);
 }
 
 int Motion::potElbowToAngle(int currPosElbow)
 {
   return map(currPosElbow, ELBOW_MIN, ELBOW_MAX, ELBOW_MIN_ANGLE, ELBOW_MAX_ANGLE);
+}
+int Motion::angleToPotElbow(int angle)
+{
+  return map(angle, ELBOW_MIN_ANGLE, ELBOW_MAX_ANGLE, ELBOW_MIN, ELBOW_MAX);
 }
 

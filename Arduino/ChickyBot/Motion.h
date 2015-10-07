@@ -3,8 +3,7 @@
 
 #include "Arduino.h"
 
-// TODO: Add angle for MIN
-#define ELBOW_MIN_ANGLE 0
+#define ELBOW_MIN_ANGLE 15
 #define ELBOW_MIN 876
 #define ELBOW_MAX_ANGLE 90
 #define ELBOW_MAX 513
@@ -18,9 +17,15 @@ class Motion
     void goUpElbowSpeed(int speed);
     void goDownElbowSpeed(int speed);
 	  void stopMotorElbow();
-    int posToElbowAngle(double radius, double height);
-    int posToShoulderAngle(double radius, double height);
+    
+    double getRadius(int angleElbow, int angleShoulder);
+    double getHeight(int angleElbow, int angleShoulder);
+    
+    double posToElbowAngle(double radius, double height);
+    double posToShoulderAngle(double radius, double height);
+
     int potElbowToAngle(int currPosElbow);
+    int angleToPotElbow(int angle);
   private:
     int _pinElbowPos;
 	  int _pinElbowNeg;
