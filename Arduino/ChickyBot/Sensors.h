@@ -7,12 +7,13 @@
 class Sensors
 {
   public:
-    Sensors(int pinPhotoDiode, int pinLedRed, int pinLedGreen);
+    Sensors(int pinPhotoDiode, int pinLedRed, int pinLedGreen, int pinLedBlue);
     int getHeadColour();
   private:
     int _pinPhotoDiode;
 	  int _pinLedRed;
 	  int _pinLedGreen;
+    int _pinLedBlue;
 };
 
 

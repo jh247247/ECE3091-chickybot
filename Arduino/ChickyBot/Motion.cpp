@@ -4,7 +4,7 @@
 
 const double pi = 3.14159265359;
 
-Motion::Motion(int pinElbowPos, int pinElbowNeg)
+Motion::Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg)
 {
   pinMode(pinElbowPos, OUTPUT);
   pinMode(pinElbowNeg, OUTPUT);
@@ -36,6 +36,32 @@ void Motion::stopMotorElbow()
 {
   digitalWrite(_pinElbowPos, LOW);
   digitalWrite(_pinElbowNeg, LOW);
+}
+
+void Motion::goUpShoulder()
+{
+  digitalWrite(_pinShoulderPos, HIGH);
+  digitalWrite(_pinShoulderNeg, LOW);
+}
+void Motion::goDownShoulder()
+{
+  digitalWrite(_pinShoulderPos, LOW);
+  digitalWrite(_pinShoulderNeg, HIGH);
+}
+void Motion::goUpShoulderSpeed(int speed)
+{
+  analogWrite(_pinShoulderPos, speed);
+  analogWrite(_pinShoulderNeg, 0);
+}
+void Motion::goDownShoulderSpeed(int speed)
+{
+  analogWrite(_pinShoulderPos, 0);
+  analogWrite(_pinShoulderNeg, speed);
+}
+void Motion::stopMotorShoulder()
+{
+  digitalWrite(_pinShoulderPos, LOW);
+  digitalWrite(_pinShoulderNeg, LOW);
 }
 
 double Motion::getRadius(int angleElbow, int angleShoulder)
@@ -71,5 +97,14 @@ int Motion::potElbowToAngle(int currPosElbow)
 int Motion::angleToPotElbow(int angle)
 {
   return map(angle, ELBOW_MIN_ANGLE, ELBOW_MAX_ANGLE, ELBOW_MIN, ELBOW_MAX);
+}
+
+int Motion::potShoulderToAngle(int currPosShoulder)
+{
+  return map(currPosShoulder, SHOULDER_MIN, SHOULDER_MAX, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE);
+}
+int Motion::angleToPotShoulder(int angle)
+{
+  return map(angle, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE, SHOULDER_MIN, SHOULDER_MAX);
 }
 
