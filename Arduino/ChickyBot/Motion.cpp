@@ -4,12 +4,22 @@
 
 const double pi = 3.14159265359;
 
-Motion::Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg)
+Motion::Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg, int pinWaistCW, int pinWaistCCW)
 {
   pinMode(pinElbowPos, OUTPUT);
   pinMode(pinElbowNeg, OUTPUT);
   _pinElbowPos = pinElbowPos;
   _pinElbowNeg = pinElbowNeg;
+
+  pinMode(pinShoulderPos, OUTPUT);
+  pinMode(pinShoulderNeg, OUTPUT);
+  _pinShoulderPos = pinShoulderPos;
+  _pinShoulderNeg = pinShoulderNeg;
+
+  pinMode(pinWaistCW, OUTPUT);
+  pinMode(pinWaistCCW, OUTPUT);
+  _pinWaistCW = pinWaistCW;
+  _pinWaistCCW = pinWaistCCW;
 }
 
 void Motion::goUpElbow()
@@ -106,5 +116,21 @@ int Motion::potShoulderToAngle(int currPosShoulder)
 int Motion::angleToPotShoulder(int angle)
 {
   return map(angle, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE, SHOULDER_MIN, SHOULDER_MAX);
+}
+
+
+void Motion::goCW() {
+  digitalWrite(_pinWaistCW, HIGH);
+  digitalWrite(_pinWaistCCW, LOW);
+}
+
+void Motion::goCCW() {
+  digitalWrite(_pinWaistCW, LOW);
+  digitalWrite(_pinWaistCCW, HIGH);
+}
+
+void Motion::stopWaist() {
+  digitalWrite(_pinWaistCW, LOW);
+  digitalWrite(_pinWaistCCW, LOW);
 }
 

@@ -17,7 +17,7 @@
 class Motion
 {
   public:
-    Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg);
+    Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg, int pinWaistCW, int pinWaistCCW);
     void goUpElbow();
     void goDownElbow();
     void goUpElbowSpeed(int speed);
@@ -41,11 +41,18 @@ class Motion
 
     int potShoulderToAngle(int currPosShoulder);
     int angleToPotShoulder(int angle);
+
+    void goCW();
+    void goCCW();
+    void stopWaist();
+    
   private:
     int _pinElbowPos;
 	  int _pinElbowNeg;
     int _pinShoulderPos;
     int _pinShoulderNeg;
+    int _pinWaistCW;
+    int _pinWaistCCW;
 };
 
 

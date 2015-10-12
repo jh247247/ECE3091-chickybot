@@ -12,10 +12,10 @@
 #define ELBOW_MAX 513
 
 // TODO: Shoulder angles
-#define SHOULDER_MIN_ANGLE 0
-#define SHOULDER_MIN 800
-#define SHOULDER_MAX_ANGLE 90
-#define SHOULDER_MAX 910
+#define SHOULDER_MIN_ANGLE 88
+#define SHOULDER_MIN 116
+#define SHOULDER_MAX_ANGLE 0
+#define SHOULDER_MAX 300
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 40
@@ -24,28 +24,32 @@
 #define BUFFER_SHOULDER_DECEL 40
 
 // Pins
-#define PIN_TRIG 6
-#define PIN_ECHO 4
+#define PIN_TRIG 8
+#define PIN_ECHO 7
 #define PIN_MOTOR_ELBOW_POS 5
 #define PIN_MOTOR_ELBOW_NEG 3
-#define PIN_MOTOR_SHOULDER_POS 10
-#define PIN_MOTOR_SHOULDER_NEG 9
+#define PIN_MOTOR_SHOULDER_POS 9
+#define PIN_MOTOR_SHOULDER_NEG 10
+#define PIN_WAIST_CW 4
+#define PIN_WAIST_CCW 12
 #define PIN_FAN 13
 #define PIN_MOTOR_ELBOW_POT A0
 #define PIN_MOTOR_SHOULDER_POT A1
 #define PIN_HOME_SWITCH 2
 
 // Unused pins
+#define PIN_6 6
 #define PIN_11 11
-#define PIN_12 12
+#define PIN_A5 A5
 #define PIN_A6 A6
 #define PIN_A7 A7
 
 //LiquidCrystal lcd(7, 8, A5, A4, A3, A2);
 LiquidCrystal595 lcd(A2, A3, A4);
 Ultrasonic ultrasonic(PIN_TRIG, PIN_ECHO);
+//Ultrasonic ultrasonic(8, 7);
 long heightUS;
-Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, PIN_MOTOR_SHOULDER_NEG);
+Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, PIN_MOTOR_SHOULDER_NEG, PIN_WAIST_CW, PIN_WAIST_CCW);
 
 // Positioning vars
 int currPosElbow;
@@ -58,12 +62,11 @@ int goalElbow1 = ELBOW_MIN;
 int goalElbow2 = ELBOW_MAX;
 
 int goalReachedShoulder = 0;
-int goalShoulder1 = ELBOW_MIN;
-int goalShoulder2 = ELBOW_MAX;
+int goalShoulder1 = SHOULDER_MIN;
+int goalShoulder2 = SHOULDER_MAX;
 
 int firstMoveElbow = 1;
 int firstMoveShoulder = 1;
-
 
 void setup()
 {
@@ -95,12 +98,16 @@ void setup()
   // Set initial position
   goalPosElbow = goalElbow1;
   goalPosShoulder = goalShoulder1;
+
+  motion.goCCW();
 }
  
 void loop()
 {
   // Update LCD
   lcd.clear();
+//  lcd.setCursor(0,1);
+//  lcd.print(ultrasonic.Ranging(CM));
   
 //  currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
 //  lcd.setCursor(0,0);
@@ -128,6 +135,7 @@ void loop()
   currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
   lcd.setCursor(0,0);
   lcd.print(currPosShoulder);
+  Serial.println(currPosShoulder);
   
 //  int shoulderAngle = motion.potShoulderToAngle(currPosShoulder);
 //  lcd.setCursor(0,1);
@@ -147,6 +155,12 @@ void loop()
 //  lcd.print(calcedElbowAngle);
 //  lcd.setCursor(11,1);
 //  lcd.print(calcedShoulderAngle);
+
+  Serial.print("Goal: ");
+  Serial.println(goalPosShoulder);
+  Serial.println(digitalRead(PIN_MOTOR_SHOULDER_POS));
+  Serial.println(digitalRead(PIN_MOTOR_SHOULDER_NEG));
+  Serial.println();
 
   delay(400);
 
@@ -203,11 +217,13 @@ ISR(TIMER1_COMPA_vect)
     }
     else if (currPosShoulder < goalPosShoulder) { // Going down
       if (firstMoveShoulder) {
-        motion.goDownShoulderSpeed(172); // 172
+//        motion.goDownShoulderSpeed(172); // 172
+        motion.goDownShoulder();
         firstMoveShoulder = 0;
       }
       else {
-        motion.goDownShoulderSpeed(128); // 128
+//        motion.goDownShoulderSpeed(128); // 128
+        motion.goDownShoulder();
       }
     }
     else if (currPosShoulder > goalPosShoulder) { // Going up
@@ -232,8 +248,10 @@ void homeSwitchPressed() {
   if (interrupt_time - last_interrupt_time > 200) 
   {
     
-    // Do stuff
-    digitalWrite(PIN_FAN, !digitalRead(PIN_FAN));
+    if (digitalRead(PIN_HOME_SWITCH) == 1) {
+      motion.stopWaist();
+      Serial.println("Waist Home reached!");
+    }
     
   }
   last_interrupt_time = interrupt_time;
