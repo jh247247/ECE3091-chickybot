@@ -394,8 +394,6 @@
 <name v=".\main.c" />
 <name v=".\cv.c" />
 <name v=".\cv.h" />
-<name v=".\Generated_Source\PSoC5\Lcd.h" />
-<name v=".\Generated_Source\PSoC5\Lcd.c" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

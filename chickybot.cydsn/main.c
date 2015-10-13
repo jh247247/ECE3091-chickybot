@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "cv.h"
 
-uint8 * plan;
+uint16 * plan;
 #define MAX_TRIES 3
 uint8 tries = 0;
 
@@ -19,7 +19,7 @@ void displayPlanOnLcd() {
     
     int i;
     for (i = 0; i < ROWS; i++) {
-        Lcd_Position(1, 3*i);
+        Lcd_Position(1, 5*i);
         Lcd_PrintDecUint16(plan[i]);
 //        Lcd_PrintInt8(plan[i]);
     }
@@ -33,12 +33,12 @@ uint8 getPlan() {
         int i;
         for (i = 0; i < ROWS; i++) {
             if (plan[i] != NONE) {
-                Lcd_PosPrintNumber(1,15, tries);
+//                Lcd_PosPrintNumber(1,15, tries);
                 return 0;
             }
         }
     }
-    Lcd_PosPrintNumber(1,15, --tries);
+//    Lcd_PosPrintNumber(1,15, --tries);
     return 1;
 //    Lcd_PosPrintString(1, 0, "returned");
 }

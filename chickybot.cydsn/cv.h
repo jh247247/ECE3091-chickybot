@@ -5,9 +5,10 @@
 #define IMG_H 144
 #define IMG_W 88
 
-#define THRESHOLD_R 133
-#define THRESHOLD_G 204
-#define THRESHOLD_B 135
+// 133, 204, 135
+#define THRESHOLD_R 130
+#define THRESHOLD_G 150
+#define THRESHOLD_B 130
 
 #define MIN_BOX_HEIGHT 5
 
@@ -22,7 +23,7 @@ enum Colour {
     BLUE=3
 };
 
-uint8 * readPlanWithCamera();
+uint16 * readPlanWithCamera();
 
-uint8 takePhoto();
-uint8 * parsePhoto();
+uint16 takePhoto();
+uint16 * parsePhoto();

@@ -7,7 +7,7 @@
 //each pixel pair has 4 components: U, Y0, V, Y1
 //uint8 Camera_framebuffer[144][88][4];
 
-uint8 takePhoto() {
+uint16 takePhoto() {
     Camera_SyncFrame();
 	Camera_GetFrame(); // Start frame capture
     Camera_SyncFrame(); // Wait until frame is fully captued
@@ -15,16 +15,16 @@ uint8 takePhoto() {
     return 0;
 }
 
-uint8 * parsePhoto() {
+uint16 * parsePhoto() {
     
     // Init plan
-    uint8 * plan = (uint8 *) malloc(sizeof(uint8) * ROWS);
+    uint16 * plan = (uint16 *) malloc(sizeof(uint16) * ROWS);
     
     uint8 r;
     for (r = 0; r < ROWS; r++) {
         plan[r] = NONE;
     }
-        
+    
     
     // YUV -> RGB
     //    R = Y+V
@@ -60,23 +60,30 @@ uint8 * parsePhoto() {
     
     
     // Thresholding
+    int numRed = 0, numGreen = 0, numBlue = 0;
     for (h = 0; h < IMG_H; h++) {
         for (w = 0; w < IMG_W; w++) {
             // Red
-            if (Camera_framebuffer[h][w][0] > THRESHOLD_R)
+            if (Camera_framebuffer[h][w][0] > THRESHOLD_R) {
                 Camera_framebuffer[h][w][0] = 1;
+                numRed++;
+            }
             else
                 Camera_framebuffer[h][w][0] = 0;
             
             // Green
-            if (Camera_framebuffer[h][w][1] > THRESHOLD_G)
+            if (Camera_framebuffer[h][w][1] > THRESHOLD_G) {
                 Camera_framebuffer[h][w][1] = 1;
+                numGreen++;
+            }
             else
                 Camera_framebuffer[h][w][1] = 0;
             
             // Blue
-            if (Camera_framebuffer[h][w][2] > THRESHOLD_B)
+            if (Camera_framebuffer[h][w][2] > THRESHOLD_B) {
                 Camera_framebuffer[h][w][2] = 1;
+                numBlue++;
+            }
             else
                 Camera_framebuffer[h][w][2] = 0;
         }
@@ -124,7 +131,7 @@ uint8 * parsePhoto() {
     // Find max width
     i = 0;
     while (1) {
-        if (i > IMG_H)
+        if (i > IMG_W)
             break;
         
         if (Camera_framebuffer[halfHeight][i][1] == 0) {
@@ -192,6 +199,10 @@ uint8 * parsePhoto() {
         Lcd_ClearDisplay();
         Lcd_Position(0,0);
         Lcd_PrintString("Cannot find plan.");
+        
+        plan[0] = numRed / (IMG_H*IMG_W) * 100;
+        plan[1] = numGreen / (IMG_H*IMG_W) * 100;
+        plan[2] = numBlue / (IMG_H*IMG_W) * 100;
         
         return plan;
     }
@@ -320,7 +331,7 @@ uint8 * parsePhoto() {
     return plan;
 }
 
-uint8 * readPlanWithCamera() {
+uint16 * readPlanWithCamera() {
     takePhoto();
     return parsePhoto();
 }
