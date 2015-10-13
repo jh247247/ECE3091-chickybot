@@ -12,10 +12,10 @@
 #define ELBOW_MAX 513
 
 // TODO: Shoulder angles
-#define SHOULDER_MIN_ANGLE 88
-#define SHOULDER_MIN 116
-#define SHOULDER_MAX_ANGLE 0
-#define SHOULDER_MAX 300
+#define SHOULDER_MIN_ANGLE 74
+#define SHOULDER_MIN 230
+#define SHOULDER_MAX_ANGLE 26
+#define SHOULDER_MAX 378
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 40
@@ -217,13 +217,11 @@ ISR(TIMER1_COMPA_vect)
     }
     else if (currPosShoulder < goalPosShoulder) { // Going down
       if (firstMoveShoulder) {
-//        motion.goDownShoulderSpeed(172); // 172
-        motion.goDownShoulder();
+        motion.goDownShoulderSpeed(255); // 172
         firstMoveShoulder = 0;
       }
       else {
-//        motion.goDownShoulderSpeed(128); // 128
-        motion.goDownShoulder();
+        motion.goDownShoulderSpeed(255); // 128
       }
     }
     else if (currPosShoulder > goalPosShoulder) { // Going up
@@ -232,8 +230,7 @@ ISR(TIMER1_COMPA_vect)
         firstMoveShoulder = 0;
       }
       else {
-  //      motion.goUpShoulderSpeed(255); // 128
-        motion.goUpShoulder();
+        motion.goUpShoulderSpeed(255); // 128
       }
 
   }
