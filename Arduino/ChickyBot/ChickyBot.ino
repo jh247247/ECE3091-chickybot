@@ -12,24 +12,24 @@
 #define ELBOW_MAX 513
 
 // TODO: Shoulder angles
-#define SHOULDER_MIN_ANGLE 74
-#define SHOULDER_MIN 230
-#define SHOULDER_MAX_ANGLE 26
-#define SHOULDER_MAX 378
+#define SHOULDER_MIN_ANGLE 67
+#define SHOULDER_MIN 600
+#define SHOULDER_MAX_ANGLE 30
+#define SHOULDER_MAX 800
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 40
 
 #define BUFFER_SHOULDER 10
-#define BUFFER_SHOULDER_DECEL 40
+#define BUFFER_SHOULDER_DECEL 50
 
 // Pins
 #define PIN_TRIG 8
 #define PIN_ECHO 7
 #define PIN_MOTOR_ELBOW_POS 5
 #define PIN_MOTOR_ELBOW_NEG 3
-#define PIN_MOTOR_SHOULDER_POS 9
-#define PIN_MOTOR_SHOULDER_NEG 10
+#define PIN_MOTOR_SHOULDER_POS 10
+#define PIN_MOTOR_SHOULDER_NEG 9
 #define PIN_WAIST_CW 4
 #define PIN_WAIST_CCW 12
 #define PIN_FAN 13
@@ -215,22 +215,28 @@ ISR(TIMER1_COMPA_vect)
       motion.stopMotorShoulder();
       goalReachedShoulder = 1;
     }
-    else if (currPosShoulder < goalPosShoulder) { // Going down
+    else if (currPosShoulder < goalPosShoulder) { // Going DOWN
       if (firstMoveShoulder) {
-        motion.goDownShoulderSpeed(255); // 172
+        motion.goDownShoulderSpeed(255);
         firstMoveShoulder = 0;
       }
       else {
-        motion.goDownShoulderSpeed(255); // 128
+        if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
+          motion.goDownShoulderSpeed(255);
+        else // Normal Zone
+          motion.goDownShoulderSpeed(255);
       }
     }
-    else if (currPosShoulder > goalPosShoulder) { // Going up
+    else if (currPosShoulder > goalPosShoulder) { // Going UP
       if (firstMoveShoulder) {
         motion.goUpShoulder();
         firstMoveShoulder = 0;
       }
       else {
-        motion.goUpShoulderSpeed(255); // 128
+        if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
+          motion.goUpShoulderSpeed(255);
+        else // Normal Zone
+          motion.goUpShoulderSpeed(255);
       }
 
   }
