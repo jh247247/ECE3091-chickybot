@@ -1,7 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "Ultrasonic.h"
-#include "LiquidCrystal595.h"
 #include "Motion.h"
 #include "Sensors.h"
 
@@ -37,8 +36,6 @@
 #define PIN_A6 A6
 #define PIN_A7 A7
 
-//LiquidCrystal lcd(7, 8, A5, A4, A3, A2);
-LiquidCrystal595 lcd(A2, A3, A4);
 Ultrasonic ultrasonic(PIN_TRIG, PIN_ECHO);
 long heightUS;
 Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, PIN_MOTOR_SHOULDER_NEG, PIN_WAIST_CW, PIN_WAIST_CCW, PIN_HEAD_SERVO);
@@ -57,7 +54,6 @@ int firstMoveShoulder = 1;
 void setup()
 {
   Serial.begin(9600);
-  lcd.begin(16, 2);
 
   // Pins
   pinMode(PIN_HOME_SWITCH, INPUT);
@@ -90,11 +86,6 @@ void setup()
  
 void loop()
 {
-  // Update LCD
-  lcd.clear();
-//  lcd.setCursor(0,1);
-//  lcd.print(ultrasonic.Ranging(CM));
-
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
   int elbowAngle = motion.potElbowToAngle(currPosElbow);
@@ -152,17 +143,17 @@ void loop()
     firstMoveElbow = 1;
   }
 
-//  if (goalReachedShoulder == 1) {
-//    delay(2000);
-//    if (goalPosShoulder == SHOULDER_MIN) {
-//      goalPosShoulder = SHOULDER_MAX;
-//    }
-//    else {
-//      goalPosShoulder = SHOULDER_MIN;
-//    }
-//    goalReachedShoulder = 0;
-//    firstMoveShoulder = 1;
-//  }
+  if (goalReachedShoulder == 1) {
+    delay(2000);
+    if (goalPosShoulder == SHOULDER_MIN) {
+      goalPosShoulder = SHOULDER_MAX;
+    }
+    else {
+      goalPosShoulder = SHOULDER_MIN;
+    }
+    goalReachedShoulder = 0;
+    firstMoveShoulder = 1;
+  }
 
 //  motion.goCCW();
 //  delay(1000);
@@ -208,36 +199,36 @@ ISR(TIMER1_COMPA_vect)
   }
 
   // Shoulder control
-  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
-  
-  if ((currPosShoulder > goalPosShoulder - BUFFER_SHOULDER) && (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER)) { // Final Dest
-    motion.stopMotorShoulder();
-    goalReachedShoulder = 1;
-  }
-  else if (currPosShoulder < goalPosShoulder) { // Going DOWN
-    if (firstMoveShoulder) {
-      motion.goDownShoulderSpeed(255);
-      firstMoveShoulder = 0;
-    }
-    else {
-      if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
-        motion.goDownShoulderSpeed(255);
-      else // Normal Zone
-        motion.goDownShoulderSpeed(255);
-    }
-  }
-  else if (currPosShoulder > goalPosShoulder) { // Going UP
-    if (firstMoveShoulder) {
-      motion.goUpShoulder();
-      firstMoveShoulder = 0;
-    }
-    else {
-      if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
-        motion.goUpShoulderSpeed(255);
-      else // Normal Zone
-        motion.goUpShoulderSpeed(255);
-    }
-  }
+//  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
+//  
+//  if ((currPosShoulder > goalPosShoulder - BUFFER_SHOULDER) && (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER)) { // Final Dest
+//    motion.stopMotorShoulder();
+//    goalReachedShoulder = 1;
+//  }
+//  else if (currPosShoulder < goalPosShoulder) { // Going DOWN
+//    if (firstMoveShoulder) {
+//      motion.goDownShoulderSpeed(255);
+//      firstMoveShoulder = 0;
+//    }
+//    else {
+//      if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
+//        motion.goDownShoulderSpeed(255);
+//      else // Normal Zone
+//        motion.goDownShoulderSpeed(255);
+//    }
+//  }
+//  else if (currPosShoulder > goalPosShoulder) { // Going UP
+//    if (firstMoveShoulder) {
+//      motion.goUpShoulder();
+//      firstMoveShoulder = 0;
+//    }
+//    else {
+//      if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
+//        motion.goUpShoulderSpeed(255);
+//      else // Normal Zone
+//        motion.goUpShoulderSpeed(255);
+//    }
+//  }
   
 }
 
