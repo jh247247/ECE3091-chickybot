@@ -4,7 +4,7 @@
 
 const double pi = 3.14159265359;
 
-Motion::Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg, int pinWaistCW, int pinWaistCCW)
+Motion::Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShoulderNeg, int pinWaistCW, int pinWaistCCW, int pinHeadServo)
 {
   pinMode(pinElbowPos, OUTPUT);
   pinMode(pinElbowNeg, OUTPUT);
@@ -20,6 +20,9 @@ Motion::Motion(int pinElbowPos, int pinElbowNeg, int pinShoulderPos, int pinShou
   pinMode(pinWaistCCW, OUTPUT);
   _pinWaistCW = pinWaistCW;
   _pinWaistCCW = pinWaistCCW;
+
+  pinMode(pinHeadServo, OUTPUT);
+  _pinHeadServo = pinHeadServo;
 }
 
 void Motion::goUpElbow()
@@ -141,5 +144,14 @@ void Motion::goCCW() {
 void Motion::stopWaist() {
   digitalWrite(_pinWaistCW, LOW);
   digitalWrite(_pinWaistCCW, LOW);
+}
+
+
+void Motion::headServoUp() {
+  analogWrite(_pinHeadServo, HEAD_SERVO_UP_POS);
+}
+
+void Motion::headServoDown() {
+  analogWrite(_pinHeadServo, HEAD_SERVO_DOWN_POS);
 }
 

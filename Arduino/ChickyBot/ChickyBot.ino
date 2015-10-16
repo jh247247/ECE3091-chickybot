@@ -5,18 +5,6 @@
 #include "Motion.h"
 #include "Sensors.h"
 
-//// Arm position values
-//#define ELBOW_MIN_ANGLE 15
-//#define ELBOW_MIN 750
-//#define ELBOW_MAX_ANGLE 90
-//#define ELBOW_MAX 510
-//
-//// TODO: Shoulder angles
-//#define SHOULDER_MIN_ANGLE 18
-//#define SHOULDER_MIN 400
-//#define SHOULDER_MAX_ANGLE 67
-//#define SHOULDER_MAX 200
-
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
 
@@ -24,23 +12,28 @@
 #define BUFFER_SHOULDER_DECEL 50
 
 // Pins
-#define PIN_TRIG 8
-#define PIN_ECHO 7
+
 #define PIN_MOTOR_ELBOW_POS 3
 #define PIN_MOTOR_ELBOW_NEG 5
 #define PIN_MOTOR_SHOULDER_POS 10
 #define PIN_MOTOR_SHOULDER_NEG 9
-#define PIN_WAIST_CW 4
-#define PIN_WAIST_CCW 12
-#define PIN_FAN 13
 #define PIN_MOTOR_ELBOW_POT A0
 #define PIN_MOTOR_SHOULDER_POT A1
+#define PIN_WAIST_CW 4
+#define PIN_WAIST_CCW 12
 #define PIN_HOME_SWITCH 2
+
+#define PIN_FAN 13
+#define PIN_HEAD_SERVO 11
+#define PIN_TRIG 8
+#define PIN_ECHO 7
+#define PIN_PHOTO_DIODE A2
+#define PIN_R_LED A3
+#define PIN_G_LED A4
+#define PIN_B_LED A5
 
 // Unused pins
 #define PIN_6 6
-#define PIN_11 11
-#define PIN_A5 A5
 #define PIN_A6 A6
 #define PIN_A7 A7
 
@@ -48,7 +41,7 @@
 LiquidCrystal595 lcd(A2, A3, A4);
 Ultrasonic ultrasonic(PIN_TRIG, PIN_ECHO);
 long heightUS;
-Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, PIN_MOTOR_SHOULDER_NEG, PIN_WAIST_CW, PIN_WAIST_CCW);
+Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, PIN_MOTOR_SHOULDER_NEG, PIN_WAIST_CW, PIN_WAIST_CCW, PIN_HEAD_SERVO);
 
 // Positioning vars
 int currPosElbow;
@@ -90,7 +83,7 @@ void setup()
 
   // Set initial position
   goalPosElbow = ELBOW_MIN;
-  goalPosShoulder = SHOULDER_MIN;
+  goalPosShoulder = SHOULDER_MAX;
 
   //motion.goCCW();
 }
@@ -159,17 +152,17 @@ void loop()
     firstMoveElbow = 1;
   }
 
-  if (goalReachedShoulder == 1) {
-    delay(2000);
-    if (goalPosShoulder == SHOULDER_MIN) {
-      goalPosShoulder = SHOULDER_MAX;
-    }
-    else {
-      goalPosShoulder = SHOULDER_MIN;
-    }
-    goalReachedShoulder = 0;
-    firstMoveShoulder = 1;
-  }
+//  if (goalReachedShoulder == 1) {
+//    delay(2000);
+//    if (goalPosShoulder == SHOULDER_MIN) {
+//      goalPosShoulder = SHOULDER_MAX;
+//    }
+//    else {
+//      goalPosShoulder = SHOULDER_MIN;
+//    }
+//    goalReachedShoulder = 0;
+//    firstMoveShoulder = 1;
+//  }
 
 //  motion.goCCW();
 //  delay(1000);
