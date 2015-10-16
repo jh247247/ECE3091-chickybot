@@ -13,7 +13,7 @@
 #define SHOULDER_MIN_ANGLE 20
 #define SHOULDER_MIN 400
 #define SHOULDER_MAX_ANGLE 72
-#define SHOULDER_MAX 180
+#define SHOULDER_MAX 200
 
 // Head Servo
 #define HEAD_SERVO_UP_POS 420

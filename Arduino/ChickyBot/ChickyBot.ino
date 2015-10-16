@@ -7,27 +7,28 @@
 #define DROP_HEIGHT 14
 #define DROP_ELBOW 800
 #define DROP_SHOULDER 180
-#define SEARCH_START_ELBOW 526
-#define SEARCH_START_SHOULDER 316
+#define SEARCH_START_ELBOW 525
+#define SEARCH_START_SHOULDER 332
 //#define PACK_UP_ELBOW ELBOW_MIN
 //#define PACK_UP_SHOULDER SHOULDER_MAX
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
 
-#define BUFFER_SHOULDER 5
+#define BUFFER_SHOULDER 10
 #define BUFFER_SHOULDER_DECEL 50
 
 // Pins
-#define PIN_MOTOR_ELBOW_POS 3
-#define PIN_MOTOR_ELBOW_NEG 5
-#define PIN_MOTOR_SHOULDER_POS 10
-#define PIN_MOTOR_SHOULDER_NEG 9
+#define PIN_MOTOR_ELBOW_POS 5
+#define PIN_MOTOR_ELBOW_NEG 6
+#define PIN_MOTOR_SHOULDER_POS 12
+#define PIN_MOTOR_SHOULDER_NEG 4
 #define PIN_MOTOR_ELBOW_POT A0
 #define PIN_MOTOR_SHOULDER_POT A1
-#define PIN_WAIST_CW 4
-#define PIN_WAIST_CCW 12
+#define PIN_WAIST_CW 9
+#define PIN_WAIST_CCW 10
 #define PIN_HOME_SWITCH 2
+#define PIN_SEARCH_START_SWITCH 3
 
 #define PIN_FAN 13
 #define PIN_HEAD_SERVO 11
@@ -85,6 +86,7 @@ void setup()
 
   // Home Switch Interrupt
   attachInterrupt(0, homeSwitchPressed, CHANGE); // 0 = PIN 2
+  attachInterrupt(1, searchStartSwitchPressed, CHANGE); // 1 = PIN 3
 
   // Set initial position
   goalPosElbow = ELBOW_MIN;
@@ -117,47 +119,68 @@ void loop()
     case 0:
       if (goalReachedElbow == 1) {
         if (goalReachedShoulder == 1) {
-          goalPosElbow = SEARCH_START_ELBOW;
+          motion.goCW();
           goalReachedElbow = 0;
           goalReachedShoulder = 0;
           state = 1;
         }
       }
       break;
-    
+
     case 1:
-      if (goalReachedElbow == 1) {
-        goalPosShoulder = SEARCH_START_SHOULDER;
+      if (digitalRead(PIN_HOME_SWITCH) == 1) {
+        motion.goCCW();
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 2;
         delay(1000);
       }
       break;
-      
+    
     case 2:
-      if (goalReachedShoulder == 1) {
-        goalPosShoulder = SHOULDER_MAX;
+      if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
+        motion.stopWaist();
+        goalPosElbow = SEARCH_START_ELBOW;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 3;
         delay(1000);
       }
       break;
-
+    
     case 3:
-      if (goalReachedShoulder == 1) {
-        goalPosElbow = ELBOW_MIN;
+      if (goalReachedElbow == 1) {
+        goalPosShoulder = SEARCH_START_SHOULDER;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 4;
         delay(1000);
       }
       break;
-
+      
     case 4:
+      if (goalReachedShoulder == 1) {
+        goalPosShoulder = SHOULDER_MAX+20;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 5;
+        delay(1000);
+      }
+      break;
+
+    case 5:
+      if (goalReachedShoulder == 1) {
+        goalPosElbow = ELBOW_MIN;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 6;
+        delay(1000);
+      }
+      break;
+
+    case 6:
       if (goalReachedElbow == 1) {
-        goalPosElbow = SEARCH_START_ELBOW;
+        motion.goCW();
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 1;
@@ -196,7 +219,7 @@ ISR(TIMER1_COMPA_vect)
     }
     else {
       if (currPosElbow > goalPosElbow - BUFFER_ELBOW_DECEL) // Decel Zone
-        motion.goDownElbowSpeed(140);
+        motion.goDownElbowSpeed(180);
       else // Normal Zone
         motion.goDownElbowSpeed(220);
     }
@@ -223,14 +246,14 @@ ISR(TIMER1_COMPA_vect)
   }
   else if (currPosShoulder < goalPosShoulder) { // Going DOWN
     if (firstMoveShoulder) {
-      motion.goDownShoulderSpeed(255);
+      motion.goDownShoulder();
       firstMoveShoulder = 0;
     }
     else {
       if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
-        motion.goDownShoulderSpeed(255);
+        motion.goDownShoulder();
       else // Normal Zone
-        motion.goDownShoulderSpeed(255);
+        motion.goDownShoulder();
     }
   }
   else if (currPosShoulder > goalPosShoulder) { // Going UP
@@ -240,9 +263,9 @@ ISR(TIMER1_COMPA_vect)
     }
     else {
       if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
-        motion.goUpShoulderSpeed(255);
+        motion.goUpShoulder();
       else // Normal Zone
-        motion.goUpShoulderSpeed(255);
+        motion.goUpShoulder();
     }
   }
   
@@ -256,8 +279,22 @@ void homeSwitchPressed() {
   {
     
     if (digitalRead(PIN_HOME_SWITCH) == 1) {
-      motion.stopWaist();
-      Serial.println("Waist Home reached!");
+      Serial.println("Home reached!");
+    }
+    
+  }
+  last_interrupt_time = interrupt_time;
+}
+
+void searchStartSwitchPressed() {
+  // Debouncing
+  static unsigned long last_interrupt_time = 0;
+  unsigned long interrupt_time = millis();
+  if (interrupt_time - last_interrupt_time > 200) 
+  {
+    
+    if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
+      Serial.println("Search Start reached!");
     }
     
   }
