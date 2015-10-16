@@ -11,7 +11,6 @@
 #define BUFFER_SHOULDER_DECEL 50
 
 // Pins
-
 #define PIN_MOTOR_ELBOW_POS 3
 #define PIN_MOTOR_ELBOW_NEG 5
 #define PIN_MOTOR_SHOULDER_POS 10
@@ -51,6 +50,8 @@ int goalReachedShoulder = 0;
 int firstMoveElbow = 1;
 int firstMoveShoulder = 1;
 
+int state;
+
 void setup()
 {
   Serial.begin(9600);
@@ -82,78 +83,97 @@ void setup()
   goalPosShoulder = SHOULDER_MAX;
 
   //motion.goCCW();
+
+  state = 0;
 }
  
 void loop()
 {
-  currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
-  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
-  int elbowAngle = motion.potElbowToAngle(currPosElbow);
-  int shoulderAngle = motion.potShoulderToAngle(currPosShoulder);
-  double radius = motion.getRadius(elbowAngle, shoulderAngle);
-  double height = motion.getHeight(elbowAngle, shoulderAngle);
+  serialPrint();
+  Serial.print("# STATE: ");
+  Serial.println(state);
 
-  double calcedElbowAngle = motion.posToElbowAngle(radius, height);
-  double calcedShoulderAngle = motion.posToShoulderAngle(radius, height);
+  switch (state) {
+    case 0:
+      if (goalReachedElbow == 1) {
+        if (goalReachedShoulder == 1) {
+          goalPosElbow = ELBOW_MAX;
+          goalReachedElbow = 0;
+          goalReachedShoulder = 0;
+          state = 1;
+        }
+      }
+      break;
+    
+    case 1:
+      if (goalReachedElbow == 1) {
+        goalPosShoulder = SHOULDER_MIN;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 2;
+        delay(1000);
+      }
+      break;
+      
+    case 2:
+      if (goalReachedShoulder == 1) {
+        goalPosElbow = 700;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 3;
+        delay(1000);
+      }
+      break;
 
-  Serial.print("E:  ");
-  Serial.print(currPosElbow);
-  Serial.print(" -> ");
-  Serial.print(goalPosElbow);
-  Serial.print("\t\t");
-  Serial.print(elbowAngle);
-  Serial.print("^\t");
-  Serial.print(calcedElbowAngle);
-  Serial.print("^");
-  Serial.println();
-  
-  Serial.print("S:  ");
-  Serial.print(currPosShoulder);
-  Serial.print(" -> ");
-  Serial.print(goalPosShoulder);
-  Serial.print("\t\t");
-  Serial.print(shoulderAngle);
-  Serial.print("^\t");
-  Serial.print(calcedShoulderAngle);
-  Serial.print("^");
-  Serial.println();
+    case 3:
+      if (goalReachedElbow == 1) {
+        goalPosShoulder = SHOULDER_MAX;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 4;
+        delay(1000);
+      }
+      break;
 
-  Serial.print("(");
-  Serial.print(radius);
-  Serial.print(", ");
-  Serial.print(height);
-  Serial.print(")\tUS: ");
-  Serial.print(heightUS);
-  Serial.print(" cm");
-  Serial.println();
-
-  Serial.println();
-
-  delay(400);
-
-  if (goalReachedElbow == 1) {
-    delay(2000);
-    if (goalPosElbow == ELBOW_MIN) {
-      goalPosElbow = ELBOW_MAX;
-    }
-    else {
-      goalPosElbow = ELBOW_MIN;
-    }
-    goalReachedElbow = 0;
-    firstMoveElbow = 1;
+    case 4:
+      if (goalReachedShoulder == 1) {
+        goalPosElbow = ELBOW_MAX;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 1;
+        delay(1000);
+      }
+      break;
+      
+    default:
+      Serial.println("Error: Unknown State!");
   }
 
-  if (goalReachedShoulder == 1) {
-    delay(2000);
-    if (goalPosShoulder == SHOULDER_MIN) {
-      goalPosShoulder = SHOULDER_MAX;
-    }
-    else {
-      goalPosShoulder = SHOULDER_MIN;
-    }
-    goalReachedShoulder = 0;
-    firstMoveShoulder = 1;
-  }
+  delay(300);
+
+//  if (goalReachedElbow == 1) {
+//    delay(2000);
+//    if (goalPosElbow == ELBOW_MIN) {
+//      goalPosElbow = ELBOW_MAX;
+//    }
+//    else {
+//      goalPosElbow = ELBOW_MIN;
+//    }
+//    goalReachedElbow = 0;
+//    firstMoveElbow = 1;
+//  }
+//
+//  if (goalReachedShoulder == 1) {
+//    delay(2000);
+//    if (goalPosShoulder == SHOULDER_MIN) {
+//      goalPosShoulder = SHOULDER_MAX;
+//    }
+//    else {
+//      goalPosShoulder = SHOULDER_MIN;
+//    }
+//    goalReachedShoulder = 0;
+//    firstMoveShoulder = 1;
+//  }
 
 //  motion.goCCW();
 //  delay(1000);
@@ -199,36 +219,36 @@ ISR(TIMER1_COMPA_vect)
   }
 
   // Shoulder control
-//  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
-//  
-//  if ((currPosShoulder > goalPosShoulder - BUFFER_SHOULDER) && (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER)) { // Final Dest
-//    motion.stopMotorShoulder();
-//    goalReachedShoulder = 1;
-//  }
-//  else if (currPosShoulder < goalPosShoulder) { // Going DOWN
-//    if (firstMoveShoulder) {
-//      motion.goDownShoulderSpeed(255);
-//      firstMoveShoulder = 0;
-//    }
-//    else {
-//      if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
-//        motion.goDownShoulderSpeed(255);
-//      else // Normal Zone
-//        motion.goDownShoulderSpeed(255);
-//    }
-//  }
-//  else if (currPosShoulder > goalPosShoulder) { // Going UP
-//    if (firstMoveShoulder) {
-//      motion.goUpShoulder();
-//      firstMoveShoulder = 0;
-//    }
-//    else {
-//      if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
-//        motion.goUpShoulderSpeed(255);
-//      else // Normal Zone
-//        motion.goUpShoulderSpeed(255);
-//    }
-//  }
+  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
+  
+  if ((currPosShoulder > goalPosShoulder - BUFFER_SHOULDER) && (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER)) { // Final Dest
+    motion.stopMotorShoulder();
+    goalReachedShoulder = 1;
+  }
+  else if (currPosShoulder < goalPosShoulder) { // Going DOWN
+    if (firstMoveShoulder) {
+      motion.goDownShoulderSpeed(255);
+      firstMoveShoulder = 0;
+    }
+    else {
+      if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
+        motion.goDownShoulderSpeed(255);
+      else // Normal Zone
+        motion.goDownShoulderSpeed(255);
+    }
+  }
+  else if (currPosShoulder > goalPosShoulder) { // Going UP
+    if (firstMoveShoulder) {
+      motion.goUpShoulder();
+      firstMoveShoulder = 0;
+    }
+    else {
+      if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
+        motion.goUpShoulderSpeed(255);
+      else // Normal Zone
+        motion.goUpShoulderSpeed(255);
+    }
+  }
   
 }
 
@@ -246,5 +266,50 @@ void homeSwitchPressed() {
     
   }
   last_interrupt_time = interrupt_time;
+}
+
+void serialPrint() {
+  currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
+  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
+  int elbowAngle = motion.potElbowToAngle(currPosElbow);
+  int shoulderAngle = motion.potShoulderToAngle(currPosShoulder);
+  double radius = motion.getRadius(elbowAngle, shoulderAngle);
+  double height = motion.getHeight(elbowAngle, shoulderAngle);
+
+  double calcedElbowAngle = motion.posToElbowAngle(radius, height);
+  double calcedShoulderAngle = motion.posToShoulderAngle(radius, height);
+
+  Serial.print("E:  ");
+  Serial.print(currPosElbow);
+  Serial.print(" -> ");
+  Serial.print(goalPosElbow);
+  Serial.print("\t\t");
+  Serial.print(elbowAngle);
+  Serial.print("^\t");
+  Serial.print(calcedElbowAngle);
+  Serial.print("^");
+  Serial.println();
+  
+  Serial.print("S:  ");
+  Serial.print(currPosShoulder);
+  Serial.print(" -> ");
+  Serial.print(goalPosShoulder);
+  Serial.print("\t\t");
+  Serial.print(shoulderAngle);
+  Serial.print("^\t");
+  Serial.print(calcedShoulderAngle);
+  Serial.print("^");
+  Serial.println();
+
+  Serial.print("(");
+  Serial.print(radius);
+  Serial.print(", ");
+  Serial.print(height);
+  Serial.print(")\tUS: ");
+  Serial.print(heightUS);
+  Serial.print(" cm");
+  Serial.println();
+
+  Serial.println();
 }
 
