@@ -4,6 +4,14 @@
 #include "Motion.h"
 #include "Sensors.h"
 
+#define DROP_HEIGHT 14
+#define DROP_ELBOW 800
+#define DROP_SHOULDER 180
+#define SEARCH_START_ELBOW 526
+#define SEARCH_START_SHOULDER 316
+//#define PACK_UP_ELBOW ELBOW_MIN
+//#define PACK_UP_SHOULDER SHOULDER_MAX
+
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
 
@@ -93,11 +101,23 @@ void loop()
   Serial.print("# STATE: ");
   Serial.println(state);
 
+//  Serial.println("FAN!!!!!!");
+//  digitalWrite(PIN_FAN, HIGH);
+//  delay(4000);
+//  motion.headServoDown();
+//  delay(4000);
+//
+//  Serial.println("OFF");
+//  motion.headServoUp();
+//  delay(4000);
+//  digitalWrite(PIN_FAN, LOW);
+//  delay(4000);
+
   switch (state) {
     case 0:
       if (goalReachedElbow == 1) {
         if (goalReachedShoulder == 1) {
-          goalPosElbow = ELBOW_MAX;
+          goalPosElbow = SEARCH_START_ELBOW;
           goalReachedElbow = 0;
           goalReachedShoulder = 0;
           state = 1;
@@ -107,7 +127,7 @@ void loop()
     
     case 1:
       if (goalReachedElbow == 1) {
-        goalPosShoulder = SHOULDER_MIN;
+        goalPosShoulder = SEARCH_START_SHOULDER;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 2;
@@ -117,7 +137,7 @@ void loop()
       
     case 2:
       if (goalReachedShoulder == 1) {
-        goalPosElbow = 700;
+        goalPosShoulder = SHOULDER_MAX;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 3;
@@ -126,8 +146,8 @@ void loop()
       break;
 
     case 3:
-      if (goalReachedElbow == 1) {
-        goalPosShoulder = SHOULDER_MAX;
+      if (goalReachedShoulder == 1) {
+        goalPosElbow = ELBOW_MIN;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 4;
@@ -136,8 +156,8 @@ void loop()
       break;
 
     case 4:
-      if (goalReachedShoulder == 1) {
-        goalPosElbow = ELBOW_MAX;
+      if (goalReachedElbow == 1) {
+        goalPosElbow = SEARCH_START_ELBOW;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 1;
@@ -149,31 +169,7 @@ void loop()
       Serial.println("Error: Unknown State!");
   }
 
-  delay(300);
-
-//  if (goalReachedElbow == 1) {
-//    delay(2000);
-//    if (goalPosElbow == ELBOW_MIN) {
-//      goalPosElbow = ELBOW_MAX;
-//    }
-//    else {
-//      goalPosElbow = ELBOW_MIN;
-//    }
-//    goalReachedElbow = 0;
-//    firstMoveElbow = 1;
-//  }
-//
-//  if (goalReachedShoulder == 1) {
-//    delay(2000);
-//    if (goalPosShoulder == SHOULDER_MIN) {
-//      goalPosShoulder = SHOULDER_MAX;
-//    }
-//    else {
-//      goalPosShoulder = SHOULDER_MIN;
-//    }
-//    goalReachedShoulder = 0;
-//    firstMoveShoulder = 1;
-//  }
+//  delay(300);
 
 //  motion.goCCW();
 //  delay(1000);
@@ -212,9 +208,9 @@ ISR(TIMER1_COMPA_vect)
     }
     else {
       if (currPosElbow < goalPosElbow + BUFFER_ELBOW_DECEL) // Decel Zone
-        motion.goUpElbowSpeed(240);
+        motion.goUpElbowSpeed(255);
       else // Normal Zone
-        motion.goUpElbowSpeed(240);
+        motion.goUpElbowSpeed(255);
     }
   }
 
