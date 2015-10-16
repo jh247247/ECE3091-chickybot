@@ -3,16 +3,20 @@
 
 #include "Arduino.h"
 
+//#define ELBOW_MIN_ANGLE 15
+//#define ELBOW_MIN 876
+//#define ELBOW_MAX_ANGLE 90
+//#define ELBOW_MAX 513
 #define ELBOW_MIN_ANGLE 15
-#define ELBOW_MIN 876
+#define ELBOW_MIN 750
 #define ELBOW_MAX_ANGLE 90
-#define ELBOW_MAX 513
+#define ELBOW_MAX 510
 
 // TODO: Shoulder angles
-#define SHOULDER_MIN_ANGLE 0
-#define SHOULDER_MIN 800
-#define SHOULDER_MAX_ANGLE 0
-#define SHOULDER_MAX 900
+#define SHOULDER_MIN_ANGLE 18
+#define SHOULDER_MIN 400
+#define SHOULDER_MAX_ANGLE 67
+#define SHOULDER_MAX 200
 
 class Motion
 {

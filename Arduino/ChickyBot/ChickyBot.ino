@@ -5,17 +5,17 @@
 #include "Motion.h"
 #include "Sensors.h"
 
-// Arm position values
-#define ELBOW_MIN_ANGLE 15
-#define ELBOW_MIN 876
-#define ELBOW_MAX_ANGLE 90
-#define ELBOW_MAX 513
-
-// TODO: Shoulder angles
-#define SHOULDER_MIN_ANGLE 67
-#define SHOULDER_MIN 200
-#define SHOULDER_MAX_ANGLE 30
-#define SHOULDER_MAX 400
+//// Arm position values
+//#define ELBOW_MIN_ANGLE 15
+//#define ELBOW_MIN 750
+//#define ELBOW_MAX_ANGLE 90
+//#define ELBOW_MAX 510
+//
+//// TODO: Shoulder angles
+//#define SHOULDER_MIN_ANGLE 18
+//#define SHOULDER_MIN 400
+//#define SHOULDER_MAX_ANGLE 67
+//#define SHOULDER_MAX 200
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
@@ -26,10 +26,10 @@
 // Pins
 #define PIN_TRIG 8
 #define PIN_ECHO 7
-#define PIN_MOTOR_ELBOW_POS 5
-#define PIN_MOTOR_ELBOW_NEG 3
-#define PIN_MOTOR_SHOULDER_POS 9
-#define PIN_MOTOR_SHOULDER_NEG 10
+#define PIN_MOTOR_ELBOW_POS 3
+#define PIN_MOTOR_ELBOW_NEG 5
+#define PIN_MOTOR_SHOULDER_POS 10
+#define PIN_MOTOR_SHOULDER_NEG 9
 #define PIN_WAIST_CW 4
 #define PIN_WAIST_CCW 12
 #define PIN_FAN 13
@@ -92,7 +92,7 @@ void setup()
   goalPosElbow = ELBOW_MIN;
   goalPosShoulder = SHOULDER_MIN;
 
-  motion.goCCW();
+  //motion.goCCW();
 }
  
 void loop()
@@ -138,7 +138,9 @@ void loop()
   Serial.print(radius);
   Serial.print(", ");
   Serial.print(height);
-  Serial.print(")");
+  Serial.print(")\tUS: ");
+  Serial.print(heightUS);
+  Serial.print(" cm");
   Serial.println();
 
   Serial.println();
@@ -146,22 +148,39 @@ void loop()
   delay(400);
 
   if (goalReachedElbow == 1) {
-//    delay(2000);
-//    if (goalPosElbow == ELBOW_MIN) {
-//      goalPosElbow = ELBOW_MAX;
-//    }
-//    else {
-//      goalPosElbow = ELBOW_MIN;
-//    }
-//    goalReachedElbow = 0;
-//    firstMoveElbow = 1;
+    delay(2000);
+    if (goalPosElbow == ELBOW_MIN) {
+      goalPosElbow = ELBOW_MAX;
+    }
+    else {
+      goalPosElbow = ELBOW_MIN;
+    }
+    goalReachedElbow = 0;
+    firstMoveElbow = 1;
   }
+
+  if (goalReachedShoulder == 1) {
+    delay(2000);
+    if (goalPosShoulder == SHOULDER_MIN) {
+      goalPosShoulder = SHOULDER_MAX;
+    }
+    else {
+      goalPosShoulder = SHOULDER_MIN;
+    }
+    goalReachedShoulder = 0;
+    firstMoveShoulder = 1;
+  }
+
+//  motion.goCCW();
+//  delay(1000);
+//  motion.goCW();
+//  delay(600);
 }
  
 ISR(TIMER1_COMPA_vect)
 {
   // Update sensors
-//  heightUS = ultrasonic.Ranging(CM);
+  heightUS = ultrasonic.Ranging(CM);
 
   // Elbow control
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
@@ -196,36 +215,36 @@ ISR(TIMER1_COMPA_vect)
   }
 
   // Shoulder control
-//  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
-//  
-//  if ((currPosShoulder > goalPosShoulder - BUFFER_SHOULDER) && (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER)) { // Final Dest
-//    motion.stopMotorShoulder();
-//    goalReachedShoulder = 1;
-//  }
-//  else if (currPosShoulder < goalPosShoulder) { // Going DOWN
-//    if (firstMoveShoulder) {
-//      motion.goDownShoulderSpeed(255);
-//      firstMoveShoulder = 0;
-//    }
-//    else {
-//      if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
-//        motion.goDownShoulderSpeed(255);
-//      else // Normal Zone
-//        motion.goDownShoulderSpeed(255);
-//    }
-//  }
-//  else if (currPosShoulder > goalPosShoulder) { // Going UP
-//    if (firstMoveShoulder) {
-//      motion.goUpShoulder();
-//      firstMoveShoulder = 0;
-//    }
-//    else {
-//      if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
-//        motion.goUpShoulderSpeed(255);
-//      else // Normal Zone
-//        motion.goUpShoulderSpeed(255);
-//    }
-//  }
+  currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
+  
+  if ((currPosShoulder > goalPosShoulder - BUFFER_SHOULDER) && (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER)) { // Final Dest
+    motion.stopMotorShoulder();
+    goalReachedShoulder = 1;
+  }
+  else if (currPosShoulder < goalPosShoulder) { // Going DOWN
+    if (firstMoveShoulder) {
+      motion.goDownShoulderSpeed(255);
+      firstMoveShoulder = 0;
+    }
+    else {
+      if (currPosShoulder > goalPosShoulder - BUFFER_SHOULDER_DECEL) // Decel Zone
+        motion.goDownShoulderSpeed(255);
+      else // Normal Zone
+        motion.goDownShoulderSpeed(255);
+    }
+  }
+  else if (currPosShoulder > goalPosShoulder) { // Going UP
+    if (firstMoveShoulder) {
+      motion.goUpShoulder();
+      firstMoveShoulder = 0;
+    }
+    else {
+      if (currPosShoulder < goalPosShoulder + BUFFER_SHOULDER_DECEL) // Decel Zone
+        motion.goUpShoulderSpeed(255);
+      else // Normal Zone
+        motion.goUpShoulderSpeed(255);
+    }
+  }
   
 }
 

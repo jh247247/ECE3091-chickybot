@@ -89,15 +89,24 @@ double Motion::posToElbowAngle(double radius, double height)
 }
 double Motion::posToShoulderAngle(double radius, double height)
 {
+  double shoulderAngle = 0;
   double elbowAngle = posToElbowAngle(radius, height);
-  if (elbowAngle > 45)
+//  Serial.print("!!!");
+//  Serial.print(elbowAngle);
+//  Serial.println("!!!");
+  if (elbowAngle > 45.00)
   {
-    return (asin((96*sin(elbowAngle*(pi/180)))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) + atan(radius/height)*(180/pi));
+    shoulderAngle = (asin((96*sin(elbowAngle*(pi/180)))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) - atan(radius/height)*(180/pi) - 90);
   }
   else
   {
-    return (asin((96*sin(elbowAngle*(pi/180)))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) - atan(radius/height)*(180/pi) + 90);
+    shoulderAngle = (asin((96*sin(elbowAngle*(pi/180)))/(sqrt(pow(height,2)+pow(radius,2))))*(180/pi) - atan(radius/height)*(180/pi) - 90);
   }
+  
+  if (shoulderAngle < 0)
+    shoulderAngle += 180;
+  
+  return shoulderAngle;
 }
 
 int Motion::potElbowToAngle(int currPosElbow)
@@ -111,11 +120,11 @@ int Motion::angleToPotElbow(int angle)
 
 int Motion::potShoulderToAngle(int currPosShoulder)
 {
-  return map(currPosShoulder, SHOULDER_MIN, SHOULDER_MAX, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE);
+  return map(currPosShoulder, SHOULDER_MAX, SHOULDER_MIN, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE);
 }
 int Motion::angleToPotShoulder(int angle)
 {
-  return map(angle, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE, SHOULDER_MIN, SHOULDER_MAX);
+  return map(angle, SHOULDER_MIN_ANGLE, SHOULDER_MAX_ANGLE, SHOULDER_MAX, SHOULDER_MIN);
 }
 
 
