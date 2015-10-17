@@ -6,7 +6,7 @@
 
 #define DROP_HEIGHT 14
 #define DROP_ELBOW 800
-#define DROP_SHOULDER 180
+#define DROP_SHOULDER 220
 #define SEARCH_START_ELBOW 525
 #define SEARCH_START_SHOULDER 332
 //#define PACK_UP_ELBOW ELBOW_MIN
@@ -103,18 +103,6 @@ void loop()
   Serial.print("# STATE: ");
   Serial.println(state);
 
-//  Serial.println("FAN!!!!!!");
-//  digitalWrite(PIN_FAN, HIGH);
-//  delay(4000);
-//  motion.headServoDown();
-//  delay(4000);
-//
-//  Serial.println("OFF");
-//  motion.headServoUp();
-//  delay(4000);
-//  digitalWrite(PIN_FAN, LOW);
-//  delay(4000);
-
   switch (state) {
     case 0:
       if (goalReachedElbow == 1) {
@@ -160,7 +148,8 @@ void loop()
       
     case 4:
       if (goalReachedShoulder == 1) {
-        goalPosShoulder = SHOULDER_MAX+20;
+        pickUpPuck();
+        goalPosShoulder = DROP_SHOULDER;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 5;
@@ -170,7 +159,7 @@ void loop()
 
     case 5:
       if (goalReachedShoulder == 1) {
-        goalPosElbow = ELBOW_MIN;
+        goalPosElbow = DROP_ELBOW;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 6;
@@ -183,7 +172,18 @@ void loop()
         motion.goCW();
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
-        state = 1;
+        state = 7;
+        delay(1000);
+      }
+      break;
+
+    case 7:
+      if (digitalRead(PIN_HOME_SWITCH) == 1) {
+        dropPuck();
+        motion.goCCW();
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 2;
         delay(1000);
       }
       break;
@@ -203,7 +203,7 @@ void loop()
 ISR(TIMER1_COMPA_vect)
 {
   // Update sensors
-  heightUS = ultrasonic.Ranging(CM);
+  //heightUS = ultrasonic.Ranging(CM);
 
   // Elbow control
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
@@ -344,5 +344,21 @@ void serialPrint() {
   Serial.println();
 
   Serial.println();
+}
+
+void pickUpPuck() {
+  Serial.println("----- Pick up");
+  digitalWrite(PIN_FAN, HIGH);
+  delay(4000);
+  motion.headServoDown();
+  delay(2000);
+}
+
+void dropPuck() {
+  Serial.println("----- Drop");
+  motion.headServoUp();
+  delay(2000);
+  digitalWrite(PIN_FAN, LOW);
+  delay(4000);
 }
 
