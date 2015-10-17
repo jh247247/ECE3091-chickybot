@@ -155,3 +155,7 @@ void Motion::headServoDown() {
   analogWrite(_pinHeadServo, HEAD_SERVO_DOWN_POS);
 }
 
+void Motion::headServoOff() {
+  analogWrite(_pinHeadServo, 0);
+}
+

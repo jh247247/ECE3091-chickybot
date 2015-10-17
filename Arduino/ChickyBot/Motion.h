@@ -16,7 +16,7 @@
 #define SHOULDER_MAX 200
 
 // Head Servo
-#define HEAD_SERVO_UP_POS 420
+#define HEAD_SERVO_UP_POS 400
 #define HEAD_SERVO_DOWN_POS 320
 
 class Motion
@@ -53,6 +53,7 @@ class Motion
 
     void headServoUp();
     void headServoDown();
+    void headServoOff();
     
   private:
     int _pinElbowPos;
