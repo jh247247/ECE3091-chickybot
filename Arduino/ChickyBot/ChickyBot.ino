@@ -4,13 +4,16 @@
 #include "Motion.h"
 #include "Sensors.h"
 
+#define SEARCH_HEIGHT 8
 #define DROP_HEIGHT 14
 #define DROP_ELBOW 800
 #define DROP_SHOULDER 220
 #define SEARCH_START_ELBOW 525
-#define SEARCH_START_SHOULDER 332
+#define SEARCH_START_SHOULDER 310
 //#define PACK_UP_ELBOW ELBOW_MIN
 //#define PACK_UP_SHOULDER SHOULDER_MAX
+
+#define SEARCH_ROTATION_DURATION 300
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
@@ -54,6 +57,7 @@ int currPosElbow;
 int goalPosElbow;
 int currPosShoulder;
 int goalPosShoulder;
+int desiredGoal;
 
 int goalReachedElbow = 0;
 int goalReachedShoulder = 0;
@@ -105,7 +109,7 @@ void loop()
   Serial.println(state);
 
   switch (state) {
-    case 0:
+    case 0: // Once max upright, Go to search rotation
       if (goalReachedElbow == 1) {
         if (goalReachedShoulder == 1) {
           motion.goCW();
@@ -115,10 +119,12 @@ void loop()
         }
       }
       break;
-
-    case 1:
+    
+    case 1: // Once at correct rotation, Move E to S_S
       if (digitalRead(PIN_HOME_SWITCH) == 1) {
-        motion.goCCW();
+        motion.stopWaist();
+        delay(500);
+        goalPosElbow = SEARCH_START_ELBOW;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 2;
@@ -126,67 +132,105 @@ void loop()
       }
       break;
     
-    case 2:
-      if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
-        motion.stopWaist();
-        goalPosElbow = SEARCH_START_ELBOW;
+    case 2: // Once E, S to S_S
+      if (goalReachedElbow == 1) {
+        goalPosShoulder = SEARCH_START_SHOULDER;
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 3;
         delay(1000);
       }
       break;
-    
-    case 3:
-      if (goalReachedElbow == 1) {
-        goalPosShoulder = SEARCH_START_SHOULDER;
-        goalReachedElbow = 0;
-        goalReachedShoulder = 0;
-        state = 4;
+      
+    case 3: // Once S, Check puck
+      if (goalReachedShoulder == 1) {
+        delay(100);
+        int colour = sensors.getHeadColour();
+        if (colour == 0) {
+          state = 4;
+        }
+        else {
+          Serial.print("Found colour: ");
+          Serial.println(colour);
+          state = 4;
+        }
         delay(1000);
+      }
+      break;
+
+    case 4: // No puck, Rotate
+      motion.goCCW();
+      delay(SEARCH_ROTATION_DURATION);
+      
+      motion.stopWaist();
+      delay(1000);
+      
+      state = 5;
+      break;
+
+    case 5: // No puck, Rotate if possible
+      if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) { // Go to Smaller search radius
+        state = 6;
+      }
+      else { // Check puck
+        state = 3;
+      }
+      break;
+
+    case 6: // Small search radius, Move S
+        desiredGoal = currPosShoulder - (3*BUFFER_SHOULDER);
+        if (desiredGoal > DROP_SHOULDER) {
+          goalPosShoulder = desiredGoal;
+          goalReachedShoulder = 0;
+          state = 7;
+          delay(1000);
+        }
+        else {
+          state = 9;
+        }
+      break;
+
+    case 7: // Small search radius, Move E to correct height
+      if (goalReachedShoulder == 1) {
+        desiredGoal = currPosElbow + BUFFER_ELBOW + 2;
+        if (desiredGoal < DROP_ELBOW) {
+          goalPosElbow = desiredGoal;
+          goalReachedElbow = 0;
+          state = 8;
+          delay(1000);
+        }
+        else {
+          state = 9;
+        }
       }
       break;
       
-    case 4:
-      if (goalReachedShoulder == 1) {
-        pickUpPuck();
-        goalPosShoulder = DROP_SHOULDER;
-        goalReachedElbow = 0;
-        goalReachedShoulder = 0;
-        state = 5;
-        delay(1000);
-      }
-      break;
 
-    case 5:
-      if (goalReachedShoulder == 1) {
-        goalPosElbow = DROP_ELBOW;
-        goalReachedElbow = 0;
-        goalReachedShoulder = 0;
-        state = 6;
-        delay(1000);
-      }
-      break;
-
-    case 6:
+    case 8: // Check height
       if (goalReachedElbow == 1) {
-        motion.goCW();
-        goalReachedElbow = 0;
-        goalReachedShoulder = 0;
-        state = 7;
         delay(1000);
+        heightUS = readUltraSonicSensor();
+        if (heightUS <= SEARCH_HEIGHT) { // Correct height, so Rotate home
+          motion.goCW();
+          state = 9;
+        }
+        else { // Still too high
+          state = 7;
+        }
       }
       break;
 
-    case 7:
-      if (digitalRead(PIN_HOME_SWITCH) == 1) {
-        dropPuck();
-        motion.goCCW();
-        goalReachedElbow = 0;
-        goalReachedShoulder = 0;
-        state = 2;
-        delay(1000);
+    case 9: // Once rotate, Check puck
+      if (digitalRead(PIN_HOME_SWITCH) == 1) { // Go to Smaller search radius
+        delay(3000);
+        state = 3; // Check puck
       }
+      break;
+
+    case 10: // Reached end of search, Rotate and search again
+      delay(1000);
+      motion.goCW();
+      state = 1;
       break;
       
     default:
@@ -356,5 +400,21 @@ void dropPuck() {
   delay(2000);
   digitalWrite(PIN_FAN, LOW);
   delay(4000);
+}
+
+// Stops not possible readings, Returns 100 if no decent reading
+long readUltraSonicSensor() {
+  int tries;
+  long result;
+  
+  for (tries = 0; tries < 5; tries++) {
+    result = ultrasonic.Ranging(CM);
+    if (result < 100)
+      return result;
+
+    delay(50);
+  }
+
+  return 100;
 }
 
