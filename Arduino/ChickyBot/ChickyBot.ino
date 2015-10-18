@@ -35,9 +35,9 @@
 #define PIN_TRIG 8
 #define PIN_ECHO 7
 #define PIN_PHOTO_DIODE A2
-#define PIN_R_LED A3
+#define PIN_B_LED A3
 #define PIN_G_LED A4
-#define PIN_B_LED A5
+#define PIN_R_LED A5
 
 // Unused pins
 #define PIN_6 6
@@ -47,6 +47,7 @@
 Ultrasonic ultrasonic(PIN_TRIG, PIN_ECHO);
 long heightUS;
 Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, PIN_MOTOR_SHOULDER_NEG, PIN_WAIST_CW, PIN_WAIST_CCW, PIN_HEAD_SERVO);
+Sensors sensors(PIN_PHOTO_DIODE, PIN_R_LED, PIN_G_LED, PIN_B_LED);
 
 // Positioning vars
 int currPosElbow;
@@ -192,12 +193,7 @@ void loop()
       Serial.println("Error: Unknown State!");
   }
 
-//  delay(300);
-
-//  motion.goCCW();
-//  delay(1000);
-//  motion.goCW();
-//  delay(600);
+  //delay(100);
 }
  
 ISR(TIMER1_COMPA_vect)

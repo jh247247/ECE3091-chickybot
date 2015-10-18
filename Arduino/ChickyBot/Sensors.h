@@ -14,6 +14,11 @@ class Sensors
 	  int _pinLedRed;
 	  int _pinLedGreen;
     int _pinLedBlue;
+
+    void setBalance();
+    int getHeadColourAux();
+    void checkColour();
+    float getReading(int times);
 };
 
 
