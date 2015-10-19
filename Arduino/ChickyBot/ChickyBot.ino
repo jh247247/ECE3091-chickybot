@@ -10,6 +10,8 @@
 #define DROP_SHOULDER 220
 #define SEARCH_START_ELBOW 525
 #define SEARCH_START_SHOULDER 310
+#define MIN_RADIUS_ELBOW 800
+#define MIN_RADIUS_SHOULDER 230
 //#define PACK_UP_ELBOW ELBOW_MIN
 //#define PACK_UP_SHOULDER SHOULDER_MAX
 
@@ -18,7 +20,7 @@
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
 
-#define BUFFER_SHOULDER 10
+#define BUFFER_SHOULDER 5
 #define BUFFER_SHOULDER_DECEL 50
 
 // Pins
@@ -30,8 +32,8 @@
 #define PIN_MOTOR_SHOULDER_POT A1
 #define PIN_WAIST_CW 9
 #define PIN_WAIST_CCW 10
-#define PIN_HOME_SWITCH 2
-#define PIN_SEARCH_START_SWITCH 3
+#define PIN_SEARCH_START_SWITCH 2
+#define PIN_SEARCH_END_SWITCH 3
 
 #define PIN_FAN 13
 #define PIN_HEAD_SERVO 11
@@ -66,12 +68,15 @@ int firstMoveShoulder = 1;
 
 int state;
 
+int colour;
+
 void setup()
 {
   Serial.begin(9600);
 
   // Pins
-  pinMode(PIN_HOME_SWITCH, INPUT);
+  pinMode(PIN_SEARCH_START_SWITCH, INPUT);
+  pinMode(PIN_SEARCH_END_SWITCH, INPUT);
   pinMode(PIN_FAN, OUTPUT);
   
   // Start Timer1
@@ -90,12 +95,12 @@ void setup()
   sei();
 
   // Home Switch Interrupt
-  attachInterrupt(0, homeSwitchPressed, CHANGE); // 0 = PIN 2
-  attachInterrupt(1, searchStartSwitchPressed, CHANGE); // 1 = PIN 3
+  attachInterrupt(0, searchStartSwitchPressed, CHANGE); // 0 = PIN 2
+  attachInterrupt(1, searchEndSwitchPressed, CHANGE); // 1 = PIN 3
 
   // Set initial position
-  goalPosElbow = ELBOW_MIN;
-  goalPosShoulder = SHOULDER_MAX;
+//  goalPosElbow = ELBOW_MIN;
+//  goalPosShoulder = SHOULDER_MAX;
 
   //motion.goCCW();
 
@@ -115,21 +120,23 @@ void loop()
           motion.goCW();
           goalReachedElbow = 0;
           goalReachedShoulder = 0;
-          state = 1;
+          if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
+            motion.stopWaist();
+            delay(500);
+            state = 1;
+          }
         }
       }
-      break;
+//      Serial.println(sensors.getHeadColour());
+//      delay(400);
+//      break;
     
     case 1: // Once at correct rotation, Move E to S_S
-      if (digitalRead(PIN_HOME_SWITCH) == 1) {
-        motion.stopWaist();
-        delay(500);
-        goalPosElbow = SEARCH_START_ELBOW;
-        goalReachedElbow = 0;
-        goalReachedShoulder = 0;
-        state = 2;
-        delay(1000);
-      }
+      goalPosElbow = SEARCH_START_ELBOW;
+      goalReachedElbow = 0;
+      goalReachedShoulder = 0;
+      state = 2;
+      delay(1000);  
       break;
     
     case 2: // Once E, S to S_S
@@ -141,45 +148,40 @@ void loop()
         delay(1000);
       }
       break;
-      
-    case 3: // Once S, Check puck
+
+    case 3: // Once S, Next
       if (goalReachedShoulder == 1) {
         delay(100);
-        int colour = sensors.getHeadColour();
-        if (colour == 0) {
-          state = 4;
-        }
-        else {
-          Serial.print("Found colour: ");
-          Serial.println(colour);
-          state = 4;
-        }
-        delay(1000);
+        state = 4;
       }
       break;
-
-    case 4: // No puck, Rotate
-      motion.goCCW();
-      delay(SEARCH_ROTATION_DURATION);
       
-      motion.stopWaist();
+    case 4: // Once S, Check puck
+      delay(100);
+      colour = sensors.getHeadColour();
+      if (colour == 0) {
+        state = 5;
+      }
+      else {
+        Serial.print("Found colour: ");
+        Serial.println(colour);
+        state = 5;
+      }
       delay(1000);
-      
-      state = 5;
       break;
 
-    case 5: // No puck, Rotate if possible
-      if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) { // Go to Smaller search radius
+    case 5: // No puck, Move in if possible
+      if ((currPosElbow < MIN_RADIUS_ELBOW) || (currPosShoulder > MIN_RADIUS_SHOULDER)) {
         state = 6;
       }
-      else { // Check puck
-        state = 3;
+      else {
+        state = 9;
       }
       break;
 
-    case 6: // Small search radius, Move S
-        desiredGoal = currPosShoulder - (3*BUFFER_SHOULDER);
-        if (desiredGoal > DROP_SHOULDER) {
+    case 6: // Move in
+        desiredGoal = currPosShoulder - BUFFER_SHOULDER - 2;
+        if (desiredGoal > MIN_RADIUS_SHOULDER) {
           goalPosShoulder = desiredGoal;
           goalReachedShoulder = 0;
           state = 7;
@@ -190,47 +192,49 @@ void loop()
         }
       break;
 
-    case 7: // Small search radius, Move E to correct height
-      if (goalReachedShoulder == 1) {
-        desiredGoal = currPosElbow + BUFFER_ELBOW + 2;
-        if (desiredGoal < DROP_ELBOW) {
-          goalPosElbow = desiredGoal;
-          goalReachedElbow = 0;
-          state = 8;
-          delay(1000);
+    case 7: // Move E to correct height
+        if (goalReachedShoulder == 1) {
+          desiredGoal = currPosElbow + BUFFER_ELBOW + 2;
+          if (desiredGoal < MIN_RADIUS_ELBOW) {
+            goalPosElbow = desiredGoal;
+            goalReachedElbow = 0;
+            state = 8;
+            delay(1000);
+          }
+          else {
+            state = 9;
+          }
+        }
+      break;
+
+    case 8: // Once S, Next
+      if (goalReachedElbow == 1) {
+        delay(100);
+        heightUS = readUltraSonicSensor();
+        if (heightUS <= SEARCH_HEIGHT) {
+          state = 4;
         }
         else {
-          state = 9;
-        }
-      }
-      break;
-      
-
-    case 8: // Check height
-      if (goalReachedElbow == 1) {
-        delay(1000);
-        heightUS = readUltraSonicSensor();
-        if (heightUS <= SEARCH_HEIGHT) { // Correct height, so Rotate home
-          motion.goCW();
-          state = 9;
-        }
-        else { // Still too high
           state = 7;
         }
       }
       break;
 
-    case 9: // Once rotate, Check puck
-      if (digitalRead(PIN_HOME_SWITCH) == 1) { // Go to Smaller search radius
-        delay(3000);
-        state = 3; // Check puck
-      }
+    case 9: // Rotate
+      motion.goCCW();
+      delay(SEARCH_ROTATION_DURATION);
+      motion.stopWaist();
+      delay(2000);
+      state = 10;
       break;
 
-    case 10: // Reached end of search, Rotate and search again
-      delay(1000);
-      motion.goCW();
-      state = 1;
+    case 10: // Finished rotate
+      if (digitalRead(PIN_SEARCH_END_SWITCH) == 1) {
+        Serial.println("!!! Reached end of search");
+      }
+      else {
+        state = 1;
+      }
       break;
       
     default:
@@ -311,21 +315,6 @@ ISR(TIMER1_COMPA_vect)
   
 }
 
-void homeSwitchPressed() {
-  // Debouncing
-  static unsigned long last_interrupt_time = 0;
-  unsigned long interrupt_time = millis();
-  if (interrupt_time - last_interrupt_time > 200) 
-  {
-    
-    if (digitalRead(PIN_HOME_SWITCH) == 1) {
-      Serial.println("Home reached!");
-    }
-    
-  }
-  last_interrupt_time = interrupt_time;
-}
-
 void searchStartSwitchPressed() {
   // Debouncing
   static unsigned long last_interrupt_time = 0;
@@ -335,6 +324,21 @@ void searchStartSwitchPressed() {
     
     if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
       Serial.println("Search Start reached!");
+    }
+    
+  }
+  last_interrupt_time = interrupt_time;
+}
+
+void searchEndSwitchPressed() {
+  // Debouncing
+  static unsigned long last_interrupt_time = 0;
+  unsigned long interrupt_time = millis();
+  if (interrupt_time - last_interrupt_time > 200) 
+  {
+    
+    if (digitalRead(PIN_SEARCH_END_SWITCH) == 1) {
+      Serial.println("Search End reached!");
     }
     
   }
