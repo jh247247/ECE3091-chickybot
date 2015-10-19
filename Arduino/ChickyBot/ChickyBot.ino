@@ -99,8 +99,8 @@ void setup()
   attachInterrupt(1, searchEndSwitchPressed, CHANGE); // 1 = PIN 3
 
   // Set initial position
-//  goalPosElbow = ELBOW_MIN;
-//  goalPosShoulder = SHOULDER_MAX;
+  goalPosElbow = ELBOW_MIN;
+  goalPosShoulder = SHOULDER_MAX;
 
   //motion.goCCW();
 
@@ -127,9 +127,7 @@ void loop()
           }
         }
       }
-//      Serial.println(sensors.getHeadColour());
-//      delay(400);
-//      break;
+      break;
     
     case 1: // Once at correct rotation, Move E to S_S
       goalPosElbow = SEARCH_START_ELBOW;

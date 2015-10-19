@@ -20,16 +20,22 @@ Sensors::Sensors(int pinPhotoDiode, int pinLedRed, int pinLedGreen, int pinLedBl
   ledArray[2] = _pinLedBlue;
 }
 
+int bufferRed[3] = {10, 10, 10};
+int bufferGreen[3] = {5, 5, 5};
+int bufferBlue[3] = {5, 5, 5};
+int expectedRed[3] = {74, 38, 60};
+int expectedGreen[3] = {16, 18, 17};
+int expectedBlue[3] = {8, 6, 14};
 
 //IF EVERYTHING IS BEING READ AS THE FLOOR, THESE VALUES ARE THE FIRST TO CHANGE
-#define THRESHOLDRG 10
-#define THRESHOLDRB 10
-#define THRESHOLDBG 10
+//#define THRESHOLDRG 15
+//#define THRESHOLDRB 15
+//#define THRESHOLDBG 15
 
 //IF DETECTING INCORRECT COLOUR, CHANGE THESE VALUES
 #define RED_FUDGE 1
-#define GREEN_FUDGE 1
-#define BLUE_FUDGE 1.2
+#define GREEN_FUDGE 4
+#define BLUE_FUDGE 10
 
 //floats to hold colour arrays
 float colourArray[] = {0, 0, 0}; //no lights on, R, G, B
@@ -55,23 +61,51 @@ void Sensors::setBalance() {
 }
 
 int Sensors::getHeadColourAux() {
-  if ((abs(colourArray[0] - colourArray[1]) > THRESHOLDRG) &&
-      (abs(colourArray[2] - colourArray[1]) > THRESHOLDBG) &&
-      (abs(colourArray[0] - colourArray[2]) > THRESHOLDRB)) {
-    //red puck
-    if ((colourArray[0] > colourArray[1]) && (colourArray[0] > colourArray[2])) {
-      return 1;
-    }
-    //green puck
-    else if ((colourArray[1] > colourArray[0]) && (colourArray[1] > colourArray[2])) {
-      return 2;
-    }
-    //blue puck
-    else {
-      return 3;
+//  if ((abs(colourArray[0] - colourArray[1]) > THRESHOLDRG) &&
+//      (abs(colourArray[2] - colourArray[1]) > THRESHOLDBG) &&
+//      (abs(colourArray[0] - colourArray[2]) > THRESHOLDRB)) {
+//    //red puck
+//    if ((colourArray[0] > colourArray[1]) && (colourArray[0] > colourArray[2])) {
+//      return 1;
+//    }
+//    //green puck
+//    else if ((colourArray[1] > colourArray[0]) && (colourArray[1] > colourArray[2])) {
+//      return 2;
+//    }
+//    //blue puck
+//    else {
+//      return 3;
+//    }
+//  }
+//  // the floor
+//  return 0;
+  // Red
+  if ((colourArray[0] > expectedRed[0] - bufferRed[0]) && (colourArray[0] < expectedRed[0] + bufferRed[0])) {
+    if ((colourArray[1] > expectedRed[1] - bufferRed[1]) && (colourArray[1] < expectedRed[1] + bufferRed[1])) {
+      if ((colourArray[2] > expectedRed[2] - bufferRed[2]) && (colourArray[2] < expectedRed[2] + bufferRed[2])) {
+        return 1;
+      }
     }
   }
-  // the floor
+
+  // Green
+  if ((colourArray[0] > expectedGreen[0] - bufferGreen[0]) && (colourArray[0] < expectedGreen[0] + bufferGreen[0])) {
+    if ((colourArray[1] > expectedGreen[1] - bufferGreen[1]) && (colourArray[1] < expectedGreen[1] + bufferGreen[1])) {
+      if ((colourArray[2] > expectedGreen[2] - bufferGreen[2]) && (colourArray[2] < expectedGreen[2] + bufferGreen[2])) {
+        return 2;
+      }
+    }
+  }
+
+  // Blue
+  if ((colourArray[0] > expectedBlue[0] - bufferBlue[0]) && (colourArray[0] < expectedBlue[0] + bufferBlue[0])) {
+    if ((colourArray[1] > expectedBlue[1] - bufferBlue[1]) && (colourArray[1] < expectedBlue[1] + bufferBlue[1])) {
+      if ((colourArray[2] > expectedBlue[2] - bufferBlue[2]) && (colourArray[2] < expectedBlue[2] + bufferBlue[2])) {
+        return 3;
+      }
+    }
+  }
+
   return 0;
 }
 
@@ -97,13 +131,22 @@ void Sensors::checkColour() {
   colourArray[2] = BLUE_FUDGE * colourArray[2] * colourArray[0] / 1000;
 
   //THIS IS FOR DEBUGGING PURPOSES
-  /*Serial.println("COLOUR_TESTING AFTER FUDGE ");
+  Serial.println("COLOUR_TESTING AFTER FUDGE ");
   Serial.print(colourArray[0]);
   Serial.print("  ");
   Serial.print(colourArray[1]);
   Serial.print("  ");
   Serial.print(colourArray[2]);
-  Serial.println();*/
+  Serial.println();
+
+  // difference
+//  Serial.println("differencve between colours");
+//  Serial.print("RG: ");
+//  Serial.print(abs(colourArray[0] - colourArray[1]));
+//  Serial.print(" RB: ");
+//  Serial.print(abs(colourArray[0] - colourArray[2]));
+//  Serial.print(" GB: ");
+//  Serial.print(abs(colourArray[1] - colourArray[2]));
 }
 
 float Sensors::getReading(int times) {
