@@ -284,19 +284,21 @@ void loop()
   //delay(100);
 }
  
+#define ABS(x) ((x)>0) ? x : -x
 ISR(TIMER1_COMPA_vect)
 {
   // Update sensors
   //heightUS = ultrasonic.Ranging(CM);
 
   // Elbow control
+  static int prevPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   
   if ((currPosElbow > goalPosElbow - BUFFER_ELBOW) && (currPosElbow < goalPosElbow + BUFFER_ELBOW)) { // Final Dest
     motion.stopMotorElbow();
     goalReachedElbow = 1;
   }
-  else if (currPosElbow < goalPosElbow) { // Going DOWN
+  else if (currPosElbow < goalPosElbow && currPosElbow > prevPosElbow ) { // Going DOWN, previous position was stationary or moving down
     if (firstMoveElbow) {
       motion.goDownElbowSpeed(200);
       firstMoveElbow = 0;
@@ -308,7 +310,7 @@ ISR(TIMER1_COMPA_vect)
         motion.goDownElbowSpeed(180);
     }
   }
-  else if (currPosElbow > goalPosElbow) { // Going UP
+  else if (currPosElbow > goalPosElbow && currPosElbow < prevPosElbow) { // Going UP
     if (firstMoveElbow) {
       motion.goUpElbow();
       firstMoveElbow = 0;
@@ -320,6 +322,9 @@ ISR(TIMER1_COMPA_vect)
         motion.goUpElbowSpeed(255);
     }
   }
+  // just with this, 
+  // save previous position of the elbow
+  prevPosElbow = currPosElbow;
 
   // Shoulder control
   currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
