@@ -85,8 +85,7 @@ void setup()
    * 1 / (16e6/1024) = 6.4e-5
    * (0.05 s / 6.4e-5) - 1 = 780
    */
-   // NOTE: Completely arbitrary faster timer. This is so we sample faster than the nyquist frequency of the arm oscillation
-  OCR1A = 200;
+  OCR1A = 780;
   TCCR1B |= (1 << WGM12);
   TCCR1B |= (1 << CS10);
   TCCR1B |= (1 << CS12);
@@ -294,6 +293,9 @@ ISR(TIMER1_COMPA_vect)
   // Elbow control
   static int prevPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
+  while (currPosElbow < ELBOW_MAX - 4 * BUFFER_ELBOW) { // Stop bad elbow pot readings
+    currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
+  }
   
   if ((currPosElbow > goalPosElbow - BUFFER_ELBOW) && (currPosElbow < goalPosElbow + BUFFER_ELBOW)) { // Final Dest
     motion.stopMotorElbow();
@@ -306,9 +308,9 @@ ISR(TIMER1_COMPA_vect)
     }
     else {
       if (currPosElbow > goalPosElbow - BUFFER_ELBOW_DECEL) // Decel Zone
-        motion.goDownElbowSpeed(140);
+        motion.goDownElbowSpeed(160);
       else // Normal Zone
-        motion.goDownElbowSpeed(180);
+        motion.goDownElbowSpeed(200);
     }
   }
   else if (currPosElbow > goalPosElbow && currPosElbow < prevPosElbow) { // Going UP
