@@ -12,8 +12,6 @@
 #define SEARCH_START_SHOULDER 300
 #define MIN_RADIUS_ELBOW 710
 #define MIN_RADIUS_SHOULDER 260
-//#define PACK_UP_ELBOW ELBOW_MIN
-//#define PACK_UP_SHOULDER SHOULDER_MAX
 
 #define SEARCH_ROTATION_DURATION 300
 
@@ -65,8 +63,11 @@ volatile int goalReachedShoulder = 0;
 volatile int firstMoveElbow = 1;
 volatile int firstMoveShoulder = 1;
 
-int state;
+volatile int state;
 int puck;
+
+
+unsigned long roundTime = 300000; // 5 mins (Actual max is 6 mins)
 
 void setup()
 {
@@ -113,6 +114,8 @@ void loop()
   serialPrint();
   Serial.print("# STATE: ");
   Serial.println(state);
+
+  checkTime();
 
   switch (state) {
     case 0: // Once max upright, Go to search rotation
@@ -276,7 +279,31 @@ void loop()
         state = 1;
       }
       break;
+
+    case 99: // End, Go to packup
+      dropPuck();
+      delay(1000);
+      motion.goCW();
+      delay(3000);
+      motion.stopWaist();
+      delay(1000);
+
+      goalPosShoulder = SHOULDER_MAX;
+      goalReachedElbow = 0;
+      goalReachedShoulder = 0;
+      if (goalReachedShoulder == 1) {
+        delay(2000);
+        goalPosElbow = ELBOW_MIN;
+        
+        while (true) {// Inf loop to end
+          goalPosElbow = ELBOW_MIN;
+        }
+      }
       
+      break;
+      
+//#define PACK_UP_ELBOW ELBOW_MIN
+//#define PACK_UP_SHOULDER SHOULDER_MAX
     default:
       Serial.println("Error: Unknown State!");
   }
@@ -291,7 +318,7 @@ ISR(TIMER1_COMPA_vect)
   //heightUS = ultrasonic.Ranging(CM);
 
   // Elbow control
-  static int prevPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
+//  static int prevPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
   while (currPosElbow < ELBOW_MAX - 4 * BUFFER_ELBOW) { // Stop bad elbow pot readings
     currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
@@ -301,7 +328,8 @@ ISR(TIMER1_COMPA_vect)
     motion.stopMotorElbow();
     goalReachedElbow = 1;
   }
-  else if (currPosElbow < goalPosElbow && currPosElbow > prevPosElbow ) { // Going DOWN, previous position was stationary or moving down
+//  else if (currPosElbow < goalPosElbow && currPosElbow > prevPosElbow ) { // Going DOWN, previous position was stationary or moving down
+  else if (currPosElbow < goalPosElbow) { // Going DOWN, previous position was stationary or moving down
     if (firstMoveElbow) {
       motion.goDownElbowSpeed(200);
       firstMoveElbow = 0;
@@ -313,7 +341,8 @@ ISR(TIMER1_COMPA_vect)
         motion.goDownElbowSpeed(200);
     }
   }
-  else if (currPosElbow > goalPosElbow && currPosElbow < prevPosElbow) { // Going UP
+//  else if (currPosElbow > goalPosElbow && currPosElbow < prevPosElbow) { // Going UP
+  else if (currPosElbow > goalPosElbow) { // Going UP
     if (firstMoveElbow) {
       motion.goUpElbow();
       firstMoveElbow = 0;
@@ -329,7 +358,7 @@ ISR(TIMER1_COMPA_vect)
   }
   // just with this, 
   // save previous position of the elbow
-  prevPosElbow = currPosElbow;
+//  prevPosElbow = currPosElbow;
 
   // Shoulder control
   currPosShoulder = analogRead(PIN_MOTOR_SHOULDER_POT);
@@ -365,35 +394,35 @@ ISR(TIMER1_COMPA_vect)
   
 }
 
-void searchStartSwitchPressed() {
-  // Debouncing
-  static unsigned long last_interrupt_time = 0;
-  unsigned long interrupt_time = millis();
-  if (interrupt_time - last_interrupt_time > 200) 
-  {
-    
-    if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
-      Serial.println("Search Start reached!");
-    }
-    
-  }
-  last_interrupt_time = interrupt_time;
-}
-
-void searchEndSwitchPressed() {
-  // Debouncing
-  static unsigned long last_interrupt_time = 0;
-  unsigned long interrupt_time = millis();
-  if (interrupt_time - last_interrupt_time > 200) 
-  {
-    
-    if (digitalRead(PIN_SEARCH_END_SWITCH) == 1) {
-      Serial.println("Search End reached!");
-    }
-    
-  }
-  last_interrupt_time = interrupt_time;
-}
+//void searchStartSwitchPressed() {
+//  // Debouncing
+//  static unsigned long last_interrupt_time = 0;
+//  unsigned long interrupt_time = millis();
+//  if (interrupt_time - last_interrupt_time > 200) 
+//  {
+//    
+//    if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
+//      Serial.println("Search Start reached!");
+//    }
+//    
+//  }
+//  last_interrupt_time = interrupt_time;
+//}
+//
+//void searchEndSwitchPressed() {
+//  // Debouncing
+//  static unsigned long last_interrupt_time = 0;
+//  unsigned long interrupt_time = millis();
+//  if (interrupt_time - last_interrupt_time > 200) 
+//  {
+//    
+//    if (digitalRead(PIN_SEARCH_END_SWITCH) == 1) {
+//      Serial.println("Search End reached!");
+//    }
+//    
+//  }
+//  last_interrupt_time = interrupt_time;
+//}
 
 void serialPrint() {
   currPosElbow = analogRead(PIN_MOTOR_ELBOW_POT);
@@ -456,7 +485,7 @@ void dropPuck() {
   delay(2000);
 }
 
-// Stops not possible readings, Returns 100 if no decent reading
+// Stops not possible readings, Returns 0 if no decent reading
 long readUltraSonicSensor() {
   int tries;
   long result;
@@ -469,6 +498,13 @@ long readUltraSonicSensor() {
     delay(50);
   }
 
-  return 100;
+  return 0;
+}
+
+void checkTime() {
+  if (millis() > roundTime) {
+    Serial.println("--- Timeout");
+    state = 99;
+  }
 }
 
