@@ -127,10 +127,6 @@ void loop()
           if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
             motion.stopWaist();
             delay(500);
-            motion.goCCW();
-            delay(700);
-            motion.stopWaist();
-            delay(500);
             state = 1;
           }
         }
@@ -253,7 +249,6 @@ void loop()
     case 10: // Finished rotate
       if (digitalRead(PIN_SEARCH_END_SWITCH) == 1) {
         Serial.println("!!! Reached end of search");
-        state = 1;
       }
       else {
         state = 50;
