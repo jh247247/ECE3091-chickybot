@@ -164,3 +164,30 @@ float Sensors::getReading(int times) {
   return avgRead = (tally) / times;
 }
 
+#define PUCK_THRESHOLD 600
+
+int Sensors::checkForPuck() {
+  delay(10);
+  ambientLightVal = getReading(10);
+//  Serial.print("ambient light = ");
+//  Serial.println(ambientLightVal);
+//  Serial.println();
+  
+  if (ambientLightVal > PUCK_THRESHOLD)
+    return 1;
+
+  return 0;
+}
+
+void Sensors::turnAllLightsOn() {
+  digitalWrite(A3, HIGH);
+  digitalWrite(A4, HIGH);
+  digitalWrite(A5, HIGH);
+}
+
+void Sensors::turnAllLightsOff() {
+  digitalWrite(A3, LOW);
+  digitalWrite(A4, LOW);
+  digitalWrite(A5, LOW);
+}
+

@@ -4,9 +4,9 @@
 #include "Motion.h"
 #include "Sensors.h"
 
-#define SEARCH_HEIGHT 6
+#define SEARCH_HEIGHT 4
 #define DROP_HEIGHT 14
-#define DROP_ELBOW 800
+#define DROP_ELBOW 780
 #define DROP_SHOULDER 220
 #define SEARCH_START_ELBOW 600
 #define SEARCH_START_SHOULDER 300
@@ -45,7 +45,6 @@
 #define PIN_R_LED A5
 
 // Unused pins
-#define PIN_6 6
 #define PIN_A6 A6
 #define PIN_A7 A7
 
@@ -67,8 +66,7 @@ int firstMoveElbow = 1;
 int firstMoveShoulder = 1;
 
 int state;
-
-int colour;
+int puck;
 
 void setup()
 {
@@ -95,13 +93,16 @@ void setup()
   sei();
 
   // Home Switch Interrupt
-  attachInterrupt(0, searchStartSwitchPressed, CHANGE); // 0 = PIN 2
-  attachInterrupt(1, searchEndSwitchPressed, CHANGE); // 1 = PIN 3
+//  attachInterrupt(0, searchStartSwitchPressed, CHANGE); // 0 = PIN 2
+//  attachInterrupt(1, searchEndSwitchPressed, CHANGE); // 1 = PIN 3
 
   // Set initial position
   goalPosElbow = ELBOW_MIN;
   goalPosShoulder = SHOULDER_MAX;
 
+  motion.headServoUp();
+  delay(2000);
+  motion.headServoOff();
   //motion.goCCW();
 
   state = 0;
@@ -134,7 +135,7 @@ void loop()
       goalReachedElbow = 0;
       goalReachedShoulder = 0;
       state = 2;
-      delay(1000);  
+      delay(1000);
       break;
     
     case 2: // Once E, S to S_S
@@ -149,21 +150,22 @@ void loop()
 
     case 3: // Once S, Next
       if (goalReachedShoulder == 1) {
+        sensors.turnAllLightsOn();
+        digitalWrite(PIN_FAN, HIGH);
         delay(100);
-        state = 4;
+        state = 5;
       }
       break;
       
     case 4: // Once S, Check puck
       delay(100);
-      colour = sensors.getHeadColour();
-      if (colour == 0) {
+      puck = sensors.checkForPuck();
+      if (puck == 0) {
         state = 5;
       }
       else {
-        Serial.print("Found colour: ");
-        Serial.println(colour);
-        state = 5;
+        Serial.print("Found puck: ");
+        state = 11;
       }
       delay(1000);
       break;
@@ -231,6 +233,46 @@ void loop()
         Serial.println("!!! Reached end of search");
       }
       else {
+        state = 1;
+      }
+      break;
+
+    case 11: // Pick up puck, Move to drop zone
+      pickUpPuck();
+
+      goalPosShoulder = DROP_SHOULDER;
+      goalReachedElbow = 0;
+      goalReachedShoulder = 0;
+      state = 12;
+      delay(1000);
+      break;
+
+    case 12: // Move to drop zone
+      if (goalReachedShoulder == 1) {
+        goalPosElbow = DROP_ELBOW;
+        goalReachedElbow = 0;
+        goalReachedShoulder = 0;
+        state = 13;
+        delay(1000);
+      }
+      break;
+
+    case 13: // Drop
+      if (goalReachedElbow == 1) {
+        delay(1000);
+        motion.goCW();
+
+        state = 14;
+      }
+      break;
+
+    case 14: // Drop
+      if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
+        motion.stopWaist();
+        delay(1000);
+
+        dropPuck();
+
         state = 1;
       }
       break;
@@ -390,8 +432,6 @@ void serialPrint() {
 
 void pickUpPuck() {
   Serial.println("----- Pick up");
-  digitalWrite(PIN_FAN, HIGH);
-  delay(4000);
   motion.headServoDown();
   delay(2000);
 }

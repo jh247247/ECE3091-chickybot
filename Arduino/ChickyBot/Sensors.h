@@ -9,6 +9,10 @@ class Sensors
   public:
     Sensors(int pinPhotoDiode, int pinLedRed, int pinLedGreen, int pinLedBlue);
     int getHeadColour();
+    int checkForPuck();
+    void turnAllLightsOn();
+    void turnAllLightsOff();
+    
   private:
     int _pinPhotoDiode;
 	  int _pinLedRed;
