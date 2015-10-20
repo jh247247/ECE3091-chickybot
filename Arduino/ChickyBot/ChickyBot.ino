@@ -85,7 +85,8 @@ void setup()
    * 1 / (16e6/1024) = 6.4e-5
    * (0.05 s / 6.4e-5) - 1 = 780
    */
-  OCR1A = 780;
+   // NOTE: Completely arbitrary faster timer. This is so we sample faster than the nyquist frequency of the arm oscillation
+  OCR1A = 200;
   TCCR1B |= (1 << WGM12);
   TCCR1B |= (1 << CS10);
   TCCR1B |= (1 << CS12);
