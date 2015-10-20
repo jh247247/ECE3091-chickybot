@@ -322,6 +322,8 @@ ISR(TIMER1_COMPA_vect)
       else // Normal Zone
         motion.goUpElbowSpeed(255);
     }
+  } else {
+    motion.stopMotorElbow();
   }
   // just with this, 
   // save previous position of the elbow
