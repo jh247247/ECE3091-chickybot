@@ -4,14 +4,14 @@
 #include "Motion.h"
 #include "Sensors.h"
 
-#define SEARCH_HEIGHT 8
+#define SEARCH_HEIGHT 6
 #define DROP_HEIGHT 14
 #define DROP_ELBOW 800
 #define DROP_SHOULDER 220
-#define SEARCH_START_ELBOW 525
-#define SEARCH_START_SHOULDER 310
-#define MIN_RADIUS_ELBOW 800
-#define MIN_RADIUS_SHOULDER 230
+#define SEARCH_START_ELBOW 600
+#define SEARCH_START_SHOULDER 300
+#define MIN_RADIUS_ELBOW 710
+#define MIN_RADIUS_SHOULDER 260
 //#define PACK_UP_ELBOW ELBOW_MIN
 //#define PACK_UP_SHOULDER SHOULDER_MAX
 
@@ -197,7 +197,7 @@ void loop()
             goalPosElbow = desiredGoal;
             goalReachedElbow = 0;
             state = 8;
-            delay(1000);
+            delay(2000);
           }
           else {
             state = 9;
@@ -207,7 +207,7 @@ void loop()
 
     case 8: // Once S, Next
       if (goalReachedElbow == 1) {
-        delay(100);
+        delay(300);
         heightUS = readUltraSonicSensor();
         if (heightUS <= SEARCH_HEIGHT) {
           state = 4;
@@ -256,14 +256,14 @@ ISR(TIMER1_COMPA_vect)
   }
   else if (currPosElbow < goalPosElbow) { // Going DOWN
     if (firstMoveElbow) {
-      motion.goDownElbowSpeed(255);
+      motion.goDownElbowSpeed(200);
       firstMoveElbow = 0;
     }
     else {
       if (currPosElbow > goalPosElbow - BUFFER_ELBOW_DECEL) // Decel Zone
-        motion.goDownElbowSpeed(180);
+        motion.goDownElbowSpeed(140);
       else // Normal Zone
-        motion.goDownElbowSpeed(220);
+        motion.goDownElbowSpeed(180);
     }
   }
   else if (currPosElbow > goalPosElbow) { // Going UP

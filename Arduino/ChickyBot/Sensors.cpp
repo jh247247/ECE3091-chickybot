@@ -131,13 +131,13 @@ void Sensors::checkColour() {
   colourArray[2] = BLUE_FUDGE * colourArray[2] * colourArray[0] / 1000;
 
   //THIS IS FOR DEBUGGING PURPOSES
-  Serial.println("COLOUR_TESTING AFTER FUDGE ");
-  Serial.print(colourArray[0]);
-  Serial.print("  ");
-  Serial.print(colourArray[1]);
-  Serial.print("  ");
-  Serial.print(colourArray[2]);
-  Serial.println();
+//  Serial.println("COLOUR_TESTING AFTER FUDGE ");
+//  Serial.print(colourArray[0]);
+//  Serial.print("  ");
+//  Serial.print(colourArray[1]);
+//  Serial.print("  ");
+//  Serial.print(colourArray[2]);
+//  Serial.println();
 
   // difference
 //  Serial.println("differencve between colours");
