@@ -7,7 +7,7 @@
 #define SEARCH_HEIGHT 4
 #define DROP_HEIGHT 14
 #define DROP_ELBOW 780
-#define DROP_SHOULDER 220
+#define DROP_SHOULDER 210
 #define SEARCH_START_ELBOW 600
 #define SEARCH_START_SHOULDER 300
 #define MIN_RADIUS_ELBOW 710
@@ -442,6 +442,8 @@ void dropPuck() {
   delay(2000);
   digitalWrite(PIN_FAN, LOW);
   delay(4000);
+  motion.headServoOff();
+  delay(2000);
 }
 
 // Stops not possible readings, Returns 100 if no decent reading
