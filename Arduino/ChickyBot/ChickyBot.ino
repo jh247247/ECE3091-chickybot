@@ -13,7 +13,7 @@
 #define MIN_RADIUS_ELBOW 710
 #define MIN_RADIUS_SHOULDER 260
 
-#define SEARCH_ROTATION_DURATION 300
+#define SEARCH_ROTATION_DURATION 250
 
 #define BUFFER_ELBOW 10
 #define BUFFER_ELBOW_DECEL 60
@@ -115,7 +115,7 @@ void loop()
   Serial.print("# STATE: ");
   Serial.println(state);
 
-  checkTime();
+//  checkTime();
 
   switch (state) {
     case 0: // Once max upright, Go to search rotation
@@ -135,6 +135,18 @@ void loop()
           }
         }
       }
+      break;
+
+    case 50:
+        if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
+          motion.stopWaist();
+          delay(500);
+          motion.goCCW();
+          delay(700);
+          motion.stopWaist();
+          delay(500);
+          state = 1;
+        }
       break;
     
     case 1: // Once at correct rotation, Move E to S_S
@@ -179,6 +191,7 @@ void loop()
 
     case 5: // No puck, Move in if possible
       if ((currPosElbow < MIN_RADIUS_ELBOW) || (currPosShoulder > MIN_RADIUS_SHOULDER)) {
+        digitalWrite(PIN_FAN, LOW);
         state = 6;
       }
       else {
@@ -206,7 +219,9 @@ void loop()
             goalPosElbow = desiredGoal;
             goalReachedElbow = 0;
             state = 8;
-            delay(2000);
+            delay(500);
+            digitalWrite(PIN_FAN, HIGH);
+            delay(500);
           }
           else {
             state = 9;
@@ -241,7 +256,7 @@ void loop()
         state = 1;
       }
       else {
-        state = 1;
+        state = 50;
       }
       break;
 
@@ -255,13 +270,29 @@ void loop()
       delay(1000);
       break;
 
+//    case 12: // Move to drop zone
+//      if (goalReachedShoulder == 1) {
+//        goalPosElbow = DROP_ELBOW;
+//        goalReachedElbow = 0;
+//        goalReachedShoulder = 0;
+//        state = 13;
+//        delay(1000);
+//      }
+//      break;
+
     case 12: // Move to drop zone
       if (goalReachedShoulder == 1) {
-        goalPosElbow = DROP_ELBOW;
+        for (goalPosElbow = currPosElbow; goalPosElbow <= DROP_ELBOW; goalPosElbow += BUFFER_ELBOW) {
+          goalReachedElbow = 0;
+          while (goalReachedElbow == 0) {
+            delay(400);
+          }
+          delay(1200);
+        }
         goalReachedElbow = 0;
         goalReachedShoulder = 0;
         state = 13;
-        delay(1000);
+        delay(2000);
       }
       break;
 
@@ -277,11 +308,11 @@ void loop()
     case 14: // Drop
       if (digitalRead(PIN_SEARCH_START_SWITCH) == 1) {
         motion.stopWaist();
-        delay(1000);
+        delay(5000);
 
         dropPuck();
 
-        state = 1;
+        state = 50;
       }
       break;
 
@@ -336,14 +367,14 @@ ISR(TIMER1_COMPA_vect)
 //  else if (currPosElbow < goalPosElbow && currPosElbow > prevPosElbow ) { // Going DOWN, previous position was stationary or moving down
   else if (currPosElbow < goalPosElbow) { // Going DOWN, previous position was stationary or moving down
     if (firstMoveElbow) {
-      motion.goDownElbowSpeed(200);
+      motion.goDownElbowSpeed(255);
       firstMoveElbow = 0;
     }
     else {
       if (currPosElbow > goalPosElbow - BUFFER_ELBOW_DECEL) // Decel Zone
-        motion.goDownElbowSpeed(160);
-      else // Normal Zone
         motion.goDownElbowSpeed(200);
+      else // Normal Zone
+        motion.goDownElbowSpeed(240);
     }
   }
 //  else if (currPosElbow > goalPosElbow && currPosElbow < prevPosElbow) { // Going UP
@@ -487,7 +518,7 @@ void dropPuck() {
   digitalWrite(PIN_FAN, LOW);
   delay(4000);
   motion.headServoOff();
-  delay(2000);
+  delay(5000);
 }
 
 // Stops not possible readings, Returns 0 if no decent reading
