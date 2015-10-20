@@ -54,16 +54,16 @@ Motion motion(PIN_MOTOR_ELBOW_POS, PIN_MOTOR_ELBOW_NEG, PIN_MOTOR_SHOULDER_POS, 
 Sensors sensors(PIN_PHOTO_DIODE, PIN_R_LED, PIN_G_LED, PIN_B_LED);
 
 // Positioning vars
-int currPosElbow;
-int goalPosElbow;
-int currPosShoulder;
-int goalPosShoulder;
-int desiredGoal;
+volatile int currPosElbow;
+volatile int goalPosElbow;
+volatile int currPosShoulder;
+volatile int goalPosShoulder;
+volatile int desiredGoal;
 
-int goalReachedElbow = 0;
-int goalReachedShoulder = 0;
-int firstMoveElbow = 1;
-int firstMoveShoulder = 1;
+volatile int goalReachedElbow = 0;
+volatile int goalReachedShoulder = 0;
+volatile int firstMoveElbow = 1;
+volatile int firstMoveShoulder = 1;
 
 int state;
 int puck;
