@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="chickybot-000\chickybot\Generated_Source">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="chickybot-000\chickybot\Source Files\main.c">
 <ExpandedNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
@@ -24,6 +24,7 @@
 <v>chickybot-000\chickybot\Source Files\cv.c</v>
 <v>chickybot-000\chickybot\Source Files\cv.h</v>
 <v>chickybot-000\chickybot\Source Files\main.c</v>
+<v>chickybot-000\chickybot\Generated_Source</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.c</v>
@@ -161,6 +162,35 @@
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\RESET\RESET.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\RESET\RESET.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\RESET\RESET_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_audio.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_audio.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_boot.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_cdc.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_cdc.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_cdc.inf</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_cls.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_descr.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_drv.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_episr.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_hid.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_hid.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_midi.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_midi.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_pm.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_pvt.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_std.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB\USB_vnd.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dm</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dm\USB_Dm.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dm\USB_Dm.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dm\USB_Dm_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dp</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dp\USB_Dp.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dp\USB_Dp.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\USB_Dp\USB_Dp_aliases.h</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cybootloader.c</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cybootloader.icf</v>
 <v>chickybot-000\chickybot\Generated_Source\PSoC5\cydevice.h</v>
@@ -192,6 +222,38 @@
 <v>chickybot-000\chickybot\Source Files\cv.h</v>
 <v>chickybot-000\chickybot\Source Files\main.c</v>
 <v>chickybot-000\chickybot\Generated_Source</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera\Camera.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera\Camera.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera\Camera_settings.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_DMA</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_DMA\Camera_DMA_dma.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_DMA\Camera_DMA_dma.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_BOOT.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_INT.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_MASTER.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_PM.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_PVT.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_SLAVE.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOC</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOC\Camera_SIOC.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOC\Camera_SIOC.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOC\Camera_SIOC_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOD</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOD\Camera_SIOD.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOD\Camera_SIOD.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_SIOD\Camera_SIOD_aliases.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.c</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.h</v>
+<v>chickybot-000\chickybot\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC_aliases.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -334,6 +396,21 @@
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\main.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\PWDN.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\RESET.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_audio.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_boot.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_cdc.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_cls.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_descr.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_Dm.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_Dp.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_drv.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_episr.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_hid.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_midi.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_pm.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_std.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\USB_vnd.lst</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\chickybot.cyacd</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\chickybot.elf</v>
 <v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\chickybot.hex</v>
@@ -345,6 +422,46 @@
 <VisibleNodeIds>
 <v>chickybot-000</v>
 <v>chickybot-000\chickybot</v>
+<v>chickybot-000\chickybot\CortexM3</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Bootloadable_1.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_DMA_dma.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_I2C.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_I2C_BOOT.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_I2C_INT.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_I2C_MASTER.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_I2C_PM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_I2C_SLAVE.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_settings.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_SIOC.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_SIOD.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Camera_VSYNC.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockCamera.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockCsBtns.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\ClockLcdBacklight.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CsBtns_PWM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CsBtns_PWM_PM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cv.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cybootloader.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CyDmac.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CyFlash.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CyLib.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cymetadata.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\CySpc.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrBtn0Pressed.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\IsrBtn1Pressed.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Lcd.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Lcd_Cntl_Port.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Lcd_Cntl_Port_PM.lst</v>
+<v>chickybot-000\chickybot\CortexM3\ARM_GCC_484\Debug\Listing Files\Lcd_PM.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -366,6 +483,7 @@
 <v>chickybot-000\chickybot\cy_clock_v2_20</v>
 <v>chickybot-000\chickybot\cy_isr_v1_70</v>
 <v>chickybot-000\chickybot\cy_pins_v2_10</v>
+<v>chickybot-000\chickybot\USBFS_v2_80</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>chickybot-000</v>
@@ -380,6 +498,7 @@
 <v>chickybot-000\chickybot\cy_clock_v2_20</v>
 <v>chickybot-000\chickybot\cy_isr_v1_70</v>
 <v>chickybot-000\chickybot\cy_pins_v2_10</v>
+<v>chickybot-000\chickybot\USBFS_v2_80</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -394,6 +513,7 @@
 <name v=".\main.c" />
 <name v=".\cv.c" />
 <name v=".\cv.h" />
+<name v=".\Generated_Source\PSoC5\Camera.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

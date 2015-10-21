@@ -53,11 +53,17 @@ int main()
     CyGlobalIntEnable; /* Enable global interrupts. */
     IsrBtn0Pressed_StartEx(Btn0Pressed);
     IsrBtn1Pressed_StartEx(Btn1Pressed);
-
+    
     // Starts
+    USB_Start(0,USB_DWR_VDDD_OPERATION);
+	while(!USB_GetConfiguration());
+    
     CsBtns_Start();
     Lcd_Start();
     Camera_Start();
+    
+    USB_CDC_Init(); //enable receiving data from USB host
+	while(!USB_DataIsReady()); //wait until data is received on USB for synchronisation
     
     CyDelay(1000); // TODO: Necessary to wait for Camera to start up?
     

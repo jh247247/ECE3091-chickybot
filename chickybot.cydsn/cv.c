@@ -31,30 +31,36 @@ uint16 * parsePhoto() {
     //    G = Y-U-V
     //    B = Y+U
     uint8 h, w;
-    uint8 u, v, y;
+    uint16 u, v, y;
+    uint16 red, green, blue;
     
     for (h = 0; h < IMG_H; h++) {
         for (w = 0; w < IMG_W; w++) {
-            u = Camera_framebuffer[h][w][0];
-            v = Camera_framebuffer[h][w][1];
-            y = Camera_framebuffer[h][w][2];
+            u = (uint16) Camera_framebuffer[h][w][0];
+            y = (uint16) Camera_framebuffer[h][w][1];
+            v = (uint16) Camera_framebuffer[h][w][2];
             // R
-            Camera_framebuffer[h][w][0] = y + v;
+            red = y + v;
+            Camera_framebuffer[h][w][0] = (uint8) red;
             // G
-            Camera_framebuffer[h][w][1] = y - u - v;
+            green = y - u - v;
+            Camera_framebuffer[h][w][1] = (uint8) green;
             // B
-            Camera_framebuffer[h][w][2] = y + u;
+            blue = y + u;
+            Camera_framebuffer[h][w][2] = (uint8) blue;
             // Grey
-            Camera_framebuffer[h][w][3] = (Camera_framebuffer[h][w][0] + Camera_framebuffer[h][w][1] + Camera_framebuffer[h][w][2]) / 3;
+            Camera_framebuffer[h][w][3] = (uint8) (red + blue + green) / 3;
         }
     }
+    
+    //sendCameraDataOverUsb();
     
     // Create Img Diff arrays
     for (h = 0; h < IMG_H; h++) {
         for (w = 0; w < IMG_W; w++) {
-            Camera_framebuffer[h][w][0] = Camera_framebuffer[h][w][0] - Camera_framebuffer[h][w][3];
-            Camera_framebuffer[h][w][1] = Camera_framebuffer[h][w][1] - Camera_framebuffer[h][w][3];
-            Camera_framebuffer[h][w][2] = Camera_framebuffer[h][w][2] - Camera_framebuffer[h][w][3];
+            Camera_framebuffer[h][w][0] = (uint8) (((uint16) Camera_framebuffer[h][w][0]) - ((uint16) Camera_framebuffer[h][w][3]));
+            Camera_framebuffer[h][w][1] = (uint8) (((uint16) Camera_framebuffer[h][w][1]) - ((uint16) Camera_framebuffer[h][w][3]));
+            Camera_framebuffer[h][w][2] = (uint8) (((uint16) Camera_framebuffer[h][w][2]) - ((uint16) Camera_framebuffer[h][w][3]));
         }
     }
     
@@ -88,7 +94,6 @@ uint16 * parsePhoto() {
                 Camera_framebuffer[h][w][2] = 0;
         }
     }
-    
     
     // Find box dims
     
@@ -334,4 +339,13 @@ uint16 * parsePhoto() {
 uint16 * readPlanWithCamera() {
     takePhoto();
     return parsePhoto();
+}
+
+void sendCameraDataOverUsb() {
+    uint16 i;
+	for(i=0;i<sizeof Camera_framebuffer;i+=64)
+	{
+		while(!USB_CDCIsReady()); //wait until USB is ready
+		USB_PutData((uint8*)Camera_framebuffer+i,64); //send next 64 byte packet (maximum size)
+	}
 }

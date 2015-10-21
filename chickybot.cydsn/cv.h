@@ -27,3 +27,5 @@ uint16 * readPlanWithCamera();
 
 uint16 takePhoto();
 uint16 * parsePhoto();
+
+void sendCameraDataOverUsb();
